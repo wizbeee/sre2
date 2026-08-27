@@ -1144,68 +1144,94 @@ var MODULES = [
     },
   {
     id:"alien", no:2, book:3, unit:"우리 주변에는 어떤 생물이 살고 있을까?",
-    title:"외래생물과 하천 생태계", pages:"26~31쪽", core:"핵심 활동 30~31쪽",
+    title:"외래생물과 생물다양성", pages:"26~31쪽", core:"활동 1·3 (27쪽 · 30~31쪽)",
     ready:true,
+    /* 1차시 50분 운영안 (2026-08-27 발주자 결정).
+       교과서 활동 2(28~29쪽 야외 생물 조사)는 하지 않는다. 그 대신 활동 1의 '내가 사는 지역'
+       조사를 활동 3으로 잇는다 — 교과서 30쪽 1번이 활동 2에 기대고 있어 그대로 두면 성립하지 않는다.
+       0~5분 도입 → 5~9분 예상 → 9~21분 가상 탐구 → 21~38분 조사·기록 → 38~50분 카드 뉴스·발표 */
+    stepTimes: ["5분", "4분", "12분", "17분", "12분"],
+    stepTodo: {
+      intro:  "외래생물과 생태계교란 생물이 무엇인지 확인해요. (교과서 26쪽)",
+      predict: "외래생물을 풀어놓으면 토종 물고기가 어떻게 될지 예상해서 그려요.",
+      explore: "외래생물 유형·방생 수·제거 시점을 바꿔 가며 개체수가 어떻게 달라지는지 확인해요.",
+      record: "미리 찾아 온 우리 지역 생태계교란 생물을 정리하고, 시뮬레이션 그래프를 근거로 영향을 논증해요.",
+      export: "카드 뉴스를 내려받아 꾸미고 발표해요. 빈 항목이 0개인지 확인하고 활동지를 제출해요."
+    },
     flow:[
-      { no:"활동 1", title:"우리나라로 유입된 외래생물 조사하기", pages:"27쪽",
-        what:"한국 외래생물 정보 시스템에서 외래생물과 생태계교란 생물의 뜻·종류·유입 경로·분포를 조사해요." },
+      { no:"활동 1", title:"우리나라로 유입된 외래생물 조사하기", pages:"27쪽", here:true,
+        what:"한국 외래생물 정보 시스템(kias.nie.re.kr)에서 외래생물과 생태계교란 생물의 뜻·종류를 확인하고, 우리 지역에 어떤 생태계교란 생물이 분포하는지 찾아요." },
       { no:"활동 2", title:"우리 주변의 다양한 생물 조사하기", pages:"28~29쪽",
-        what:"야외 조사를 계획해 생물을 관찰하고 사진과 발견 장소를 기록해 생태 지도를 만들어요." },
+        what:"야외에 나가 생물을 직접 조사하는 활동이에요. 이 수업에서는 하지 않아요. 대신 활동 1에서 우리 지역 자료를 찾아 활동 3으로 이어요." },
       { no:"활동 3", title:"외래생물이 생물다양성에 미치는 영향 조사하기", pages:"30~31쪽", here:true,
-        what:"사례를 조사하고 외래생물이 생물다양성에 미치는 영향을 근거를 들어 논증해요." }
-    ],
-    sources:[
-      { name:"한국 외래생물 정보 시스템", addr:"kias.nie.re.kr (교과서 27쪽 QR)",
-        use:"외래생물과 생태계교란 생물의 뜻·종류·유입 경로·분포·피해 사례" }
-    ],
-    tutorial:[
-      "‘외래생물 유형’에서 포식형과 경쟁형 중 하나를 골라요.",
-      "‘처음 방생하는 수’를 정하고 ‘▶ 시작’을 눌러요. 5년째에 외래생물이 들어와요.",
-      "‘제거 강도’를 올리고 다시 해 보면 결과가 어떻게 달라지는지 볼 수 있어요."
+        what:"내가 찾은 생태계교란 생물이 생태계에 어떤 영향을 주었는지 사례를 조사하고, 시뮬레이션 결과를 근거로 영향을 논증한 뒤 카드 뉴스로 만들어 발표해요." }
     ],
     guide:{
       ask:[
-        "외래생물을 다섯 마리만 풀었는데 몇 년 뒤 토종 물고기는 어떻게 되었습니까?",
-        "제거 시점을 앞당기면 무엇이 달라집니까?",
-        "토종 물고기가 돌아와도 토종 포식자는 왜 돌아오지 못했습니까?"
+        "이 생물은 어떤 경로로 우리나라에 들어왔습니까?",
+        "그 생물이 늘어나면 원래 살던 생물에게는 무슨 일이 생깁니까?",
+        "생물다양성의 세 측면(유전적 다양성·종다양성·생태계다양성) 가운데 무엇이 줄어듭니까?"
       ],
       miss:[
-        "‘외래생물은 무조건 다 없애면 된다’ — 제거에는 비용과 생명윤리 문제가 따르며, 늦으면 회복이 어렵습니다(교과서 31쪽).",
-        "‘개체수가 줄었다가 늘면 원래대로 돌아온 것이다’ — 종 수와 고르기만으로는 판단할 수 없습니다. ‘종 수’에는 외래생물도 들어가고, ‘고르기’는 남은 개체수가 서로 비슷하기만 해도 올라갑니다. 어느 종이 몇 마리 남았는지를 방생 전 값과 함께 보게 하십시오.",
-        "‘시뮬레이션 수치가 실제 하천의 값이다’ — 이 모형은 경향만 보여 주는 개념 모형입니다."
+        "‘외래생물 = 생태계교란 생물’로 여기는 학생이 많습니다. 외래생물 가운데 피해가 큰 것을 정부가 따로 지정한 것이 생태계교란 생물입니다(교과서 26쪽).",
+        "‘한 종이 사라진 것’만 영향으로 드는 학생이 있습니다. 먹이 관계를 타고 다른 종까지 줄어드는 것이 생태계 수준의 영향입니다. 시뮬레이션의 토종 포식자 그래프가 그것을 보여 줍니다.",
+        "‘잡아 없애면 된다’로 끝내는 학생이 있습니다. 교과서 31쪽 생명윤리 도움말대로, 포획·제거가 불가피해지는 상황 자체를 예방하는 쪽으로 이끄십시오."
       ],
-      demo:"포식형·방생 5마리·제거 강도 0으로 한 번 보여 주신 뒤, 제거 시작 2년·강도 60 %로 바꿔 비교하십시오. ④ 기록·분석의 비교 그래프에서 조기 제거와 늦은 제거 차이가 한눈에 보입니다.",
+      demo:"교과서 활동 2(야외 조사)를 빼는 대신, 활동 1의 ‘내가 사는 지역’ 조사를 활동 3으로 잇도록 짰습니다. 교과서 30쪽 1번이 ‘활동 2에서 관찰한 생물’에 기대고 있어 그대로 두면 성립하지 않기 때문입니다. **사전 과제가 중요합니다** — kias.nie.re.kr 에서 우리 지역에 분포하는 생태계교란 생물 하나를 미리 찾아 오게 하십시오. 그러지 않으면 21~38분 안에 조사와 논증을 함께 끝내기 어렵습니다. 38분부터는 카드 뉴스를 내려받아 꾸미게 하고, 전체 발표는 대표 1~3팀만 하십시오.",
       outside:[
-        "활동 1(27쪽) 한국 외래생물 정보 시스템으로 외래생물과 생태계교란 생물의 뜻·종류·유입 경로·분포 조사",
-        "활동 2(28~29쪽) 야외 생물 조사 계획과 수행, 생태 지도 만들기(부록 77·78쪽)",
-        "활동 3(30~31쪽) 생태계교란 생물 사례 조사, 해결 방안 산출물(카드 뉴스·포스터 등) 제작과 발표"
+        "kias.nie.re.kr 접속이 필요합니다. 학교 망에서 열리는지 미리 확인하십시오.",
+        "사전 과제 — 우리 지역 생태계교란 생물 하나를 미리 찾아 오게 하십시오. 못 찾아온 학생에게는 교과서 26쪽에 나온 붉은귀거북·뉴트리아를 쓰게 하면 됩니다.",
+        "카드 뉴스는 활동지에 적은 내용으로 자동으로 만들어집니다(⑤단계 ‘카드 뉴스 PPT’). 학생은 사진과 색을 얹어 꾸미기만 하면 됩니다.",
+        "교과서 31쪽 4번의 상호 평가 다섯 항목은 발표 뒤에 구두로 진행하십시오. 화면에는 담지 않았습니다."
       ]
     },
     items:[
       { id:"p_draw", type:"draw", step:"predict", kind:"예상", ax:"alienN",
         label:"외래생물을 방생한 뒤 토종 물고기 개체수 변화를 예상해서 그려요." },
-      { id:"cond", type:"auto", step:"explore", kind:"설계",
-        attachAt:"explore", attachBtn:"조건을 활동지에 기록",
+      { id:"a1", type:"text", step:"record", kind:"조사", ref:"27쪽 1번",
+        label:"외래생물과 생태계교란 생물은 각각 무엇이고, 어떻게 다른지 적어요." },
+      /* 교과서 27쪽 2번(도입 경로)과 3번(우리 지역 분포)을 한 문항으로 묶었다.
+         활동 2를 빼면서 30쪽 1번('활동 2에서 관찰한 생물')이 갈 곳을 잃으므로,
+         여기서 고른 생물이 활동 3 전체의 대상이 된다. */
+      { id:"a2", type:"text", step:"record", kind:"조사", src:true, ref:"27쪽 2~3번",
+        label:"우리 지역에 분포하는 생태계교란 생물을 하나 골라, 이름과 우리나라에 들어온 경로를 적어요." },
+      { id:"cond", type:"auto", step:"record", kind:"설계",
         label:"내가 설정한 조건(외래생물 유형, 초기 방생 수, 제거 시점, 제거 강도)" },
       { id:"c_graph", type:"capture", step:"record", kind:"기록",
         attachAt:"explore", attachBtn:"활동지에 첨부",
         label:"개체수 변화 그래프" },
+      { id:"w1", type:"text", step:"record", kind:"사례", src:true, ref:"30쪽 2번",
+        label:"그 생물이 번성해 생태계에 어떤 영향을 주었는지 사례를 조사해 적어요. 어떤 생물이 얼마나 줄었는지를 중심으로 적어요." },
       { id:"a_claim", type:"text", step:"record", kind:"주장", ref:"30쪽 3번",
         label:"주장: 외래생물이 생물다양성에 미치는 영향은 무엇인가요?" },
       { id:"a_evidence", type:"text", step:"record", kind:"증거", ref:"30쪽 3번",
-        label:"증거: 그래프에서 어떤 부분이 그 주장을 뒷받침하나요? (종 수·개체수 변화를 들어 적어요)" },
+        label:"증거: 조사한 사례와 시뮬레이션 그래프에서 어떤 부분이 그 주장을 뒷받침하나요?" },
       { id:"a_reason", type:"text", step:"record", kind:"이유", ref:"30쪽 3번",
-        label:"이유: 그 증거가 주장을 뒷받침하는 까닭은 무엇인가요?" },
-      { id:"a1", type:"text", step:"record", kind:"조사", outside:true, ref:"27쪽 활동 1",
-        label:"외래생물과 생태계교란 생물은 각각 무엇이고 어떤 종류가 있는지 조사해 적어요." },
-      { id:"a2", type:"text", step:"record", kind:"조사", outside:true, ref:"28~29쪽 활동 2",
-        label:"야외에서 관찰한 생물의 이름과 발견 장소를 적어요. 그중 외래생물이 있었는지도 적어요." },
-      { id:"d1", type:"text", step:"export", kind:"심화", optional:true, src:true, ref:"27쪽 활동 1 심화",
-        label:"우리 지역에서 문제가 되고 있는 생태계교란 생물을 하나 조사해, 언제 어떻게 들어왔고 어떤 피해를 주는지 출처와 함께 적어요." },
-      { id:"d2", type:"text", step:"export", kind:"심화", optional:true, src:true, ref:"30~31쪽 심화",
-        label:"외래생물을 제거하는 방법 한 가지를 조사해, 좋은 점과 문제점(비용·다른 생물 피해·생명윤리)을 함께 적고 내 생각을 밝혀요." }
-    ]
-  },
+        label:"이유: 그 증거가 주장을 뒷받침하는 까닭은 무엇인가요? 생물다양성의 세 측면(유전적·종·생태계) 가운데 무엇이 줄어드는지 짚어요." },
+      { id:"sol", type:"text", step:"export", kind:"해결", ref:"31쪽 3번",
+        label:"이 문제를 줄이려면 무엇을 해야 할까요? 우리가 지금 할 수 있는 일을 하나 정해 카드 뉴스 마지막 장에 넣을 문장으로 적어요." },
+      { id:"d1", type:"text", step:"export", kind:"심화", optional:true, src:true, ref:"30~31쪽 심화",
+        label:"외래생물을 제거하는 방법 한 가지를 조사해, 좋은 점과 문제점(비용·다른 생물 피해·생명윤리)을 함께 적고 내 생각을 적어요." },
+      { id:"d2", type:"text", step:"export", kind:"심화", optional:true, src:true, ref:"31쪽 심화",
+        label:"외래생물 문제를 다루는 우리나라 법이나 제도를 하나 찾아, 무엇을 금지하고 무엇을 권하는지 적어요." }
+    ],
+    /* 카드 뉴스 — 활동지를 채우면 다섯 장이 저절로 만들어진다.
+       4장에는 학생이 담아 둔 개체수 변화 그래프가 함께 들어간다(img). */
+    deck:{
+      slides:[
+        { title:"우리 지역의 생태계교란 생물", accent:"16A34A", cover:true,
+          lines:[ { label:"내가 조사한 생물과 들어온 경로", from:"a2" } ] },
+        { title:"외래생물과 생태계교란 생물", accent:"2F3A44",
+          lines:[ { from:"a1" } ] },
+        { title:"생태계에 무슨 일이 있었나", accent:"DC2626",
+          lines:[ { from:"w1" }, { label:"찾은 곳", from:"w1", src:true } ] },
+        { title:"시뮬레이션이 보여 준 것", accent:"2563EB", img:"c_graph",
+          lines:[ { label:"주장", from:"a_claim" }, { label:"증거", from:"a_evidence" } ] },
+        { title:"우리가 할 수 있는 일", accent:"9333EA",
+          lines:[ { from:"a_reason" }, { from:"sol" } ] }
+      ]
+    }
+    },
   {
     id:"accel", no:3, book:4, unit:"생활 속 질문으로 탐구를 시작해 볼까?",
     title:"가상 놀이공원 가속도 실험실", pages:"32~37쪽", core:"활동 1~3, 33~37쪽",
@@ -3943,6 +3969,12 @@ function zipStore(files){
 }
 
 var PPT_W = 12192000, PPT_H = 6858000;      /* 16:9 (EMU) */
+/* data: 주소 → 바이트. 첨부한 화면 그림을 슬라이드에 넣을 때 쓴다 */
+function dataUrlBytes(url){
+  var bin = atob(url.slice(url.indexOf(",") + 1)), a = new Uint8Array(bin.length), i;
+  for (i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i);
+  return a;
+}
 function xmlEsc(s){
   return ("" + (s == null ? "" : s))
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
@@ -3969,14 +4001,31 @@ function pptTextBox(id, name, x, y, cx, cy, lines, sz, color, bold){
        + '<p:txBody><a:bodyPr wrap="square" lIns="91440" tIns="45720" rIns="91440" bIns="45720">'
        + '<a:normAutofit/></a:bodyPr><a:lstStyle/>' + pptParas(lines, sz, color, bold) + '</p:txBody></p:sp>';
 }
-function pptSlideXml(title, lines, accent){
+/* 그림 한 장. rId2 는 슬라이드 관계 파일에 넣어 둔 그림을 가리킨다 */
+function pptPicture(id, x, y, cx, cy){
+  return '<p:pic><p:nvPicPr><p:cNvPr id="' + id + '" name="graph"/>'
+       + '<p:cNvPicPr><a:picLocks noChangeAspect="1"/></p:cNvPicPr><p:nvPr/></p:nvPicPr>'
+       + '<p:blipFill><a:blip r:embed="rId2"/><a:stretch><a:fillRect/></a:stretch></p:blipFill>'
+       + '<p:spPr><a:xfrm><a:off x="' + x + '" y="' + y + '"/><a:ext cx="' + cx + '" cy="' + cy + '"/></a:xfrm>'
+       + '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></p:spPr></p:pic>';
+}
+function pptSlideXml(title, lines, accent, img){
   var sh = '<p:sp><p:nvSpPr><p:cNvPr id="2" name="bar"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr>'
          + '<p:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="' + PPT_W + '" cy="1188720"/></a:xfrm>'
          + '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>'
          + '<a:solidFill><a:srgbClr val="' + accent + '"/></a:solidFill></p:spPr>'
          + '<p:txBody><a:bodyPr/><a:lstStyle/><a:p/></p:txBody></p:sp>';
   sh += pptTextBox(3, "title", 685800, 274320, PPT_W - 1371600, 640080, [title], 3200, "FFFFFF", true);
-  sh += pptTextBox(4, "body", 685800, 1600200, PPT_W - 1371600, PPT_H - 2133600, lines, 1800, "20262E", false);
+  if (img) {
+    /* 그림이 있으면 글은 왼쪽 절반, 그림은 오른쪽 절반에 둔다 */
+    var half = (PPT_W - 1371600 - 342900) / 2;
+    sh += pptTextBox(4, "body", 685800, 1600200, half, PPT_H - 2133600, lines, 1500, "20262E", false);
+    var iw = half, ih = Math.round(iw * img.h / img.w);
+    if (ih > PPT_H - 2133600) { ih = PPT_H - 2133600; iw = Math.round(ih * img.w / img.h); }
+    sh += pptPicture(5, 685800 + half + 342900, 1600200, iw, ih);
+  } else {
+    sh += pptTextBox(4, "body", 685800, 1600200, PPT_W - 1371600, PPT_H - 2133600, lines, 1800, "20262E", false);
+  }
   return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
        + '<p:sld xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"'
        + ' xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"'
@@ -4003,6 +4052,7 @@ function buildPptxBytes(slides){
     + '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
     + '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
     + '<Default Extension="xml" ContentType="application/xml"/>'
+    + '<Default Extension="jpeg" ContentType="image/jpeg"/>'
     + '<Override PartName="/ppt/presentation.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml"/>'
     + '<Override PartName="/ppt/slideMasters/slideMaster1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideMaster+xml"/>'
     + '<Override PartName="/ppt/slideLayouts/slideLayout1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideLayout+xml"/>'
@@ -4069,10 +4119,15 @@ function buildPptxBytes(slides){
     + '<Relationship Id="rId1" Type="' + ON + '/slideMaster" Target="../slideMasters/slideMaster1.xml"/></Relationships>');
 
   for (i = 0; i < n; i++) {
+    var im = slides[i].img;
     add("ppt/slides/slide" + (i + 1) + ".xml",
-        pptSlideXml(slides[i].title, slides[i].lines, slides[i].accent || "2F3A44"));
-    add("ppt/slides/_rels/slide" + (i + 1) + ".xml.rels", XD + '<Relationships xmlns="' + RN + '">'
-        + '<Relationship Id="rId1" Type="' + ON + '/slideLayout" Target="../slideLayouts/slideLayout1.xml"/></Relationships>');
+        pptSlideXml(slides[i].title, slides[i].lines, slides[i].accent || "2F3A44", im));
+    var rel = '<Relationship Id="rId1" Type="' + ON + '/slideLayout" Target="../slideLayouts/slideLayout1.xml"/>';
+    if (im) {
+      files.push({ name:"ppt/media/image" + (i + 1) + ".jpeg", data:im.data });
+      rel += '<Relationship Id="rId2" Type="' + ON + '/image" Target="../media/image' + (i + 1) + '.jpeg"/>';
+    }
+    add("ppt/slides/_rels/slide" + (i + 1) + ".xml.rels", XD + '<Relationships xmlns="' + RN + '">' + rel + '</Relationships>');
   }
   return zipStore(files);
 }
@@ -4098,7 +4153,15 @@ function deckSlides(m, d){
       lines.push("");
     });
     while (lines.length && lines[lines.length - 1] === "") lines.pop();
-    out.push({ title:sl.title, lines:lines.length ? lines : [""], accent:sl.accent });
+    var im = null;
+    /* sl.img 는 capture 문항의 id. 학생이 담아 둔 화면 그림을 슬라이드에 싣는다 */
+    if (sl.img && d.captures[sl.img] && d.captures[sl.img].url) {
+      try {
+        var u = d.captures[sl.img].url;
+        im = { data:dataUrlBytes(u), w:sl.imgW || 900, h:sl.imgH || 520 };
+      } catch (e) { im = null; }
+    }
+    out.push({ title:sl.title, lines:lines.length ? lines : [""], accent:sl.accent, img:im });
   });
   return out;
 }
