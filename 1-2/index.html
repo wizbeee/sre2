@@ -1339,7 +1339,33 @@ var MODULES = [
         title:"팝콘용 옥수수가 팝콘이 되기 위한 조건",
         points:["적당한 수분", "단단한 껍질", "열 — 고온"]
       },
-      vsNote:"과학과 유사과학, 우리 중에 스파이가 있어! — 성대신문 학술기획",  /* PPT 4쪽 인용 */
+      /* PPT 4쪽 — 선생님이 성대신문 기사를 걸어 두셨다(하이퍼링크 실재).
+         교과서 정의와 기사 기준을 갈라 두 화면으로 싣는다.
+         · bookDef 는 교과서 24쪽 원문 그대로다. 시험 범위라 손대지 않는다.
+         · points 는 그 기사(2019-03-24, 김원구)가 제시하는 과학의 조건이다.
+           낱말(객관성·보편성 / 재현가능성 / 반증가능성)은 기사 표현 그대로 쓰고,
+           설명만 학생 말투로 옮겼다. 개발자가 지어낸 기준이 아니다.
+         ※ 활동지 ②단계의 '판별 기준 (가)(나)(다)'는 학생이 주장 하나를 실제로
+           따질 때 쓰는 실전 도구다. 층위가 달라 서로 어긋나지 않는다. */
+      vs:{
+        bookDef:"유사과학은 과학적으로 증명할 수 없거나 과학과 관련이 없는 것, 또는 서로 관련 없는 내용을 근거로 제시하며 과학적이지 않은 내용을 과학적으로 보이게 하는 이론과 설명이다.",
+        bookRef:"교과서 24쪽",
+        source:{ name:"과학과 유사과학, 우리 중에 스파이가 있어!",
+                 who:"성대신문 학술기획 · 2019-03-24 김원구",
+                 url:"https://www.skkuw.com/news/articleView.html?idxno=20933" },
+        /* 세 축은 기사 부제 "시험·재현·반증할 수 있어야 과학" 그대로다.
+           원문 대조(2026-08-31)에서 고친 것 셋 —
+           (1) 처음에 '객관성·보편성'을 넣어 기사의 핵심 구분선인 '시험 가능성'이 빠졌다.
+           (2) '단 한 번의 반례만 찾으면 돼요' 는 목적어가 없어 '과학이 되려면 반례를
+               한 번만 찾으면 된다'로 읽힐 수 있었다. 무엇을 무너뜨리는지 밝혔다.
+           (3) 기사는 반증주의도 절대적 기준은 아니라고 명시하는데 그 유보가 없었다. */
+        points:[
+          { lab:"시험가능성", t:"경험적으로 시험할 수 있어야 해요. 과학과 비과학은 대체로 여기서 갈려요." },
+          { lab:"재현가능성", t:"어느 누가 같은 실험을 해도 같은 결과가 나와야 해요." },
+          { lab:"반증가능성", t:"칼 포퍼가 세운 기준이에요. 이론을 무너뜨리는 데는 반례 단 한 번이면 돼요." }
+        ],
+        more:"기사는 객관성과 보편성, 대담한 예측을 하는 태도도 과학의 특성으로 들어요. 다만 반증주의도 절대적 기준은 아니어서, 학문의 변천사와 연구 공동체의 반응까지 함께 봐야 한다고 해요."
+      },
       fields:{                                                          /* PPT 5쪽 */
         title:"우리 주변의 과학원리",
         img:IMG_SCI_FIELDS,
@@ -4608,18 +4634,23 @@ function lessonSlides(m){
       row:ls.review.points.map(function(t){ return { b:t }; }) });
   }
 
-  /* PPT 4쪽 과학 vs 유사과학 — 제목과 인용만으로는 화면이 비어 보인다(발주자 지적).
-     plan.how 에서 '이름 — 설명' 꼴로 적힌 줄만 골라 가로 3칸으로 채운다.
-     Ⅰ-2 에서는 판별 기준 (가)(나)(다) 세 줄이 여기에 해당한다.
-     새 글을 짓지 않고 활동지에 이미 있는 문장을 그대로 쓴다. */
-  var vsRow = (pl.how || []).filter(function(t){ return t.indexOf(" — ") > 0; })
-    .map(function(t){
-      var i = t.indexOf(" — ");
-      return { lab:t.slice(0, i), t:t.slice(i + 3) };
-    });
-  if (ls.vsNote || vsRow.length) {
-    out.push({ step:STEP_MARK[1], stepName:s2.name, kicker:"과학 vs 유사과학 · " + s2.time,
-      title:"무엇을 보고 가르나", quote:ls.vsNote, row:vsRow });
+  /* PPT 4쪽 과학 vs 유사과학 — 출처가 둘이라 화면을 나눈다(발주자 결정 2026-08-31).
+     한 화면에 몰면 무엇이 교과서이고 무엇이 기사인지 헷갈려 시험에 불리하다. */
+  if (ls.vs) {
+    /* (1) 교과서 정의 — 시험 범위. 원문 그대로 싣는다 */
+    if (ls.vs.bookDef) {
+      out.push({ cover:true, step:STEP_MARK[1], stepName:s2.name,
+        kicker:ls.vs.bookRef || "교과서", title:"유사과학이란?", sub:ls.vs.bookDef });
+    }
+    /* (2) 기사가 제시하는 과학의 조건 — 선생님이 4쪽에 걸어 두신 자료 */
+    if ((ls.vs.points || []).length) {
+      out.push({ step:STEP_MARK[1], stepName:s2.name,
+        kicker:(ls.vs.source && ls.vs.source.who) || "과학 vs 유사과학",
+        title:"과학은 무엇으로 가르나", row:ls.vs.points.slice(),
+        quote:ls.vs.more,
+        link:(ls.vs.source && ls.vs.source.url
+              ? { url:ls.vs.source.url, text:"▶ 기사 읽기", note:ls.vs.source.name } : null) });
+    }
   }
 
   /* PPT 5쪽 우리 주변의 과학원리 — 교과서 21쪽 그림.
@@ -4818,10 +4849,13 @@ function lessonRender(box, sl, moduleId, flushers){
     box.appendChild(fig);
   }
 
-  /* 영상 — 새 탭에서 열린다. 프로그램 자체는 여전히 오프라인으로 돈다 */
+  /* 바깥 자료(영상·기사) — 새 탭에서 열린다.
+     프로그램 자체는 여전히 file:// 오프라인으로 전 기능이 돈다.
+     누를 때만 나가는 것이라 '뜨는 데 필요한 의존'이 아니다. */
   if (sl.link && sl.link.url) {
     box.appendChild(el("a", { class:"ls-link", href:sl.link.url, target:"_blank",
-      rel:"noopener noreferrer", text:"▶ 영상 열기" }));
+      rel:"noopener noreferrer", text:sl.link.text || "▶ 영상 열기" }));
+    if (sl.link.note) box.appendChild(el("p", { class:"ls-url", text:sl.link.note }));
     box.appendChild(el("p", { class:"ls-url", text:sl.link.url }));
   }
 
