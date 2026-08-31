@@ -603,7 +603,10 @@ html.single #btn-quickstart{display:none}
 /* 가로 배열 — 선생님 PPT 3쪽처럼 나란히 놓는다. 세로로 쌓으면 아래가 비어 보이고
    글자도 못 키운다. 칸이 좁은 기기에서는 세로로 접힌다. */
 .ls-row{
-  flex:1; min-height:0; display:flex; align-items:stretch;
+  /* flex-basis 를 auto 로 둔다. 0 으로 두면(=flex:1) 남는 높이에 맞춰 칸이 눌려
+     글이 테두리 밖으로 삐져나온다. auto 면 칸이 내용보다 작아지지 않고,
+     대신 화면이 넘치므로 lessonFit 이 글자를 줄여 맞춘다. */
+  flex:1 1 auto; display:flex; align-items:stretch;
   gap:calc(clamp(10px,1.6vw,30px) * var(--ls-k,1));
 }
 .ls-row .c{
@@ -4744,10 +4747,21 @@ function lessonBindInput(node, moduleId, key, flushers){
    교실 화면은 교사가 넘기기만 하고 스크롤하지 않으므로 이 맞춤이 필요하다.
    0.75 까지 줄여도 안 들어가면 그대로 둔다 — 더 줄이면 교실 뒷자리에서 못 읽는다.
    plan 의 글은 학생 활동지용이라 문장이 길 때가 있어, 소단원마다 이 배율이 다르다. */
+function lessonOverflows(box){
+  if (box.scrollHeight > box.clientHeight + 2) return true;
+  /* 가로 칸 안쪽도 본다. 칸은 높이가 정해져 있어 글이 넘쳐도 본문 높이는 그대로라,
+     본문만 재면 테두리 밖으로 삐져나온 글을 놓친다(2026-08-31 발주자 신고) */
+  var cs = box.querySelectorAll(".ls-row .c"), i;
+  for (i = 0; i < cs.length; i++) {
+    if (cs[i].scrollHeight > cs[i].clientHeight + 2) return true;
+  }
+  return false;
+}
+
 function lessonFit(box){
   var k = 1;
   box.style.setProperty("--ls-k", k);
-  while (k > 0.75 && box.scrollHeight > box.clientHeight + 2) {
+  while (k > 0.6 && lessonOverflows(box)) {
     k = Math.round((k - 0.05) * 100) / 100;
     box.style.setProperty("--ls-k", k);
   }
