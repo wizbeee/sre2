@@ -495,9 +495,9 @@ html.single #btn-quickstart{display:none}
 }
 .ls-head{
   display:flex; align-items:center; gap:12px; flex:none;
-  padding:clamp(10px,1.4vw,20px) clamp(18px,3.5vw,54px);
+  padding:clamp(8px,1vw,15px) clamp(18px,3.5vw,54px);
   border-bottom:1px solid var(--line); background:var(--card-2);
-  font-size:clamp(12px,1.35vw,20px); color:var(--ink-2);
+  font-size:clamp(12px,1.5vw,24px); color:var(--ink-2);
 }
 .ls-head .ls-unit{font-weight:600; color:var(--ink)}
 .ls-head .spacer{flex:1}
@@ -516,24 +516,24 @@ html.single #btn-quickstart{display:none}
   display:flex; flex-direction:column; gap:calc(clamp(14px,2.2vw,34px) * var(--ls-k));
 }
 .ls-body.cover{justify-content:center; text-align:center}
-.ls-kicker{font-size:calc(clamp(13px,1.6vw,24px) * var(--ls-k,1)); color:var(--ink-3); letter-spacing:.02em}
+.ls-kicker{font-size:calc(clamp(14px,1.9vw,30px) * var(--ls-k,1)); color:var(--ink-3); letter-spacing:.02em}
 .ls-title{
-  font-size:calc(clamp(26px,4.6vw,62px) * var(--ls-k,1)); font-weight:800; line-height:1.22;
+  font-size:calc(clamp(30px,5.6vw,96px) * var(--ls-k,1)); font-weight:800; line-height:1.18;
   letter-spacing:-.01em; margin:0;
 }
-.ls-sub{font-size:calc(clamp(15px,2vw,30px) * var(--ls-k,1)); color:var(--ink-2); line-height:1.55}
+.ls-sub{font-size:calc(clamp(17px,2.7vw,48px) * var(--ls-k,1)); color:var(--ink-2); line-height:1.55}
 
 .ls-list{display:flex; flex-direction:column; gap:calc(clamp(9px,1.5vw,22px) * var(--ls-k,1)); list-style:none; padding:0; margin:0}
 .ls-list li{
   display:flex; gap:calc(clamp(10px,1.4vw,20px) * var(--ls-k,1)); align-items:flex-start;
-  font-size:calc(clamp(15px,2.05vw,32px) * var(--ls-k,1)); line-height:1.5;
+  font-size:calc(clamp(17px,2.6vw,46px) * var(--ls-k,1)); line-height:1.45;
 }
 .ls-list li::before{
   content:""; flex:none;
   width:calc(clamp(7px,.9vw,13px) * var(--ls-k,1)); height:calc(clamp(7px,.9vw,13px) * var(--ls-k,1));
   border-radius:50%; background:var(--chrome); margin-top:calc(clamp(7px,1vw,15px) * var(--ls-k,1));
 }
-.ls-list.big li{font-size:calc(clamp(19px,3vw,46px) * var(--ls-k,1)); font-weight:600}
+.ls-list.big li{font-size:calc(clamp(22px,4.2vw,74px) * var(--ls-k,1)); font-weight:700}
 .ls-list.big li::before{background:var(--c-temp)}
 
 /* 교과서 활동 차례·조사할 곳처럼 항목이 여러 조각인 화면 */
@@ -579,36 +579,45 @@ html.single #btn-quickstart{display:none}
 
 /* 인용 한 줄(선생님 PPT 가 근거로 든 기사 제목 등) */
 .ls-quote{
-  font-size:calc(clamp(13px,1.55vw,23px) * var(--ls-k,1)); color:var(--ink-3);
+  font-size:calc(clamp(15px,2.2vw,38px) * var(--ls-k,1)); color:var(--ink-2);
   border-left:3px solid var(--line-2); padding-left:.7em; line-height:1.5;
 }
 
 /* 그림 화면 — 남는 높이를 그림이 다 쓰되 절대 넘치지 않는다 */
-.ls-figure{flex:1; min-height:0; display:flex; flex-direction:column; gap:calc(10px * var(--ls-k,1)); align-items:center}
+/* 그림 화면은 그림이 주인공이다 — 제목·여백을 줄이고 세로 공간을 그림에 몰아준다.
+   교과서 그림은 원본이 689x555 라 세로가 조금만 좁아도 금방 작아진다. */
+.ls-body.figure{
+  padding:calc(10px * var(--ls-k)) clamp(16px,2.5vw,44px) calc(10px * var(--ls-k));
+  gap:calc(6px * var(--ls-k));
+}
+.ls-body.figure .ls-title{font-size:calc(clamp(20px,2.6vw,52px) * var(--ls-k,1))}
+.ls-body.figure .ls-kicker{font-size:calc(clamp(12px,1.4vw,22px) * var(--ls-k,1))}
+.ls-body.figure figcaption{display:none}   /* 제목과 잔글씨가 이미 같은 말을 한다 */
+.ls-figure{flex:1; min-height:0; display:flex; flex-direction:column; gap:calc(8px * var(--ls-k,1)); align-items:center}
 .ls-figure img{
-  min-height:0; max-width:100%; max-height:100%; object-fit:contain;
+  min-height:0; width:100%; height:100%; object-fit:contain;
   border:1px solid var(--line); border-radius:var(--r-s); background:#fff;
 }
-.ls-figure figcaption{font-size:calc(clamp(12px,1.35vw,20px) * var(--ls-k,1)); color:var(--ink-3); text-align:center}
+.ls-figure figcaption{font-size:calc(clamp(12px,1.5vw,24px) * var(--ls-k,1)); color:var(--ink-3); text-align:center}
 
 /* 네 분야 이름 — 그림이 없을 때에도 이 화면이 제 몫을 한다 */
 .ls-names{display:flex; flex-wrap:wrap; gap:calc(clamp(8px,1.2vw,18px) * var(--ls-k,1)); justify-content:center}
 .ls-name{
-  font-size:calc(clamp(17px,2.6vw,40px) * var(--ls-k,1)); font-weight:700;
-  padding:calc(clamp(8px,1.1vw,16px) * var(--ls-k,1)) calc(clamp(14px,2vw,30px) * var(--ls-k,1));
+  font-size:calc(clamp(20px,3.4vw,58px) * var(--ls-k,1)); font-weight:700;
+  padding:calc(clamp(10px,1.4vw,24px) * var(--ls-k,1)) calc(clamp(18px,2.6vw,44px) * var(--ls-k,1));
   border:2px solid var(--chrome); border-radius:999px; color:var(--chrome);
 }
 
 /* 영상 열기 — 누르면 새 탭에서 열린다. 프로그램 자체는 여전히 오프라인으로 돈다 */
 .ls-link{
   display:inline-flex; align-items:center; gap:.55em; align-self:flex-start;
-  font-size:calc(clamp(16px,2.2vw,34px) * var(--ls-k,1)); font-weight:600;
-  padding:calc(clamp(10px,1.4vw,20px) * var(--ls-k,1)) calc(clamp(16px,2.2vw,34px) * var(--ls-k,1));
+  font-size:calc(clamp(18px,2.8vw,46px) * var(--ls-k,1)); font-weight:600;
+  padding:calc(clamp(12px,1.7vw,28px) * var(--ls-k,1)) calc(clamp(20px,2.8vw,46px) * var(--ls-k,1));
   border-radius:var(--r-s); background:var(--chrome); color:#fff; text-decoration:none;
 }
 .ls-link:hover{background:var(--chrome-d)}
 .ls-link:focus-visible{outline:3px solid var(--focus); outline-offset:3px}
-.ls-url{font-size:calc(clamp(11px,1.2vw,17px) * var(--ls-k,1)); color:var(--ink-3); word-break:break-all}
+.ls-url{font-size:calc(clamp(12px,1.4vw,22px) * var(--ls-k,1)); color:var(--ink-3); word-break:break-all}
 
 /* 적기 화면 — 학생이 답을 쓰는 곳. 이 화면에서는 눌러 넘기기를 끈다 */
 .ls-body.ask{cursor:auto}
@@ -4570,10 +4579,11 @@ function lessonSlides(m){
       big:true, list:ls.review.points.slice() });
   }
 
-  /* PPT 4쪽 과학 vs 유사과학 — 판별 기준은 plan.how 에 이미 있다 */
-  if ((pl.how || []).length) {
+  /* PPT 4쪽 과학 vs 유사과학 — 선생님 PPT 처럼 제목과 인용만 싣는다.
+     판별 기준 (가)(나)(다)는 학생 활동지 ②단계에 그대로 있으므로 여기서 되풀이하지 않는다 */
+  if (ls.vsNote) {
     out.push({ step:STEP_MARK[1], stepName:s2.name, kicker:"과학 vs 유사과학 · " + s2.time,
-      title:"무엇을 보고 가르나", list:pl.how.slice(), quote:ls.vsNote });
+      title:"과학 vs 유사과학", quote:ls.vsNote });
   }
 
   /* PPT 5쪽 우리 주변의 과학원리 — 교과서 21쪽 그림.
@@ -4596,7 +4606,12 @@ function lessonSlides(m){
   out.push({ cover:true, kicker:label + " " + m.title, title:"이제 활동지를 적어요",
     sub:ls.close || "화면을 넘기며 답을 적어요." });
 
-  /* ── B. 학생이 답을 적는 구간 ── */
+  /* ── B. 학생이 답을 적는 구간 ──
+     기본으로 끈다(발주자 결정 2026-08-31). 수업 화면은 교실 앞 화면이고
+     답은 활동지에서 적는 것이 역할이 선명하기 때문이다. 같은 문항을 두 곳에서
+     받으면 학생이 어디에 적을지 헷갈린다.
+     되살리려면 모듈의 lesson 에 ask:true 한 줄만 넣으면 된다 — 코드는 그대로 둔다. */
+  if (!ls.ask) return out;
 
   out.push({ step:STEP_MARK[0], stepName:s1.name, kicker:"먼저 내 정보를 적어요",
     title:"내 정보", me:true,
@@ -4676,7 +4691,8 @@ function lessonFit(box){
    moduleId·flushers 는 적기 화면에서만 쓴다(입력칸을 저장에 잇기 위해). */
 function lessonRender(box, sl, moduleId, flushers){
   clear(box);
-  box.className = "ls-body" + (sl.cover ? " cover" : "") + ((sl.ask || sl.me) ? " ask" : "");
+  box.className = "ls-body" + (sl.cover ? " cover" : "") + ((sl.ask || sl.me) ? " ask" : "")
+                + ((sl.img && sl.img.src) ? " figure" : "");
   if (sl.kicker) box.appendChild(el("p", { class:"ls-kicker", text:sl.kicker }));
 
   /* ── 적기 화면 — 활동지 문항 하나 ── */
