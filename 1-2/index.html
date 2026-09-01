@@ -4316,6 +4316,33 @@ function pptPara(txt, sz, color, bold, spcBef, align){
        + '<a:t>' + xmlEsc(txt) + '</a:t></a:r></a:p>';
 }
 /* 본문 줄들. { t:"글", k:"label"|"body"|"meta" } 또는 그냥 문자열 */
+/* 글이 상자에 들어갈 만한 글자 크기를 고른다 (2026-09-01).
+   전에는 본문을 18pt 로 고정해 두어, 한두 문장짜리 답이 발표 화면에서 너무 작았다.
+
+   어림 셈: 한글 한 글자의 폭을 글자 크기와 같다고 보면
+     한 줄에 들어가는 글자 수 ≈ 상자폭 / S,  줄 수 ≈ 상자높이 / (1.6 x S)
+     담을 수 있는 글자 수 ≈ 상자폭 x 상자높이 / (1.6 x S x S)
+   이를 S 에 대해 풀면 S = √(폭 x 높이 / (1.6 x 글자수)).
+   1.9 는 줄 간격과 여백을 감안한 안전 계수다. 1.25 로 잡으면 크게 넘치고,
+   1.6 도 244자짜리 긴 답에서 12pt 모자랐다(실측). 1.9 면 700자까지 들어간다.
+   그보다 길면 pptBox 의 <a:normAutofit/> 이 있어 파워포인트가 스스로 줄인다.
+
+   w, h 는 EMU 다. 반환값은 OOXML 의 sz 단위(1/100 pt).
+   짧게 쓴 학생은 크게, 길게 쓴 학생은 작게 — 어느 쪽이든 상자를 벗어나지 않는다. */
+function pptFitSize(lines, w, h, maxPt, minPt){
+  var n = 0, i, L;
+  for (i = 0; i < lines.length; i++) {
+    L = (typeof lines[i] === "string") ? lines[i] : (lines[i].t || "");
+    n += String(L).length + 2;          /* +2 는 줄바꿈에서 남는 자리 */
+  }
+  if (n < 1) n = 1;
+  var wPt = w / 12700, hPt = h / 12700;  /* EMU → pt */
+  var pt = Math.sqrt((wPt * hPt) / (1.9 * n));
+  if (pt > maxPt) pt = maxPt;
+  if (pt < minPt) pt = minPt;
+  return Math.round(pt) * 100;
+}
+
 function pptBody(lines, accent, sz){
   var out = "", i, L;
   sz = sz || 1600;
@@ -4373,7 +4400,8 @@ function pptCoverXml(sl, meta){
         pptPara(sl.title, 4000, "FFFFFF", true, 0));
   sh += pptRect(5, "rule", PPT_MARGIN, 3620000, 1900000, 41275, "FFFFFF");
   sh += pptBox(6, "sub", PPT_MARGIN, 3900000, PPT_CW, 1500000,
-        pptBody(sl.lines, "FFFFFF", 1700).replace(/val="39424C"/g, 'val="FFFFFF"')
+        pptBody(sl.lines, "FFFFFF", pptFitSize(sl.lines, PPT_CW, 1500000, 32, 17))
+          .replace(/val="39424C"/g, 'val="FFFFFF"')
           .replace(/val="8A9099"/g, 'val="FFFFFF"'));
   sh += pptBox(7, "who", PPT_MARGIN, 5720000, PPT_CW, 500000,
         pptPara(meta.who || "", 1400, "FFFFFF", false, 0));
@@ -4395,14 +4423,16 @@ function pptSlideXml(sl, meta, img, no, total){
   var bodyH = footRuleY - bodyY - 200000;
   if (img) {
     var gap = 400000, half = Math.round((PPT_CW - gap) / 2);
-    sh += pptBox(7, "body", PPT_MARGIN, bodyY, half, bodyH, pptBody(sl.lines, a, 1500), "ctr");
+    sh += pptBox(7, "body", PPT_MARGIN, bodyY, half, bodyH,
+          pptBody(sl.lines, a, pptFitSize(sl.lines, half, bodyH, 34, 15)), "ctr");
     var iw = half, ih = Math.round(iw * img.h / img.w);
     if (ih > bodyH) { ih = bodyH; iw = Math.round(ih * img.w / img.h); }
     /* 글이 세로 가운데라 그림도 가운데에 맞춘다 */
     sh += pptPicture(8, PPT_MARGIN + half + gap + Math.round((half - iw) / 2),
                      bodyY + Math.round((bodyH - ih) / 2), iw, ih);
   } else {
-    sh += pptBox(7, "body", PPT_MARGIN, bodyY, PPT_CW, bodyH, pptBody(sl.lines, a, 1800), "ctr");
+    sh += pptBox(7, "body", PPT_MARGIN, bodyY, PPT_CW, bodyH,
+          pptBody(sl.lines, a, pptFitSize(sl.lines, PPT_CW, bodyH, 44, 18)), "ctr");
   }
   sh += pptRect(9, "footRule", PPT_MARGIN, footRuleY, PPT_CW, 12700, PPT_LINE);
   sh += pptBox(10, "foot", PPT_MARGIN, footY, Math.round(PPT_CW * 0.75), 380000,
