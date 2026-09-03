@@ -1515,6 +1515,7 @@ var MODULES = [
       question:"외래생물이 국내 생태계로 유입되면 생태계에 어떤 영향을 줄까?",  /* 교과서 26쪽 */
       video:{ title:"관상·애완용에서 무책임하게 유기된 외래생물들 (SBS 공생의 법칙)",
               url:"https://youtu.be/qwljs2zJkmw" },
+      videoEarly:true,        /* 활동지 ver.2 가 영상을 도입에 두었다 — 수업 목표 바로 뒤 */
       terms:{
         title:"외래생물과 생태계교란 생물",
         head:["구분", "외래생물", "생태계교란 생물"],
@@ -4866,6 +4867,17 @@ function lessonSlides(m){
       title:ls.question || "오늘의 질문", sub:ls.goal || pl.summary });
   }
 
+  /* 영상 — 누르면 새 탭에서 열린다.
+     자리는 소단원마다 다르다. videoEarly 면 수업 목표 바로 뒤(도입 영상),
+     아니면 뒤쪽에 놓는다. Ⅰ-3 은 활동지 ver.2 가 영상을 도입에 두었고,
+     Ⅰ-2 는 선생님 PPT 6쪽이라 뒤쪽이다(2026-09-01 발주자 요구). */
+  function pushVideo(){
+    if (!ls.video || !ls.video.url) return;
+    out.push({ step:STEP_MARK[ls.videoEarly ? 0 : 1], stepName:(ls.videoEarly ? s1 : s2).name,
+      kicker:"함께 보기", title:ls.video.title || "영상 보기", link:ls.video });
+  }
+  if (ls.videoEarly) pushVideo();
+
   /* PPT 3쪽 지난 시간 복습 — 가로 3칸으로 나란히 놓는다.
      선생님 원본 PPT 도 도형 셋을 가로로(x=0.2 / 4.1 / 8.0인치) 늘어놓았다. */
   if (ls.review && (ls.review.points || []).length) {
@@ -4912,11 +4924,8 @@ function lessonSlides(m){
       names:(f.img ? null : (f.names || []).slice()) });
   }
 
-  /* PPT 6쪽 영상 — 누르면 새 탭에서 열린다 */
-  if (ls.video && ls.video.url) {
-    out.push({ step:STEP_MARK[1], stepName:s2.name, kicker:"함께 보기",
-      title:ls.video.title || "영상 보기", link:ls.video });
-  }
+
+  if (!ls.videoEarly) pushVideo();
 
   /* PPT 7쪽 활동지 열기 — 여기서부터 학생이 적는다 */
   out.push({ cover:true, kicker:label + " " + m.title, title:"이제 활동지를 적어요",
