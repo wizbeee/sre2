@@ -644,22 +644,32 @@ html.single #btn-quickstart{display:none}
   .ls-row{flex-direction:column}
 }
 
-/* 수업 화면의 표 — 교실 뒤에서도 읽히게 크게. 넘치면 lessonFit 이 함께 줄인다 */
+/* 수업 화면의 표 — 교실 뒤에서도 읽혀야 한다(발주자 요구 2026-09-01).
+   글자를 크게 잡고, 넘치면 lessonFit 이 함께 줄인다.
+   표 화면에서는 제목과 여백을 줄여 세로 공간을 표에 몰아준다 — 표가 주인공이다. */
+.ls-body.tablepage{
+  padding-top:calc(clamp(12px,1.8vw,26px) * var(--ls-k));
+  padding-bottom:calc(clamp(12px,1.8vw,26px) * var(--ls-k));
+  gap:calc(clamp(8px,1.2vw,18px) * var(--ls-k));
+}
+.ls-body.tablepage .ls-title{font-size:calc(clamp(22px,3vw,60px) * var(--ls-k,1))}
+.ls-body.tablepage .ls-quote{font-size:calc(clamp(13px,1.7vw,28px) * var(--ls-k,1))}
+
 .ls-table{width:100%; border-collapse:collapse; table-layout:fixed}
 .ls-table th,.ls-table td{
-  border:2px solid var(--line-2); vertical-align:top; line-height:1.45;
-  padding:calc(clamp(8px,1.1vw,18px) * var(--ls-k,1));
-  font-size:calc(clamp(13px,1.75vw,30px) * var(--ls-k,1));
+  border:2px solid var(--line-2); vertical-align:top; line-height:1.4;
+  padding:calc(clamp(9px,1.2vw,20px) * var(--ls-k,1));
+  font-size:calc(clamp(15px,2.4vw,44px) * var(--ls-k,1));
 }
 .ls-table th{
   background:var(--chrome); color:#fff; text-align:center; white-space:nowrap;
-  font-size:calc(clamp(15px,2.1vw,36px) * var(--ls-k,1)); font-weight:700;
+  font-size:calc(clamp(17px,2.8vw,50px) * var(--ls-k,1)); font-weight:700;
 }
 .ls-table td:first-child{
   background:var(--card-2); text-align:center; white-space:nowrap; font-weight:700;
-  font-size:calc(clamp(14px,1.9vw,32px) * var(--ls-k,1));
+  font-size:calc(clamp(16px,2.5vw,46px) * var(--ls-k,1));
 }
-.ls-table th:first-child{width:14%}
+.ls-table th:first-child{width:13%}
 
 /* 가운데 정렬 화면(표지·수업 목표)의 부제는 본문보다 크게 — 수업 목표가 핵심이다 */
 .ls-body.cover .ls-sub{font-size:calc(clamp(20px,3.4vw,64px) * var(--ls-k,1)); max-width:34ch; margin:0 auto}
@@ -4993,7 +5003,8 @@ function lessonFit(box){
 function lessonRender(box, sl, moduleId, flushers){
   clear(box);
   box.className = "ls-body" + (sl.cover ? " cover" : "") + ((sl.ask || sl.me) ? " ask" : "")
-                + ((sl.img && sl.img.src) ? " figure" : "");
+                + ((sl.img && sl.img.src) ? " figure" : "")
+                + ((sl.table && (sl.table.rows || []).length) ? " tablepage" : "");
   if (sl.kicker) box.appendChild(el("p", { class:"ls-kicker", text:sl.kicker }));
 
   /* ── 적기 화면 — 활동지 문항 하나 ── */
