@@ -1492,7 +1492,7 @@ var MODULES = [
       predict: "선생님 화면을 보고 뜻과 차이를 정리한 뒤, 외래생물을 풀어놓으면 토종 물고기가 어떻게 될지 예상해서 그려요.",
       explore: "외래생물 유형·방생 수·제거 시점을 바꿔 가며 개체수가 어떻게 달라지는지 확인해요.",
       record: "우리 모둠이 고른 주제를 조사해 적고, 시뮬레이션 그래프를 근거로 영향을 논증해요.",
-      export: "카드 뉴스나 4컷 웹툰의 밑그림을 내려받아 꾸며요. 빈 항목이 0개인지 확인하고 활동지를 제출해요."
+      export: "우리 모둠이 조사한 생물이 일으키는 문제와, 우리가 할 수 있는 일을 담아요. 밑그림을 내려받아 꾸미고, 빈 항목이 0개인지 확인하고 활동지를 제출해요."
     },
     /* 학생 화면의 조사할 곳 — 영상과 뜻·종류 표는 **수업 화면(lesson)** 으로 옮겼다
        (발주자 결정 2026-09-01). 표가 학생 기기에도 떠 있으면 ② 예상 단계의
@@ -1588,6 +1588,11 @@ var MODULES = [
       { id:"make", type:"choice", step:"export", kind:"산출물", ref:"31쪽 3번",
         options:["카드 뉴스", "4컷 웹툰"],
         label:"우리 모둠이 만들 것을 골라요. 4컷 웹툰은 1인당 1컷 이상, 최대 2컷이에요." },
+      /* 제목을 정하면 주제가 저절로 좁혀진다. 밑그림 표지에 이 제목이 그대로 들어간다
+         (deck 의 titleFrom). 활동지 ver.2 가 정한 주제는
+         '외래생물에 따른 생물다양성 훼손 문제를 해결하는 방안' 이다. */
+      { id:"mtitle", type:"text", step:"export", kind:"제목", ref:"31쪽 3번",
+        label:"우리 모둠 작품의 제목을 정해요. 조사한 생물과 문제가 드러나면 좋아요. (예: ‘블루길, 우리 저수지를 삼키다’)" },
       { id:"sol", type:"text", step:"export", kind:"해결", ref:"31쪽 3번",
         label:"이 문제를 줄이려면 무엇을 해야 할까요? 우리가 지금 할 수 있는 일을 하나 정해, 산출물 마지막에 넣을 문장으로 적어요." },
       { id:"d1", type:"text", step:"export", kind:"심화", optional:true, src:true, ref:"30~31쪽 심화",
@@ -1603,7 +1608,7 @@ var MODULES = [
     deck:{
       by:"make",
       slides:[
-        { title:"우리 모둠이 조사한 것", accent:"16A34A", cover:true,
+        { title:"우리 모둠이 조사한 것", titleFrom:"mtitle", accent:"16A34A", cover:true,
           lines:[ { label:"조사 주제", from:"topic" }, { from:"res" } ] },
         { title:"조사한 내용", accent:"2F3A44",
           lines:[ { from:"res" }, { label:"찾은 곳", from:"res", src:true } ] },
@@ -1616,7 +1621,7 @@ var MODULES = [
       ],
       variants:{
         "카드 뉴스":[
-          { title:"우리 모둠이 조사한 것", accent:"16A34A", cover:true,
+          { title:"우리 모둠이 조사한 것", titleFrom:"mtitle", accent:"16A34A", cover:true,
             lines:[ { label:"조사 주제", from:"topic" }, { from:"res" } ] },
           { title:"조사한 내용", accent:"2F3A44",
             lines:[ { from:"res" }, { label:"찾은 곳", from:"res", src:true } ] },
@@ -1630,7 +1635,7 @@ var MODULES = [
         /* 4컷 웹툰 — 표지 한 장 + 컷 넷. 각 컷에는 그 칸에 무엇을 그릴지 활동지 내용이
            밑글로 들어간다. 학생은 이 위에 그림을 얹는다. 1인당 1컷 이상, 최대 2컷. */
         "4컷 웹툰":[
-          { title:"우리 모둠 4컷 웹툰", accent:"16A34A", cover:true,
+          { title:"우리 모둠 4컷 웹툰", titleFrom:"mtitle", accent:"16A34A", cover:true,
             lines:[ { label:"조사 주제", from:"topic" },
                     { t:"1인당 1컷 이상, 최대 2컷이에요. 아래 네 장에 그림을 그려요.", k:"meta" } ] },
           { title:"1컷 — 무슨 일이 있었나", accent:"2F3A44",
@@ -4746,6 +4751,9 @@ function deckSlides(m, d){
     if (pick && m.deck.variants[pick]) list = m.deck.variants[pick];
   }
   list.forEach(function(sl){
+    /* titleFrom 이 있으면 그 문항에 학생이 적은 값을 제목으로 쓴다.
+       비어 있으면 미리 정해 둔 제목이 그대로 나온다. */
+    var slTitle = (sl.titleFrom && val(sl.titleFrom)) || sl.title;
     var lines = [];
     (sl.lines || []).forEach(function(ln){
       var v = ln.src ? val(ln.from + "_src") : val(ln.from);
@@ -4767,7 +4775,7 @@ function deckSlides(m, d){
       try { im = { data:dataUrlBytes(d.captures[sl.img].url), w:sl.imgW || 900, h:sl.imgH || 520 }; }
       catch (e) { im = null; }
     }
-    out.push({ title:sl.title, lines:lines, accent:sl.accent, cover:!!sl.cover, img:im });
+    out.push({ title:slTitle, lines:lines, accent:sl.accent, cover:!!sl.cover, img:im });
   });
   return out;
 }
