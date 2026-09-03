@@ -7103,6 +7103,27 @@ SIM.alien = {
     /* '종 수'에 외래생물이 들어간다는 것과 고르기가 뜻하는 바를 밝히지 않으면,
        카드만 읽고 '외래생물이 생물다양성을 높였다'로 정반대로 읽게 된다.
        해석은 적지 않고, 무엇을 센 값인지와 방생 전 값만 적는다. */
+    /* 방생 전 값과 지금 값을 나란히 보여 준다(2026-09-01).
+       숫자 카드만 보면 '지금 21마리' 가 많은 건지 적은 건지 알 수 없다.
+       **사실만 적는다 — 줄었다·늘었다 같은 해석은 쓰지 않는다.** */
+    var st0 = Alien.start();
+    /* 가장 적었을 때를 함께 보여 준다. 이 모형에서 **제거 시점은 마지막 해 값이 아니라
+       도중에 얼마나 깊이 떨어지느냐로 드러난다**(세게 제거하면 2년이든 8년이든 25년째는
+       똑같이 회복되지만, 최저값은 8마리와 3마리로 갈린다). 최저값을 안 보여 주면
+       학생이 제거 시점을 바꿔 보고 "차이가 없네" 로 잘못 배운다. */
+    var lowF = Infinity, lowP = Infinity;
+    var cmp = el("p", { class:"small", style:"margin-top:6px; color:var(--ink-2)" });
+    cmp.__paint = function(){
+      if (st.F < lowF) lowF = st.F;
+      if (st.P < lowP) lowP = st.P;
+      cmp.textContent = "방생 전 → 지금 (가장 적었을 때) — 토종 물고기 "
+        + Math.round(st0.F) + " → " + Math.round(st.F) + " (" + Math.round(lowF) + ") 마리 · 토종 포식자 "
+        + Math.round(st0.P) + " → " + Math.round(st.P) + " (" + Math.round(lowP) + ") 마리";
+    };
+    cmp.__resetLow = function(){ lowF = Infinity; lowP = Infinity; };
+    cmp.__paint();
+    scenePane.appendChild(cmp);
+
     var base0 = Alien.diversity(Alien.start());
     scenePane.appendChild(el("p", { class:"small muted", style:"margin-top:8px",
       text:"‘종 수’는 하천에 아직 남아 있는 종의 수예요. 외래생물도 한 종으로 세어요. ‘고르기’는 남은 종들의 개체수가 서로 얼마나 비슷한지를 0~1로 나타내요. 남은 종이 하나뿐이면 정할 수 없어서 ‘–’로 보여요. 방생 전에는 " +
@@ -7120,9 +7141,27 @@ SIM.alien = {
       { label:"경쟁형(먹이를 두고 경쟁)", value:"competitor" }
     ], "predator", function(v){ st.kind = v; reset(); }));
     ctlPane.appendChild(el("div", { style:"height:10px" }));
-    ctlPane.appendChild(ctlSlider("처음 방생하는 수", 1, 20, 1, 5, "마리", function(v){ st.seed = v; reset(); }));
-    ctlPane.appendChild(ctlSlider("제거 시작 시점(방생 후)", 1, 10, 1, 4, "년", function(v){ st.removeAfter = v; reset(); }));
-    ctlPane.appendChild(ctlSlider("제거 강도", 0, 90, 10, 0, "%/년", function(v){ st.removeRate = v / 100; reset(); }));
+    /* 슬라이더를 3단 선택으로 바꿨다(2026-09-01 발주자 요구).
+       전에는 20·10·10 단계라 조합이 4000가지였고, 값을 맞추느라 수업이 느려졌다.
+       변수는 그대로 넷이되 한 번 누르면 값이 정해진다 — 조합 54가지.
+       **가운데 값이 예전 기본값(5마리·4년·0%)이다.** 회귀 수치가 흔들리지 않게 그대로 두었다. */
+    ctlPane.appendChild(ctlSeg("처음 방생하는 수", [
+      { label:"적게 2마리", value:"2" },
+      { label:"보통 5마리", value:"5" },
+      { label:"많이 15마리", value:"15" }
+    ], "5", function(v){ st.seed = +v; reset(); }));
+    ctlPane.appendChild(el("div", { style:"height:10px" }));
+    ctlPane.appendChild(ctlSeg("제거 시작 시점(방생 후)", [
+      { label:"빨리 2년", value:"2" },
+      { label:"보통 4년", value:"4" },
+      { label:"늦게 8년", value:"8" }
+    ], "4", function(v){ st.removeAfter = +v; reset(); }));
+    ctlPane.appendChild(el("div", { style:"height:10px" }));
+    ctlPane.appendChild(ctlSeg("제거 강도", [
+      { label:"안 함", value:"0" },
+      { label:"약하게 30%", value:"30" },
+      { label:"세게 60%", value:"60" }
+    ], "0", function(v){ st.removeRate = (+v) / 100; reset(); }));
     ctlPane.appendChild(el("p", { class:"small muted", style:"margin-top:10px",
       text:"외래생물은 " + Alien.RELEASE_Y + "년째에 방생돼요. 앞의 " + Alien.RELEASE_Y + "년은 방생 전 모습이에요." }));
     ctlPane.appendChild(el("div", { class:"row", style:"margin-top:10px" }, [
@@ -7188,6 +7227,21 @@ SIM.alien = {
       attachHelpBtn(m, "c_graph", "▶ 시작을 눌러 " + Alien.YEARS + "년이 다 흐른 뒤에 눌러요. 중간에 누르면 그리다 만 그래프가 담겨요.")
     ]));
     chartPane.appendChild(whyAG);
+    /* 무엇을 볼지 짚어 준다(2026-09-01 발주자 지적 — "학생이 해석할 감을 못 잡는다").
+       **답은 적지 않는다.** 볼 곳만 짚는다. 이 세 줄이 활동지의 주장·증거·이유로 이어진다.
+       프로그램이 결과를 먼저 해석하지 않는다는 원칙(SPEC 5장)을 지킨 것이다. */
+    var lookBox = el("div", { class:"notice", style:"margin-top:10px" }, [
+      el("b", { text:"무엇을 볼까요" })
+    ]);
+    var lookUl = el("ul", { class:"small", style:"margin:6px 0 0; color:var(--ink-2)" });
+    [ "방생한 뒤 토종 물고기 선이 어떻게 되나요?",
+      "가장 적었을 때 몇 마리까지 떨어졌나요?",
+      "제거를 시작한 뒤에는 어떻게 되나요?",
+      "마지막 해에 방생 전만큼 돌아왔나요? 사라진 종은 없나요?"
+    ].forEach(function(t){ lookUl.appendChild(el("li", { text:t })); });
+    lookBox.appendChild(lookUl);
+    chartPane.appendChild(lookBox);
+
     chartPane.appendChild(el("p", { class:"model-note", style:"margin-top:8px",
       text:"개체수는 상대적인 마리 수예요. 실제 종이나 지역의 값이 아니에요." }));
 
@@ -7202,6 +7256,7 @@ SIM.alien = {
       sD.set(dv.count + " 종");
       /* 남은 종이 하나뿐이면 고르기가 정의되지 않는다 — 외래생물 카드와 같은 규칙으로 '–' */
       sE.set(dv.even === null ? "–" : dv.even.toFixed(2));
+      cmp.__paint();
       chart.draw();
     }
     scene.__repaint = paint; share.__repaint = paint;
@@ -7209,6 +7264,7 @@ SIM.alien = {
     function reset(){
       player.pause(); btnPlay.textContent = "▶ 시작";
       acc = 0;
+      if (cmp.__resetLow) cmp.__resetLow();   /* 조건을 바꾸면 최저값도 다시 센다 */
       st = Alien.newState(st.kind, st.seed, st.removeAfter, st.removeRate);
       chart.reset();
       chart.cfg.events = [{ x:Alien.RELEASE_Y, label:"방생", color:AC.A }];
