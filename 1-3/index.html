@@ -739,6 +739,47 @@ html.single #btn-quickstart{display:none}
   .ls-dots{display:none}
 }
 
+/* --------------------------------------------------------------------------
+   [수업 타이머] 플로팅 단추 + 큰 화면 (2026-09-01)
+   수업 화면(#lesson-root, z-index 90)보다 위에 둔다 — 교실 화면을 띄운 채로 쓴다.
+   -------------------------------------------------------------------------- */
+#timer-btn{
+  position:fixed; right:16px; bottom:16px; z-index:92; display:none;
+  align-items:center; gap:8px; padding:11px 16px; border-radius:999px;
+  border:1px solid var(--line-2); background:var(--chrome); color:#fff;
+  font-weight:700; font-size:.95rem; cursor:pointer;
+  box-shadow:var(--sh-3); font-variant-numeric:tabular-nums;
+}
+#timer-btn.on{display:inline-flex}
+#timer-btn:hover{background:var(--chrome-d)}
+#timer-btn:focus-visible{outline:3px solid var(--focus); outline-offset:3px}
+#timer-btn.run{background:#166534}
+#timer-btn.done{background:#b91c1c}
+
+#timer-root{
+  position:fixed; inset:0; z-index:95; display:none;
+  flex-direction:column; align-items:center; justify-content:center; gap:clamp(14px,3vh,34px);
+  background:var(--card); color:var(--ink); padding:clamp(16px,4vw,48px);
+}
+#timer-root.on{display:flex}
+#timer-root.done{background:#fef2f2}
+.tm-label{font-size:clamp(14px,2vw,30px); color:var(--ink-2)}
+.tm-time{
+  font-size:clamp(72px,26vw,340px); font-weight:800; line-height:1;
+  letter-spacing:-.02em; font-variant-numeric:tabular-nums;
+}
+#timer-root.done .tm-time{color:#b91c1c}
+.tm-row{display:flex; flex-wrap:wrap; gap:10px; justify-content:center}
+.tm-pick{
+  padding:10px 18px; border-radius:999px; border:1px solid var(--line-2);
+  background:var(--card-2); color:var(--ink); font-size:clamp(13px,1.5vw,20px);
+  font-weight:600; cursor:pointer;
+}
+.tm-pick.on{background:var(--chrome); color:#fff; border-color:var(--chrome)}
+.tm-pick:focus-visible{outline:3px solid var(--focus); outline-offset:2px}
+.tm-big{font-size:clamp(15px,1.8vw,24px); padding:13px 30px}
+@media print{ #timer-btn,#timer-root{display:none !important} }
+
 </style>
 </head>
 <body>
@@ -2906,6 +2947,154 @@ var Overlay = {
     $("#overlay-root").classList.remove("on");
     $("#overlay-root").classList.remove("wide");   /* 다음에 열릴 안내창이 전체 화면이 되지 않게 */
     $("#overlay-root").scrollTop = 0;
+  }
+};
+
+/* ==========================================================================
+   [수업 타이머] 플로팅 단추를 누르면 화면에 크게 뜬다 (2026-09-01 발주자 요구)
+
+   · 남은 시간은 '끝날 시각'에서 계산한다. 화면이 가려져 rAF 가 멈춰도 어긋나지 않는다.
+   · 소리는 파일 없이 Web Audio 로 만든다 — 오프라인 원칙을 지킨다.
+     소리는 학생이 단추를 누른 뒤에만 나므로 자동 재생 정책에도 걸리지 않는다.
+   · 지금 단계의 시간을 기본값으로 잡는다. 단계마다 시간이 다르기 때문이다.
+   ========================================================================== */
+var Timer = {
+  root:null, btn:null, timeEl:null, labelEl:null, pickRow:null, playBtn:null,
+  total:0, endAt:0, left:0, running:false, tick:null, ac:null,
+
+  /* 화면에 한 번만 만든다 */
+  mount: function(){
+    if (this.btn) return;
+    var self = this;
+
+    this.btn = el("button", { id:"timer-btn", type:"button", "aria-label":"수업 타이머 열기",
+      onclick:function(){ self.open(); } });
+    document.body.appendChild(this.btn);
+
+    this.labelEl = el("p", { class:"tm-label" });
+    this.timeEl  = el("div", { class:"tm-time", text:"00:00" });
+    this.pickRow = el("div", { class:"tm-row" });
+    this.playBtn = el("button", { class:"tm-pick tm-big", type:"button", text:"▶ 시작",
+      onclick:function(){ self.running ? self.pause() : self.start(); } });
+
+    var foot = el("div", { class:"tm-row" }, [
+      this.playBtn,
+      el("button", { class:"tm-pick tm-big", type:"button", text:"처음부터",
+        onclick:function(){ self.reset(); } }),
+      el("button", { class:"tm-pick tm-big", type:"button", text:"닫기",
+        onclick:function(){ self.close(); } })
+    ]);
+
+    this.root = el("div", { id:"timer-root", role:"dialog", "aria-label":"수업 타이머" },
+      [ this.labelEl, this.timeEl, this.pickRow, foot ]);
+    document.body.appendChild(this.root);
+
+    /* 250 ms 마다 다시 그린다. 끝날 시각으로 계산하므로 이 주기가 정확도를 좌우하지 않는다 */
+    this.tick = setInterval(function(){ self.refresh(); }, 250);
+    this.set(5 * 60);
+  },
+
+  /* 모듈 화면과 수업 화면에서만 단추를 보인다 */
+  show: function(on){
+    this.mount();
+    this.btn.classList.toggle("on", !!on);
+    if (!on && !this.running) this.close();
+  },
+
+  /* 고를 수 있는 시간 — 지금 단계 시간이 있으면 맨 앞에 둔다 */
+  picks: function(){
+    var out = [], m = UI.moduleId ? moduleById(UI.moduleId) : null, mm;
+    if (m) {
+      mm = parseInt(String(stepInfo(m, UI.step).time).replace(/[^0-9]/g, ""), 10);
+      if (mm > 0) out.push({ label:"이 단계 " + mm + "분", sec:mm * 60 });
+    }
+    [1, 3, 5, 10, 15].forEach(function(v){
+      if (!out.some(function(x){ return x.sec === v * 60; })) out.push({ label:v + "분", sec:v * 60 });
+    });
+    return out;
+  },
+
+  set: function(sec){
+    this.total = sec; this.left = sec; this.running = false; this.endAt = 0;
+    this.paint();
+  },
+
+  start: function(){
+    if (this.left <= 0) this.left = this.total;
+    this.endAt = Date.now() + this.left * 1000;
+    this.running = true;
+    this.paint();
+  },
+  pause: function(){
+    if (this.running) this.left = Math.max(0, Math.round((this.endAt - Date.now()) / 1000));
+    this.running = false;
+    this.paint();
+  },
+  reset: function(){ this.set(this.total); },
+
+  refresh: function(){
+    if (!this.running) return;
+    var was = this.left;
+    this.left = Math.max(0, Math.round((this.endAt - Date.now()) / 1000));
+    if (this.left === 0 && was > 0) { this.running = false; this.beep(); }
+    this.paint();
+  },
+
+  fmt: function(sec){
+    var m = Math.floor(sec / 60), s = sec % 60;
+    return (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+  },
+
+  paint: function(){
+    if (!this.btn) return;
+    var t = this.fmt(this.left), done = (this.left === 0 && this.total > 0);
+    this.btn.textContent = "⏱ " + t;
+    this.btn.classList.toggle("run", this.running);
+    this.btn.classList.toggle("done", done);
+    if (!this.root) return;
+    this.timeEl.textContent = t;
+    this.root.classList.toggle("done", done);
+    this.playBtn.textContent = this.running ? "⏸ 멈춤" : (this.left > 0 ? "▶ 시작" : "▶ 다시");
+    this.labelEl.textContent = done ? "시간이 다 됐어요" : (this.running ? "남은 시간" : "시간을 고르고 시작해요");
+  },
+
+  /* 고를 시간 단추를 다시 그린다 — 단계가 바뀌면 '이 단계 n분' 도 바뀐다 */
+  paintPicks: function(){
+    var self = this;
+    clear(this.pickRow);
+    this.picks().forEach(function(p){
+      self.pickRow.appendChild(el("button", {
+        class:"tm-pick" + (p.sec === self.total ? " on" : ""), type:"button", text:p.label,
+        onclick:function(){ self.set(p.sec); self.paintPicks(); }
+      }));
+    });
+  },
+
+  open: function(){
+    this.mount();
+    this.paintPicks();
+    this.paint();
+    this.root.classList.add("on");
+  },
+  close: function(){ if (this.root) this.root.classList.remove("on"); },
+
+  /* 파일 없이 소리를 만든다. 삑 두 번 */
+  beep: function(){
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      if (!this.ac) this.ac = new AC();
+      var ac = this.ac, t0 = ac.currentTime, i;
+      for (i = 0; i < 2; i++) {
+        var o = ac.createOscillator(), g = ac.createGain();
+        o.type = "sine"; o.frequency.value = 880;
+        g.gain.setValueAtTime(0.0001, t0 + i * 0.45);
+        g.gain.exponentialRampToValueAtTime(0.25, t0 + i * 0.45 + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0 + i * 0.45 + 0.35);
+        o.connect(g); g.connect(ac.destination);
+        o.start(t0 + i * 0.45); o.stop(t0 + i * 0.45 + 0.4);
+      }
+    } catch (e) { /* 소리가 막힌 기기에서는 화면 색만 바뀐다 */ }
   }
 };
 
@@ -5267,6 +5456,7 @@ var Lesson = {
       }
     };
     document.addEventListener("keydown", this.keyHandler);
+    Timer.show(true);      /* 교실 화면을 띄운 채로도 타이머를 쓴다 */
 
     /* PPT 처럼 화면을 눌러 넘긴다. 교실에서 단추를 겨냥해 누를 일이 없게 한다.
        뒤로 가기는 ← 키와 조작줄의 '이전'으로만 한다 — 잘못 눌러 되돌아가면
@@ -5355,6 +5545,7 @@ var Lesson = {
     if (this.root && this.root.parentNode) this.root.parentNode.removeChild(this.root);
     this.root = null; this.parts = null; this.slides = []; this.idx = 0;
     this.moduleId = null;
+    Timer.show(UI.screen === "module");
     /* 활동지 화면의 입력칸을 여기서 고친 값으로 맞춘다.
        renderModule() 은 부르지 않는다 — 시뮬 결과가 사라진다 */
     AnswerWatch.refresh();
@@ -10045,6 +10236,7 @@ function go(screen){
   if (screen === "teacher") renderTeacher();
   if (screen === "quickstart") renderQuickStart();
   if (screen === "module") repaintAllSketches();
+  Timer.show(screen === "module");        /* 수업 타이머는 모듈 화면에서만 보인다 */
   Idle.reset();
   window.scrollTo(0, 0);
 }

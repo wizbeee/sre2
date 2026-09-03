@@ -739,6 +739,47 @@ html.single #btn-quickstart{display:none}
   .ls-dots{display:none}
 }
 
+/* --------------------------------------------------------------------------
+   [수업 타이머] 플로팅 단추 + 큰 화면 (2026-09-01)
+   수업 화면(#lesson-root, z-index 90)보다 위에 둔다 — 교실 화면을 띄운 채로 쓴다.
+   -------------------------------------------------------------------------- */
+#timer-btn{
+  position:fixed; right:16px; bottom:16px; z-index:92; display:none;
+  align-items:center; gap:8px; padding:11px 16px; border-radius:999px;
+  border:1px solid var(--line-2); background:var(--chrome); color:#fff;
+  font-weight:700; font-size:.95rem; cursor:pointer;
+  box-shadow:var(--sh-3); font-variant-numeric:tabular-nums;
+}
+#timer-btn.on{display:inline-flex}
+#timer-btn:hover{background:var(--chrome-d)}
+#timer-btn:focus-visible{outline:3px solid var(--focus); outline-offset:3px}
+#timer-btn.run{background:#166534}
+#timer-btn.done{background:#b91c1c}
+
+#timer-root{
+  position:fixed; inset:0; z-index:95; display:none;
+  flex-direction:column; align-items:center; justify-content:center; gap:clamp(14px,3vh,34px);
+  background:var(--card); color:var(--ink); padding:clamp(16px,4vw,48px);
+}
+#timer-root.on{display:flex}
+#timer-root.done{background:#fef2f2}
+.tm-label{font-size:clamp(14px,2vw,30px); color:var(--ink-2)}
+.tm-time{
+  font-size:clamp(72px,26vw,340px); font-weight:800; line-height:1;
+  letter-spacing:-.02em; font-variant-numeric:tabular-nums;
+}
+#timer-root.done .tm-time{color:#b91c1c}
+.tm-row{display:flex; flex-wrap:wrap; gap:10px; justify-content:center}
+.tm-pick{
+  padding:10px 18px; border-radius:999px; border:1px solid var(--line-2);
+  background:var(--card-2); color:var(--ink); font-size:clamp(13px,1.5vw,20px);
+  font-weight:600; cursor:pointer;
+}
+.tm-pick.on{background:var(--chrome); color:#fff; border-color:var(--chrome)}
+.tm-pick:focus-visible{outline:3px solid var(--focus); outline-offset:2px}
+.tm-big{font-size:clamp(15px,1.8vw,24px); padding:13px 30px}
+@media print{ #timer-btn,#timer-root{display:none !important} }
+
 </style>
 </head>
 <body>
@@ -1492,7 +1533,7 @@ var MODULES = [
       predict: "선생님 화면을 보고 뜻과 차이를 정리한 뒤, 외래생물을 풀어놓으면 토종 물고기가 어떻게 될지 예상해서 그려요.",
       explore: "외래생물 유형·방생 수·제거 시점을 바꿔 가며 개체수가 어떻게 달라지는지 확인해요.",
       record: "우리 모둠이 고른 주제를 조사해 적고, 시뮬레이션 그래프를 근거로 영향을 논증해요.",
-      export: "카드 뉴스나 4컷 웹툰의 밑그림을 내려받아 꾸며요. 빈 항목이 0개인지 확인하고 활동지를 제출해요."
+      export: "우리 모둠이 조사한 생물이 일으키는 문제와, 우리가 할 수 있는 일을 담아요. 밑그림을 내려받아 꾸미고, 빈 항목이 0개인지 확인하고 활동지를 제출해요."
     },
     /* 학생 화면의 조사할 곳 — 영상과 뜻·종류 표는 **수업 화면(lesson)** 으로 옮겼다
        (발주자 결정 2026-09-01). 표가 학생 기기에도 떠 있으면 ② 예상 단계의
@@ -1500,6 +1541,7 @@ var MODULES = [
        누리집 링크는 ④ 조사 때 필요하므로 여기 남긴다. */
     brief:{
       title:"조사할 곳",
+      at:["predict", "record"],   /* ②에서 뜻을 정리하고 ④에서 주제를 조사한다 */
       links:[
         { name:"한국 외래생물 정보 시스템 — 뜻과 종류", url:"https://kias.nie.re.kr/page/alien/definition" },
         { name:"생태계교란 생물 분포 현황", url:"https://kias.nie.re.kr/page/disruption/distribution-status" }
@@ -1515,6 +1557,7 @@ var MODULES = [
       question:"외래생물이 국내 생태계로 유입되면 생태계에 어떤 영향을 줄까?",  /* 교과서 26쪽 */
       video:{ title:"관상·애완용에서 무책임하게 유기된 외래생물들 (SBS 공생의 법칙)",
               url:"https://youtu.be/qwljs2zJkmw" },
+      videoEarly:true,        /* 활동지 ver.2 가 영상을 도입에 두었다 — 수업 목표 바로 뒤 */
       terms:{
         title:"외래생물과 생태계교란 생물",
         head:["구분", "외래생물", "생태계교란 생물"],
@@ -1588,6 +1631,11 @@ var MODULES = [
       { id:"make", type:"choice", step:"export", kind:"산출물", ref:"31쪽 3번",
         options:["카드 뉴스", "4컷 웹툰"],
         label:"우리 모둠이 만들 것을 골라요. 4컷 웹툰은 1인당 1컷 이상, 최대 2컷이에요." },
+      /* 제목을 정하면 주제가 저절로 좁혀진다. 밑그림 표지에 이 제목이 그대로 들어간다
+         (deck 의 titleFrom). 활동지 ver.2 가 정한 주제는
+         '외래생물에 따른 생물다양성 훼손 문제를 해결하는 방안' 이다. */
+      { id:"mtitle", type:"text", step:"export", kind:"제목", ref:"31쪽 3번",
+        label:"우리 모둠 작품의 제목을 정해요. 조사한 생물과 문제가 드러나면 좋아요. (예: ‘블루길, 우리 저수지를 삼키다’)" },
       { id:"sol", type:"text", step:"export", kind:"해결", ref:"31쪽 3번",
         label:"이 문제를 줄이려면 무엇을 해야 할까요? 우리가 지금 할 수 있는 일을 하나 정해, 산출물 마지막에 넣을 문장으로 적어요." },
       { id:"d1", type:"text", step:"export", kind:"심화", optional:true, src:true, ref:"30~31쪽 심화",
@@ -1603,7 +1651,7 @@ var MODULES = [
     deck:{
       by:"make",
       slides:[
-        { title:"우리 모둠이 조사한 것", accent:"16A34A", cover:true,
+        { title:"우리 모둠이 조사한 것", titleFrom:"mtitle", accent:"16A34A", cover:true,
           lines:[ { label:"조사 주제", from:"topic" }, { from:"res" } ] },
         { title:"조사한 내용", accent:"2F3A44",
           lines:[ { from:"res" }, { label:"찾은 곳", from:"res", src:true } ] },
@@ -1616,7 +1664,7 @@ var MODULES = [
       ],
       variants:{
         "카드 뉴스":[
-          { title:"우리 모둠이 조사한 것", accent:"16A34A", cover:true,
+          { title:"우리 모둠이 조사한 것", titleFrom:"mtitle", accent:"16A34A", cover:true,
             lines:[ { label:"조사 주제", from:"topic" }, { from:"res" } ] },
           { title:"조사한 내용", accent:"2F3A44",
             lines:[ { from:"res" }, { label:"찾은 곳", from:"res", src:true } ] },
@@ -1630,7 +1678,7 @@ var MODULES = [
         /* 4컷 웹툰 — 표지 한 장 + 컷 넷. 각 컷에는 그 칸에 무엇을 그릴지 활동지 내용이
            밑글로 들어간다. 학생은 이 위에 그림을 얹는다. 1인당 1컷 이상, 최대 2컷. */
         "4컷 웹툰":[
-          { title:"우리 모둠 4컷 웹툰", accent:"16A34A", cover:true,
+          { title:"우리 모둠 4컷 웹툰", titleFrom:"mtitle", accent:"16A34A", cover:true,
             lines:[ { label:"조사 주제", from:"topic" },
                     { t:"1인당 1컷 이상, 최대 2컷이에요. 아래 네 장에 그림을 그려요.", k:"meta" } ] },
           { title:"1컷 — 무슨 일이 있었나", accent:"2F3A44",
@@ -2902,6 +2950,154 @@ var Overlay = {
   }
 };
 
+/* ==========================================================================
+   [수업 타이머] 플로팅 단추를 누르면 화면에 크게 뜬다 (2026-09-01 발주자 요구)
+
+   · 남은 시간은 '끝날 시각'에서 계산한다. 화면이 가려져 rAF 가 멈춰도 어긋나지 않는다.
+   · 소리는 파일 없이 Web Audio 로 만든다 — 오프라인 원칙을 지킨다.
+     소리는 학생이 단추를 누른 뒤에만 나므로 자동 재생 정책에도 걸리지 않는다.
+   · 지금 단계의 시간을 기본값으로 잡는다. 단계마다 시간이 다르기 때문이다.
+   ========================================================================== */
+var Timer = {
+  root:null, btn:null, timeEl:null, labelEl:null, pickRow:null, playBtn:null,
+  total:0, endAt:0, left:0, running:false, tick:null, ac:null,
+
+  /* 화면에 한 번만 만든다 */
+  mount: function(){
+    if (this.btn) return;
+    var self = this;
+
+    this.btn = el("button", { id:"timer-btn", type:"button", "aria-label":"수업 타이머 열기",
+      onclick:function(){ self.open(); } });
+    document.body.appendChild(this.btn);
+
+    this.labelEl = el("p", { class:"tm-label" });
+    this.timeEl  = el("div", { class:"tm-time", text:"00:00" });
+    this.pickRow = el("div", { class:"tm-row" });
+    this.playBtn = el("button", { class:"tm-pick tm-big", type:"button", text:"▶ 시작",
+      onclick:function(){ self.running ? self.pause() : self.start(); } });
+
+    var foot = el("div", { class:"tm-row" }, [
+      this.playBtn,
+      el("button", { class:"tm-pick tm-big", type:"button", text:"처음부터",
+        onclick:function(){ self.reset(); } }),
+      el("button", { class:"tm-pick tm-big", type:"button", text:"닫기",
+        onclick:function(){ self.close(); } })
+    ]);
+
+    this.root = el("div", { id:"timer-root", role:"dialog", "aria-label":"수업 타이머" },
+      [ this.labelEl, this.timeEl, this.pickRow, foot ]);
+    document.body.appendChild(this.root);
+
+    /* 250 ms 마다 다시 그린다. 끝날 시각으로 계산하므로 이 주기가 정확도를 좌우하지 않는다 */
+    this.tick = setInterval(function(){ self.refresh(); }, 250);
+    this.set(5 * 60);
+  },
+
+  /* 모듈 화면과 수업 화면에서만 단추를 보인다 */
+  show: function(on){
+    this.mount();
+    this.btn.classList.toggle("on", !!on);
+    if (!on && !this.running) this.close();
+  },
+
+  /* 고를 수 있는 시간 — 지금 단계 시간이 있으면 맨 앞에 둔다 */
+  picks: function(){
+    var out = [], m = UI.moduleId ? moduleById(UI.moduleId) : null, mm;
+    if (m) {
+      mm = parseInt(String(stepInfo(m, UI.step).time).replace(/[^0-9]/g, ""), 10);
+      if (mm > 0) out.push({ label:"이 단계 " + mm + "분", sec:mm * 60 });
+    }
+    [1, 3, 5, 10, 15].forEach(function(v){
+      if (!out.some(function(x){ return x.sec === v * 60; })) out.push({ label:v + "분", sec:v * 60 });
+    });
+    return out;
+  },
+
+  set: function(sec){
+    this.total = sec; this.left = sec; this.running = false; this.endAt = 0;
+    this.paint();
+  },
+
+  start: function(){
+    if (this.left <= 0) this.left = this.total;
+    this.endAt = Date.now() + this.left * 1000;
+    this.running = true;
+    this.paint();
+  },
+  pause: function(){
+    if (this.running) this.left = Math.max(0, Math.round((this.endAt - Date.now()) / 1000));
+    this.running = false;
+    this.paint();
+  },
+  reset: function(){ this.set(this.total); },
+
+  refresh: function(){
+    if (!this.running) return;
+    var was = this.left;
+    this.left = Math.max(0, Math.round((this.endAt - Date.now()) / 1000));
+    if (this.left === 0 && was > 0) { this.running = false; this.beep(); }
+    this.paint();
+  },
+
+  fmt: function(sec){
+    var m = Math.floor(sec / 60), s = sec % 60;
+    return (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+  },
+
+  paint: function(){
+    if (!this.btn) return;
+    var t = this.fmt(this.left), done = (this.left === 0 && this.total > 0);
+    this.btn.textContent = "⏱ " + t;
+    this.btn.classList.toggle("run", this.running);
+    this.btn.classList.toggle("done", done);
+    if (!this.root) return;
+    this.timeEl.textContent = t;
+    this.root.classList.toggle("done", done);
+    this.playBtn.textContent = this.running ? "⏸ 멈춤" : (this.left > 0 ? "▶ 시작" : "▶ 다시");
+    this.labelEl.textContent = done ? "시간이 다 됐어요" : (this.running ? "남은 시간" : "시간을 고르고 시작해요");
+  },
+
+  /* 고를 시간 단추를 다시 그린다 — 단계가 바뀌면 '이 단계 n분' 도 바뀐다 */
+  paintPicks: function(){
+    var self = this;
+    clear(this.pickRow);
+    this.picks().forEach(function(p){
+      self.pickRow.appendChild(el("button", {
+        class:"tm-pick" + (p.sec === self.total ? " on" : ""), type:"button", text:p.label,
+        onclick:function(){ self.set(p.sec); self.paintPicks(); }
+      }));
+    });
+  },
+
+  open: function(){
+    this.mount();
+    this.paintPicks();
+    this.paint();
+    this.root.classList.add("on");
+  },
+  close: function(){ if (this.root) this.root.classList.remove("on"); },
+
+  /* 파일 없이 소리를 만든다. 삑 두 번 */
+  beep: function(){
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      if (!this.ac) this.ac = new AC();
+      var ac = this.ac, t0 = ac.currentTime, i;
+      for (i = 0; i < 2; i++) {
+        var o = ac.createOscillator(), g = ac.createGain();
+        o.type = "sine"; o.frequency.value = 880;
+        g.gain.setValueAtTime(0.0001, t0 + i * 0.45);
+        g.gain.exponentialRampToValueAtTime(0.25, t0 + i * 0.45 + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0 + i * 0.45 + 0.35);
+        o.connect(g); g.connect(ac.destination);
+        o.start(t0 + i * 0.45); o.stop(t0 + i * 0.45 + 0.4);
+      }
+    } catch (e) { /* 소리가 막힌 기기에서는 화면 색만 바뀐다 */ }
+  }
+};
+
 /* 되돌릴 수 없는 동작을 묻는 작은 창. 이 프로그램은 브라우저 기본 confirm 을 쓰지 않는다 */
 function confirmBox(title, lines, okText, onOk){
   Overlay.open(title, (lines || []).map(function(t){ return el("p", { text:t }); }), [
@@ -3100,8 +3296,18 @@ function renderStage(m, d){
   }
 
   /* 교과서 활동 차례 — 실습형은 ① 도입에서 이 소단원 전체 흐름을 먼저 본다 */
-  /* 강의 자료(뜻·종류 표·영상·조사할 곳)를 활동 차례보다 먼저 보여 준다 */
-  if (m.brief && stepId === "intro") { var bc = briefCard(m); if (bc) host.appendChild(bc); }
+  /* 조사할 곳(brief) — 어느 단계에 둘지는 소단원이 정한다(brief.at, 기본은 ① 도입).
+     ① 도입은 교사가 설명하는 동안이라 학생이 기기를 거의 보지 않는다. 거기 두면
+     못 보고 지나간다(2026-09-01 발주자 지적). Ⅰ-3 은 ② 예상과 ④ 기록에 둔다 —
+     ②에서 뜻을 정리하고 ④에서 주제를 조사하기 때문이다.
+     그 단계의 **맨 위**에 놓는다. */
+  if (m.brief) {
+    var briefAt = m.brief.at || ["intro"];
+    if (briefAt.indexOf(stepId) >= 0) {
+      var bc = briefCard(m);
+      if (bc) host.insertBefore(bc, host.firstChild);
+    }
+  }
   if (m.flow && stepId === "intro") host.appendChild(flowCard(m));
 
   /* 해당 단계에서 입력하는 활동지 항목 */
@@ -4746,6 +4952,9 @@ function deckSlides(m, d){
     if (pick && m.deck.variants[pick]) list = m.deck.variants[pick];
   }
   list.forEach(function(sl){
+    /* titleFrom 이 있으면 그 문항에 학생이 적은 값을 제목으로 쓴다.
+       비어 있으면 미리 정해 둔 제목이 그대로 나온다. */
+    var slTitle = (sl.titleFrom && val(sl.titleFrom)) || sl.title;
     var lines = [];
     (sl.lines || []).forEach(function(ln){
       var v = ln.src ? val(ln.from + "_src") : val(ln.from);
@@ -4767,7 +4976,7 @@ function deckSlides(m, d){
       try { im = { data:dataUrlBytes(d.captures[sl.img].url), w:sl.imgW || 900, h:sl.imgH || 520 }; }
       catch (e) { im = null; }
     }
-    out.push({ title:sl.title, lines:lines, accent:sl.accent, cover:!!sl.cover, img:im });
+    out.push({ title:slTitle, lines:lines, accent:sl.accent, cover:!!sl.cover, img:im });
   });
   return out;
 }
@@ -4858,6 +5067,17 @@ function lessonSlides(m){
       title:ls.question || "오늘의 질문", sub:ls.goal || pl.summary });
   }
 
+  /* 영상 — 누르면 새 탭에서 열린다.
+     자리는 소단원마다 다르다. videoEarly 면 수업 목표 바로 뒤(도입 영상),
+     아니면 뒤쪽에 놓는다. Ⅰ-3 은 활동지 ver.2 가 영상을 도입에 두었고,
+     Ⅰ-2 는 선생님 PPT 6쪽이라 뒤쪽이다(2026-09-01 발주자 요구). */
+  function pushVideo(){
+    if (!ls.video || !ls.video.url) return;
+    out.push({ step:STEP_MARK[ls.videoEarly ? 0 : 1], stepName:(ls.videoEarly ? s1 : s2).name,
+      kicker:"함께 보기", title:ls.video.title || "영상 보기", link:ls.video });
+  }
+  if (ls.videoEarly) pushVideo();
+
   /* PPT 3쪽 지난 시간 복습 — 가로 3칸으로 나란히 놓는다.
      선생님 원본 PPT 도 도형 셋을 가로로(x=0.2 / 4.1 / 8.0인치) 늘어놓았다. */
   if (ls.review && (ls.review.points || []).length) {
@@ -4904,11 +5124,8 @@ function lessonSlides(m){
       names:(f.img ? null : (f.names || []).slice()) });
   }
 
-  /* PPT 6쪽 영상 — 누르면 새 탭에서 열린다 */
-  if (ls.video && ls.video.url) {
-    out.push({ step:STEP_MARK[1], stepName:s2.name, kicker:"함께 보기",
-      title:ls.video.title || "영상 보기", link:ls.video });
-  }
+
+  if (!ls.videoEarly) pushVideo();
 
   /* PPT 7쪽 활동지 열기 — 여기서부터 학생이 적는다 */
   out.push({ cover:true, kicker:label + " " + m.title, title:"이제 활동지를 적어요",
@@ -5239,6 +5456,7 @@ var Lesson = {
       }
     };
     document.addEventListener("keydown", this.keyHandler);
+    Timer.show(true);      /* 교실 화면을 띄운 채로도 타이머를 쓴다 */
 
     /* PPT 처럼 화면을 눌러 넘긴다. 교실에서 단추를 겨냥해 누를 일이 없게 한다.
        뒤로 가기는 ← 키와 조작줄의 '이전'으로만 한다 — 잘못 눌러 되돌아가면
@@ -5327,6 +5545,7 @@ var Lesson = {
     if (this.root && this.root.parentNode) this.root.parentNode.removeChild(this.root);
     this.root = null; this.parts = null; this.slides = []; this.idx = 0;
     this.moduleId = null;
+    Timer.show(UI.screen === "module");
     /* 활동지 화면의 입력칸을 여기서 고친 값으로 맞춘다.
        renderModule() 은 부르지 않는다 — 시뮬 결과가 사라진다 */
     AnswerWatch.refresh();
@@ -7075,6 +7294,27 @@ SIM.alien = {
     /* '종 수'에 외래생물이 들어간다는 것과 고르기가 뜻하는 바를 밝히지 않으면,
        카드만 읽고 '외래생물이 생물다양성을 높였다'로 정반대로 읽게 된다.
        해석은 적지 않고, 무엇을 센 값인지와 방생 전 값만 적는다. */
+    /* 방생 전 값과 지금 값을 나란히 보여 준다(2026-09-01).
+       숫자 카드만 보면 '지금 21마리' 가 많은 건지 적은 건지 알 수 없다.
+       **사실만 적는다 — 줄었다·늘었다 같은 해석은 쓰지 않는다.** */
+    var st0 = Alien.start();
+    /* 가장 적었을 때를 함께 보여 준다. 이 모형에서 **제거 시점은 마지막 해 값이 아니라
+       도중에 얼마나 깊이 떨어지느냐로 드러난다**(세게 제거하면 2년이든 8년이든 25년째는
+       똑같이 회복되지만, 최저값은 8마리와 3마리로 갈린다). 최저값을 안 보여 주면
+       학생이 제거 시점을 바꿔 보고 "차이가 없네" 로 잘못 배운다. */
+    var lowF = Infinity, lowP = Infinity;
+    var cmp = el("p", { class:"small", style:"margin-top:6px; color:var(--ink-2)" });
+    cmp.__paint = function(){
+      if (st.F < lowF) lowF = st.F;
+      if (st.P < lowP) lowP = st.P;
+      cmp.textContent = "방생 전 → 지금 (가장 적었을 때) — 토종 물고기 "
+        + Math.round(st0.F) + " → " + Math.round(st.F) + " (" + Math.round(lowF) + ") 마리 · 토종 포식자 "
+        + Math.round(st0.P) + " → " + Math.round(st.P) + " (" + Math.round(lowP) + ") 마리";
+    };
+    cmp.__resetLow = function(){ lowF = Infinity; lowP = Infinity; };
+    cmp.__paint();
+    scenePane.appendChild(cmp);
+
     var base0 = Alien.diversity(Alien.start());
     scenePane.appendChild(el("p", { class:"small muted", style:"margin-top:8px",
       text:"‘종 수’는 하천에 아직 남아 있는 종의 수예요. 외래생물도 한 종으로 세어요. ‘고르기’는 남은 종들의 개체수가 서로 얼마나 비슷한지를 0~1로 나타내요. 남은 종이 하나뿐이면 정할 수 없어서 ‘–’로 보여요. 방생 전에는 " +
@@ -7092,9 +7332,27 @@ SIM.alien = {
       { label:"경쟁형(먹이를 두고 경쟁)", value:"competitor" }
     ], "predator", function(v){ st.kind = v; reset(); }));
     ctlPane.appendChild(el("div", { style:"height:10px" }));
-    ctlPane.appendChild(ctlSlider("처음 방생하는 수", 1, 20, 1, 5, "마리", function(v){ st.seed = v; reset(); }));
-    ctlPane.appendChild(ctlSlider("제거 시작 시점(방생 후)", 1, 10, 1, 4, "년", function(v){ st.removeAfter = v; reset(); }));
-    ctlPane.appendChild(ctlSlider("제거 강도", 0, 90, 10, 0, "%/년", function(v){ st.removeRate = v / 100; reset(); }));
+    /* 슬라이더를 3단 선택으로 바꿨다(2026-09-01 발주자 요구).
+       전에는 20·10·10 단계라 조합이 4000가지였고, 값을 맞추느라 수업이 느려졌다.
+       변수는 그대로 넷이되 한 번 누르면 값이 정해진다 — 조합 54가지.
+       **가운데 값이 예전 기본값(5마리·4년·0%)이다.** 회귀 수치가 흔들리지 않게 그대로 두었다. */
+    ctlPane.appendChild(ctlSeg("처음 방생하는 수", [
+      { label:"적게 2마리", value:"2" },
+      { label:"보통 5마리", value:"5" },
+      { label:"많이 15마리", value:"15" }
+    ], "5", function(v){ st.seed = +v; reset(); }));
+    ctlPane.appendChild(el("div", { style:"height:10px" }));
+    ctlPane.appendChild(ctlSeg("제거 시작 시점(방생 후)", [
+      { label:"빨리 2년", value:"2" },
+      { label:"보통 4년", value:"4" },
+      { label:"늦게 8년", value:"8" }
+    ], "4", function(v){ st.removeAfter = +v; reset(); }));
+    ctlPane.appendChild(el("div", { style:"height:10px" }));
+    ctlPane.appendChild(ctlSeg("제거 강도", [
+      { label:"안 함", value:"0" },
+      { label:"약하게 30%", value:"30" },
+      { label:"세게 60%", value:"60" }
+    ], "0", function(v){ st.removeRate = (+v) / 100; reset(); }));
     ctlPane.appendChild(el("p", { class:"small muted", style:"margin-top:10px",
       text:"외래생물은 " + Alien.RELEASE_Y + "년째에 방생돼요. 앞의 " + Alien.RELEASE_Y + "년은 방생 전 모습이에요." }));
     ctlPane.appendChild(el("div", { class:"row", style:"margin-top:10px" }, [
@@ -7160,6 +7418,21 @@ SIM.alien = {
       attachHelpBtn(m, "c_graph", "▶ 시작을 눌러 " + Alien.YEARS + "년이 다 흐른 뒤에 눌러요. 중간에 누르면 그리다 만 그래프가 담겨요.")
     ]));
     chartPane.appendChild(whyAG);
+    /* 무엇을 볼지 짚어 준다(2026-09-01 발주자 지적 — "학생이 해석할 감을 못 잡는다").
+       **답은 적지 않는다.** 볼 곳만 짚는다. 이 세 줄이 활동지의 주장·증거·이유로 이어진다.
+       프로그램이 결과를 먼저 해석하지 않는다는 원칙(SPEC 5장)을 지킨 것이다. */
+    var lookBox = el("div", { class:"notice", style:"margin-top:10px" }, [
+      el("b", { text:"무엇을 볼까요" })
+    ]);
+    var lookUl = el("ul", { class:"small", style:"margin:6px 0 0; color:var(--ink-2)" });
+    [ "방생한 뒤 토종 물고기 선이 어떻게 되나요?",
+      "가장 적었을 때 몇 마리까지 떨어졌나요?",
+      "제거를 시작한 뒤에는 어떻게 되나요?",
+      "마지막 해에 방생 전만큼 돌아왔나요? 사라진 종은 없나요?"
+    ].forEach(function(t){ lookUl.appendChild(el("li", { text:t })); });
+    lookBox.appendChild(lookUl);
+    chartPane.appendChild(lookBox);
+
     chartPane.appendChild(el("p", { class:"model-note", style:"margin-top:8px",
       text:"개체수는 상대적인 마리 수예요. 실제 종이나 지역의 값이 아니에요." }));
 
@@ -7174,6 +7447,7 @@ SIM.alien = {
       sD.set(dv.count + " 종");
       /* 남은 종이 하나뿐이면 고르기가 정의되지 않는다 — 외래생물 카드와 같은 규칙으로 '–' */
       sE.set(dv.even === null ? "–" : dv.even.toFixed(2));
+      cmp.__paint();
       chart.draw();
     }
     scene.__repaint = paint; share.__repaint = paint;
@@ -7181,6 +7455,7 @@ SIM.alien = {
     function reset(){
       player.pause(); btnPlay.textContent = "▶ 시작";
       acc = 0;
+      if (cmp.__resetLow) cmp.__resetLow();   /* 조건을 바꾸면 최저값도 다시 센다 */
       st = Alien.newState(st.kind, st.seed, st.removeAfter, st.removeRate);
       chart.reset();
       chart.cfg.events = [{ x:Alien.RELEASE_Y, label:"방생", color:AC.A }];
@@ -9961,6 +10236,7 @@ function go(screen){
   if (screen === "teacher") renderTeacher();
   if (screen === "quickstart") renderQuickStart();
   if (screen === "module") repaintAllSketches();
+  Timer.show(screen === "module");        /* 수업 타이머는 모듈 화면에서만 보인다 */
   Idle.reset();
   window.scrollTo(0, 0);
 }
