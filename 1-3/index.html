@@ -644,6 +644,23 @@ html.single #btn-quickstart{display:none}
   .ls-row{flex-direction:column}
 }
 
+/* 수업 화면의 표 — 교실 뒤에서도 읽히게 크게. 넘치면 lessonFit 이 함께 줄인다 */
+.ls-table{width:100%; border-collapse:collapse; table-layout:fixed}
+.ls-table th,.ls-table td{
+  border:2px solid var(--line-2); vertical-align:top; line-height:1.45;
+  padding:calc(clamp(8px,1.1vw,18px) * var(--ls-k,1));
+  font-size:calc(clamp(13px,1.75vw,30px) * var(--ls-k,1));
+}
+.ls-table th{
+  background:var(--chrome); color:#fff; text-align:center; white-space:nowrap;
+  font-size:calc(clamp(15px,2.1vw,36px) * var(--ls-k,1)); font-weight:700;
+}
+.ls-table td:first-child{
+  background:var(--card-2); text-align:center; white-space:nowrap; font-weight:700;
+  font-size:calc(clamp(14px,1.9vw,32px) * var(--ls-k,1));
+}
+.ls-table th:first-child{width:14%}
+
 /* 가운데 정렬 화면(표지·수업 목표)의 부제는 본문보다 크게 — 수업 목표가 핵심이다 */
 .ls-body.cover .ls-sub{font-size:calc(clamp(20px,3.4vw,64px) * var(--ls-k,1)); max-width:34ch; margin:0 auto}
 
@@ -1454,21 +1471,37 @@ var MODULES = [
        0~8분 도입(영상·뜻과 종류) → 8~12분 예상 → 12~24분 가상 탐구
        → 24~38분 조사·기록 → 38~50분 카드 뉴스·웹툰 만들기 */
     stepTimes: ["8분", "4분", "12분", "14분", "12분"],
+    hideStepTime: true,      /* 학생 화면 단계 아래 시간 표시를 뺀다(발주자 요구 2026-09-01) */
     stepTodo: {
       intro:  "영상을 보고, 외래생물과 생태계교란 생물이 무엇인지 확인해요. (교과서 26쪽)",
-      predict: "외래생물을 풀어놓으면 토종 물고기가 어떻게 될지 예상해서 그려요.",
+      predict: "선생님 화면을 보고 뜻과 차이를 정리한 뒤, 외래생물을 풀어놓으면 토종 물고기가 어떻게 될지 예상해서 그려요.",
       explore: "외래생물 유형·방생 수·제거 시점을 바꿔 가며 개체수가 어떻게 달라지는지 확인해요.",
       record: "우리 모둠이 고른 주제를 조사해 적고, 시뮬레이션 그래프를 근거로 영향을 논증해요.",
       export: "카드 뉴스나 4컷 웹툰의 밑그림을 내려받아 꾸며요. 빈 항목이 0개인지 확인하고 활동지를 제출해요."
     },
-    /* 강의 자료 — 담당 선생님 활동지 ver.2 의 [영상]·[강의] 칸을 그대로 옮긴 것이다.
-       표 내용은 선생님이 활동지에 적어 주신 것이고 개발자가 지어낸 것이 아니다.
-       ver.1 에서는 학생이 조사해 채우는 표였으나 ver.2 에서 교사가 알려 주는 것으로 바뀌었다. */
+    /* 학생 화면의 조사할 곳 — 영상과 뜻·종류 표는 **수업 화면(lesson)** 으로 옮겼다
+       (발주자 결정 2026-09-01). 표가 학생 기기에도 떠 있으면 ② 예상 단계의
+       '자기 말로 정리하기'가 베껴 쓰기가 되기 때문이다. 교실 화면을 보고 적게 한다.
+       누리집 링크는 ④ 조사 때 필요하므로 여기 남긴다. */
     brief:{
-      title:"먼저 알아 둘 것",
+      title:"조사할 곳",
+      links:[
+        { name:"한국 외래생물 정보 시스템 — 뜻과 종류", url:"https://kias.nie.re.kr/page/alien/definition" },
+        { name:"생태계교란 생물 분포 현황", url:"https://kias.nie.re.kr/page/disruption/distribution-status" }
+      ],
+      note:"누리집은 누를 때만 열려요. 인터넷이 없으면 선생님 화면을 보고 적어요."
+    },
+
+    /* 수업 화면(교실 앞 화면) — 담당 선생님 활동지 ver.2 의 [영상]·[강의] 칸이다.
+       표 내용은 선생님이 활동지에 적어 주신 것 그대로이고 개발자가 지어낸 것이 아니다.
+       학생은 이 화면을 보고 ② 예상 단계에 자기 말로 정리한다. */
+    lesson:{
+      goal:"외래생물이 생물다양성에 미치는 영향을 설명할 수 있다.",   /* 교과서 26쪽 학습목표 */
+      question:"외래생물이 국내 생태계로 유입되면 생태계에 어떤 영향을 줄까?",  /* 교과서 26쪽 */
       video:{ title:"관상·애완용에서 무책임하게 유기된 외래생물들 (SBS 공생의 법칙)",
               url:"https://youtu.be/qwljs2zJkmw" },
-      table:{
+      terms:{
+        title:"외래생물과 생태계교란 생물",
         head:["구분", "외래생물", "생태계교란 생물"],
         rows:[
           ["정의",
@@ -1479,11 +1512,7 @@ var MODULES = [
            "파랑볼우럭(블루길), 큰입배스(배스), 황소개구리, 붉은귀거북 등"]
         ]
       },
-      links:[
-        { name:"한국 외래생물 정보 시스템 — 뜻과 종류", url:"https://kias.nie.re.kr/page/alien/definition" },
-        { name:"생태계교란 생물 분포 현황", url:"https://kias.nie.re.kr/page/disruption/distribution-status" }
-      ],
-      note:"영상과 누리집은 누를 때만 열려요. 인터넷이 없으면 이 화면의 표만 보고 진행해도 돼요."
+      close:"활동지 ② 예상 단계에 뜻과 차이를 자기 말로 정리해요."
     },
     flow:[
       { no:"활동 1", title:"우리나라로 유입된 외래생물 조사하기", pages:"27쪽", here:true,
@@ -1513,6 +1542,10 @@ var MODULES = [
       ]
     },
     items:[
+      /* 선생님이 수업 화면에 띄운 표를 보고 학생이 자기 말로 옮겨 적는다
+         (발주자 결정 2026-09-01). 베껴 쓰기가 되지 않도록 표는 학생 화면에 두지 않았다. */
+      { id:"terms", type:"text", step:"predict", kind:"정리", ref:"26쪽",
+        label:"외래생물과 생태계교란 생물은 각각 무엇이고, 둘은 어떻게 다른지 자기 말로 정리해요." },
       { id:"p_draw", type:"draw", step:"predict", kind:"예상", ax:"alienN",
         label:"외래생물을 방생한 뒤 토종 물고기 개체수 변화를 예상해서 그려요." },
       /* ver.2(2026-09-01): 뜻·종류는 교사 강의로 바뀌어 문항에서 뺐다(brief 의 표로 보여 준다).
@@ -2989,8 +3022,10 @@ function renderModule(){
         if (s.n === UI.step) { toast("지금 이 단계예요."); return; }
         UI.step = s.n; Idle.hide(); renderModule(); window.scrollTo(0, 0);
       }
+      /* hideStepTime 인 소단원은 단계 아래 시간을 보이지 않는다(2026-09-01 발주자 요구, Ⅰ-3).
+         교사 모드의 수업 진행 가이드 표에는 시간이 그대로 남으므로 교사는 진도를 가늠할 수 있다. */
     }, [ el("b", { text:STEP_MARK[s.n - 1] + " " + s.name }),
-         el("span", { text:stepInfo(m, s.n).time }) ]);
+         m.hideStepTime ? null : el("span", { text:stepInfo(m, s.n).time }) ]);
     bar.appendChild(b);
   });
 
@@ -4769,9 +4804,11 @@ function exportDeck(moduleId){
      떠 있으면 수업 자료로 보이지 않기 때문이다. 마우스를 움직이면 나타난다.
    ========================================================================== */
 
-/* 수업 진행 화면을 만들 수 있는 모듈인가 */
+/* 수업 진행 화면을 만들 수 있는 모듈인가.
+   lesson 만 있으면 된다. plan 은 있으면 쓰고 없으면 그 화면들을 건너뛴다
+   — 실습형 소단원(Ⅰ-3 등)은 plan 이 없어도 수업 화면을 쓸 수 있어야 한다(2026-09-01). */
 function hasLesson(m){
-  return !!(m && m.lesson && m.plan);
+  return !!(m && m.lesson);
 }
 
 /* 모듈 데이터 → 화면 목록.
@@ -4810,6 +4847,14 @@ function lessonSlides(m){
       kicker:ls.review.from ? ls.review.from + "에서 배운 것" : "지난 시간에 배운 것",
       title:ls.review.title || "지난 시간 복습",
       row:ls.review.points.map(function(t){ return { b:t }; }) });
+  }
+
+  /* 뜻과 종류 표(Ⅰ-3) — 교사가 띄워 설명하고, 학생은 활동지 ② 예상에 자기 말로 옮겨 적는다.
+     표를 학생 기기에 두지 않은 것이 요점이다(발주자 결정 2026-09-01). */
+  if (ls.terms && (ls.terms.rows || []).length) {
+    out.push({ step:STEP_MARK[0], stepName:s1.name, kicker:"교과서 26쪽 · " + s1.time,
+      title:ls.terms.title || "뜻과 종류", table:ls.terms,
+      quote:"활동지 ② 예상 단계에 자기 말로 정리해요." });
   }
 
   /* PPT 4쪽 과학 vs 유사과학 — 출처가 둘이라 화면을 나눈다(발주자 결정 2026-08-31).
@@ -5009,6 +5054,23 @@ function lessonRender(box, sl, moduleId, flushers){
     var ul = el("ul", { class:"ls-list" + (sl.big ? " big" : "") });
     sl.list.forEach(function(t){ ul.appendChild(el("li", {}, [ el("span", { text:t }) ])); });
     box.appendChild(ul);
+  }
+
+  if (sl.table && (sl.table.rows || []).length) {
+    var tw = el("div", { style:"overflow-x:auto" });
+    var tb = el("table", { class:"ls-table" });
+    if ((sl.table.head || []).length) {
+      var hr = el("tr");
+      sl.table.head.forEach(function(h){ hr.appendChild(el("th", { text:h })); });
+      tb.appendChild(hr);
+    }
+    sl.table.rows.forEach(function(row){
+      var tr = el("tr");
+      row.forEach(function(v){ tr.appendChild(el("td", { text:v })); });
+      tb.appendChild(tr);
+    });
+    tw.appendChild(tb);
+    box.appendChild(tw);
   }
 
   if ((sl.row || []).length) {
