@@ -66,6 +66,10 @@ body{
     var(--bg);
   font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;
   font-size:1rem; line-height:1.6; -webkit-text-size-adjust:100%;
+  /* 한글은 낱말 단위로 끊는다(2026-09-01 발주자 지적).
+     기본값은 음절 아무 데서나 끊어서 '같아 / 요' 처럼 조사 한 글자가 다음 줄로 넘어간다.
+     keep-all 이면 띄어쓰기에서만 끊는다. 끊을 자리가 없는 긴 낱말은 break-word 가 받는다. */
+  word-break:keep-all; overflow-wrap:break-word;
 }
 h1,h2,h3,h4,p,ul,ol{margin:0}
 ul,ol{padding-left:1.15em}
@@ -600,6 +604,23 @@ html.single #btn-quickstart{display:none}
 }
 .ls-figure figcaption{font-size:calc(clamp(12px,1.5vw,24px) * var(--ls-k,1)); color:var(--ink-3); text-align:center}
 
+/* 강의 자료 카드 — 교사가 알려 주는 내용(뜻·종류 표)과 바깥 자료(영상·누리집).
+   학생이 채우는 칸이 아니라 읽는 자료라서 활동지 문항과 생김새를 달리한다. */
+.brief-table{width:100%; border-collapse:collapse; font-size:.92rem; margin-top:4px}
+.brief-table th,.brief-table td{border:1px solid var(--line-2); padding:7px 9px; vertical-align:top}
+.brief-table th{background:var(--card-2); font-weight:600; text-align:center; white-space:nowrap}
+.brief-table td:first-child{background:var(--card-2); font-weight:600; text-align:center; white-space:nowrap}
+.brief-links{display:flex; flex-wrap:wrap; gap:8px; margin-top:2px}
+.brief-link{
+  display:inline-flex; align-items:center; gap:.4em; text-decoration:none;
+  padding:7px 12px; border-radius:var(--r-s); font-size:.88rem; font-weight:600;
+  border:1px solid var(--line-2); background:var(--card-2); color:var(--ink);
+}
+.brief-link:hover{background:var(--chrome); color:#fff; border-color:var(--chrome)}
+.brief-link:focus-visible{outline:3px solid var(--focus); outline-offset:2px}
+.brief-link.play{background:var(--chrome); color:#fff; border-color:var(--chrome)}
+.brief-link.play:hover{background:var(--chrome-d)}
+
 /* 가로 배열 — 선생님 PPT 3쪽처럼 나란히 놓는다. 세로로 쌓으면 아래가 비어 보이고
    글자도 못 키운다. 칸이 좁은 기기에서는 세로로 접힌다. */
 .ls-row{
@@ -626,6 +647,34 @@ html.single #btn-quickstart{display:none}
 @media (max-width:760px){
   .ls-row{flex-direction:column}
 }
+
+/* 수업 화면의 표 — 교실 뒤에서도 읽혀야 한다(발주자 요구 2026-09-01).
+   글자를 크게 잡고, 넘치면 lessonFit 이 함께 줄인다.
+   표 화면에서는 제목과 여백을 줄여 세로 공간을 표에 몰아준다 — 표가 주인공이다. */
+.ls-body.tablepage{
+  padding-top:calc(clamp(12px,1.8vw,26px) * var(--ls-k));
+  padding-bottom:calc(clamp(12px,1.8vw,26px) * var(--ls-k));
+  gap:calc(clamp(8px,1.2vw,18px) * var(--ls-k));
+}
+.ls-body.tablepage .ls-title{font-size:calc(clamp(22px,3vw,60px) * var(--ls-k,1))}
+.ls-body.tablepage .ls-quote{font-size:calc(clamp(13px,1.7vw,28px) * var(--ls-k,1))}
+
+.ls-tablewrap{overflow-x:auto; min-height:0}
+.ls-table{width:100%; border-collapse:collapse; table-layout:fixed}
+.ls-table th,.ls-table td{
+  border:2px solid var(--line-2); vertical-align:top; line-height:1.4;
+  padding:calc(clamp(9px,1.2vw,20px) * var(--ls-k,1));
+  font-size:calc(clamp(15px,2.4vw,44px) * var(--ls-k,1));
+}
+.ls-table th{
+  background:var(--chrome); color:#fff; text-align:center; white-space:nowrap;
+  font-size:calc(clamp(17px,2.8vw,50px) * var(--ls-k,1)); font-weight:700;
+}
+.ls-table td:first-child{
+  background:var(--card-2); text-align:center; white-space:nowrap; font-weight:700;
+  font-size:calc(clamp(16px,2.5vw,46px) * var(--ls-k,1));
+}
+.ls-table th:first-child{width:13%}
 
 /* 가운데 정렬 화면(표지·수업 목표)의 부제는 본문보다 크게 — 수업 목표가 핵심이다 */
 .ls-body.cover .ls-sub{font-size:calc(clamp(20px,3.4vw,64px) * var(--ls-k,1)); max-width:34ch; margin:0 auto}
@@ -1425,17 +1474,60 @@ var MODULES = [
     id:"alien", no:2, book:3, unit:"우리 주변에는 어떤 생물이 살고 있을까?",
     title:"외래생물과 생물다양성", pages:"26~31쪽", core:"활동 1·3 (27쪽 · 30~31쪽)",
     ready:true,
-    /* 1차시 50분 운영안 (2026-08-27 발주자 결정).
-       교과서 활동 2(28~29쪽 야외 생물 조사)는 하지 않는다. 그 대신 활동 1의 '내가 사는 지역'
-       조사를 활동 3으로 잇는다 — 교과서 30쪽 1번이 활동 2에 기대고 있어 그대로 두면 성립하지 않는다.
-       0~5분 도입 → 5~9분 예상 → 9~21분 가상 탐구 → 21~38분 조사·기록 → 38~50분 카드 뉴스·발표 */
-    stepTimes: ["5분", "4분", "12분", "17분", "12분"],
+    /* 1차시 50분 운영안 (2026-08-27 발주자 결정 → 2026-09-01 담당 선생님 활동지 ver.2 반영).
+       교과서 활동 2(28~29쪽 야외 생물 조사)는 하지 않는다.
+
+       ver.2 에서 바뀐 것 — 도입 영상 2개→1개, 뜻·종류 표는 학생 조사가 아니라 교사 강의로
+       제공, 활동 1 은 세 주제 가운데 모둠이 **하나만 골라** 조사, 산출물은 카드 뉴스 또는
+       4컷 웹툰, 발표·상호평가는 빼고 **온라인 전시회로 공개**한다.
+       ⚠ 시뮬레이션은 활동지에 3번 주제에만 붙어 있으나, **발주자 결정으로 전체가 공통으로**
+         한다(2026-09-01). 선택은 조사 주제만이다.
+
+       0~8분 도입(영상·뜻과 종류) → 8~12분 예상 → 12~24분 가상 탐구
+       → 24~38분 조사·기록 → 38~50분 카드 뉴스·웹툰 만들기 */
+    stepTimes: ["8분", "4분", "12분", "14분", "12분"],
+    hideStepTime: true,      /* 학생 화면 단계 아래 시간 표시를 뺀다(발주자 요구 2026-09-01) */
     stepTodo: {
-      intro:  "외래생물과 생태계교란 생물이 무엇인지 확인해요. (교과서 26쪽)",
-      predict: "외래생물을 풀어놓으면 토종 물고기가 어떻게 될지 예상해서 그려요.",
+      intro:  "영상을 보고, 외래생물과 생태계교란 생물이 무엇인지 확인해요. (교과서 26쪽)",
+      predict: "선생님 화면을 보고 뜻과 차이를 정리한 뒤, 외래생물을 풀어놓으면 토종 물고기가 어떻게 될지 예상해서 그려요.",
       explore: "외래생물 유형·방생 수·제거 시점을 바꿔 가며 개체수가 어떻게 달라지는지 확인해요.",
-      record: "미리 찾아 온 우리 지역 생태계교란 생물을 정리하고, 시뮬레이션 그래프를 근거로 영향을 논증해요.",
-      export: "카드 뉴스를 내려받아 꾸미고 발표해요. 빈 항목이 0개인지 확인하고 활동지를 제출해요."
+      record: "우리 모둠이 고른 주제를 조사해 적고, 시뮬레이션 그래프를 근거로 영향을 논증해요.",
+      export: "카드 뉴스나 4컷 웹툰의 밑그림을 내려받아 꾸며요. 빈 항목이 0개인지 확인하고 활동지를 제출해요."
+    },
+    /* 학생 화면의 조사할 곳 — 영상과 뜻·종류 표는 **수업 화면(lesson)** 으로 옮겼다
+       (발주자 결정 2026-09-01). 표가 학생 기기에도 떠 있으면 ② 예상 단계의
+       '자기 말로 정리하기'가 베껴 쓰기가 되기 때문이다. 교실 화면을 보고 적게 한다.
+       누리집 링크는 ④ 조사 때 필요하므로 여기 남긴다. */
+    brief:{
+      title:"조사할 곳",
+      links:[
+        { name:"한국 외래생물 정보 시스템 — 뜻과 종류", url:"https://kias.nie.re.kr/page/alien/definition" },
+        { name:"생태계교란 생물 분포 현황", url:"https://kias.nie.re.kr/page/disruption/distribution-status" }
+      ],
+      note:"누리집은 누를 때만 열려요. 인터넷이 없으면 선생님 화면을 보고 적어요."
+    },
+
+    /* 수업 화면(교실 앞 화면) — 담당 선생님 활동지 ver.2 의 [영상]·[강의] 칸이다.
+       표 내용은 선생님이 활동지에 적어 주신 것 그대로이고 개발자가 지어낸 것이 아니다.
+       학생은 이 화면을 보고 ② 예상 단계에 자기 말로 정리한다. */
+    lesson:{
+      goal:"외래생물이 생물다양성에 미치는 영향을 설명할 수 있다.",   /* 교과서 26쪽 학습목표 */
+      question:"외래생물이 국내 생태계로 유입되면 생태계에 어떤 영향을 줄까?",  /* 교과서 26쪽 */
+      video:{ title:"관상·애완용에서 무책임하게 유기된 외래생물들 (SBS 공생의 법칙)",
+              url:"https://youtu.be/qwljs2zJkmw" },
+      terms:{
+        title:"외래생물과 생태계교란 생물",
+        head:["구분", "외래생물", "생태계교란 생물"],
+        rows:[
+          ["정의",
+           "외국으로부터 인위적 또는 자연적으로 유입되어 그 본래의 원산지 또는 서식지를 벗어나 존재하게 된 생물",
+           "위해성 평가 결과 생태계 등에 미치는 위해가 큰 것으로 판단되어 환경부장관이 지정·고시하는 것"],
+          ["생물종",
+           "미국쑥부쟁이, 돼지풀, 환삼덩굴, 꽃매미 등",
+           "파랑볼우럭(블루길), 큰입배스(배스), 황소개구리, 붉은귀거북 등"]
+        ]
+      },
+      close:"활동지 ② 예상 단계에 뜻과 차이를 자기 말로 정리해요."
     },
     flow:[
       { no:"활동 1", title:"우리나라로 유입된 외래생물 조사하기", pages:"27쪽", here:true,
@@ -1465,50 +1557,92 @@ var MODULES = [
       ]
     },
     items:[
+      /* 선생님이 수업 화면에 띄운 표를 보고 학생이 자기 말로 옮겨 적는다
+         (발주자 결정 2026-09-01). 베껴 쓰기가 되지 않도록 표는 학생 화면에 두지 않았다. */
+      { id:"terms", type:"text", step:"predict", kind:"정리", ref:"26쪽",
+        label:"외래생물과 생태계교란 생물은 각각 무엇이고, 둘은 어떻게 다른지 자기 말로 정리해요." },
       { id:"p_draw", type:"draw", step:"predict", kind:"예상", ax:"alienN",
         label:"외래생물을 방생한 뒤 토종 물고기 개체수 변화를 예상해서 그려요." },
-      { id:"a1", type:"text", step:"record", kind:"조사", ref:"27쪽 1번",
-        label:"외래생물과 생태계교란 생물은 각각 무엇이고, 어떻게 다른지 적어요." },
-      /* 교과서 27쪽 2번(도입 경로)과 3번(우리 지역 분포)을 한 문항으로 묶었다.
-         활동 2를 빼면서 30쪽 1번('활동 2에서 관찰한 생물')이 갈 곳을 잃으므로,
-         여기서 고른 생물이 활동 3 전체의 대상이 된다. */
-      { id:"a2", type:"text", step:"record", kind:"조사", src:true, ref:"27쪽 2~3번",
-        label:"우리 지역에 분포하는 생태계교란 생물을 하나 골라, 이름과 우리나라에 들어온 경로를 적어요." },
+      /* ver.2(2026-09-01): 뜻·종류는 교사 강의로 바뀌어 문항에서 뺐다(brief 의 표로 보여 준다).
+         활동 1 은 세 주제 가운데 모둠이 하나만 골라 조사한다. 선택지 문구는 선생님 활동지 그대로다.
+         교과서 27쪽 2번(도입 경로)·3번(우리 지역 분포)·30쪽 2번(사례)이 이 두 문항에 담긴다.
+         활동 2를 빼면서 30쪽 1번이 갈 곳을 잃으므로, 여기서 고른 생물이 활동 3 전체의 대상이 된다. */
+      { id:"topic", type:"choice", step:"record", kind:"주제", ref:"27쪽·30쪽",
+        options:["국내로 들어오는 과정", "분포 상황", "생물다양성에 미치는 영향"],
+        label:"우리 모둠이 조사할 주제를 하나 골라요." },
+      { id:"res", type:"text", step:"record", kind:"조사", src:true, ref:"27쪽 2~3번 · 30쪽 2번",
+        label:"고른 주제를 조사해 적어요. 우리 지역에 분포하는 생태계교란 생물을 하나 정해 그것을 중심으로 적으면 좋아요." },
       { id:"cond", type:"auto", step:"record", kind:"설계",
         label:"내가 설정한 조건(외래생물 유형, 초기 방생 수, 제거 시점, 제거 강도)" },
       { id:"c_graph", type:"capture", step:"record", kind:"기록",
         attachAt:"explore", attachBtn:"활동지에 첨부",
         label:"개체수 변화 그래프" },
-      { id:"w1", type:"text", step:"record", kind:"사례", src:true, ref:"30쪽 2번",
-        label:"그 생물이 번성해 생태계에 어떤 영향을 주었는지 사례를 조사해 적어요. 어떤 생물이 얼마나 줄었는지를 중심으로 적어요." },
       { id:"a_claim", type:"text", step:"record", kind:"주장", ref:"30쪽 3번",
         label:"주장: 외래생물이 생물다양성에 미치는 영향은 무엇인가요?" },
       { id:"a_evidence", type:"text", step:"record", kind:"증거", ref:"30쪽 3번",
         label:"증거: 조사한 사례와 시뮬레이션 그래프에서 어떤 부분이 그 주장을 뒷받침하나요?" },
       { id:"a_reason", type:"text", step:"record", kind:"이유", ref:"30쪽 3번",
         label:"이유: 그 증거가 주장을 뒷받침하는 까닭은 무엇인가요? 생물다양성의 세 측면(유전적·종·생태계) 가운데 무엇이 줄어드는지 짚어요." },
+      /* ver.2: 산출물이 카드 뉴스 또는 4컷 웹툰 두 갈래가 되었다.
+         고른 값에 따라 밑그림(deck)의 슬라이드 구성이 달라진다. */
+      { id:"make", type:"choice", step:"export", kind:"산출물", ref:"31쪽 3번",
+        options:["카드 뉴스", "4컷 웹툰"],
+        label:"우리 모둠이 만들 것을 골라요. 4컷 웹툰은 1인당 1컷 이상, 최대 2컷이에요." },
       { id:"sol", type:"text", step:"export", kind:"해결", ref:"31쪽 3번",
-        label:"이 문제를 줄이려면 무엇을 해야 할까요? 우리가 지금 할 수 있는 일을 하나 정해 카드 뉴스 마지막 장에 넣을 문장으로 적어요." },
+        label:"이 문제를 줄이려면 무엇을 해야 할까요? 우리가 지금 할 수 있는 일을 하나 정해, 산출물 마지막에 넣을 문장으로 적어요." },
       { id:"d1", type:"text", step:"export", kind:"심화", optional:true, src:true, ref:"30~31쪽 심화",
         label:"외래생물을 제거하는 방법 한 가지를 조사해, 좋은 점과 문제점(비용·다른 생물 피해·생명윤리)을 함께 적고 내 생각을 적어요." },
       { id:"d2", type:"text", step:"export", kind:"심화", optional:true, src:true, ref:"31쪽 심화",
         label:"외래생물 문제를 다루는 우리나라 법이나 제도를 하나 찾아, 무엇을 금지하고 무엇을 권하는지 적어요." }
     ],
-    /* 카드 뉴스 — 활동지를 채우면 다섯 장이 저절로 만들어진다.
-       4장에는 학생이 담아 둔 개체수 변화 그래프가 함께 들어간다(img). */
+    /* 산출물 밑그림 — 활동지를 채우면 저절로 만들어진다. 학생은 이걸 내려받아 꾸민 뒤
+       PDF 로 바꿔 온라인 전시회에 올린다(ver.2).
+       by 가 가리키는 선택 문항의 값으로 variants 가운데 하나를 고른다.
+       고르지 않았으면 slides(카드 뉴스)가 기본으로 나온다.
+       그래프를 담아 둔 학생은 해당 장에 그림이 함께 들어간다(img). */
     deck:{
+      by:"make",
       slides:[
-        { title:"우리 지역의 생태계교란 생물", accent:"16A34A", cover:true,
-          lines:[ { label:"내가 조사한 생물과 들어온 경로", from:"a2" } ] },
-        { title:"외래생물과 생태계교란 생물", accent:"2F3A44",
-          lines:[ { from:"a1" } ] },
-        { title:"생태계에 무슨 일이 있었나", accent:"DC2626",
-          lines:[ { from:"w1" }, { label:"찾은 곳", from:"w1", src:true } ] },
+        { title:"우리 모둠이 조사한 것", accent:"16A34A", cover:true,
+          lines:[ { label:"조사 주제", from:"topic" }, { from:"res" } ] },
+        { title:"조사한 내용", accent:"2F3A44",
+          lines:[ { from:"res" }, { label:"찾은 곳", from:"res", src:true } ] },
         { title:"시뮬레이션이 보여 준 것", accent:"2563EB", img:"c_graph",
           lines:[ { label:"주장", from:"a_claim" }, { label:"증거", from:"a_evidence" } ] },
+        { title:"왜 그런가", accent:"DC2626",
+          lines:[ { from:"a_reason" } ] },
         { title:"우리가 할 수 있는 일", accent:"9333EA",
-          lines:[ { from:"a_reason" }, { from:"sol" } ] }
-      ]
+          lines:[ { from:"sol" } ] }
+      ],
+      variants:{
+        "카드 뉴스":[
+          { title:"우리 모둠이 조사한 것", accent:"16A34A", cover:true,
+            lines:[ { label:"조사 주제", from:"topic" }, { from:"res" } ] },
+          { title:"조사한 내용", accent:"2F3A44",
+            lines:[ { from:"res" }, { label:"찾은 곳", from:"res", src:true } ] },
+          { title:"시뮬레이션이 보여 준 것", accent:"2563EB", img:"c_graph",
+            lines:[ { label:"주장", from:"a_claim" }, { label:"증거", from:"a_evidence" } ] },
+          { title:"왜 그런가", accent:"DC2626",
+            lines:[ { from:"a_reason" } ] },
+          { title:"우리가 할 수 있는 일", accent:"9333EA",
+            lines:[ { from:"sol" } ] }
+        ],
+        /* 4컷 웹툰 — 표지 한 장 + 컷 넷. 각 컷에는 그 칸에 무엇을 그릴지 활동지 내용이
+           밑글로 들어간다. 학생은 이 위에 그림을 얹는다. 1인당 1컷 이상, 최대 2컷. */
+        "4컷 웹툰":[
+          { title:"우리 모둠 4컷 웹툰", accent:"16A34A", cover:true,
+            lines:[ { label:"조사 주제", from:"topic" },
+                    { t:"1인당 1컷 이상, 최대 2컷이에요. 아래 네 장에 그림을 그려요.", k:"meta" } ] },
+          { title:"1컷 — 무슨 일이 있었나", accent:"2F3A44",
+            lines:[ { from:"res" } ] },
+          { title:"2컷 — 생태계가 어떻게 달라졌나", accent:"2563EB", img:"c_graph",
+            lines:[ { label:"주장", from:"a_claim" } ] },
+          { title:"3컷 — 왜 그런가", accent:"DC2626",
+            lines:[ { label:"증거", from:"a_evidence" }, { from:"a_reason" } ] },
+          { title:"4컷 — 우리가 할 수 있는 일", accent:"9333EA",
+            lines:[ { from:"sol" } ] }
+        ]
+      }
     }
     },
   {
@@ -2903,8 +3037,10 @@ function renderModule(){
         if (s.n === UI.step) { toast("지금 이 단계예요."); return; }
         UI.step = s.n; Idle.hide(); renderModule(); window.scrollTo(0, 0);
       }
+      /* hideStepTime 인 소단원은 단계 아래 시간을 보이지 않는다(2026-09-01 발주자 요구, Ⅰ-3).
+         교사 모드의 수업 진행 가이드 표에는 시간이 그대로 남으므로 교사는 진도를 가늠할 수 있다. */
     }, [ el("b", { text:STEP_MARK[s.n - 1] + " " + s.name }),
-         el("span", { text:stepInfo(m, s.n).time }) ]);
+         m.hideStepTime ? null : el("span", { text:stepInfo(m, s.n).time }) ]);
     bar.appendChild(b);
   });
 
@@ -2964,6 +3100,8 @@ function renderStage(m, d){
   }
 
   /* 교과서 활동 차례 — 실습형은 ① 도입에서 이 소단원 전체 흐름을 먼저 본다 */
+  /* 강의 자료(뜻·종류 표·영상·조사할 곳)를 활동 차례보다 먼저 보여 준다 */
+  if (m.brief && stepId === "intro") { var bc = briefCard(m); if (bc) host.appendChild(bc); }
   if (m.flow && stepId === "intro") host.appendChild(flowCard(m));
 
   /* 해당 단계에서 입력하는 활동지 항목 */
@@ -3145,6 +3283,50 @@ function studentCard(){
    [공통 코어] 교과서 활동 차례 카드
    소단원 전체(활동 1·2·3)를 보여 주고, 그중 프로그램이 다루는 활동을 표시한다.
    -------------------------------------------------------------------------- */
+/* 강의 자료 — ① 도입에서 교사가 알려 주는 내용과 바깥 자료를 보여 준다.
+   brief 가 있는 소단원에만 나온다. 학생이 적는 칸이 아니다.
+   바깥 자료(영상·누리집)는 누를 때만 나가므로 file:// 오프라인 동작을 깨지 않는다. */
+function briefCard(m){
+  var b = m.brief;
+  if (!b) return null;
+  var c = el("div", { class:"pane stack" });
+  c.appendChild(el("h4", { text:b.title || "먼저 알아 둘 것" }));
+
+  if (b.video && b.video.url) {
+    c.appendChild(el("div", { class:"brief-links" }, [
+      el("a", { class:"brief-link play", href:b.video.url, target:"_blank",
+        rel:"noopener noreferrer", text:"▶ " + (b.video.title || "영상 보기") })
+    ]));
+  }
+
+  if (b.table && (b.table.rows || []).length) {
+    var t = el("table", { class:"brief-table" });
+    if ((b.table.head || []).length) {
+      var tr = el("tr");
+      b.table.head.forEach(function(h){ tr.appendChild(el("th", { text:h })); });
+      t.appendChild(tr);
+    }
+    b.table.rows.forEach(function(row){
+      var r = el("tr");
+      row.forEach(function(v){ r.appendChild(el("td", { text:v })); });
+      t.appendChild(r);
+    });
+    c.appendChild(t);
+  }
+
+  if ((b.links || []).length) {
+    var lb = el("div", { class:"brief-links" });
+    b.links.forEach(function(x){
+      lb.appendChild(el("a", { class:"brief-link", href:x.url, target:"_blank",
+        rel:"noopener noreferrer", text:x.name }));
+    });
+    c.appendChild(lb);
+  }
+
+  if (b.note) c.appendChild(el("p", { class:"model-note", style:"margin-top:8px", text:b.note }));
+  return c;
+}
+
 function flowCard(m){
   var c = el("div", { class:"pane stack" });
   c.appendChild(el("h4", { text:"교과서 활동 차례 (" + m.pages + ")" }));
@@ -3750,7 +3932,7 @@ function hasDeepItems(m){
    {모듈}_{제목}_{활동지|심화}_{학번}_{이름} — 빈 칸은 빼고 언더바가 겹치지 않게 정리한다.
    로마숫자 Ⅰ·Ⅱ는 일부 환경에서 파일 이름을 깨뜨리므로 1·2로 바꾼다. */
 function worksheetFileName(m, mode){
-  var kind = (mode === "deep") ? "심화" : (mode === "deck") ? "발표자료" : "활동지";
+  var kind = (mode === "deep") ? "심화" : (mode === "deck") ? "산출물밑그림" : "활동지";
   var parts = [modLabel(m), m.title, kind, State.student.sid, State.student.name];
   var name = parts.map(function(v){ return (v == null ? "" : String(v)).trim(); })
                   .filter(function(v){ return v !== ""; })
@@ -3771,8 +3953,11 @@ function pdfWrap(g, text, maxW){
     for (i = 0; i < s.length; i++) {
       var ch = s.charAt(i), test = cur + ch;
       if (cur !== "" && g.measureText(test).width > maxW) {
-        var latin = /[0-9A-Za-z]/.test(ch) && /[0-9A-Za-z]/.test(cur.charAt(cur.length - 1));
-        if (latin && brk > 0) {
+        /* 한글도 띄어쓰기에서 끊는다(2026-09-01 발주자 지적).
+           전에는 라틴 낱말만 그렇게 하고 한글은 아무 데서나 끊어서
+           '같아 / 요' 처럼 조사 한 글자가 다음 줄로 넘어갔다.
+           띄어쓰기가 없는 긴 낱말은 brk 가 -1 이라 예전처럼 아무 데서나 끊는다. */
+        if (brk > 0) {
           out.push(cur.slice(0, brk).replace(/\s+$/, ""));
           cur = cur.slice(brk).replace(/^\s+/, "") + ch;
         } else {
@@ -4546,8 +4731,21 @@ function buildPptxBytes(slides, meta){
    줄마다 성격을 붙여 보낸다 — label(작은 강조) · body(본문) · meta(출처 같은 잔글씨). */
 function deckSlides(m, d){
   var out = [];
-  function val(id){ return ((d.answers[id] || "") + "").replace(/^\s+|\s+$/g, ""); }
-  (m.deck.slides || []).forEach(function(sl){
+  /* 선택 문항(choice)의 값은 answers 가 아니라 choices 에 들어간다.
+     서술 답을 먼저 보고, 없으면 선택값을 쓴다(2026-09-01). */
+  function val(id){
+    var v = d.answers[id];
+    if (v === undefined || v === "") v = (d.choices || {})[id];
+    return ((v || "") + "").replace(/^\s+|\s+$/g, "");
+  }
+  /* 산출물 갈래 — deck.by 가 가리키는 선택 문항의 값으로 슬라이드 구성을 고른다.
+     고르지 않았거나 모르는 값이면 기본 slides 로 떨어진다(Ⅰ-3 카드 뉴스 / 4컷 웹툰). */
+  var list = m.deck.slides || [];
+  if (m.deck.by && m.deck.variants) {
+    var pick = (d.choices || {})[m.deck.by];
+    if (pick && m.deck.variants[pick]) list = m.deck.variants[pick];
+  }
+  list.forEach(function(sl){
     var lines = [];
     (sl.lines || []).forEach(function(ln){
       var v = ln.src ? val(ln.from + "_src") : val(ln.from);
@@ -4624,9 +4822,11 @@ function exportDeck(moduleId){
      떠 있으면 수업 자료로 보이지 않기 때문이다. 마우스를 움직이면 나타난다.
    ========================================================================== */
 
-/* 수업 진행 화면을 만들 수 있는 모듈인가 */
+/* 수업 진행 화면을 만들 수 있는 모듈인가.
+   lesson 만 있으면 된다. plan 은 있으면 쓰고 없으면 그 화면들을 건너뛴다
+   — 실습형 소단원(Ⅰ-3 등)은 plan 이 없어도 수업 화면을 쓸 수 있어야 한다(2026-09-01). */
 function hasLesson(m){
-  return !!(m && m.lesson && m.plan);
+  return !!(m && m.lesson);
 }
 
 /* 모듈 데이터 → 화면 목록.
@@ -4665,6 +4865,14 @@ function lessonSlides(m){
       kicker:ls.review.from ? ls.review.from + "에서 배운 것" : "지난 시간에 배운 것",
       title:ls.review.title || "지난 시간 복습",
       row:ls.review.points.map(function(t){ return { b:t }; }) });
+  }
+
+  /* 뜻과 종류 표(Ⅰ-3) — 교사가 띄워 설명하고, 학생은 활동지 ② 예상에 자기 말로 옮겨 적는다.
+     표를 학생 기기에 두지 않은 것이 요점이다(발주자 결정 2026-09-01). */
+  if (ls.terms && (ls.terms.rows || []).length) {
+    out.push({ step:STEP_MARK[0], stepName:s1.name, kicker:"교과서 26쪽 · " + s1.time,
+      title:ls.terms.title || "뜻과 종류", table:ls.terms,
+      quote:"활동지 ② 예상 단계에 자기 말로 정리해요." });
   }
 
   /* PPT 4쪽 과학 vs 유사과학 — 출처가 둘이라 화면을 나눈다(발주자 결정 2026-08-31).
@@ -4785,15 +4993,31 @@ function lessonOverflows(box){
   for (i = 0; i < cs.length; i++) {
     if (cs[i].scrollHeight > cs[i].clientHeight + 2) return true;
   }
+  /* 표를 감싼 상자도 본다. 이 상자가 스크롤 상자라 표가 그 안에서 넘쳐도
+     본문 높이는 그대로다 — 같은 함정에 두 번 빠졌다(2026-09-01 발주자 신고) */
+  var ws = box.querySelectorAll(".ls-tablewrap");
+  for (i = 0; i < ws.length; i++) {
+    if (ws[i].scrollHeight > ws[i].clientHeight + 2) return true;
+  }
   return false;
 }
 
-function lessonFit(box){
-  var k = 1;
+function lessonFit(box, grow){
+  var k = 1, next;
   box.style.setProperty("--ls-k", k);
   while (k > 0.6 && lessonOverflows(box)) {
     k = Math.round((k - 0.05) * 100) / 100;
     box.style.setProperty("--ls-k", k);
+  }
+  /* 표 화면은 **남는 자리만큼 키운다**(2026-09-01 발주자 요구 — 교실 뒤에서 읽혀야 한다).
+     줄이기만 하면 화면 아래가 비는데도 글자가 작게 남는다. 해상도마다 알아서 맞는다. */
+  if (grow && k === 1) {
+    while (k < 2) {
+      next = Math.round((k + 0.05) * 100) / 100;
+      box.style.setProperty("--ls-k", next);
+      if (lessonOverflows(box)) { box.style.setProperty("--ls-k", k); break; }
+      k = next;
+    }
   }
   return k;
 }
@@ -4803,7 +5027,8 @@ function lessonFit(box){
 function lessonRender(box, sl, moduleId, flushers){
   clear(box);
   box.className = "ls-body" + (sl.cover ? " cover" : "") + ((sl.ask || sl.me) ? " ask" : "")
-                + ((sl.img && sl.img.src) ? " figure" : "");
+                + ((sl.img && sl.img.src) ? " figure" : "")
+                + ((sl.table && (sl.table.rows || []).length) ? " tablepage" : "");
   if (sl.kicker) box.appendChild(el("p", { class:"ls-kicker", text:sl.kicker }));
 
   /* ── 적기 화면 — 활동지 문항 하나 ── */
@@ -4866,6 +5091,23 @@ function lessonRender(box, sl, moduleId, flushers){
     box.appendChild(ul);
   }
 
+  if (sl.table && (sl.table.rows || []).length) {
+    var tw = el("div", { class:"ls-tablewrap" });
+    var tb = el("table", { class:"ls-table" });
+    if ((sl.table.head || []).length) {
+      var hr = el("tr");
+      sl.table.head.forEach(function(h){ hr.appendChild(el("th", { text:h })); });
+      tb.appendChild(hr);
+    }
+    sl.table.rows.forEach(function(row){
+      var tr = el("tr");
+      row.forEach(function(v){ tr.appendChild(el("td", { text:v })); });
+      tb.appendChild(tr);
+    });
+    tw.appendChild(tb);
+    box.appendChild(tw);
+  }
+
   if ((sl.row || []).length) {
     var rw = el("div", { class:"ls-row" });
     sl.row.forEach(function(c){
@@ -4916,7 +5158,8 @@ function lessonRender(box, sl, moduleId, flushers){
   }
 
   box.scrollTop = 0;
-  lessonFit(box);
+  /* 표 화면은 남는 자리만큼 키운다. 다른 화면은 여백이 설계의 일부라 키우지 않는다 */
+  lessonFit(box, !!(sl.table && (sl.table.rows || []).length));
 }
 
 var Lesson = {
