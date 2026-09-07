@@ -1536,7 +1536,8 @@ var MODULES = [
        산출물은 카드 뉴스 / 만화 두 종류이고 장·컷 수는 모둠 인원에 맞춰 학생이 직접 적는다
        (1인 1장·컷 이상). 활동지는 **개별 활동지**이므로 장·컷 칸은 하나뿐이다(mypage) —
        내가 맡은 장·컷 번호와 거기 들어갈 내용을 적는다(발주자 결정 2026-09-07).
-       밑그림 PPT 는 그 칸으로 만든다(deck.build). 산출물 PDF 는 제출 페이지(submit.url)로,
+       산출물 밑그림은 두지 않는다 — 모둠 공동 문서 한 곳에서 각자 자기 장·컷을 만들고 그 문서를
+       하나의 PDF 로 내보낸다. 산출물 PDF 는 제출 페이지(submit.url)로,
        활동지 PDF 는 구글 클래스룸으로 낸다. ⑤ 화면 위에 제작 순서 안내(SIM.alien.export)가 있다. */
     stepTimes: ["5분", "3분", "7분", "10분", "25분"],
     hideStepTime: true,      /* 학생 화면 단계 아래 시간 표시를 뺀다(발주자 요구 2026-09-01) */
@@ -1545,7 +1546,7 @@ var MODULES = [
       predict: "선생님 화면을 보고 뜻과 차이를 정리한 뒤, 외래생물을 풀어놓으면 토종 물고기가 어떻게 될지 예상해서 그려요.",
       explore: "화면의 조건표대로 네 번 실행해요. 1회(기준)에서 한 칸만 바꾸고, 앞에서 바꾼 것은 원래대로 되돌린 뒤 다음 것을 바꿔요. 25년까지 다 본 뒤 괄호 안 ‘가장 적었을 때’ 값도 함께 보고, 그래프를 활동지에 담아요.",
       record: "미리 찾아 온 생태계교란 생물을 놓고, 우리 모둠이 고른 주제를 조사해 적어요. 그다음 시뮬레이션 그래프를 근거로 주장·증거·이유를 적어요.",
-      export: "종류(카드 뉴스·만화)를 고르고 장·컷 수를 적은 뒤, 내가 맡은 장·컷이 몇 번째인지와 거기 들어갈 내용을 적어요. 밑그림 PPT를 내려받아 공동 문서 편집 프로그램으로 만들고, 산출물 PDF는 제출 페이지에, 활동지 PDF는 구글 클래스룸에 내요."
+      export: "종류(카드 뉴스·만화)와 장·컷 수를 정하고, 내가 맡은 장·컷이 몇 번째인지와 거기 들어갈 내용을 적어요. 모둠 공동 문서에서 각자 자기 장·컷을 만든 뒤, 그 문서를 하나의 PDF로 내보내 제출 페이지에 내요. 활동지 PDF는 구글 클래스룸에 각자 내요."
     },
     /* 학생 화면의 조사할 곳 — 영상과 뜻·종류 표는 **수업 화면(lesson)** 으로 옮겼다
        (발주자 결정 2026-09-01). 표가 학생 기기에도 떠 있으면 ② 예상 단계의
@@ -1605,11 +1606,11 @@ var MODULES = [
         "‘한 종이 사라진 것’만 영향으로 드는 학생이 있습니다. 먹이 관계를 타고 다른 종까지 줄어드는 것이 생태계 수준의 영향입니다. 시뮬레이션의 토종 포식자 그래프가 그것을 보여 줍니다.",
         "‘잡아 없애면 된다’로 끝내는 학생이 있습니다. 교과서 31쪽 생명윤리 도움말대로, 포획·제거가 불가피해지는 상황 자체를 예방하는 쪽으로 이끄십시오."
       ],
-      demo:"교과서 활동 2(야외 조사)를 빼는 대신, 활동 1의 ‘내가 사는 지역’ 조사를 활동 3으로 잇도록 짰습니다. 교과서 30쪽 1번이 ‘활동 2에서 관찰한 생물’에 기대고 있어 그대로 두면 성립하지 않기 때문입니다. **사전 과제가 중요합니다** — kias.nie.re.kr 에서 우리 지역에 분포하는 생태계교란 생물 하나를 미리 찾아 오게 하십시오. 그러지 않으면 15~25분(10분) 안에 조사와 논증을 함께 끝내기 어렵습니다. 25분부터 끝까지가 산출물 제작입니다. 발표는 하지 않고, 모둠이 만든 하나의 PDF를 제출 페이지에 올려 함께 봅니다.",
+      demo:"교과서 활동 2(야외 조사)를 빼는 대신, 활동 1의 ‘내가 사는 지역’ 조사를 활동 3으로 잇도록 짰습니다. 교과서 30쪽 1번이 ‘활동 2에서 관찰한 생물’에 기대고 있어 그대로 두면 성립하지 않기 때문입니다. 사전 과제가 중요합니다 — kias.nie.re.kr 에서 우리 지역에 분포하는 생태계교란 생물 하나를 미리 찾아 오게 하십시오. 그러지 않으면 15~25분(10분) 안에 조사와 논증을 함께 끝내기 어렵습니다. 25분부터 끝까지가 산출물 제작입니다. 발표는 하지 않고, 모둠이 만든 하나의 PDF를 제출 페이지에 올려 함께 봅니다.",
       outside:[
         "kias.nie.re.kr 접속이 필요합니다. 학교 망에서 열리는지 미리 확인하십시오.",
         "사전 과제 — 우리 지역 생태계교란 생물 하나를 미리 찾아 오게 하십시오. 못 찾아온 학생에게는 교과서 26쪽에 나온 붉은귀거북·뉴트리아를 쓰게 하면 됩니다.",
-        "산출물 밑그림은 활동지에 적은 내용으로 자동으로 만들어집니다(⑤단계 ‘발표 자료 PPT로 저장’). 모둠 대표 1명이 내려받아 구글 슬라이드·캔바 등 모둠 공유 문서에 올리면, 학생은 각자 자기 장·컷에 사진과 색을 얹어 꾸미기만 하면 됩니다.",
+        "산출물은 모둠이 공동 문서 편집 프로그램에 문서 하나를 만들고, 학생이 각자 자기 차례의 장·컷을 그 안에서 만드는 방식입니다. 다 만들면 그 문서를 하나의 PDF로 내보내 냅니다. 프로그램이 밑그림을 만들어 주지 않으므로, 무엇을 넣을지는 활동지 ⑤에 적은 내용을 보고 각자 옮깁니다. 만화는 종이에 그려 사진으로 찍어 자기 장에 넣어도 됩니다.",
         "산출물은 모둠에서 하나의 PDF로 제출 페이지에 한 번만, 활동지 PDF는 학생마다 구글 클래스룸에 냅니다. 산출물 제출은 학교 구글 계정 로그인이 필요하므로 미리 확인하십시오.",
         "교과서 31쪽 4번의 상호 평가 다섯 항목은 화면에 담지 않았습니다. 이 운영안은 발표를 하지 않으므로, 상호 평가를 하시려면 제출된 산출물을 함께 보며 따로 진행하셔야 합니다."
       ]
@@ -1634,7 +1635,10 @@ var MODULES = [
         label:"우리 모둠이 조사할 주제를 하나 골라요. 어느 것을 골라도 마지막 주장은 ‘외래생물이 생물다양성에 미치는 영향’으로 씁니다." },
       { id:"res", type:"text", step:"record", kind:"조사", src:true, ref:"27쪽 2~3번 · 30쪽 2번",
         label:"미리 찾아 온 생태계교란 생물 하나를 정해, 고른 주제에 맞춰 조사해 적어요. ① 생물 이름 ② 조사한 내용(언제·어디서·얼마나 같은 숫자가 있으면 함께 적어요) ③ 어디서 찾았는지, 이렇게 세 가지가 들어가면 좋아요. 못 찾아왔으면 교과서 26쪽의 붉은귀거북·뉴트리아를 써도 돼요." },
+      /* 단추는 ③ 가상 탐구에 있고 이름도 '활동지에 첨부' 가 아니다. 이 둘을 적어 두지 않으면
+         attachSpot 이 문항의 step(④)과 기본 단추 이름으로 안내해, 학생을 단추 없는 화면으로 보낸다. */
       { id:"cond", type:"auto", step:"record", kind:"설계",
+        attachAt:"explore", attachBtn:"조건을 활동지에 기록",
         label:"내가 설정한 조건(외래생물 유형, 초기 방생 수, 제거 시점, 제거 강도)" },
       { id:"c_graph", type:"capture", step:"record", kind:"기록",
         attachAt:"explore", attachBtn:"활동지에 첨부",
@@ -1644,7 +1648,7 @@ var MODULES = [
       { id:"a_evidence", type:"text", step:"record", kind:"증거", ref:"30쪽 3번",
         label:"증거 — 두 가지를 적어요. (1) 조사한 내용에서: 어떤 사실이 주장을 뒷받침하나요? (2) 시뮬레이션에서: 몇 년째에 어느 생물이 몇 마리가 되었나요? 숫자로 적어요. ‘어떻게 들어왔나’·‘어디까지 퍼졌나’를 조사한 모둠은, 그것이 왜 토종 피해로 이어지는지 한 줄 덧붙여요." },
       { id:"a_reason", type:"text", step:"record", kind:"이유", ref:"30쪽 3번",
-        label:"이유 — 그 증거가 왜 주장을 뒷받침하는지 이어서 설명해요. ‘○○가 줄어들면 △△도 줄어든다. 그래서 종다양성이 줄어든다’처럼 써요. 시뮬레이션이 보여 주는 것은 생물다양성 세 측면 가운데 종다양성(토종 종 수와 고르기) 하나예요. 유전적 다양성이나 생태계다양성까지 쓰려면 조사한 사례에서 근거를 찾아 적어요." },
+        label:"이유 — 그 증거가 왜 주장을 뒷받침하는지 이어서 설명해요. ‘○○가 줄어들면 △△도 줄어든다. 그래서 종다양성이 줄어든다’처럼 써요. 시뮬레이션이 보여 주는 것은 생물다양성 세 측면 가운데 종다양성(토종 종 수와 토종 개체수 합) 하나예요. 유전적 다양성이나 생태계다양성까지 쓰려면 조사한 사례에서 근거를 찾아 적어요." },
       /* ver.3(2026-09-07 발주자 결정): 산출물은 카드 뉴스 / 만화 두 종류, 장·컷 수는 모둠 인원에
          맞춰 4·5·6 가운데 고른다(1인 1장·컷). rerender 가 붙은 선택은 고르면 화면을 다시 그려
          장·컷 번호 목록과 예시 문구를 맞춘다. 밑그림 PPT 는 deck.build 가 이 값들로 만든다. */
@@ -1663,32 +1667,18 @@ var MODULES = [
          번호와 내용을 학생이 직접 적는다(fields). 1인 1장(1컷) 이상이므로 여러 장을 맡았으면
          "1, 4" 처럼 적을 수 있다. 저장은 한 문자열 "담당 장·컷: 3\n내용: …" 로 되므로
          PDF·미리 보기·인쇄는 text 문항과 같은 길로 나온다. */
-      { id:"mypage", type:"text", step:"export", kind:"구성", fields:true, hint:alienPageHint,
+      { id:"mypage", type:"text", step:"export", kind:"구성", fields:true, hint:alienPageHint, valid:alienMyPageValid,
         label:"내가 담당한 장·컷은 몇 번째인가요? 그 장·컷에 들어갈 내용을 적어요." },
       { id:"d1", type:"text", step:"export", kind:"심화", optional:true, src:true, ref:"30~31쪽 심화",
         label:"외래생물을 제거하는 방법 한 가지를 조사해, 좋은 점과 문제점(비용·다른 생물 피해·생명윤리)을 함께 적고 내 생각을 적어요." },
       { id:"d2", type:"text", step:"export", kind:"심화", optional:true, src:true, ref:"31쪽 심화",
         label:"외래생물 문제를 다루는 우리나라 법이나 제도를 하나 찾아, 무엇을 금지하고 무엇을 권하는지 적어요." }
     ],
-    /* 산출물 밑그림 — 활동지를 채우면 저절로 만들어진다. 학생은 이걸 내려받아 모둠 공유
-       문서(구글 슬라이드·캔바 등)에서 꾸민 뒤 하나의 PDF 로 바꿔 제출 페이지에 올린다(ver.3).
-       slides 는 기본(카드 뉴스 4장) 구성이고 hasDeck 판정에만 쓰인다. 실제 슬라이드는
-       build 가 고른 종류·장·컷 수와 내가 맡은 장·컷(mypage)으로 만든다(alienDeck). */
-    deck:{
-      slides:[
-        { title:"우리 모둠이 조사한 것", titleFrom:"mtitle", accent:"16A34A", cover:true,
-          lines:[ { label:"조사 주제", from:"topic" }, { from:"res" } ] },
-        { title:"조사한 내용", accent:"2F3A44",
-          lines:[ { from:"res" }, { label:"찾은 곳", from:"res", src:true } ] },
-        { title:"시뮬레이션이 보여 준 것", accent:"2563EB", img:"c_graph",
-          lines:[ { label:"주장", from:"a_claim" }, { label:"증거", from:"a_evidence" } ] },
-        { title:"왜 그런가", accent:"DC2626",
-          lines:[ { from:"a_reason" } ] },
-        { title:"우리가 할 수 있는 일", accent:"9333EA",
-          lines:[ { from:"sol" } ] }
-      ],
-      build:function(m, d, val){ return alienDeck(m, d, val); }
-    },
+    /* 산출물 밑그림(deck)은 두지 않는다(발주자 확인 2026-09-07).
+       실제 운영은 모둠이 공동 문서 편집 프로그램에 문서 하나를 만들어 두고, 학생이 각자 자기
+       차례의 장·컷을 그 안에서 만든 뒤 문서를 통째로 하나의 PDF 로 내보내는 방식이다.
+       대표가 밑그림을 내려받아 올리는 절차가 없으므로 '발표 자료 PPT로 저장' 단추도 나오지
+       않는다(hasDeck 이 m.deck 을 본다). */
     /* 산출물 제출 페이지(발주자 지정 2026-09-07). 학교 구글 계정 로그인이 필요한 앱스 스크립트
        웹앱이라 앱 안에서 직접 보내지 않고 새 탭으로 연다. 활동지 PDF 는 구글 클래스룸으로 낸다. */
     submit:{
@@ -2178,7 +2168,7 @@ function progressOf(m){
   activeItems(m).forEach(function(it){
     if (it.optional) return;       /* 심화 과제는 선택이므로 진행률에 넣지 않는다 */
     /* 'auto'(조건 자동 기재)도 값이 answers에 들어간다. 캡처로 세면 영영 채워지지 않는다 */
-    if (it.type === "text")        { total++; if (it.fields ? fieldsDone(d.answers[it.id]) : (d.answers[it.id] || "").trim()) done++; }
+    if (it.type === "text")        { total++; if (it.fields ? (fieldsDone(d.answers[it.id]) && !fieldsIssue(m, d, it)) : (d.answers[it.id] || "").trim()) done++; }
     else if (it.type === "auto")   { total++; if (isAutoFilled(d.answers[it.id])) done++; }
     else if (it.type === "draw")   { total++; if (hasDraw(d.draws[it.id])) done++; }
     else if (it.type === "choice") { total++; if (choiceValue(it, d)) done++; }
@@ -3809,7 +3799,14 @@ function renderFieldsEditor(m, d, it){
     d.answers[it.id] = fieldsCompose({ no:no.value, body:body.value });
     saveModule(m.id);
   }, 400);
-  [no, body].forEach(function(x){ x.addEventListener("input", save); });
+  /* 번호가 범위를 벗어나면 바로 알려 준다 — 제출하고 나서 알면 늦다 */
+  var warn = el("p", { class:"small", style:"margin-top:4px; color:var(--c-force); font-weight:500" });
+  function refreshWarn(){
+    var msg = fieldsIssue(m, loadModule(m.id), it);
+    warn.textContent = msg;
+    warn.style.display = msg ? "" : "none";
+  }
+  [no, body].forEach(function(x){ x.addEventListener("input", function(){ save(); setTimeout(refreshWarn, 450); }); });
   AnswerWatch.add(function(){
     var v = fieldsParse(loadModule(m.id).answers[it.id] || "");
     if (document.activeElement !== no   && no.value   !== v.no)   no.value   = v.no;
@@ -3817,7 +3814,9 @@ function renderFieldsEditor(m, d, it){
   });
   function field(lab, node){ return el("div", { class:"field" }, [ el("label", { text:lab }), node ]); }
   box.appendChild(field("내가 담당한 장·컷 (몇 번째인가요)", no));
+  box.appendChild(warn);
   box.appendChild(field("들어갈 내용 (글과 넣을 사진·그림)", body));
+  refreshWarn();
   return box;
 }
 
@@ -3951,6 +3950,7 @@ function renderWorksheetPanel(m, d){
     var why = "";
     if (it.type === "text" && it.fields) {
       if (!fieldsDone(d.answers[it.id])) missing.push({ it:it, why:"몇 번째 장·컷인지와 들어갈 내용을 적어요" });
+      else if (fieldsIssue(m, d, it)) missing.push({ it:it, why:fieldsIssue(m, d, it) });
     }
     else if (it.type === "text" && !(d.answers[it.id] || "").trim()) missing.push({ it:it, why:why });
     else if (it.type === "draw" && !hasDraw(d.draws[it.id])) missing.push({ it:it, why:why });
@@ -4086,8 +4086,9 @@ function openWorksheetPreview(id, mode){
         box.appendChild(el("div", { class:"ws-empty", text:"아직 그리지 않았어요." }));
       }
     } else if (it.type === "choice") {
-      box.appendChild(d.choices[it.id]
-        ? el("div", { class:"ws-a", text:d.choices[it.id] })
+      /* 옛 선택지 문구가 남아 있으면 화면과 같게 '고르지 않음'으로 본다(choiceValue) */
+      box.appendChild(choiceValue(it, d)
+        ? el("div", { class:"ws-a", text:choiceValue(it, d) })
         : el("div", { class:"ws-empty", text:"아직 고르지 않았어요." }));
     } else if (it.type === "auto") {
       var av = isAutoFilled(d.answers[it.id]) ? ("" + d.answers[it.id]).replace(/^\s+|\s+$/g, "") : "";
@@ -4174,7 +4175,7 @@ function buildPrintDoc(moduleIds, mode){
           box.appendChild(el("div", { class:"pr-slot", text:"예상 그래프" }));
         }
       } else if (it.type === "choice") {
-        box.appendChild(el("div", { class:"pr-a", text:d.choices[it.id] || "" }));
+        box.appendChild(el("div", { class:"pr-a", text:choiceValue(it, d) }));
       } else if (it.type === "auto") {
         var av = (d.answers[it.id] || "").trim();
         box.appendChild(av ? el("div", { class:"pr-a", text:av })
@@ -4265,6 +4266,13 @@ function fieldsParse(v){
     else if (ln.trim())               { o.body += (o.body ? "\n" : "") + ln; inBody = true; }
   }
   return o;
+}
+/* fields 문항의 추가 점검 — 문항이 valid 를 주면, 그 결과가 빈 문자열일 때만 채운 것으로 본다.
+   번호를 숫자로 안 적거나 장·컷 수를 벗어나면 적은 내용이 어디로도 가지 못하는데,
+   진행률만 100%로 나와 학생이 모른 채 제출하던 것을 막는다. */
+function fieldsIssue(m, d, it){
+  if (!it || !it.valid) return "";
+  try { return it.valid(m, d, it) || ""; } catch (e) { return ""; }
 }
 /* fields 문항이 '채워졌다'고 보는 기준 — 번호와 내용을 모두 적었을 때 */
 function fieldsDone(v){
@@ -4522,7 +4530,7 @@ function renderWorksheetPages(m, d, mode, done){
                     9, false, "#333333", Math.round(pdfPt(9) * 1.45));
         }
       } else if (it.type === "choice") {
-        var cv0 = d.choices[it.id] || "";
+        var cv0 = choiceValue(it, d);
         doc.g.font = pdfFont(10, false);
         pushLines(pdfWrap(doc.g, cv0, innerW), 10, false, "#000000", Math.round(pdfPt(10) * 1.45));
         blocks.push({ h:Math.round(pdfMm(4)), filler:true, draw:function(){} });
@@ -6897,7 +6905,12 @@ var Alien = {
     return s;
   },
 
-  /* 토종 종다양성 — 토종 물고기·토종 포식자만 센다(2026-09-07 수정).
+  /* 토종 종 수 — 토종 물고기·토종 포식자만 센다(2026-09-07 수정).
+     ── 고르기(피루 균등도)는 뺐다(2026-09-07). 토종만 세도 여전히 반대로 움직였기 때문이다:
+     기준 조건에서 물고기 25.0·포식자 11.1 (고르기 0.89) 이 7~12년째에 10.9·9.3 → 3.2·2.8 로
+     함께 무너지는데, 두 종이 서로 비슷해지므로 고르기는 1.00 (만점)이 된다. 균등도는 비율만 보고
+     양을 보지 않는다. 학생이 가장 주의 깊게 볼 구간에 지표가 만점을 찍으면 배우는 것이 뒤집힌다.
+     대신 '토종 개체수 합' 을 보여 준다 — 36.1 → 6.0 처럼 줄어드는 방향이 분명하다. ──
      전에는 외래생물까지 함께 셌는데, 그러면 지표가 학습 목표와 정반대로 움직였다:
      아무 조치도 하지 않으면 토종 포식자가 멸종하고 그 자리를 외래생물이 비슷한 수로
      채워 고르기가 0.89 → 0.97 로 올라갔고, 외래생물을 제거해 토종을 회복시키면
@@ -6908,9 +6921,7 @@ var Alien = {
   diversity: function(s){
     var ns = [s.F, s.P].filter(function(n){ return n >= Alien.EXTINCT; });
     var total = ns.reduce(function(a, b){ return a + b; }, 0);
-    if (ns.length <= 1 || total <= 0) return { count:ns.length, even:null };
-    var H = ns.reduce(function(a, n){ var p = n / total; return a - p * Math.log(p); }, 0);
-    return { count:ns.length, even:H / Math.log(ns.length) };
+    return { count:ns.length, sum:total };
   },
   KINDS: { predator:"포식형", competitor:"경쟁형" }
 };
@@ -7452,7 +7463,7 @@ SIM.alien = {
 
     var statRow = el("div", { class:"stats", style:"margin-top:10px" });
     var sF = statCard("토종 물고기", AC.F), sP = statCard("토종 포식자", AC.P),
-        sA = statCard("외래생물", AC.A), sD = statCard("토종 종 수"), sE = statCard("토종 고르기");
+        sA = statCard("외래생물", AC.A), sD = statCard("토종 종 수"), sE = statCard("토종 개체수 합");
     [sF, sP, sA, sD, sE].forEach(function(x){ statRow.appendChild(x); });
     scenePane.appendChild(statRow);
     /* 두 지표는 토종만 센다(2026-09-07). 전에는 외래생물까지 세어, 카드만 읽으면
@@ -7481,8 +7492,8 @@ SIM.alien = {
 
     var base0 = Alien.diversity(Alien.start());
     scenePane.appendChild(el("p", { class:"small muted", style:"margin-top:8px",
-      text:"‘토종 종 수’는 하천에 아직 남아 있는 토종 종의 수예요(토종 물고기·토종 포식자). 외래생물은 여기에 세지 않고 옆 카드에 따로 보여 줘요. ‘토종 고르기’는 남은 토종들의 개체수가 서로 얼마나 비슷한지를 0~1로 나타내요. 토종이 한 종만 남으면 정할 수 없어서 ‘–’로 보여요. 방생 전에는 토종 " +
-        base0.count + " 종 · 고르기 " + (base0.even === null ? "–" : base0.even.toFixed(2)) + "예요." }));
+      text:"‘토종 종 수’는 하천에 아직 남아 있는 토종 종의 수예요(토종 물고기·토종 포식자). ‘토종 개체수 합’은 그 토종들을 모두 더한 수예요. 외래생물은 둘 다에 세지 않고 옆 카드에 따로 보여 줘요. 방생 전에는 토종 " +
+        base0.count + " 종 · 개체수 합 " + base0.sum.toFixed(1) + " 마리예요." }));
 
     var btnPlay = el("button", { class:"btn primary sm", type:"button", text:"▶ 시작" });
     var btnReset = el("button", { class:"btn sm", type:"button", text:"처음부터" });
@@ -7528,10 +7539,13 @@ SIM.alien = {
     ctlPane.appendChild(el("div", { class:"row", style:"margin-top:10px" }, [
       el("button", { class:"btn sm attach", type:"button", text:"조건을 활동지에 기록", onclick:function(){
         var dd = loadModule(m.id);
+        /* 제거를 안 한 조건에서 '제거 시작: 방생 후 4년' 까지 적히면, 하지 않은 조작이
+           기록되어 그래프와 어긋난다. 강도가 0이면 '제거: 안 함' 한 줄로 적는다 */
         dd.answers["cond"] = "외래생물 유형: " + Alien.KINDS[st.kind] +
           " / 처음 방생 수: " + st.seed + "마리" +
-          " / 제거 시작: 방생 후 " + st.removeAfter + "년" +
-          " / 제거 강도: " + Math.round(st.removeRate * 100) + " %/년";
+          (st.removeRate > 0
+            ? " / 제거 시작: 방생 후 " + st.removeAfter + "년 / 제거 강도: " + Math.round(st.removeRate * 100) + " %/년"
+            : " / 제거: 안 함");
         saveModule(m.id); CaptureWatch.refresh(); toast("활동지에 기록했어요.");
       }})
     ]));
@@ -7615,8 +7629,7 @@ SIM.alien = {
       sA.set(st.released ? Math.round(st.A) + " 마리" : "–");
       var dv = Alien.diversity(st);
       sD.set(dv.count + " 종");
-      /* 토종이 한 종만 남으면 고르기가 정의되지 않는다 — 외래생물 카드와 같은 규칙으로 '–' */
-      sE.set(dv.even === null ? "–" : dv.even.toFixed(2));
+      sE.set(dv.sum.toFixed(1) + " 마리");
       cmp.__paint();
       chart.draw();
     }
@@ -7716,7 +7729,7 @@ SIM.alien = {
     pane.appendChild(el("p", { class:"small muted", style:"margin-top:6px",
       text:"이 단추를 누르면 활동지의 ‘개체수 변화 그래프’ 칸이 이 비교 그래프로 바뀌어요. ③ 가상 탐구의 ‘활동지에 첨부’와 같은 칸이에요." }));
     pane.appendChild(el("p", { class:"model-note", style:"margin-top:8px",
-      text:"이 모형은 생물다양성 세 측면 가운데 종다양성(토종 종 수와 고르기)만 다뤄요. 유전적 다양성과 생태계다양성은 교과서 30쪽 조사 자료로 보충해요." }));
+      text:"이 모형은 생물다양성 세 측면 가운데 종다양성(토종 종 수와 토종 개체수)만 다뤄요. 유전적 다양성과 생태계다양성은 교과서 30쪽 조사 자료로 보충해요." }));
     /* 교과서 30쪽 3번의 근거는 직접·간접 조사 자료다. 이 그래프를 그 근거로 착각하지 않게 한다 */
     pane.appendChild(el("p", { class:"model-note", style:"margin-top:6px",
       text:"이 그래프는 논증을 연습하기 위한 자료예요. 교과서 30쪽 3번 논증에는 우리 지역에서 직접 조사한 사례와 찾아본 자료를 근거로 써요." }));
@@ -7770,28 +7783,32 @@ function alienPlanTable(){
 }
 
 var ALIEN_PAGES = {
-  4: [ { t:"무슨 일이 있었나",        from:["res"],                    hint:"조사한 생물이 어디서 어떻게 문제를 일으켰는지" },
-       { t:"생태계가 어떻게 달라졌나", from:["a_claim"],   img:true,    hint:"시뮬레이션 그래프와 우리 주장" },
-       { t:"왜 그런가",               from:["a_evidence", "a_reason"], hint:"증거와 이유" },
-       { t:"우리가 할 수 있는 일",     from:["sol"],                    hint:"해결 문장" } ],
-  5: [ { t:"무슨 일이 있었나",        from:["res"],                    hint:"조사한 생물이 어디서 어떻게 문제를 일으켰는지" },
-       { t:"생태계가 어떻게 달라졌나", from:["a_claim"],   img:true,    hint:"시뮬레이션 그래프와 우리 주장" },
-       { t:"증거",                    from:["a_evidence"],             hint:"조사 사례와 그래프에서 찾은 증거" },
-       { t:"이유",                    from:["a_reason"],               hint:"그 증거가 주장을 뒷받침하는 까닭" },
-       { t:"우리가 할 수 있는 일",     from:["sol"],                    hint:"해결 문장" } ],
-  6: [ { t:"무슨 일이 있었나",        from:["res"],                    hint:"조사한 생물이 어디서 어떻게 문제를 일으켰는지" },
-       { t:"시뮬레이션으로 본 것",     from:["cond"],      img:true,    hint:"내가 설정한 조건과 그래프" },
-       { t:"주장",                    from:["a_claim"],                hint:"외래생물이 생물다양성에 미치는 영향" },
-       { t:"증거",                    from:["a_evidence"],             hint:"조사 사례와 그래프에서 찾은 증거" },
-       { t:"이유",                    from:["a_reason"],               hint:"그 증거가 주장을 뒷받침하는 까닭" },
-       { t:"우리가 할 수 있는 일",     from:["sol"],                    hint:"해결 문장" } ]
+  4: [ { t:"무슨 일이 있었나",        hint:"조사한 생물이 어디서 어떻게 문제를 일으켰는지" },
+       { t:"생태계가 어떻게 달라졌나", hint:"시뮬레이션 그래프와 우리 주장" },
+       { t:"왜 그런가",               hint:"증거와 이유" },
+       { t:"우리가 할 수 있는 일",     hint:"해결 문장" } ],
+  5: [ { t:"무슨 일이 있었나",        hint:"조사한 생물이 어디서 어떻게 문제를 일으켰는지" },
+       { t:"생태계가 어떻게 달라졌나", hint:"시뮬레이션 그래프와 우리 주장" },
+       { t:"증거",                    hint:"조사 사례와 그래프에서 찾은 증거" },
+       { t:"이유",                    hint:"그 증거가 주장을 뒷받침하는 까닭" },
+       { t:"우리가 할 수 있는 일",     hint:"해결 문장" } ],
+  6: [ { t:"무슨 일이 있었나",        hint:"조사한 생물이 어디서 어떻게 문제를 일으켰는지" },
+       { t:"시뮬레이션으로 본 것",     hint:"내가 설정한 조건과 그래프" },
+       { t:"주장",                    hint:"외래생물이 생물다양성에 미치는 영향" },
+       { t:"증거",                    hint:"조사 사례와 그래프에서 찾은 증거" },
+       { t:"이유",                    hint:"그 증거가 주장을 뒷받침하는 까닭" },
+       { t:"우리가 할 수 있는 일",     hint:"해결 문장" } ]
 };
-var ALIEN_FROM_LABEL = { res:"조사한 내용", cond:"설정한 조건", a_claim:"주장", a_evidence:"증거", a_reason:"이유", sol:"우리가 할 수 있는 일" };
 
-/* 장·컷 수 — 학생이 직접 적는다(answers.cuts). 숫자만 뽑아 쓰고, 못 읽으면 4로 본다 */
+/* 장·컷 수 — 학생이 직접 적는다(answers.cuts).
+   '장' 이나 '컷' 앞에 붙은 숫자 가운데 가장 큰 값을 쓴다. 문항 문구가 '1인 1장(1컷) 이상' 을
+   알려 주므로 학생이 "1인 1장씩 5장" 처럼 적는데, 앞에서부터 첫 숫자만 읽으면 1장이 되어
+   밑그림이 한 장만 만들어졌다. 장·컷이 붙은 숫자가 없으면 아무 숫자나, 그것도 없으면 4로 본다. */
 function alienCuts(d){
-  var mt = String((d.answers || {}).cuts || "").match(/\d+/);
-  var n = mt ? parseInt(mt[0], 10) : 0;
+  var t = String((d.answers || {}).cuts || ""), n = 0, i, x;
+  function big(list){ var m = 0; for (i = 0; i < (list || []).length; i++) { x = parseInt(list[i], 10); if (x > m) m = x; } return m; }
+  n = big(t.match(/\d+(?=\s*[장컷])/g));
+  if (!n) n = big(t.match(/\d+/g));
   if (!(n >= 1)) return 4;
   return Math.min(n, 12);
 }
@@ -7805,6 +7822,17 @@ function alienMap(n){
   out = six.slice(0, six.length - 1);
   while (out.length < n - 1) out.push({ t:"더 넣을 내용", from:[], hint:"모둠이 더 넣기로 한 내용" });
   return out.concat([last]);
+}
+/* 담당 번호 점검 — 숫자로 못 읽거나 우리 모둠 장·컷 수를 벗어나면 알려 준다.
+   그대로 두면 적은 내용이 어디에도 쓰이지 못한 채 '다 채웠다'로 표시된다 */
+function alienMyPageValid(m, d){
+  var f = fieldsParse((d.answers || {}).mypage || "");
+  if (!f.no.trim()) return "";
+  var n = alienCuts(d), nos = alienMyNos(d);
+  if (!nos.length) return "장·컷 번호를 숫자로 적어요. (예: 3)";
+  var bad = nos.filter(function(k){ return k < 1 || k > n; });
+  if (bad.length) return "우리 모둠은 " + n + "장(컷)이에요. 1부터 " + n + " 사이 번호로 적어요.";
+  return "";
 }
 /* 내가 맡은 장·컷 번호들 — "1, 4" 처럼 여러 개도 읽는다(1인 1장·컷 이상) */
 function alienMyNos(d){
@@ -7825,48 +7853,17 @@ function alienPageHint(m, d, it){
   };
 }
 
-/* 밑그림 슬라이드 — 표지 1장 + 장·컷 수만큼. 활동지가 개별 활동지이므로 내가 맡은 장·컷에는
-   내가 적은 내용이 들어가고, 나머지 장·컷은 기본 배치와 활동지에서 가져온 내용만 담긴다.
-   모둠원이 각자 자기 장·컷을 채우도록 공유 문서에 올려 쓴다 */
-function alienDeck(m, d, val){
-  var n = alienCuts(d), unit = alienUnit(d), map = alienMap(n);
-  var kind = ((d.choices || {}).make === "만화") ? "만화" : "카드 뉴스";
-  var mine = fieldsParse((d.answers || {}).mypage || ""), nos = alienMyNos(d);
-  var accents = ["2F3A44", "2563EB", "DC2626", "9333EA", "F97316", "0F766E"];
-  var out = [];
-  out.push({ title:(val("mtitle") || "우리 모둠이 조사한 것"), accent:"16A34A", cover:true,
-    lines:[ { label:"조사 주제", from:"topic" },
-            { t:kind + " · " + map.length + unit + " (1인 1" + unit + " 이상)", k:"meta" } ] });
-  map.forEach(function(pg, i){
-    var k = i + 1, isMine = nos.indexOf(k) >= 0;
-    var sl = { title:k + unit + " — " + pg.t + (isMine ? " (내가 맡은 " + unit + ")" : ""),
-               accent:accents[i % accents.length], lines:[] };
-    if (pg.img) sl.img = "c_graph";
-    if (isMine && mine.body.trim()) {
-      sl.lines.push({ t:"내가 이 " + unit + "에 넣을 내용", k:"label" });
-      mine.body.split(/\r?\n/).forEach(function(x){ if (x.trim()) sl.lines.push({ t:x, k:"body" }); });
-    } else if (isMine) {
-      sl.lines.push({ t:"내가 이 " + unit + "에 넣을 내용 — 활동지 ⑤에 아직 적지 않았어요", k:"meta" });
-    } else {
-      sl.lines.push({ t:"이 " + unit + "을 맡은 모둠원이 채워요", k:"meta" });
-    }
-    pg.from.forEach(function(id){ sl.lines.push({ label:"활동지에서 가져온 내용 — " + (ALIEN_FROM_LABEL[id] || id), from:id }); });
-    out.push(sl);
-  });
-  return out;
-}
-
 /* ⑤ 화면 맨 위 — 산출물을 만드는 순서와 제출 단추. 답이나 해석은 넣지 않는다 */
 SIM.alien.export = function(m, d){
   var box = el("div", { class:"pane stack" });
   box.appendChild(el("h4", { text:"산출물 만들기 — 이렇게 해요" }));
   var ol = el("ol", { class:"small", style:"margin:6px 0 0 20px; color:var(--ink-2); line-height:1.65" });
-  [ "아래 활동지에서 비어 있는 항목이 0개인지 확인해요.",
-    "종류(카드 뉴스·만화)를 고르고 장·컷 수를 적은 뒤, 내가 맡은 장·컷이 몇 번째인지와 들어갈 내용을 적어요. 1인 1장(1컷) 이상이에요.",
-    "모둠 대표 1명이 ‘발표 자료 PPT로 저장’을 눌러 밑그림을 내려받아요.",
-    "공동 문서 편집 프로그램을 활용해서 만들어요.",
-    "각자 자기 장·컷을 꾸며요. 사진을 넣거나, 만화는 그리기 도구로 그리거나 종이에 그려 사진으로 넣어요.",
-    "다 되면 하나의 PDF로 내보내 ‘산출물 제출하러 가기’로 올려요. 모둠에서 한 번만 내요.",
+  [ "모둠에서 종류(카드 뉴스·만화)와 장·컷 수를 정하고, 누가 몇 번째 장·컷을 맡을지 나눠요. 1인 1장(1컷) 이상이에요.",
+    "활동지 ⑤에 종류·장·컷 수와, 내가 맡은 장·컷이 몇 번째인지, 거기 들어갈 내용을 적어요.",
+    "아래 활동지에서 비어 있는 항목이 0개인지 확인해요.",
+    "모둠에서 공동 문서 편집 프로그램에 문서를 하나 만들고, 장·컷 수만큼 빈 장을 둔 뒤 모둠원 모두에게 공유해요.",
+    "각자 자기 차례의 장·컷을 그 문서에서 만들어요. 활동지 ⑤에 적어 둔 내용을 옮겨 넣어요. 만화는 그리기 도구로 그리거나, 종이에 그려 사진으로 찍어 자기 장에 넣어요.",
+    "모두 끝나면 그 문서를 하나의 PDF로 내보내 ‘산출물 제출하러 가기’로 올려요. 모둠에서 한 번만 내요.",
     "활동지는 ‘활동지 PDF로 저장’으로 저장해 구글 클래스룸에 각자 내요. 심화 과제는 수업 뒤에 ‘심화 과제만 PDF로 저장’으로 따로 내요."
   ].forEach(function(t){ ol.appendChild(el("li", { text:t })); });
   box.appendChild(ol);
