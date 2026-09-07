@@ -1561,7 +1561,7 @@ var MODULES = [
         { name:"한국 외래생물 정보 시스템 — 뜻과 종류", url:"https://kias.nie.re.kr/page/alien/definition" },
         { name:"생태계교란 생물 분포 현황", url:"https://kias.nie.re.kr/page/disruption/distribution-status" }
       ],
-      note:"누리집은 누를 때만 열려요. 인터넷이 없으면 선생님 화면을 보고 적어요."
+      note:"누리집은 누를 때만 열려요. 인터넷이 없으면 미리 찾아 온 자료를 보고 적어요."
     },
 
     /* 수업 화면(교실 앞 화면) — 담당 선생님 활동지 ver.2 의 [영상]·[강의] 칸이다.
@@ -1608,6 +1608,7 @@ var MODULES = [
       ],
       demo:"교과서 활동 2(야외 조사)를 빼는 대신, 활동 1의 ‘내가 사는 지역’ 조사를 활동 3으로 잇도록 짰습니다. 교과서 30쪽 1번이 ‘활동 2에서 관찰한 생물’에 기대고 있어 그대로 두면 성립하지 않기 때문입니다. 사전 과제가 중요합니다 — kias.nie.re.kr 에서 우리 지역에 분포하는 생태계교란 생물 하나를 미리 찾아 오게 하십시오. 그러지 않으면 15~25분(10분) 안에 조사와 논증을 함께 끝내기 어렵습니다. 25분부터 끝까지가 산출물 제작입니다. 발표는 하지 않고, 모둠이 만든 하나의 PDF를 제출 페이지에 올려 함께 봅니다.",
       outside:[
+        "교과서 활동 2(28~29쪽 야외 생물 조사)는 하지 않습니다. 활동 1의 ‘우리 지역’ 조사를 활동 3으로 잇습니다.",
         "kias.nie.re.kr 접속이 필요합니다. 학교 망에서 열리는지 미리 확인하십시오.",
         "사전 과제 — 우리 지역 생태계교란 생물 하나를 미리 찾아 오게 하십시오. 못 찾아온 학생에게는 교과서 26쪽에 나온 붉은귀거북·뉴트리아를 쓰게 하면 됩니다.",
         "산출물은 모둠이 공동 문서 편집 프로그램에 문서 하나를 만들고, 학생이 각자 자기 차례의 장·컷을 그 안에서 만드는 방식입니다. 다 만들면 그 문서를 하나의 PDF로 내보내 냅니다. 프로그램이 밑그림을 만들어 주지 않으므로, 무엇을 넣을지는 활동지 ⑤에 적은 내용을 보고 각자 옮깁니다. 만화는 종이에 그려 사진으로 찍어 자기 장에 넣어도 됩니다.",
@@ -1634,7 +1635,7 @@ var MODULES = [
         ],
         label:"우리 모둠이 조사할 주제를 하나 골라요. 어느 것을 골라도 마지막 주장은 ‘외래생물이 생물다양성에 미치는 영향’으로 씁니다." },
       { id:"res", type:"text", step:"record", kind:"조사", src:true, ref:"27쪽 2~3번 · 30쪽 2번",
-        label:"미리 찾아 온 생태계교란 생물 하나를 정해, 고른 주제에 맞춰 조사해 적어요. ① 생물 이름 ② 조사한 내용(언제·어디서·얼마나 같은 숫자가 있으면 함께 적어요) ③ 어디서 찾았는지, 이렇게 세 가지가 들어가면 좋아요. 못 찾아왔으면 교과서 26쪽의 붉은귀거북·뉴트리아를 써도 돼요." },
+        label:"미리 찾아 온 생태계교란 생물 하나를 정해, 고른 주제에 맞춰 조사해 적어요. ① 생물 이름 ② 조사한 내용(언제·어디서·얼마나 같은 숫자가 있으면 함께 적어요), 이렇게 두 가지가 들어가면 좋아요. 어디서 찾았는지는 바로 아래 ‘찾은 곳’ 칸에 적어요. 못 찾아왔으면 교과서 26쪽의 붉은귀거북·뉴트리아를 써도 돼요." },
       /* 단추는 ③ 가상 탐구에 있고 이름도 '활동지에 첨부' 가 아니다. 이 둘을 적어 두지 않으면
          attachSpot 이 문항의 step(④)과 기본 단추 이름으로 안내해, 학생을 단추 없는 화면으로 보낸다. */
       { id:"cond", type:"auto", step:"record", kind:"설계",
@@ -3352,8 +3353,8 @@ function renderStage(m, d){
   /* 교과서 활동 차례 — 실습형은 ① 도입에서 이 소단원 전체 흐름을 먼저 본다 */
   /* 조사할 곳(brief) — 어느 단계에 둘지는 소단원이 정한다(brief.at, 기본은 ① 도입).
      ① 도입은 교사가 설명하는 동안이라 학생이 기기를 거의 보지 않는다. 거기 두면
-     못 보고 지나간다(2026-09-01 발주자 지적). Ⅰ-3 은 ② 예상과 ④ 기록에 둔다 —
-     ②에서 뜻을 정리하고 ④에서 주제를 조사하기 때문이다.
+     못 보고 지나간다(2026-09-01 발주자 지적). Ⅰ-3 은 ④ 기록에만 둔다 — ② 예상에도 두면
+     뜻·종류 표를 교사 화면으로 옮겨 베껴 쓰기를 막은 취지가 무너지기 때문이다(2026-09-07).
      그 단계의 **맨 위**에 놓는다. */
   if (m.brief) {
     var briefAt = m.brief.at || ["intro"];
@@ -3600,8 +3601,13 @@ function flowCard(m){
     box.appendChild(el("p", { class:"small", style:"color:var(--ink-2); margin:6px 0 0", text:f.what }));
     c.appendChild(box);
   });
+  /* '교과서 활동 기록' 칸(outside 문항)이 없는 소단원에서 그 칸을 가리키면,
+     학생이 있지도 않은 칸을 찾게 된다(Ⅰ-3 에는 없다) */
+  var hasOutside = (m.items || []).some(function(it){ return it.outside; });
   c.appendChild(el("p", { class:"model-note", style:"margin-top:8px",
-    text:"화면에서 하지 않는 활동은 교실에서 하고, ④ 기록·분석의 ‘교과서 활동 기록’에 적어요." }));
+    text: hasOutside
+      ? "화면에서 하지 않는 활동은 교실에서 하고, ④ 기록·분석의 ‘교과서 활동 기록’에 적어요."
+      : "표시가 없는 활동은 이 수업에서 하지 않아요. 화면에 있는 활동만 하면 돼요." }));
   return c;
 }
 
@@ -7536,6 +7542,11 @@ SIM.alien = {
     ctlPane.appendChild(alienPlanTable());
     ctlPane.appendChild(el("p", { class:"small muted", style:"margin-top:10px",
       text:"외래생물은 " + Alien.RELEASE_Y + "년째에 방생돼요. 앞의 " + Alien.RELEASE_Y + "년은 방생 전 모습이에요." }));
+    /* '60%' 는 한 해에 60%를 한꺼번에 없앤다는 뜻이 아니다. 모형은 한 달마다 조금씩 덜어내므로
+       1년 동안 실제로 줄어드는 양은 (1 - 0.6/12)^12 = 0.540, 곧 약 46% 다(30% 는 약 26%).
+       숫자를 그대로 '%/년' 으로 읽으면 학생이 틀린 양을 근거로 쓴다. */
+    ctlPane.appendChild(el("p", { class:"model-note", style:"margin-top:8px",
+      text:"제거는 한 해 동안 조금씩 계속 이루어져요. ‘세게 60%’로 두어도 1년에 실제로 줄어드는 양은 약 46%예요(‘약하게 30%’는 약 26%)." }));
     ctlPane.appendChild(el("div", { class:"row", style:"margin-top:10px" }, [
       el("button", { class:"btn sm attach", type:"button", text:"조건을 활동지에 기록", onclick:function(){
         var dd = loadModule(m.id);
@@ -7544,7 +7555,7 @@ SIM.alien = {
         dd.answers["cond"] = "외래생물 유형: " + Alien.KINDS[st.kind] +
           " / 처음 방생 수: " + st.seed + "마리" +
           (st.removeRate > 0
-            ? " / 제거 시작: 방생 후 " + st.removeAfter + "년 / 제거 강도: " + Math.round(st.removeRate * 100) + " %/년"
+            ? " / 제거 시작: 방생 후 " + st.removeAfter + "년 / 제거 강도: " + Math.round(st.removeRate * 100) + " %"
             : " / 제거: 안 함");
         saveModule(m.id); CaptureWatch.refresh(); toast("활동지에 기록했어요.");
       }})
@@ -7680,6 +7691,10 @@ SIM.alien = {
   record: function(m, d){
     var pane = el("div", { class:"pane" });
     pane.appendChild(el("h4", { text:"나란히 비교 — 조기 제거와 늦은 제거" }));
+    /* 세 선은 제거 시점만 다르고 나머지는 모두 같다. 화면에 적어 두지 않으면 학생이
+       ③에서 자기가 설정한 조건의 그래프로 오해한다 */
+    pane.appendChild(el("p", { class:"small muted", style:"margin:0 0 8px",
+      text:"세 선 모두 포식형 · 처음 5마리 · 제거 강도 60%로 같아요. 제거를 시작한 시점만 달라요. ③에서 내가 설정한 조건과는 상관없이 정해진 그래프예요." }));
     var a = el("canvas", { class:"chart", "data-repaint":"1" });
     pane.appendChild(a);
 
@@ -7692,10 +7707,12 @@ SIM.alien = {
     var late  = runTo("predator", 5, 8, 0.6);
     var none  = runTo("predator", 5, 99, 0);
 
+    /* ③ 에서 하늘색은 토종 물고기, 빨강은 외래생물을 뜻했다. 여기서 같은 색을 시나리오에
+       다시 쓰면 빨간 선을 외래생물로 읽는다. 종 색과 겹치지 않는 색을 쓴다 */
     var series = [
       { key:"none", label:"제거하지 않음", color:"#94a3b8", dash:[3,3] },
-      { key:"early", label:"조기 제거(방생 2년 뒤)", color:AC.F },
-      { key:"late", label:"늦은 제거(방생 8년 뒤)", color:AC.A }
+      { key:"early", label:"조기 제거(방생 2년 뒤)", color:"#ea580c" },
+      { key:"late", label:"늦은 제거(방생 8년 뒤)", color:"#7c3aed" }
     ];
     var chart = new SimChart(a, {
       x:{ label:"시간", unit:"년", min:0, max:Alien.YEARS },
@@ -7728,6 +7745,8 @@ SIM.alien = {
        알기 쉬우므로, 어느 칸에 들어가는지를 단추 아래에 적어 둔다(HANDOFF 7-6). */
     pane.appendChild(el("p", { class:"small muted", style:"margin-top:6px",
       text:"이 단추를 누르면 활동지의 ‘개체수 변화 그래프’ 칸이 이 비교 그래프로 바뀌어요. ③ 가상 탐구의 ‘활동지에 첨부’와 같은 칸이에요." }));
+    pane.appendChild(el("p", { class:"small muted", style:"margin-top:6px",
+      text:"여기서 주황·보라 선은 생물이 아니라 ‘언제 제거했는지’를 뜻해요. ③ 화면의 색(하늘색 토종 물고기, 빨강 외래생물)과는 뜻이 달라요." }));
     pane.appendChild(el("p", { class:"model-note", style:"margin-top:8px",
       text:"이 모형은 생물다양성 세 측면 가운데 종다양성(토종 종 수와 토종 개체수)만 다뤄요. 유전적 다양성과 생태계다양성은 교과서 30쪽 조사 자료로 보충해요." }));
     /* 교과서 30쪽 3번의 근거는 직접·간접 조사 자료다. 이 그래프를 그 근거로 착각하지 않게 한다 */
