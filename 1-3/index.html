@@ -1531,7 +1531,7 @@ var MODULES = [
        → 24~38분 조사·기록 → 38~50분 카드 뉴스·웹툰 만들기
 
        ver.3 (2026-09-07 발주자 결정) — 활동 25분 + 제작 25분.
-       0~5분 도입(영상·뜻과 종류) → 5~8분 예상 → 8~15분 가상 탐구(실행 4회)
+       0~5분 도입(영상·뜻과 종류) → 5~8분 예상 → 8~15분 가상 탐구(조건표대로 실행 4회)
        → 15~25분 조사·기록 → 25~50분 카드 뉴스·만화 만들기.
        산출물은 카드 뉴스 / 만화 두 종류이고 장·컷 수는 모둠 인원에 맞춰 학생이 직접 적는다
        (1인 1장·컷 이상). 활동지는 **개별 활동지**이므로 장·컷 칸은 하나뿐이다(mypage) —
@@ -1543,7 +1543,7 @@ var MODULES = [
     stepTodo: {
       intro:  "영상을 보고, 외래생물과 생태계교란 생물이 무엇인지 확인해요. (교과서 26쪽)",
       predict: "선생님 화면을 보고 뜻과 차이를 정리한 뒤, 외래생물을 풀어놓으면 토종 물고기가 어떻게 될지 예상해서 그려요.",
-      explore: "① 기준 조건 → ② 외래생물 유형 바꾸기 → ③ 많이 방생(15마리) → ④ 제거 세게(60%), 네 번 실행해요. 25년까지 다 본 뒤, 괄호 안 ‘가장 적었을 때’ 값도 함께 보고 그래프를 활동지에 담아요.",
+      explore: "화면의 조건표대로 네 번 실행해요. 1회(기준)에서 한 칸만 바꾸고, 앞에서 바꾼 것은 원래대로 되돌린 뒤 다음 것을 바꿔요. 25년까지 다 본 뒤 괄호 안 ‘가장 적었을 때’ 값도 함께 보고, 그래프를 활동지에 담아요.",
       record: "미리 찾아 온 생태계교란 생물을 놓고, 우리 모둠이 고른 주제를 조사해 적어요. 그다음 시뮬레이션 그래프를 근거로 주장·증거·이유를 적어요.",
       export: "종류(카드 뉴스·만화)를 고르고 장·컷 수를 적은 뒤, 내가 맡은 장·컷이 몇 번째인지와 거기 들어갈 내용을 적어요. 밑그림 PPT를 내려받아 공동 문서 편집 프로그램으로 만들고, 산출물 PDF는 제출 페이지에, 활동지 PDF는 구글 클래스룸에 내요."
     },
@@ -7517,6 +7517,12 @@ SIM.alien = {
       { label:"약하게 30%", value:"30" },
       { label:"세게 60%", value:"60" }
     ], "0", function(v){ st.removeRate = (+v) / 100; reset(); }));
+    /* 네 번 실행할 조건표 — 기준에서 한 칸만 바꾼다(변인 통제).
+       전에는 '유형 바꾸기 → 많이 방생 → 제거 세게' 라고만 적어, 앞에서 바꾼 값이 남는지
+       되돌리는지 알 수 없었다. 조작 단추는 바꾼 값이 그대로 남으므로 지시를 그대로 따르면
+       3회가 '경쟁형·15마리', 4회가 '경쟁형·15마리·60%' 가 되어 모둠마다 다른 것을 보게 된다.
+       네 칸을 모두 적어 두면 어느 것을 되돌려야 하는지가 분명하다. */
+    ctlPane.appendChild(alienPlanTable());
     ctlPane.appendChild(el("p", { class:"small muted", style:"margin-top:10px",
       text:"외래생물은 " + Alien.RELEASE_Y + "년째에 방생돼요. 앞의 " + Alien.RELEASE_Y + "년은 방생 전 모습이에요." }));
     ctlPane.appendChild(el("div", { class:"row", style:"margin-top:10px" }, [
@@ -7725,6 +7731,44 @@ SIM.alien = {
    장·컷 수(4·5·6)에 따라 각 장·컷에 활동지의 어느 내용이 들어가는지 정해 둔다.
    그 밖의 수는 alienMap 이 이 표를 늘리거나 줄여 만든다. 이 배치는 (1) 빈 칸의 예시 문구와
    (2) 밑그림의 '활동지에서 가져온 내용' 에 쓰인다. 해석이나 정답은 넣지 않는다. */
+/* ③ 가상 탐구에서 실행할 네 조건. 1회가 기준이고, 2~4회는 기준에서 굵게 표시된 한 칸만 다르다.
+   chg 는 그 '한 칸'이 몇 번째인지다(0 유형 · 1 방생 수 · 2 제거 시점 · 3 제거 강도). */
+var ALIEN_PLAN = [
+  { n:"1회", cells:["포식형", "5마리", "4년", "안 함"],     chg:-1, note:"기준" },
+  { n:"2회", cells:["경쟁형", "5마리", "4년", "안 함"],     chg:0 },
+  { n:"3회", cells:["포식형", "15마리", "4년", "안 함"],    chg:1 },
+  { n:"4회", cells:["포식형", "5마리", "4년", "세게 60%"],  chg:3 }
+];
+function alienPlanTable(){
+  var box = el("div", { class:"stack", style:"margin-top:14px" });
+  box.appendChild(el("h4", { style:"font-size:.92rem; margin:0", text:"이렇게 네 번 실행해요" }));
+  var tb = el("table", { style:"width:100%; border-collapse:collapse; font-size:.82rem; margin-top:6px" });
+  var tbody = el("tbody");
+  tb.appendChild(tbody);
+  var thr = el("tr");
+  ["", "유형", "방생 수", "제거 시점", "제거 강도"].forEach(function(h){
+    thr.appendChild(el("th", { text:h,
+      style:"text-align:left; padding:5px 7px; border-bottom:1px solid var(--line); color:var(--ink-2); font-weight:600; white-space:nowrap" }));
+  });
+  tbody.appendChild(thr);
+  ALIEN_PLAN.forEach(function(r){
+    var tr = el("tr");
+    tr.appendChild(el("th", { text:r.n + (r.note ? " (" + r.note + ")" : ""),
+      style:"text-align:left; padding:5px 7px; border-bottom:1px solid var(--line); font-weight:700; white-space:nowrap" }));
+    r.cells.forEach(function(v, i){
+      var hit = (i === r.chg);
+      tr.appendChild(el("td", { text:v,
+        style:"padding:5px 7px; border-bottom:1px solid var(--line); white-space:nowrap"
+          + (hit ? "; font-weight:700; background:var(--card-2)" : "") }));
+    });
+    tbody.appendChild(tr);
+  });
+  box.appendChild(tb);
+  box.appendChild(el("p", { class:"small muted", style:"margin-top:6px",
+    text:"굵게 칠한 칸이 1회(기준)와 다른 곳이에요. 한 번에 한 칸만 바꾸고, 앞에서 바꾼 것은 원래대로 되돌린 뒤 다음 것을 바꿔요." }));
+  return box;
+}
+
 var ALIEN_PAGES = {
   4: [ { t:"무슨 일이 있었나",        from:["res"],                    hint:"조사한 생물이 어디서 어떻게 문제를 일으켰는지" },
        { t:"생태계가 어떻게 달라졌나", from:["a_claim"],   img:true,    hint:"시뮬레이션 그래프와 우리 주장" },
