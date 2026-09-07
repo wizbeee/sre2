@@ -1206,8 +1206,12 @@ function modLabel(m){ return (m.part || "Ⅰ") + "-" + m.book; }
 var AX = {
   popcornP : { title:"가열 온도에 따라 낟알 속 압력이 어떻게 변할지 예상해서 그려요.",
                x:{ label:"온도", unit:"°C", min:0, max:250 }, y:{ label:"압력", unit:"기압", min:0, max:12 } },
-  /* x 최댓값은 Alien.YEARS(25년)와 같아야 한다. 다르면 예상 곡선이 결과 그래프 위에서 늘어난다 */
-  alienN   : { title:"외래생물을 방생한 뒤 토종 물고기 수가 어떻게 변할지 예상해서 그려요.",
+  /* x 최댓값은 Alien.YEARS(25년)와 같아야 한다. 다르면 예상 곡선이 결과 그래프 위에서 늘어난다.
+     y 최댓값 100 도 ③ 결과 그래프와 같아야 겹쳐 볼 수 있다.
+     방생은 0년이 아니라 5년째다(Alien.RELEASE_Y). 그 사실이 ③에 가서야 처음 나오면
+     학생은 0년부터 떨어지는 곡선을 그려, 결과와 5년(가로축의 20%) 어긋난 채 비교하게 된다.
+     토종 물고기 시작값 25마리도 알려 주지 않으면 곡선이 실제 선보다 훨씬 위에 놓인다. */
+  alienN   : { title:"토종 물고기는 25마리로 시작하고, 외래생물은 5년째에 방생돼요. 앞의 5년은 방생 전 모습이에요. 25년까지 토종 물고기 수가 어떻게 변할지 예상해서 그려요.",
                x:{ label:"시간", unit:"년", min:0, max:25 }, y:{ label:"개체수", unit:"마리", min:0, max:100 } },
   /* ②에 그리는 것도 ④에 겹쳐 보이는 것도 '가속도의 크기'다(부호 없는 값).
      드롭 타워 세로축만 −20까지 내려가 있어서, 자유 낙하를 −9.8로 그린 학생의 예상 곡선과
@@ -1622,7 +1626,7 @@ var MODULES = [
       { id:"terms", type:"text", step:"predict", kind:"정리", ref:"26쪽",
         label:"외래생물과 생태계교란 생물은 각각 무엇이고, 둘은 어떻게 다른지 자기 말로 정리해요." },
       { id:"p_draw", type:"draw", step:"predict", kind:"예상", ax:"alienN",
-        label:"외래생물을 방생한 뒤 토종 물고기 개체수 변화를 예상해서 그려요." },
+        label:"토종 물고기는 25마리로 시작하고, 외래생물은 5년째에 방생돼요. 앞의 5년은 방생 전이에요. 25년까지 토종 물고기 개체수가 어떻게 변할지 예상해서 그려요." },
       /* ver.2(2026-09-01): 뜻·종류는 교사 강의로 바뀌어 문항에서 뺐다(brief 의 표로 보여 준다).
          활동 1 은 세 주제 가운데 모둠이 하나만 골라 조사한다. 선택지 문구는 선생님 활동지 그대로다.
          교과서 27쪽 2번(도입 경로)·3번(우리 지역 분포)·30쪽 2번(사례)이 이 두 문항에 담긴다.
@@ -4085,6 +4089,14 @@ function openWorksheetPreview(id, mode){
     if (it.type === "text") {
       var t = (d.answers[it.id] || "").trim();
       box.appendChild(t ? el("div", { class:"ws-a", text:t }) : el("div", { class:"ws-empty", text:"아직 적지 않았어요." }));
+      /* 인쇄·PDF 는 '찾은 곳'을 함께 싣는다(buildPrintDoc·PDF 생성). 이 화면만 빠뜨리면,
+         PDF 가 안 되는 기기에서 이 화면을 캡처해 낸 학생의 활동지에 출처가 없다 */
+      if (it.src) {
+        var sv = (d.answers[it.id + "_src"] || "").trim();
+        box.appendChild(sv
+          ? el("p", { class:"small muted", style:"margin:4px 0 0", text:"찾은 곳: " + sv })
+          : el("div", { class:"ws-empty", text:"찾은 곳: 아직 적지 않았어요." }));
+      }
     } else if (it.type === "draw") {
       if (hasDraw(d.draws[it.id])) {
         box.appendChild(el("img", { class:"ws-img", src:sketchToImage(AX[it.ax], d.draws[it.id], 640), alt:"예상 그래프" }));
@@ -7458,6 +7470,10 @@ SIM.alien = {
     var wrap = el("div", { class:"sim" });
     var st = Alien.newState("predator", 5, 4, 0);
     var ph = 0, chart, player;
+    /* 이번 실행이 25년까지 갔는가. 첨부 문지기를 st.y 로 판정하면, 그래프를 눌러 값을
+       읽는 순간 st.y 가 그 해로 되돌아가 방금 25년을 다 본 학생에게도 단추가 다시 잠긴다.
+       화면이 '그래프를 누르면 되감아요' 라고 권하는 동작이므로 판정을 따로 둔다 */
+    var reached = false;
 
     var scenePane = el("div", { class:"pane" });
     scenePane.appendChild(el("h4", { text:"하천 속 생물" }));
@@ -7589,9 +7605,9 @@ SIM.alien = {
          '방생했는데 0마리'가 되어 그 뒤로 영영 방생되지 않았다. */
       st.released = (fr.v.A !== null && fr.v.A !== undefined);
       st.A = st.released ? fr.v.A : 0;
-      /* 되감은 지점 뒤의 기록은 버린다. 남겨 두면 '▶ 이어서'로 다시 그릴 때
-         그래프 오른쪽 끝에서 되감은 자리로 되돌아가는 선이 그어진다. */
-      if (idx >= 0) chart.frames = chart.frames.slice(0, idx + 1);
+      /* 되감은 지점 뒤의 기록은 지우지 않는다. 지우면 25년까지 그려 놓은 곡선이
+         값 하나 읽으려고 누른 순간 사라진다. '▶ 이어서'로 다시 그릴 때 되돌아가는 선은
+         SimChart.push 가 x 가 작아지면 뒤 프레임을 스스로 버리므로 생기지 않는다 */
       chart.cursor = fr.x; paint();
     };
     chartCv.__repaint = function(){ chart.draw(); };
@@ -7599,11 +7615,11 @@ SIM.alien = {
        들어가고, 진행률은 그림의 존재만 보므로 다 한 것처럼 찬다(2026-08-26). */
     var btnAG = el("button", { class:"btn sm attach", type:"button", text:"활동지에 첨부",
       onclick:function(){
-        if (st.y < Alien.YEARS) return;
+        if (!reached) return;
         Capture.fromCanvas(m.id, "c_graph", chartCv, "개체수 변화 그래프");
       }});
     var whyAG = attachGate(btnAG, function(){
-      if (st.y >= Alien.YEARS) return true;
+      if (reached) return true;
       return (st.y <= 0)
         ? "아직 지켜보기 전이에요. ▶ 시작을 눌러 " + Alien.YEARS + "년까지 다 본 뒤에 담아요."
         : "아직 " + Math.round(st.y) + "년이에요. " + Alien.YEARS + "년까지 다 지켜본 뒤에 담아요.";
@@ -7650,6 +7666,7 @@ SIM.alien = {
       player.pause(); btnPlay.textContent = "▶ 시작";
       acc = 0;
       if (cmp.__resetLow) cmp.__resetLow();   /* 조건을 바꾸면 최저값도 다시 센다 */
+      reached = false;                        /* 조건을 바꾸면 다시 25년까지 봐야 한다 */
       st = Alien.newState(st.kind, st.seed, st.removeAfter, st.removeRate);
       chart.reset();
       chart.cfg.events = [{ x:Alien.RELEASE_Y, label:"방생", color:AC.A }];
@@ -7668,6 +7685,10 @@ SIM.alien = {
       var n = Math.floor(acc / Alien.DT), i;
       acc -= n * Alien.DT;
       for (i = 0; i < n && st.y < Alien.YEARS; i++) { Alien.step(st); rec(); }
+      /* paint() 가 첨부 문지기를 다시 그리므로 reached 는 그 전에 세워야 한다.
+         뒤에 두면 마지막 프레임이 잠긴 상태로 그려지고, 그 뒤로는 다시 그릴 일이 없어
+         25년을 다 본 학생에게 단추가 잠긴 채 남는다(2026-09-07 브라우저 시험에서 확인). */
+      if (st.y >= Alien.YEARS) reached = true;
       ph += dt * 1.4;
       paint();
       if (st.y >= Alien.YEARS) { player.pause(); btnPlay.textContent = "▶ 다시"; }
@@ -7847,6 +7868,10 @@ function alienMap(n){
 function alienMyPageValid(m, d){
   var f = fieldsParse((d.answers || {}).mypage || "");
   if (!f.no.trim()) return "";
+  /* 장·컷 수를 아직 안 적었으면 alienCuts 가 기본값 4를 돌려주는데, 그것을 그대로
+     '우리 모둠은 4장이에요' 로 단정하면 학생이 정한 적 없는 수로 막힌다 */
+  if (!String((d.answers || {}).cuts || "").trim())
+    return "먼저 위 ‘장·컷 수’ 칸에 우리 모둠이 몇 장(컷)으로 만드는지 적어요.";
   var n = alienCuts(d), nos = alienMyNos(d);
   if (!nos.length) return "장·컷 번호를 숫자로 적어요. (예: 3)";
   var bad = nos.filter(function(k){ return k < 1 || k > n; });
