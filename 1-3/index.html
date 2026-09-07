@@ -747,9 +747,12 @@ html.single #btn-quickstart{display:none}
   position:fixed; right:16px; bottom:16px; z-index:92; display:none;
   align-items:center; gap:8px; padding:11px 16px; border-radius:999px;
   border:1px solid var(--line-2); background:var(--chrome); color:#fff;
-  font-weight:700; font-size:.95rem; cursor:pointer;
+  font-weight:700; font-size:.95rem; cursor:grab;
   box-shadow:var(--sh-3); font-variant-numeric:tabular-nums;
+  /* 손가락으로 끌 때 화면이 함께 스크롤되지 않게 한다 */
+  touch-action:none; user-select:none; -webkit-user-select:none;
 }
+#timer-btn.drag{cursor:grabbing; opacity:.9}
 #timer-btn.on{display:inline-flex}
 #timer-btn:hover{background:var(--chrome-d)}
 #timer-btn:focus-visible{outline:3px solid var(--focus); outline-offset:3px}
@@ -2960,16 +2963,19 @@ var Overlay = {
    ========================================================================== */
 var Timer = {
   root:null, btn:null, timeEl:null, labelEl:null, pickRow:null, playBtn:null,
-  total:0, endAt:0, left:0, running:false, tick:null, ac:null,
+  total:0, endAt:0, left:0, running:false, tick:null, ac:null, moved:false,
 
   /* 화면에 한 번만 만든다 */
   mount: function(){
     if (this.btn) return;
     var self = this;
 
-    this.btn = el("button", { id:"timer-btn", type:"button", "aria-label":"수업 타이머 열기",
-      onclick:function(){ self.open(); } });
+    this.btn = el("button", { id:"timer-btn", type:"button",
+      "aria-label":"수업 타이머 열기 (끌어서 옮길 수 있어요)",
+      onclick:function(){ if (!self.moved) self.open(); } });
     document.body.appendChild(this.btn);
+    this.makeDraggable();
+    this.restorePos();
 
     this.labelEl = el("p", { class:"tm-label" });
     this.timeEl  = el("div", { class:"tm-time", text:"00:00" });
@@ -2992,6 +2998,63 @@ var Timer = {
     /* 250 ms 마다 다시 그린다. 끝날 시각으로 계산하므로 이 주기가 정확도를 좌우하지 않는다 */
     this.tick = setInterval(function(){ self.refresh(); }, 250);
     this.set(5 * 60);
+  },
+
+  /* 끌어서 옮기기 — 마우스와 손가락 둘 다(Pointer Events).
+     짧게 누르면 열리고, 5px 넘게 움직이면 끌기로 본다(moved 로 클릭을 막는다). */
+  makeDraggable: function(){
+    var self = this, b = this.btn, dragging = false, sx = 0, sy = 0, ox = 0, oy = 0;
+
+    b.addEventListener("pointerdown", function(e){
+      dragging = true; self.moved = false;
+      sx = e.clientX; sy = e.clientY;
+      var r = b.getBoundingClientRect();
+      ox = r.left; oy = r.top;
+      b.classList.add("drag");
+      try { b.setPointerCapture(e.pointerId); } catch (err) {}
+    });
+
+    b.addEventListener("pointermove", function(e){
+      if (!dragging) return;
+      var dx = e.clientX - sx, dy = e.clientY - sy;
+      if (!self.moved && Math.abs(dx) + Math.abs(dy) < 5) return;   /* 손떨림은 클릭으로 둔다 */
+      self.moved = true;
+      e.preventDefault();
+      self.place(ox + dx, oy + dy);
+    });
+
+    function end(){
+      if (!dragging) return;
+      dragging = false;
+      b.classList.remove("drag");
+      if (self.moved) self.savePos();
+    }
+    b.addEventListener("pointerup", end);
+    b.addEventListener("pointercancel", end);
+
+    /* 창 크기가 바뀌어도 화면 밖으로 나가지 않게 다시 잡아 준다 */
+    window.addEventListener("resize", function(){
+      var r = b.getBoundingClientRect();
+      if (b.style.left) self.place(r.left, r.top);
+    });
+  },
+
+  /* 화면 안으로 가둔다 */
+  place: function(x, y){
+    var b = this.btn, w = b.offsetWidth, h = b.offsetHeight, pad = 8;
+    x = Math.max(pad, Math.min(x, window.innerWidth  - w - pad));
+    y = Math.max(pad, Math.min(y, window.innerHeight - h - pad));
+    b.style.left = x + "px"; b.style.top = y + "px";
+    b.style.right = "auto";  b.style.bottom = "auto";
+  },
+
+  savePos: function(){
+    var r = this.btn.getBoundingClientRect();
+    Store.write("sre2.v1.timerPos", { x:Math.round(r.left), y:Math.round(r.top) });
+  },
+  restorePos: function(){
+    var pos = Store.read("sre2.v1.timerPos", null);
+    if (pos && typeof pos.x === "number" && typeof pos.y === "number") this.place(pos.x, pos.y);
   },
 
   /* 모듈 화면과 수업 화면에서만 단추를 보인다 */
