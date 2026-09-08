@@ -1548,8 +1548,8 @@ var MODULES = [
     stepTodo: {
       intro:  "영상을 보고, 외래생물과 생태계교란 생물이 무엇인지 확인해요. (교과서 26쪽)",
       predict: "선생님 화면을 보고 뜻과 차이를 정리한 뒤, 외래생물을 풀어놓으면 토종 물고기가 어떻게 될지 예상해서 그려요.",
-      explore: "화면의 조건표대로 네 번 실행해요. 1회(기준)에서 한 칸만 바꾸고, 앞에서 바꾼 것은 원래대로 되돌린 뒤 다음 것을 바꿔요. 25년까지 다 본 뒤 괄호 안 ‘가장 적었을 때’ 값도 함께 보고, 그래프를 활동지에 담아요.",
-      record: "미리 찾아 온 생태계교란 생물을 놓고, 우리 모둠이 고른 주제를 조사해 적어요. 그다음 시뮬레이션 그래프를 근거로 주장·증거·이유를 적어요.",
+      explore: "화면의 조건표대로 네 번 실행해요. 1회(기준)에서 한 칸만 바꾸고, 앞에서 바꾼 것은 원래대로 되돌린 뒤 다음 것을 바꿔요. 25년까지 다 본 뒤 괄호 안 ‘가장 적었을 때’ 값도 함께 보고, ② 예상과 무엇이 달랐는지 확인해요.",
+      record: "내가 정한 생물을 조사해 적고, 주장·증거·이유를 차례로 적어요. 증거는 조사한 내용에서 찾아도 되고, ③ 가상 탐구에서 본 것을 적어도 돼요.",
       export: "종류(카드 뉴스·만화)와 장·컷 수를 정하고, 내가 맡은 장·컷이 몇 번째인지와 거기 들어갈 내용을 적어요. 모둠 공동 문서에서 각자 자기 장·컷을 만든 뒤, 그 문서를 하나의 PDF로 내보내 제출 페이지에 내요. 활동지 PDF는 구글 클래스룸에 각자 내요."
     },
     /* 학생 화면의 조사할 곳 — 영상과 뜻·종류 표는 **수업 화면(lesson)** 으로 옮겼다
@@ -1639,21 +1639,23 @@ var MODULES = [
         ],
         label:"우리 모둠이 조사할 주제를 하나 골라요. 어느 것을 골라도 마지막 주장은 ‘외래생물이 생물다양성에 미치는 영향’으로 씁니다." },
       { id:"res", type:"text", step:"record", kind:"조사", src:true, ref:"27쪽 2~3번 · 30쪽 2번",
-        label:"미리 찾아 온 생태계교란 생물 하나를 정해, 고른 주제에 맞춰 조사해 적어요. ① 생물 이름 ② 조사한 내용(언제·어디서·얼마나 같은 숫자가 있으면 함께 적어요), 이렇게 두 가지가 들어가면 좋아요. 어디서 찾았는지는 바로 아래 ‘찾은 곳’ 칸에 적어요. 못 찾아왔으면 교과서 26쪽의 붉은귀거북·뉴트리아를 써도 돼요." },
+        label:"조사 — 내가 정한 생물의 이름과, 조사해서 알게 된 것을 적어요. 언제·어디서·얼마나 같은 숫자가 있으면 함께 적으면 좋아요. 미리 못 찾아왔으면 교과서 26쪽의 붉은귀거북·뉴트리아를 써도 돼요. 찾은 곳은 아래 칸에 적어요." },
       /* 단추는 ③ 가상 탐구에 있고 이름도 '활동지에 첨부' 가 아니다. 이 둘을 적어 두지 않으면
          attachSpot 이 문항의 step(④)과 기본 단추 이름으로 안내해, 학생을 단추 없는 화면으로 보낸다. */
       { id:"cond", type:"auto", step:"record", kind:"설계",
         attachAt:"explore", attachBtn:"조건을 활동지에 기록",
         label:"내가 설정한 조건(외래생물 유형, 초기 방생 수, 제거 시점, 제거 강도)" },
-      { id:"c_graph", type:"capture", step:"record", kind:"기록",
-        attachAt:"explore", attachBtn:"활동지에 첨부",
-        label:"개체수 변화 그래프" },
+      /* c_graph(개체수 변화 그래프)는 활동지에서 뺐다(발주자 결정 2026-09-07).
+         교과서 30쪽 3번이 근거로 지정한 것은 '직접 조사한 우리 지역의 사례와 간접 조사한 자료'
+         뿐이고, 활동지 ver.2 에서도 시뮬레이션은 3번 주제의 괄호 안 보조였다. 시뮬레이션은
+         ③에서 예상을 확인하고 변인을 통제해 보는 자리로만 남고, 활동지에는 들어가지 않는다.
+         이미 담아 둔 학생의 captures.c_graph 는 그대로 남지만 어디에도 쓰이지 않는다. */
       { id:"a_claim", type:"text", step:"record", kind:"주장", ref:"30쪽 3번",
-        label:"주장 — 한 문장으로 딱 잘라 적어요. 이렇게 시작하면 쉬워요: ‘○○(생물 이름)이(가) 늘어나면 □□ 때문에 생물다양성이 줄어든다.’" },
+        label:"주장 — 빈칸을 채워 한 문장으로 적어요. 「(     )이(가) 늘어나서, (     )이(가) 줄었다.」 앞 칸에는 내가 정한 생물 이름을, 뒤 칸에는 줄어든 것을 적어요." },
       { id:"a_evidence", type:"text", step:"record", kind:"증거", ref:"30쪽 3번",
-        label:"증거 — 두 가지를 적어요. (1) 조사한 내용에서: 어떤 사실이 주장을 뒷받침하나요? (2) 시뮬레이션에서: 몇 년째에 어느 생물이 몇 마리가 되었나요? 숫자로 적어요. ‘어떻게 들어왔나’·‘어디까지 퍼졌나’를 조사한 모둠은, 그것이 왜 토종 피해로 이어지는지 한 줄 덧붙여요." },
+        label:"증거 — 주장이 맞다고 말할 수 있는 사실을 하나만 적어요. 아래 둘 중 아무거나 써도 돼요. ① 내가 조사한 내용에서 — 예: ‘○○ 저수지에서 토종 물고기가 거의 사라졌다’ ② ③ 가상 탐구에서 본 것에서 — 예: ‘15마리를 풀었더니 25년 뒤에 토종이 한 종도 남지 않았다’" },
       { id:"a_reason", type:"text", step:"record", kind:"이유", ref:"30쪽 3번",
-        label:"이유 — 그 증거가 왜 주장을 뒷받침하는지 이어서 설명해요. ‘○○가 줄어들면 △△도 줄어든다. 그래서 종다양성이 줄어든다’처럼 써요. 시뮬레이션이 보여 주는 것은 생물다양성 세 측면 가운데 종다양성(토종 종 수와 토종 개체수 합) 하나예요. 유전적 다양성이나 생태계다양성까지 쓰려면 조사한 사례에서 근거를 찾아 적어요." },
+        label:"이유 — 그 사실이 왜 ‘생물다양성이 줄었다’는 뜻인가요? 아래 셋 가운데 하나를 골라 한 문장으로 이어요. ① 종다양성 — 생물의 종류가 줄었다 ② 유전적 다양성 — 같은 종 안의 다양함이 줄었다 ③ 생태계다양성 — 생물이 사는 환경의 종류가 줄었다. 예: ‘토종 물고기가 사라져서 생물의 종류가 줄었다. 그래서 종다양성이 줄었다.’" },
       /* ver.3(2026-09-07 발주자 결정): 산출물은 카드 뉴스 / 만화 두 종류, 장·컷 수는 모둠 인원에
          맞춰 4·5·6 가운데 고른다(1인 1장·컷). rerender 가 붙은 선택은 고르면 화면을 다시 그려
          장·컷 번호 목록과 예시 문구를 맞춘다. 밑그림 PPT 는 deck.build 가 이 값들로 만든다. */
@@ -7611,24 +7613,6 @@ SIM.alien = {
       chart.cursor = fr.x; paint();
     };
     chartCv.__repaint = function(){ chart.draw(); };
-    /* 여기에도 진행 가드가 없었다. ▶ 를 누르기 전이나 도중에 담으면 그리다 만 그래프가
-       들어가고, 진행률은 그림의 존재만 보므로 다 한 것처럼 찬다(2026-08-26). */
-    var btnAG = el("button", { class:"btn sm attach", type:"button", text:"활동지에 첨부",
-      onclick:function(){
-        if (!reached) return;
-        Capture.fromCanvas(m.id, "c_graph", chartCv, "개체수 변화 그래프");
-      }});
-    var whyAG = attachGate(btnAG, function(){
-      if (reached) return true;
-      return (st.y <= 0)
-        ? "아직 지켜보기 전이에요. ▶ 시작을 눌러 " + Alien.YEARS + "년까지 다 본 뒤에 담아요."
-        : "아직 " + Math.round(st.y) + "년이에요. " + Alien.YEARS + "년까지 다 지켜본 뒤에 담아요.";
-    });
-    chartPane.appendChild(el("div", { class:"row", style:"margin-top:10px" }, [
-      btnAG,
-      attachHelpBtn(m, "c_graph", "▶ 시작을 눌러 " + Alien.YEARS + "년이 다 흐른 뒤에 눌러요. 중간에 누르면 그리다 만 그래프가 담겨요.")
-    ]));
-    chartPane.appendChild(whyAG);
     /* 무엇을 볼지 짚어 준다(2026-09-01 발주자 지적 — "학생이 해석할 감을 못 잡는다").
        **답은 적지 않는다.** 볼 곳만 짚는다. 이 세 줄이 활동지의 주장·증거·이유로 이어진다.
        프로그램이 결과를 먼저 해석하지 않는다는 원칙(SPEC 5장)을 지킨 것이다. */
@@ -7646,9 +7630,13 @@ SIM.alien = {
 
     chartPane.appendChild(el("p", { class:"model-note", style:"margin-top:8px",
       text:"개체수는 상대적인 마리 수예요. 실제 종이나 지역의 값이 아니에요." }));
+    /* ④ 화면에 있던 안내를 여기로 옮겼다(2026-09-07). 모형이 있는 자리에 있어야 맞다 */
+    chartPane.appendChild(el("p", { class:"model-note", style:"margin-top:6px",
+      text:"이 모형은 생물다양성 세 측면 가운데 종다양성(토종 종 수와 토종 개체수)만 다뤄요. 유전적 다양성과 생태계다양성은 교과서 30쪽 조사 자료로 보충해요." }));
+    chartPane.appendChild(el("p", { class:"model-note", style:"margin-top:6px",
+      text:"여기서 본 것은 예상을 확인하는 자료예요. 활동지 ④ 논증에는 우리 지역에서 직접 조사한 사례와 찾아본 자료를 근거로 써요." }));
 
     function paint(){
-      if (typeof whyAG !== "undefined") whyAG.__gatePaint();
       drawRiver(scene, st, ph);
       drawShare(share, st);
       sF.set(Math.round(st.F) + " 마리");
@@ -7706,75 +7694,6 @@ SIM.alien = {
     reset();
     setTimeout(repaintAllSketches, 0);
     return wrap;
-  },
-
-  /* ④ 조기 제거 vs 늦은 제거 나란히 비교 */
-  record: function(m, d){
-    var pane = el("div", { class:"pane" });
-    pane.appendChild(el("h4", { text:"나란히 비교 — 조기 제거와 늦은 제거" }));
-    /* 세 선은 제거 시점만 다르고 나머지는 모두 같다. 화면에 적어 두지 않으면 학생이
-       ③에서 자기가 설정한 조건의 그래프로 오해한다 */
-    pane.appendChild(el("p", { class:"small muted", style:"margin:0 0 8px",
-      text:"세 선 모두 포식형 · 처음 5마리 · 제거 강도 60%로 같아요. 제거를 시작한 시점만 달라요. ③에서 내가 설정한 조건과는 상관없이 정해진 그래프예요." }));
-    var a = el("canvas", { class:"chart", "data-repaint":"1" });
-    pane.appendChild(a);
-
-    function runTo(kind, seed, after, rate){
-      var s = Alien.newState(kind, seed, after, rate), out = [];
-      while (s.y < Alien.YEARS) { Alien.step(s); out.push({ y:s.y, F:s.F, P:s.P, A:s.A }); }
-      return out;
-    }
-    var early = runTo("predator", 5, 2, 0.6);
-    var late  = runTo("predator", 5, 8, 0.6);
-    var none  = runTo("predator", 5, 99, 0);
-
-    /* ③ 에서 하늘색은 토종 물고기, 빨강은 외래생물을 뜻했다. 여기서 같은 색을 시나리오에
-       다시 쓰면 빨간 선을 외래생물로 읽는다. 종 색과 겹치지 않는 색을 쓴다 */
-    var series = [
-      { key:"none", label:"제거하지 않음", color:"#94a3b8", dash:[3,3] },
-      { key:"early", label:"조기 제거(방생 2년 뒤)", color:"#ea580c" },
-      { key:"late", label:"늦은 제거(방생 8년 뒤)", color:"#7c3aed" }
-    ];
-    var chart = new SimChart(a, {
-      x:{ label:"시간", unit:"년", min:0, max:Alien.YEARS },
-      y:{ label:"토종 물고기", unit:"마리", min:0, max:60 },
-      series:series,
-      events:[{ x:Alien.RELEASE_Y, label:"방생", color:AC.A }]
-    });
-    /* 토종 포식자는 따로 본다 — 토종 물고기가 돌아와도 포식자는 잘 돌아오지 않는다 */
-    pane.appendChild(el("p", { class:"small muted", style:"margin-top:12px", text:"토종 포식자" }));
-    var b = el("canvas", { class:"chart", "data-repaint":"1" });
-    pane.appendChild(b);
-    var chart2 = new SimChart(b, {
-      x:{ label:"시간", unit:"년", min:0, max:Alien.YEARS },
-      y:{ label:"토종 포식자", unit:"마리", min:0, max:14 },
-      series:series.map(function(s){ return { key:s.key, label:s.label, color:s.color, dash:s.dash }; }),
-      events:[{ x:Alien.RELEASE_Y, label:"방생", color:AC.A }]
-    });
-    for (var i = 0; i < early.length; i++) {
-      chart.push(early[i].y, { early:early[i].F, late:late[i].F, none:none[i].F });
-      chart2.push(early[i].y, { early:early[i].P, late:late[i].P, none:none[i].P });
-    }
-    a.__repaint = function(){ chart.draw(); };
-    b.__repaint = function(){ chart2.draw(); };
-    pane.appendChild(el("div", { class:"row", style:"margin-top:10px" }, [
-      el("button", { class:"btn sm attach", type:"button", text:"이 비교 그래프로 바꿔 첨부", onclick:function(){
-        Capture.fromCanvases(m.id, "c_graph", [a, b], "조기 제거와 늦은 제거 비교", ["토종 물고기", "토종 포식자"]);
-      }})
-    ]));
-    /* 이 단추는 ③의 ‘활동지에 첨부’와 같은 칸을 채운다. 이름이 달라 다른 칸에 담기는 줄
-       알기 쉬우므로, 어느 칸에 들어가는지를 단추 아래에 적어 둔다(HANDOFF 7-6). */
-    pane.appendChild(el("p", { class:"small muted", style:"margin-top:6px",
-      text:"이 단추를 누르면 활동지의 ‘개체수 변화 그래프’ 칸이 이 비교 그래프로 바뀌어요. ③ 가상 탐구의 ‘활동지에 첨부’와 같은 칸이에요." }));
-    pane.appendChild(el("p", { class:"small muted", style:"margin-top:6px",
-      text:"여기서 주황·보라 선은 생물이 아니라 ‘언제 제거했는지’를 뜻해요. ③ 화면의 색(하늘색 토종 물고기, 빨강 외래생물)과는 뜻이 달라요." }));
-    pane.appendChild(el("p", { class:"model-note", style:"margin-top:8px",
-      text:"이 모형은 생물다양성 세 측면 가운데 종다양성(토종 종 수와 토종 개체수)만 다뤄요. 유전적 다양성과 생태계다양성은 교과서 30쪽 조사 자료로 보충해요." }));
-    /* 교과서 30쪽 3번의 근거는 직접·간접 조사 자료다. 이 그래프를 그 근거로 착각하지 않게 한다 */
-    pane.appendChild(el("p", { class:"model-note", style:"margin-top:6px",
-      text:"이 그래프는 논증을 연습하기 위한 자료예요. 교과서 30쪽 3번 논증에는 우리 지역에서 직접 조사한 사례와 찾아본 자료를 근거로 써요." }));
-    setTimeout(repaintAllSketches, 0);
-    return pane;
   }
 };
 
