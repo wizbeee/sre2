@@ -24,15 +24,18 @@
   [범위]
   이 파일은 통합본(과학탐구실험2_가상탐구스테이션.html)과 별개로 혼자 선다.
   허브·활동지·PDF·교사 모드가 코드에 아예 없다.
-  놀이기구도 롤러코스터 하나뿐이다 — 용수철 진동·드롭 타워·회전 그네·제자리 회전은
-  코드에서 지웠다(숨긴 것이 아니다). 6차시 수행평가 장치가 바이킹(단진자)이라
+  놀이기구는 **롤러코스터와 자이로드롭(드롭 타워) 둘뿐**이다 — 용수철 진동·회전 그네·
+  제자리 회전은 코드에서 지웠다(숨긴 것이 아니다). 6차시 수행평가 장치가 바이킹(단진자)이라
   교과서 35쪽 용수철의 '최고점에서 연직 아래'를 그대로 옮겨 적으면 틀리기 때문이다.
+  자이로드롭은 2026-09-11 발주자 지시로 넣었고 계산 없이 보기만 한다
+  — 가속도 화살표가 자유 낙하와 제동 구간에서 뒤집히는 것을 보여 주는 것이 목적이다.
 
   [제약]
   외부 파일을 하나도 쓰지 않는다. 인터넷 없이 더블클릭으로 열린다.
   ES5 문법만 쓴다 — 오래된 학교 PC 브라우저에서 스크립트가 통째로 죽지 않게 한다.
-  저장하지 않는다. 채점하지 않는 시간이고, 저장이 막힌 학교 PC 에서 스크립트가
-  멈추는 길을 아예 없앤다.
+  자동 저장은 한다(Store). 다만 localStorage 접근은 전부 try-catch 로 감싸
+  저장이 막힌 학교 PC 에서도 스크립트가 멈추지 않는다.
+  조별 PC 를 여러 반이 쓰므로, 남은 것이 있으면 열 때 「이어서 해요 / 새로 시작해요」를 묻는다.
 -->
 <style>
 /* ==========================================================================
@@ -742,7 +745,7 @@ table.tbl .blank.s{width:2.8em}
       <section class="stepsec on">
         <div class="stack">
           <div class="pane">
-            <h4>오늘은 이렇게 합니다</h4>
+            <h4>오늘은 이렇게 해요</h4>
             <ol class="stack" style="gap:6px; font-size:1.02rem">
               <li><b>오늘 할 일</b> — 지금 보고 있는 화면이에요</li>
               <li><b>가속도란</b> — 무엇인지 다시 확인해요</li>
@@ -1008,7 +1011,7 @@ table.tbl .blank.s{width:2.8em}
           <div class="stack" id="drop-qs" style="display:none">
             <div class="pane">
               <h4>무엇을 볼까요</h4>
-              <p>막대를 끌어 <b>대기 → 자유 낙하 → 제동 → 정지</b> 를 차례로 지나가 보세요.</p>
+              <p>막대를 끌어 <b>대기 → 자유 낙하 → 제동 → 정지</b>를 차례로 지나가 보세요.</p>
               <div class="notice" style="margin-top:10px">
                 화면 왼쪽 위에 지금 어느 구간인지 적혀 있어요.<br>
                 <b>초록 화살표(운동 방향)</b>와 <b>파란 화살표(가속도)</b>가
@@ -1167,7 +1170,7 @@ table.tbl .blank.s{width:2.8em}
               </table>
               <div class="cr">→ 16.9</div>
               <div class="why">
-                <b>왜 0.06 을 버리나요?</b>
+                <b>왜 소수 둘째 자리를 적지 않나요?</b>
                 12.3 은 소수 둘째 자리를 <b>모르는</b> 값이에요.
                 모르는 수를 더했으니 결과의 그 자리도 모르는 게 당연해요.
                 그런데 16.86 이라고 적으면 그 자리까지 <b>안다고 우기는</b> 셈이에요.
@@ -1278,7 +1281,7 @@ table.tbl .blank.s{width:2.8em}
               </div>
 
               <div class="q">
-                <div class="qh">2. 가로 <b>2.5 m</b>, 세로 <b>3.42 m</b> 인 직사각형의 넓이는?
+                <div class="qh">2. 가로 <b>2.4 m</b>, 세로 <b>3.15 m</b> 인 직사각형의 넓이는?
                   <span class="muted small">(유효숫자를 맞춰 적어요)</span></div>
                 <div class="row" style="align-items:flex-end">
                   <div class="field" style="flex:1 1 150px"><label for="p1v">넓이 (m²)</label>
@@ -1301,7 +1304,7 @@ table.tbl .blank.s{width:2.8em}
               </div>
 
               <div class="q">
-                <div class="qh">4. 위에서 구한 <b>4.40 ± 0.10 cm</b> 를 <b>m</b> 로 바꾸면?</div>
+                <div class="qh">4. <b>3번에서 구한 값</b>을 <b>m</b> 로 바꾸면?</div>
                 <div class="row" style="align-items:flex-end">
                   <div class="field" style="flex:1 1 130px"><label for="p4v">값 (m)</label>
                     <input id="p4v" class="input" type="text" inputmode="decimal" placeholder="예: 0.0000"></div>
@@ -1323,7 +1326,7 @@ table.tbl .blank.s{width:2.8em}
 
           <div class="notice">
             다섯 조각으로 나눠서 해요. <b>계산은 스스로 해요.</b> 화면이 대신 계산해 주지 않아요.<br>
-            <b>① ~ ③ 은 화면을 보며 관찰만 해요.</b> 값을 적어 쓰는 것은 ④ 부터예요.
+            <b>① ~ ③ 에서 적은 것은 계산에 쓰지 않아요.</b> 계산에 쓰는 값은 ④ 부터예요.
           </div>
           <!-- 마이크로비트 사용 설명서 — 단계 ⑤ 의 맨 위에 둔다.
                ① 가만히 놓기부터 이미 마이크로비트를 쓰기 때문에,
@@ -1405,7 +1408,7 @@ table.tbl .blank.s{width:2.8em}
 
           <div class="piece">
             <div class="ph"><span class="pn">①</span><span class="pt">가만히 놓기</span><span class="pm">2분</span></div>
-            <p>책상에 가만히 놓고 값을 보세요. 얼마입니까?</p>
+            <p>책상에 가만히 놓고 값을 보세요. 얼마인가요?</p>
             <div class="row" style="margin-top:9px; align-items:flex-end">
               <div class="field" style="flex:1 1 180px"><label for="m1">센서값</label>
                 <input id="m1" class="input" type="text" inputmode="decimal" placeholder="잠깐 지켜보다 한 값을"></div>
@@ -1432,14 +1435,14 @@ table.tbl .blank.s{width:2.8em}
           <div class="piece">
             <div class="ph"><span class="pn">②</span><span class="pt">직선으로 밀기</span><span class="pm">3분</span></div>
             <p>책상 위에서 직선으로 밀었다 세워 보세요.</p>
-            <p style="margin-top:6px"><b>빨라질 때와 느려질 때 값이 어떻게 달랐습니까?</b></p>
+            <p style="margin-top:6px"><b>빨라질 때와 느려질 때 값이 어떻게 달랐나요?</b></p>
             <textarea id="m2" class="input" style="margin-top:8px" placeholder="여기에 적어요."></textarea>
           </div>
 
           <div class="piece">
             <div class="ph"><span class="pn">③</span><span class="pt">팔로 돌리기</span><span class="pm">3분</span></div>
             <p>손에 쥐고 팔을 뻗어 원을 그리며 돌려 보세요. 천천히 / 빠르게.</p>
-            <p style="margin-top:6px"><b>어느 쪽이 값이 컸습니까?</b></p>
+            <p style="margin-top:6px"><b>어느 쪽이 값이 컸나요?</b></p>
             <textarea id="m3" class="input" style="margin-top:8px" placeholder="여기에 적어요."></textarea>
             <p class="notice warn" style="margin-top:10px">
               <b>안전</b> — 손목끈이나 케이스로 고정하고, 팔 간격을 확보한 뒤 돌려요.
@@ -1486,8 +1489,8 @@ table.tbl .blank.s{width:2.8em}
               <div class="tblwrap">
                 <table class="tbl">
                   <tr><th>무엇을 하나</th><th>불확정도가 어떻게 되나</th></tr>
-                  <tr><td>센서값을 읽는다</td><td>디지털이라 <b>± 1 mg</b> 예요 (최소 단위)</td></tr>
-                  <tr><td>두 번 재서 평균</td><td>평균은 <b>그대로</b> 예요 → 아직 ± 1 mg</td></tr>
+                  <tr><td>센서값을 읽는다</td><td>디지털이라 <b>± 1 mg</b> 이에요 (최소 단위)</td></tr>
+                  <tr><td>두 번 재서 평균</td><td>평균은 <b>그대로</b>예요 → 아직 ± 1 mg</td></tr>
                   <tr><td>− 1000</td><td>1000 은 측정값이 아니라 <b>정한 값</b>이라 늘지 않아요 → ± 1 mg</td></tr>
                   <tr><td>× 9.80 ÷ 1000</td><td>상수 배율이라 <b>같은 배율</b>로 바뀌어요</td></tr>
                 </table>
@@ -1615,7 +1618,7 @@ table.tbl .blank.s{width:2.8em}
               <path d="M940 488 L951 462 L929 462 Z" fill="#1a5099"/>
               <text x="968" y="292" font-size="26" font-weight="800" fill="#1a5099">줄</text>
             </svg>
-            <p style="font-size:1.02rem; margin-top:12px"><b>바이킹 장치로 ④ ~ ⑤ 와 같은 절차를 합니다.</b></p>
+            <p style="font-size:1.02rem; margin-top:12px"><b>바이킹 장치로 ④ ~ ⑤ 와 같은 절차를 해요.</b></p>
             <p class="small muted" style="margin-top:6px">오늘 익힌 재는 방법과 계산이 그대로 쓰여요.</p>
           </div>
 
@@ -1699,7 +1702,7 @@ function fitCanvas(cv, opts){
 var G = 9.8;
 
 function arrow(g, x, y, dx, dy, color, w){
-  var len = Math.hypot(dx, dy);
+  var len = Math.sqrt((dx)*(dx) + (dy)*(dy));
   if (len < 0.6) return;
   var ux = dx / len, uy = dy / len, head = Math.min(len * 0.42, w * 3.4);
   g.strokeStyle = color; g.fillStyle = color; g.lineWidth = w; g.lineCap = "round";
@@ -1744,17 +1747,17 @@ function buildCoaster(){
 
 function prepTrack(tr){
   var p = tr.pts, n = p.length, i, a, b, c, T = [], K = [], N = [], s = [0], d;
-  for (i = 1; i < n; i++) s.push(s[i-1] + Math.hypot(p[i].x - p[i-1].x, p[i].y - p[i-1].y));
+  for (i = 1; i < n; i++) s.push(s[i-1] + Math.sqrt((p[i].x - p[i-1].x)*(p[i].x - p[i-1].x) + (p[i].y - p[i-1].y)*(p[i].y - p[i-1].y)));
   for (i = 0; i < n; i++) {
     a = p[Math.max(0, i - 1)]; c = p[Math.min(n - 1, i + 1)];
-    d = Math.hypot(c.x - a.x, c.y - a.y) || 1;
+    d = Math.sqrt((c.x - a.x)*(c.x - a.x) + (c.y - a.y)*(c.y - a.y)) || 1;
     T.push({ x:(c.x - a.x) / d, y:(c.y - a.y) / d });
     N.push({ x:-T[i].y, y:T[i].x });          /* 접선을 반시계로 90° 돌린 방향 */
   }
   for (i = 0; i < n; i++) {
     a = p[Math.max(0, i - 1)]; b = p[i]; c = p[Math.min(n - 1, i + 1)];
     var cross = (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
-    var ab = Math.hypot(b.x - a.x, b.y - a.y), bc = Math.hypot(c.x - b.x, c.y - b.y), ca = Math.hypot(c.x - a.x, c.y - a.y);
+    var ab = Math.sqrt((b.x - a.x)*(b.x - a.x) + (b.y - a.y)*(b.y - a.y)), bc = Math.sqrt((c.x - b.x)*(c.x - b.x) + (c.y - b.y)*(c.y - b.y)), ca = Math.sqrt((c.x - a.x)*(c.x - a.x) + (c.y - a.y)*(c.y - a.y));
     var den = ab * bc * ca;
     K.push(den > 1e-9 ? 2 * cross / den : 0);   /* 부호 있는 곡률 */
   }
@@ -1762,7 +1765,7 @@ function prepTrack(tr){
   return tr;
 }
 
-/* 놀이기구 — 롤러코스터 하나뿐이다 */
+/* 놀이기구 — 롤러코스터와 자이로드롭 둘 */
 var Rides = {};
 
 Rides.coaster = {
@@ -1991,7 +1994,7 @@ Rides.coaster = {
          0 인 곳에서는 그리지 않는다 — 가속도가 진짜로 0 이기 때문이다. */
     var k = Math.min(W, H) * 0.0075;
     var aw = Math.max(3, W * 0.008);
-    var sp2 = Math.hypot(f.vx, f.vy) || 1;
+    var sp2 = Math.sqrt((f.vx)*(f.vx) + (f.vy)*(f.vy)) || 1;
     var tx2 = f.vx / sp2, ty2 = -f.vy / sp2;      /* 화면에서 나아가는 쪽 */
     var ux2 = ty2, uy2 = -tx2;                    /* 그 왼쪽 — 차량 지붕 쪽 */
     var bx = cxp + ux2 * ch * 0.95, by = cyp + uy2 * ch * 0.95;
@@ -2510,13 +2513,17 @@ var Lesson = {
       this.body.onclick = function(){ self.fwd(); };
     }
     this.keyHandler = function(e){
+      /* 타이머 큰 화면이 덮고 있으면 키를 넘기지 않는다 — 뒤에 가려진 장이 넘어갔다 */
+      var tm = $("timer-root");
+      if (tm && tm.className.indexOf("on") >= 0) return;
       if (e.keyCode === 27) self.close();
       else if (e.keyCode === 39 || e.keyCode === 34 || e.keyCode === 32) { e.preventDefault(); self.fwd(); }
       else if (e.keyCode === 37 || e.keyCode === 33) { e.preventDefault(); self.back(); }
     };
     document.addEventListener("keydown", this.keyHandler, false);
     this.root.className = "open show-ui";
-    this.go(0);
+    /* 닫았던 자리에서 다시 연다. 처음 열 때는 idx 가 0 이라 전과 같다. */
+    this.go(this.idx);
     this.armUI();
   },
 
@@ -2801,6 +2808,14 @@ function lesson5Deck(){
               {t:"2.5 는 2개, 3.42 는 3개 → 2개에 맞춰요", k:"meta"},
               {t:"→  8.6", k:"body"} ] },
 
+    /* 학생 화면의 「계산할 때 — 불확정도는 어떻게 되나」 표를 그대로 옮긴 장.
+       네 줄 다 6차시 수행평가에서 쓴다 — 4번(뺄셈) · 5번(평균) · 6·7번(상수 배율) · 8번(몇 배). */
+    { accent:A, step:"④ 측정값 적는 방법", title:"계산할 때 — 불확정도는 어떻게 되나",
+      lines:[ {t:"더하기 · 빼기 → 절대 불확정도를 그대로 더해요", k:"body"},
+              {t:"평균 → 그대로예요", k:"body"},
+              {t:"상수를 곱하거나 나누기 → 같은 배율로 커지거나 작아져요", k:"body"},
+              {t:"몇 배인지 구하기 → 붙이지 않아요", k:"body"} ] },
+
     { accent:A, step:"④ 측정값 적는 방법", title:"더하기 · 빼기에서 불확정도",
       lines:[ {t:"절대 불확정도를 그대로 더해요", k:"label"},
               {t:"(20 ± 0.1) cm  −  (10 ± 0.1) cm", k:"body"},
@@ -2865,7 +2880,20 @@ function lesson5Deck(){
               {t:"× 9.80 ÷ 1000 → 상수 배율이라 같은 배율로 바뀌어요", k:"body"},
               {t:"", k:"body"},
               {t:"1 × 9.80 ÷ 1000 = 0.0098  →  ± 0.01 m/s²", k:"body"},
-              {t:"값과 불확정도는 소수점 끝자리를 맞춰요 — 가속도가 소수 둘째 자리면 0.01", k:"meta"} ] }
+              {t:"값과 불확정도는 소수점 끝자리를 맞춰요 — 가속도가 소수 둘째 자리면 0.01", k:"meta"} ] },
+
+    /* ─────────── ⑥ 정리 ───────────
+       학생 화면의 「오늘 한 것」·「다음 시간」을 그대로 옮겼다.
+       바이킹 장치 구성도는 그림이라 이 화면에 못 싣는다 — 학생 화면으로 보여 준다. */
+    { accent:B, step:"⑥ 정리", title:"오늘 한 것",
+      lines:[ {t:"운동 보기 — 놀이기구에서 가속도의 크기와 방향을 봤어요", k:"body"},
+              {t:"직접 재기 — 마이크로비트로 가만히·직선·회전·흔들기를 재 봤어요", k:"body"},
+              {t:"계산하기 — 센서값을 m/s² 으로 바꾸고 불확정도를 붙였어요", k:"body"} ] },
+
+    { accent:B, step:"⑥ 정리", title:"다음 시간",
+      lines:[ {t:"바이킹 장치로 ④ ~ ⑤ 와 같은 절차를 해요", k:"label"},
+              {t:"오늘 익힌 재는 방법과 계산이 그대로 쓰여요", k:"body"},
+              {t:"장치 그림은 학생 화면 ⑥ 에 있어요", k:"meta"} ] }
   ];
 }
 
@@ -2943,6 +2971,10 @@ var Store = {
         }
       }
     }
+    /* 값만 넣으면 input 이벤트가 안 나서 이름표와 ⑤ 식의 평균 자리가 옛 상태로 남는다.
+       wipe() 도 같은 두 줄을 부른다. */
+    whoami();
+    if (typeof syncMean === "function") syncMean();
   },
 
   /* 너무 자주 쓰지 않게 잠깐 모았다가 한 번에 */
@@ -3031,7 +3063,7 @@ var Store = {
 
 var STEPS = [
   { g:"①", name:"오늘 할 일",        min:1,  todo:"오늘 무엇을 하는지 확인해요." },
-  { g:"②", name:"가속도란",          min:6,  todo:"가속도가 무엇인지 다시 확인해요. (교과서 32~33쪽)" },
+  { g:"②", name:"가속도란",          min:6,  todo:"가속도가 무엇인지 다시 확인해요. (교과서 32·33·36쪽)" },
   { g:"③", name:"놀이기구 살펴보기", min:7,  todo:"놀이기구에서 가속도의 방향과 크기를 봐요. (교과서 32·37쪽)" },
   { g:"④", name:"측정값 적는 방법",  min:9,  todo:"유효숫자와 불확정도 규칙을 연습해요." },
   { g:"⑤", name:"직접 재보기",       min:22, todo:"마이크로비트로 직접 재고 계산해요." },
@@ -3188,6 +3220,10 @@ function setRide(key){
     (function(btn){
       btn.onclick = function(){
         RIDES.drop.params.h = parseInt(btn.getAttribute("data-h"), 10);
+        /* 고른 단추로 표시를 옮긴다. setRide 는 놀이기구 탭만 다시 칠한다. */
+        var k;
+        for (k = 0; k < h.length; k++) h[k].className = "seg-btn";
+        btn.className = "seg-btn on";
         setRide("drop");
       };
     })(h[j]);
@@ -3444,11 +3480,13 @@ $("p0b").onclick = makeCheck({
   test: function(){ return numOf($("p0v").value) === 4; }
 });
 
-/* 2. 2.5 × 3.42 = 8.55 → 유효숫자가 가장 적은 값(2.5, 두 자리)에 맞춘다 → 8.6 m² */
+/* 2. 2.4 × 3.15 = 7.56 → 유효숫자가 가장 적은 값(2.4, 두 자리)에 맞춘다 → 7.6 m²
+      바로 위 예제(2.5 × 3.42)와 다른 숫자를 쓴다 — 같으면 답이 같은 화면에 이미 적혀 있다.
+      6차시 모범답안 값과도 겹치지 않는다. */
 $("p1b").onclick = makeCheck({
   /* 「맞추기」 줄만 밝히면 학생이 채울 빈칸이 있는 「기준」 줄은 꺼진 채 남는다 */
-  fb:"p1f", rows:["r-sf-add","r-sf-mul"], answer:"8.6 m²",
-  test: function(){ return near(numOf($("p1v").value), 8.6, 0.005); }
+  fb:"p1f", rows:["r-sf-add","r-sf-mul"], answer:"7.6 m²",
+  test: function(){ return near(numOf($("p1v").value), 7.6, 0.005); }
 });
 
 /* 3. 최소 눈금 0.1 cm → ±0.05 cm. 빼기라 두 불확정도를 그대로 더한다 → ±0.10 cm.
@@ -3517,6 +3555,8 @@ $("m5b").onclick = function(){
   var m = numOf($("m4m").value), v = numOf($("m5v").value), u = numOf($("m5u").value);
   var msg = [];
   if (isNaN(v)) { say("m5f", "no", "가속도 값을 적어요."); return; }
+  if (isNaN(u)) { say("m5f", "no", "불확정도도 적어요."); return; }
+  if (isNaN(m)) { say("m5f", "no", "④ 의 평균을 먼저 적어요."); return; }
   if (!isNaN(m)) {
     if (m < 1000) msg.push("④ 의 평균이 1000 보다 작아요. 센서값을 다시 확인해요.");
     else if (!near(v, (m - 1000) * 9.80 / 1000, 0.02)) {
