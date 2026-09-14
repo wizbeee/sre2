@@ -1412,7 +1412,7 @@ table.tbl .blank.s{width:2.8em}
             <p>책상에 가만히 놓고 값을 보세요. 얼마입니까?</p>
             <div class="row" style="margin-top:9px; align-items:flex-end">
               <div class="field" style="flex:1 1 180px"><label for="m1">센서값</label>
-                <input id="m1" class="input" type="text" inputmode="decimal" placeholder="예: 1000"></div>
+                <input id="m1" class="input" type="text" inputmode="decimal" placeholder="잠깐 지켜보다 한 값을"></div>
             </div>
             <p class="fb" id="m1f"></p>
             <div class="ask" style="margin-top:10px"><b>생각해 볼 것</b>움직이지 않는데 왜 0이 아닐까요?</div>
@@ -1424,6 +1424,13 @@ table.tbl .blank.s{width:2.8em}
               우리가 쓰는 마이크로비트에는 그 설정이 없어요.</span>
             </div>
             <div class="big mid" style="margin-top:10px">그래서 <span class="u">1000</span> 을 손으로 뺍니다</div>
+            <p class="small muted" style="margin-top:7px">
+              중력 때문에 생기는 값이에요 — 중력 가속도 <b>1 g 이 1000 mg</b> 이거든요.
+              숫자가 한자리에 머물지 않고 <b>조금씩 오르내려요.</b>
+              아주 작은 떨림까지 센서가 잡아내거든요.
+              잠깐 지켜보면 <b>1000 언저리</b>에서 오르내리는 것이 보여요.
+              우리는 <b>1000 으로 약속하고</b> 빼요.
+            </p>
           </div>
 
           <div class="piece">
@@ -2845,8 +2852,10 @@ function lesson5Deck(){
       lines:[ {t:"④ 에서 구한 두 측정값의 평균을 써요", k:"label"},
               {t:"( 평균 − 1000 ) × 9.80 ÷ 1000 = ______ m/s²", k:"body"},
               {t:"", k:"body"},
-              {t:"센서는 가만히 있어도 1000 mg 을 읽어요", k:"label"},
-              {t:"그래서 1000 을 빼야 실제 가속도가 돼요", k:"body"} ] },
+              {t:"센서는 가만히 있어도 1000 mg 쯤을 읽어요", k:"label"},
+              {t:"중력 때문이에요 — 1 g 이 1000 mg 이거든요", k:"meta"},
+              {t:"그래서 1000 을 빼야 실제 가속도가 돼요", k:"body"},
+              {t:"숫자는 조금씩 오르내려요 — 작은 떨림까지 잡아내거든요", k:"meta"} ] },
 
     { accent:B, step:"⑤ 직접 재보기", title:"이 계산에서 불확정도는",
       lines:[ {t:"센서값을 읽어요 → 디지털이라 ± 1 mg", k:"body"},
@@ -3475,7 +3484,7 @@ function say(id, cls, text){
 $("m1").onblur = function(){
   var v = numOf(this.value);
   if (isNaN(v)) { say("m1f", "", ""); return; }
-  if (v < 800 || v > 1200) say("m1f", "no", "가만히 놓았을 때 보통 1000 근처예요. 값을 다시 확인해요.");
+  if (v < 800 || v > 1200) say("m1f", "no", "가만히 놓으면 보통 1000 언저리 값이 나와요. 다시 확인해요.");
   else say("m1f", "ok", "적었어요.");
 };
 
