@@ -1130,6 +1130,35 @@ table.tbl .blank.s{width:2.8em}
             </div>
           </div>
 
+          <!-- 2-2. 우연 오차와 계통 오차 -->
+          <div class="pane">
+            <h4>흔들리는 것과 치우친 것 <span class="hnote">오차는 두 가지예요</span></h4>
+            <p class="small muted" style="margin-bottom:10px">
+              같은 ± 를 붙여도 <b>어긋나는 방식이 다릅니다.</b> 어느 쪽인지 알아야 줄일 수 있어요.
+            </p>
+            <div class="tblwrap">
+              <table class="tbl">
+                <tr><th style="width:22%">&nbsp;</th><th>우연 오차</th><th>계통 오차</th></tr>
+                <tr id="r-err-how"><td>어떻게 생기나</td>
+                    <td>잴 때마다 값이 <b>조금씩 달라져요</b></td>
+                    <td>잴 때마다 <b>늘 같은 쪽으로</b> 어긋나요</td></tr>
+                <tr id="r-err-fix"><td>줄이는 방법</td>
+                    <td><input class="blank" type="text" aria-label="우연 오차를 줄이는 방법"></td>
+                    <td><input class="blank" type="text" aria-label="계통 오차를 줄이는 방법"></td></tr>
+                <tr id="r-err-ex"><td>예시</td>
+                    <td>눈금 사이를 눈대중으로 읽을 때</td>
+                    <td>끝이 닳은 자 · 0 점이 안 맞은 저울</td></tr>
+              </table>
+            </div>
+            <div class="big mid" style="margin-top:12px">
+              여러 번 재서 <span class="u">줄어들면 우연</span>, <span class="u">안 줄어들면 계통</span>
+            </div>
+            <p class="small muted" style="margin-top:8px">
+              우연 오차는 위로도 아래로도 생겨서 여러 번 재면 서로 상쇄돼요.
+              계통 오차는 늘 한쪽이라 아무리 많이 재도 그대로 남아요 — <b>도구를 고쳐야</b> 없어져요.
+            </p>
+          </div>
+
           <!-- 3. 계산할 때 유효숫자 -->
           <div class="pane">
             <h4>계산할 때 — 유효숫자를 어디에 맞추나</h4>
@@ -2831,6 +2860,16 @@ function lesson5Deck(){
               {t:"± 최소 눈금의 절반   —   최소 눈금 0.1 cm 이면 ± 0.05 cm", k:"body"},
               {t:"센서 (디지털)", k:"label"},
               {t:"± 최소 단위 1   —   여러 번 재서 평균을 내도 줄지 않아요", k:"body"} ] },
+
+    /* 학생 화면 표의 **정답**이다. 학생은 이 화면을 보고 「줄이는 방법」 두 칸을 적는다. */
+    { accent:A, step:"④ 측정값 적는 방법", title:"흔들리는 것과 치우친 것",
+      lines:[ {t:"우연 오차 — 잴 때마다 값이 조금씩 달라져요", k:"label"},
+              {t:"줄이는 방법 : 여러 번 재서 평균을 내요", k:"ans"},
+              {t:"눈금 사이를 눈대중으로 읽을 때", k:"meta"},
+              {t:"계통 오차 — 늘 같은 쪽으로 어긋나요", k:"label"},
+              {t:"줄이는 방법 : 재는 도구를 고치거나 0 점을 맞춰요", k:"ans"},
+              {t:"끝이 닳은 자 · 0 점이 안 맞은 저울", k:"meta"},
+              {t:"여러 번 재서 줄어들면 우연, 안 줄어들면 계통", k:"body"} ] },
 
     { accent:A, step:"④ 측정값 적는 방법", title:"더하기 · 빼기 — 유효숫자",
       lines:[ {t:"소수점 자리수가 가장 적은 값에 맞춰요", k:"label"},
