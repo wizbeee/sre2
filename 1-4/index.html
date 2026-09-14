@@ -2458,6 +2458,18 @@ function lessonOverflows(box){
   return false;
 }
 
+/* 넘치기 **직전**인지 본다 — 키울 때만 쓴다.
+   경계까지 키워 두면 교실 빔프로젝터 해상도에 따라 한 줄이 더 내려가 넘친다.
+   실제로 1024×768 에서 2번 장이 그랬다(2026-09-14). */
+function lessonTight(box){
+  if (box.scrollHeight > box.clientHeight - 10) return true;
+  var cs = box.querySelectorAll(".ls-row .c"), i;
+  for (i = 0; i < cs.length; i++) {
+    if (cs[i].scrollHeight > cs[i].clientHeight - 10) return true;
+  }
+  return lessonOverflows(box);
+}
+
 function lessonFit(box, grow){
   var k = 1, next;
   box.style.setProperty("--ls-k", k);
@@ -2471,7 +2483,7 @@ function lessonFit(box, grow){
     while (k < 2) {
       next = Math.round((k + 0.05) * 100) / 100;
       box.style.setProperty("--ls-k", next);
-      if (lessonOverflows(box)) { box.style.setProperty("--ls-k", k); break; }
+      if (lessonTight(box)) { box.style.setProperty("--ls-k", k); break; }
       k = next;
     }
   }
@@ -2718,9 +2730,9 @@ function lesson5Deck(){
     /* ─────────── ② 가속도란 ─────────── */
     { accent:B, step:"② 가속도란", title:"오늘의 질문",
       lines:[ {t:"놀이기구의 가속도는 어떻게 변하고 어떻게 측정할 수 있을까?", k:"body"},
-              {t:"", k:"body"},
-              {t:"드롭 타워는 직선 경로를, 회전 그네는 원 궤도를 따라 움직이지만", k:"meta"},
-              {t:"두 놀이기구는 모두 가속도 운동을 한다.  — 교과서 32쪽", k:"meta"} ] },
+              {t:"드롭 타워는 직선 경로를, 회전 그네는 원 궤도를 따라 움직이지만", k:"body"},
+              {t:"두 놀이기구는 모두 가속도 운동을 한다.", k:"body"},
+              {t:"교과서 32쪽", k:"meta"} ] },
 
     { accent:B, step:"② 가속도란", title:"가속도란",
       lines:[ {t:"단위 시간당 속도의 변화량", k:"body"},
