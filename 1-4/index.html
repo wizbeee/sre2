@@ -10,8 +10,9 @@
   학생이 이 파일 하나를 열고 화면이 시키는 대로 따라가면 50분 수업이 끝난다.
   교사는 설명과 시범을 맡고, 자료가 순서·자료·연습을 담당한다.
 
-  단계 ① 오늘 할 일(3분) → ② 가속도란(5분) → ③ 놀이기구 살펴보기(5분)
-  → ④ 측정값 적는 방법(7분) → ⑤ 직접 재보기(25분) → ⑥ 정리(2분)
+  단계 ① 오늘 할 일(1분) → ② 가속도란(6분) → ③ 놀이기구 살펴보기(7분)
+  → ④ 측정값 적는 방법(9분) → ⑤ 직접 재보기(22분) → ⑥ 정리(2분)   합 47분
+  (실제 값은 STEPS 배열에 있다. 고칠 때 여기도 같이 고칠 것.)
 
   [테마]
   1-1·1-2·1-3·1-4 낱장본에서 실제로 쓰는 테마를 그대로 옮겼다.
@@ -1044,7 +1045,17 @@ table.tbl .blank.s{width:2.8em}
       <!-- ══════════ ④ 측정값 적는 방법 (9분) ══════════
            1학기 복습이다. 지도안: "규칙은 유도하지 말고 표로 준다."
            문장·예시는 전부 1학기에 실제로 쓴 자료에서 가져왔다(지어낸 것 없음).
-           예제 숫자는 6차시 바이킹 모범답안 값과 지도안 금지 목록을 모두 피했다. -->
+           예제 숫자는 6차시 바이킹 모범답안 값과 지도안 금지 목록을 모두 피했다.
+
+           ⚠ 곱하기·나누기의 불확정도 규칙을 **일부러 뺐다** (2026-09-14).
+              상대 불확정도라는 개념은 1학기에 배웠으므로 남겼고(정의식·표기 규칙),
+              **그것을 곱셈·나눗셈에 쓰는 규칙**만 뺐다. 그건 1학기에 안 배웠다.
+              · 여기만 새 내용이라 9분에 넣을 수 없다.
+              · 5차시·6차시 어디에도 쓰이지 않는다 — mg → m/s² 는 9.80 과 1000 이
+                정한 값이라 「상수를 곱하거나 나누기」 한 줄로 끝난다.
+              · 두면 오히려 틀린다. 학생이 하는 계산은 × 9.80 이라 곱하기인데,
+                「곱하기·나누기 → 상대로 바꿔 더한다」 줄이 있으면 그쪽을 집는다.
+              되살리려면 이 커밋 이전 판을 보라. 유효숫자의 곱셈은 그대로 남아 있다. -->
       <section class="stepsec">
         <div class="stack">
 
@@ -1110,6 +1121,9 @@ table.tbl .blank.s{width:2.8em}
             <div class="notice" style="margin-top:12px">
               <b>적을 때 —</b> 측정값과 절대 불확정도는 <b>소수점 끝자리를 맞춰요</b>.
               상대 불확정도는 유효숫자 <b>1개</b>로 적어요.
+              <span class="small muted" style="display:block; margin-top:6px">
+                상대 불확정도 (%) = 절대 불확정도 ÷ 측정값 × 100
+              </span>
             </div>
           </div>
 
@@ -1183,9 +1197,6 @@ table.tbl .blank.s{width:2.8em}
                 <tr id="r-addsub"><td>더하기 · 빼기</td>
                     <td>절대 불확정도를 그대로
                         <input class="blank s" type="text" aria-label="더하기 빼기에서 하는 일"></td></tr>
-                <tr id="r-muldiv"><td>곱하기 · 나누기</td>
-                    <td><input class="blank" type="text" aria-label="곱하기 나누기에서 무엇으로 바꾸나">
-                        로 바꿔 더한 뒤, 다시 절대 불확정도로 되돌려요</td></tr>
                 <tr id="r-mean"><td>평균</td><td>그대로예요</td></tr>
                 <tr id="r-scale"><td>상수를 곱하거나 나누기</td><td>같은 배율로 커지거나 작아져요</td></tr>
                 <tr id="r-ratio"><td>몇 배인지 구하기</td><td>붙이지 않아요</td></tr>
@@ -1209,28 +1220,6 @@ table.tbl .blank.s{width:2.8em}
                 <span class="step">가장 작게 : 19.9 − 10.1 &nbsp;=&nbsp; <b>9.8</b></span>
                 결과가 9.8 에서 10.2 까지 흔들리죠. 그게 바로 <b>10 ± 0.2</b> 예요.
                 두 흔들림이 <b>서로 반대쪽으로</b> 생길 수 있어서, 빼도 폭은 넓어져요.
-              </div>
-            </div>
-
-            <div class="big mid" style="margin-top:14px">
-              상대 불확정도 (%) = <span class="u">절대 불확정도</span> ÷ <span class="u">측정값</span> × 100
-            </div>
-
-            <div class="calc">
-              <div class="cl">곱하기 &nbsp; (4.0 ± 0.2) m × (5.0 ± 0.1) m</div>
-              <div class="cl">① 상대로 바꾸기 : 0.2 ÷ 4.0 = <b>5 %</b> &nbsp;/&nbsp; 0.1 ÷ 5.0 = <b>2 %</b></div>
-              <div class="cl">② 상대끼리 더하기 : 5 % + 2 % = <b>7 %</b></div>
-              <div class="cl">③ 값 계산 : 4.0 × 5.0 = <b>20</b></div>
-              <div class="cl">④ 절대로 되돌리기 : 20 × 0.07 = <b>1.4</b></div>
-              <div class="cr">→ 20 ± 1 m²</div>
-              <div class="why">
-                <b>왜 상대(%)로 바꿔서 더하나요?</b>
-                곱셈에서는 흔들림이 <b>비율로</b> 합쳐지기 때문이에요.
-                <span class="step">5 % 큰 값 × 2 % 큰 값 = 1.05 × 1.02 = <b>1.071</b></span>
-                약 <b>7 % 큰 값</b>이 되죠. 그래서 5 % 와 2 % 를 더한 거예요.
-                cm 와 m 처럼 단위가 다른 값끼리도 %끼리는 더할 수 있어요 —
-                이것이 절대값을 바로 더하지 않는 까닭이에요.
-                <span class="step">나누기도 똑같이 <b>더해요</b>. 빼지 않아요.</span>
               </div>
             </div>
           </div>
@@ -1304,20 +1293,7 @@ table.tbl .blank.s{width:2.8em}
               </div>
 
               <div class="q">
-                <div class="qh">4. <b>(3.0 ± 0.1) m</b> 와 <b>(2.0 ± 0.1) m</b> 를 곱하면?
-                  <span class="muted small">(상대 불확정도로 바꿔서 해요)</span></div>
-                <div class="row" style="align-items:flex-end">
-                  <div class="field" style="flex:1 1 130px"><label for="p3v">값 (m²)</label>
-                    <input id="p3v" class="input" type="text" inputmode="decimal" placeholder="예: 0.0"></div>
-                  <div class="field" style="flex:1 1 150px"><label for="p3u">불확정도 (m²)</label>
-                    <div class="pmwrap"><span class="pm">±</span><input id="p3u" class="input" type="text" inputmode="decimal" placeholder="예: 0.0"></div></div>
-                  <button id="p3b" class="btn" type="button">확인</button>
-                </div>
-                <p class="fb" id="p3f"></p>
-              </div>
-
-              <div class="q">
-                <div class="qh">5. 위에서 구한 <b>4.40 ± 0.10 cm</b> 를 <b>m</b> 로 바꾸면?</div>
+                <div class="qh">4. 위에서 구한 <b>4.40 ± 0.10 cm</b> 를 <b>m</b> 로 바꾸면?</div>
                 <div class="row" style="align-items:flex-end">
                   <div class="field" style="flex:1 1 130px"><label for="p4v">값 (m)</label>
                     <input id="p4v" class="input" type="text" inputmode="decimal" placeholder="예: 0.0000"></div>
@@ -1512,7 +1488,9 @@ table.tbl .blank.s{width:2.8em}
                 「평균」·「상수를 곱하거나 나누기」 줄을 그대로 쓴 거예요. (④ 측정값 적는 방법)
               </p>
               <div class="notice" style="margin-top:10px">
-                <b>자릿수를 맞춰요.</b> 불확정도가 0.01 이니 가속도도 <b>소수 둘째 자리</b>까지 적어요.
+                <b>자릿수를 맞춰요.</b> 값과 불확정도는 <b>소수점 끝자리를 맞춰</b> 적어요.
+                가속도를 소수 둘째 자리까지 적었다면 불확정도도 거기 맞춰
+                <b>0.0098 → 0.01</b> 로 맺어요.
                 계산기에 뜬 숫자를 그대로 옮겨 적으면 안 돼요.
               </div>
             </div>
@@ -2814,24 +2792,6 @@ function lesson5Deck(){
               {t:"→ 10 ± 0.2 cm", k:"body"},
               {t:"뺄셈에서도 더해요. 두 흔들림이 반대로 생길 수 있어 가장 나쁜 경우를 가정해요.", k:"meta"} ] },
 
-    { accent:A, step:"④ 측정값 적는 방법", title:"곱하기 · 나누기에서 불확정도",
-      lines:[ {t:"상대 불확정도로 바꿔서 해요", k:"label"},
-              {t:"상대 불확정도 (%) = 절대 불확정도 ÷ 측정값 × 100", k:"body"},
-              {t:"바꿔서 더한 뒤, 다시 절대 불확정도로 되돌려요", k:"body"},
-              {t:"더하기·빼기와 달리 절대값을 바로 더하면 안 돼요", k:"meta"} ] },
-
-    { accent:A, step:"④ 측정값 적는 방법", title:"함께 계산해 봐요 (1)",
-      lines:[ {t:"(4.0 ± 0.2) m × (5.0 ± 0.1) m", k:"label"},
-              {t:"① 상대로 바꾸기", k:"body"},
-              {t:"0.2 ÷ 4.0 = 5 %", k:"body"},
-              {t:"0.1 ÷ 5.0 = 2 %", k:"body"} ] },
-
-    { accent:A, step:"④ 측정값 적는 방법", title:"함께 계산해 봐요 (2)",
-      lines:[ {t:"② 상대끼리 더하기 : 5 % + 2 % = 7 %", k:"body"},
-              {t:"③ 값 계산 : 4.0 × 5.0 = 20", k:"body"},
-              {t:"④ 절대로 되돌리기 : 20 × 0.07 = 1.4", k:"body"},
-              {t:"→  20 ± 1 m²", k:"body"} ] },
-
     { accent:A, step:"④ 측정값 적는 방법", title:"단위를 바꿀 때",
       lines:[ {t:"값과 흔들림에 똑같은 수를 곱하거나 나눠요", k:"label"},
               {t:"3.05 ± 0.05 cm  →  m", k:"body"},
@@ -2843,8 +2803,10 @@ function lesson5Deck(){
     { accent:A, step:"④ 측정값 적는 방법", title:"적을 때 지킬 것",
       lines:[ {t:"측정값과 절대 불확정도는 소수점 끝자리를 맞춰요", k:"body"},
               {t:"상대 불확정도는 유효숫자 1개로 적어요", k:"body"},
-              {t:"", k:"body"},
-              {t:"계산기에 뜬 숫자를 그대로 옮겨 적으면 안 돼요", k:"meta"} ] },
+              {t:"상대 불확정도 (%) = 절대 불확정도 ÷ 측정값 × 100", k:"meta"},
+              {t:"버리는 자리가 딱 5 이면 짝수가 되도록 맺어요", k:"body"},
+              {t:"1834.5 → 1834  ·  1627.5 → 1628  ·  3.4050 → 3.40", k:"meta"},
+              {t:"계산기에 뜬 숫자를 그대로 옮겨 적으면 안 돼요", k:"body"} ] },
 
     /* ─────────── ⑤ 마이크로비트 사용법 ─────────── */
     { accent:A, step:"⑤ 직접 재보기", title:"준비 — 켜고 열기",
@@ -2884,7 +2846,8 @@ function lesson5Deck(){
               {t:"− 1000 → 1000 은 정한 값이라 늘지 않아요", k:"body"},
               {t:"× 9.80 ÷ 1000 → 상수 배율이라 같은 배율로 바뀌어요", k:"body"},
               {t:"", k:"body"},
-              {t:"1 × 9.80 ÷ 1000 = 0.0098  →  ± 0.01 m/s²", k:"body"} ] }
+              {t:"1 × 9.80 ÷ 1000 = 0.0098  →  ± 0.01 m/s²", k:"body"},
+              {t:"값과 불확정도는 소수점 끝자리를 맞춰요 — 가속도가 소수 둘째 자리면 0.01", k:"meta"} ] }
   ];
 }
 
@@ -3433,7 +3396,7 @@ function near(a, b, tol){
   return Math.abs(a - b) <= (tol === undefined ? Math.abs(b) * 0.005 + 1e-12 : tol);
 }
 var ALL_ROWS = ["r-sf1","r-sf2","r-sf3","r-sf4","r-sf5",
-                "r-sf-add","r-sf-mul","r-ruler","r-sensor","r-addsub","r-muldiv",
+                "r-sf-add","r-sf-mul","r-ruler","r-sensor","r-addsub",
                 "r-mean","r-scale","r-ratio","r-unit-v","r-unit-u"];
 function litRows(ids, on){
   var i, r;
@@ -3465,7 +3428,8 @@ $("p0b").onclick = makeCheck({
 
 /* 2. 2.5 × 3.42 = 8.55 → 유효숫자가 가장 적은 값(2.5, 두 자리)에 맞춘다 → 8.6 m² */
 $("p1b").onclick = makeCheck({
-  fb:"p1f", rows:["r-sf-mul"], answer:"8.6 m²",
+  /* 「맞추기」 줄만 밝히면 학생이 채울 빈칸이 있는 「기준」 줄은 꺼진 채 남는다 */
+  fb:"p1f", rows:["r-sf-add","r-sf-mul"], answer:"8.6 m²",
   test: function(){ return near(numOf($("p1v").value), 8.6, 0.005); }
 });
 
@@ -3479,16 +3443,9 @@ $("p2b").onclick = makeCheck({
   test: function(){ return near(numOf($("p2v").value), 4.40) && near(numOf($("p2u").value), 0.10, 0.005); }
 });
 
-/* 4. (3.0±0.1) × (2.0±0.1)
-      상대불확도 0.1/3.0 = 3.3%, 0.1/2.0 = 5.0% → 더하면 8.3%
-      값 6.0 → 절대불확도 6.0 × 0.083 = 0.4998 ≈ 0.5 → 6.0 ± 0.5 m² */
-$("p3b").onclick = makeCheck({
-  fb:"p3f", rows:["r-muldiv"], answer:"6.0 ± 0.5 m²",
-  test: function(){ return near(numOf($("p3v").value), 6.0, 0.05) && near(numOf($("p3u").value), 0.5, 0.06); }
-});
-
-/* 5. 4.40 ± 0.10 cm → m. 배율만 바뀌므로 유효숫자 개수(3개)는 그대로,
-      불확정도도 같은 배율 → 0.0440 ± 0.0010 m */
+/* 4. 4.40 ± 0.10 cm → m. 배율만 바뀌므로 유효숫자 개수(3개)는 그대로,
+      불확정도도 같은 배율 → 0.0440 ± 0.0010 m
+      화면에서는 4번이지만 id 는 p4 그대로다 — 앞의 p3 를 지우고 번호만 당겼다. */
 $("p4b").onclick = makeCheck({
   fb:"p4f", rows:["r-unit-v","r-unit-u"], answer:"0.0440 ± 0.0010 m",
   test: function(){
