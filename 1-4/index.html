@@ -979,7 +979,7 @@ table.tbl .blank.s{width:2.8em}
 
           <div class="stack" id="coaster-qs">
             <div class="pane">
-              <h4>1. C 지점에서 가속도의 방향은 어느 것일까요?</h4>
+              <h4>1. C 지점에서 가속도의 방향과 가장 가까운 것은 어느 것일까요?</h4>
               <canvas id="cpoint" class="chart" style="height:220px" aria-label="C 지점에서의 가속도 방향 보기 ㉠·㉡·㉢"></canvas>
               <div class="choice-row" style="margin-top:10px">
                 <label class="choice" id="lab0" style="flex:1 1 80px; justify-content:center">
@@ -2920,35 +2920,41 @@ function lesson5Deck(){
          · C 지점 : 속력 21.6 m/s, 중심 쪽 v²/R = 31.0, 접선(중력) 9.80, 합 32.4 (아래로 15°)
            C 는 루프 옆면(270°)이라 가속도가 중심 방향에서 17.6° 벗어난다. 정확히 ㉢ 이 아니다.
            중심을 정확히 향하는 곳은 트랙이 수평인 루프 바닥(0.5°)과 꼭대기(2.1°) 뿐이다.
+           31 · 9.8 · 15° 는 화면에 뜨지 않는 값이라 「약」 을 붙여 적는다(발주자 지적).
+           세우는 자리가 조금만 달라져도 바뀌는 값이다.
            그래서 이 장은 두 성분을 먼저 보이고 합친 뒤 「가장 가까운 것」 으로 맺는다 —
            「중심 쪽이에요」 와 「아래로도 당겨져요」 를 둘 다 답 줄로 두면 서로 맞서 보인다(발주자 지적).
          · A~B    : 직선 5.90 (= 9.8·sin37°), 골짜기 곡선 30.4 → 33.5
          · 드롭   : 자유 낙하 9.80 / 제동 20 m 9.8 · 30 m 19.6 · 40 m 29.4 */
     { accent:B, step:"③ 놀이기구 살펴보기", title:"함께 맞춰 봐요 — C 지점",
-      lines:[ {t:"C 지점에서 가속도의 방향은 어느 것일까요?", k:"label"},
+      lines:[ {t:"C 지점에서 가속도의 방향과 가장 가까운 것은 어느 것일까요?", k:"label"},
               {t:"가속도 하나에 두 가지가 겹쳐 있어요", k:"body", hold:true},
-              {t:"원을 돌기 때문에 → 원의 중심 쪽으로 31 m/s²", k:"ans", hold:true},
-              {t:"중력 때문에 → 연직 아래로 9.8 m/s²", k:"ans", hold:true},
-              {t:"둘을 합치면 수평에서 아래로 15° 기운 화살표가 돼요", k:"body", hold:true},
+              {t:"원을 돌기 때문에 → 원의 중심 쪽으로 약 31 m/s²", k:"ans", hold:true},
+              {t:"중력 때문에 → 연직 아래로 약 9.8 m/s²", k:"ans", hold:true},
+              {t:"둘을 합치면 수평에서 아래로 약 15° 기운 화살표가 돼요", k:"body", hold:true},
               {t:"중심 쪽이 3배 넘게 커서 거의 수평이에요", k:"meta", hold:true},
               {t:"그래서 보기 셋 중 가장 가까운 것은 ㉢ 이에요", k:"ans", hold:true},
               {t:"화면 읽기값 32.4 m/s² — 화살표와 직접 견주어 보세요", k:"meta", hold:true} ] },
 
     { accent:B, step:"③ 놀이기구 살펴보기", title:"함께 맞춰 봐요 — A 에서 B 로",
       lines:[ {t:"A 에서 B 로 갈 때 가속도의 크기는 어떻게 변하나요?", k:"label"},
-              {t:"직선 경사에서는 5.9 m/s² 로 일정해요", k:"ans", hold:true},
+              {t:"A 와 B 사이는 두 구간으로 나뉘어요", k:"body", hold:true},
+              {t:"곧은 내리막 — 5.9 m/s² 로 처음부터 끝까지 일정해요", k:"ans", hold:true},
               {t:"속력은 7 → 26 m/s 로 계속 커지는데 가속도는 그대로예요", k:"meta", hold:true},
-              {t:"골짜기 곡선에 들어서면 30 이 넘게 커져요", k:"ans", hold:true},
-              {t:"트랙이 휘면 중심 쪽 몫이 더해지기 때문이에요", k:"meta", hold:true},
-              {t:"빨라진다고 가속도가 커지는 것이 아니에요", k:"body", hold:true} ] },
+              {t:"골짜기 곡선 — 30 이 넘게 커져요", k:"ans", hold:true},
+              {t:"트랙이 휘면 원의 중심 쪽 몫이 더해지기 때문이에요", k:"meta", hold:true},
+              {t:"빨라진다고 커지는 것이 아니라, 트랙이 휘어야 커져요", k:"ans", hold:true},
+              {t:"B 에 정확히 세우면 0.0 이 떠요 — 트랙이 다시 곧아지는 자리예요", k:"meta", hold:true} ] },
 
     { accent:B, step:"③ 놀이기구 살펴보기", title:"함께 맞춰 봐요 — 자이로드롭",
-      lines:[ {t:"초록 화살표(운동 방향)와 견주면 어떤가요?", k:"label"},
-              {t:"자유 낙하 — 같은 쪽이에요 → 빨라져요", k:"ans", hold:true},
-              {t:"가속도 9.8 m/s², 낙하 높이를 바꿔도 그대로예요", k:"meta", hold:true},
-              {t:"제동 — 반대쪽이에요 → 느려져요", k:"ans", hold:true},
-              {t:"운동 방향은 여전히 아래예요. 가속도만 위쪽이에요", k:"meta", hold:true},
-              {t:"제동 가속도 — 20 m: 9.8 · 30 m: 19.6 · 40 m: 29.4 m/s²", k:"meta", hold:true} ] },
+      lines:[ {t:"초록 화살표(운동 방향)와 파란 화살표(가속도)를 견주면?", k:"label"},
+              {t:"자유 낙하 — 초록도 아래, 파랑도 아래", k:"body", hold:true},
+              {t:"같은 쪽이에요 → 그래서 빨라져요", k:"ans", hold:true},
+              {t:"가속도는 9.8 m/s², 낙하 높이를 바꿔도 그대로예요", k:"meta", hold:true},
+              {t:"제동 — 초록은 그대로 아래, 파랑만 위로 뒤집혀요", k:"body", hold:true},
+              {t:"반대쪽이에요 → 그래서 느려져요", k:"ans", hold:true},
+              {t:"가속도가 위쪽이라고 위로 올라가는 것은 아니에요", k:"meta", hold:true},
+              {t:"제동 가속도 20 m 9.8 · 30 m 19.6 · 40 m 29.4 — 높을수록 크게 느려져야 해요", k:"meta", hold:true} ] },
 
     /* ─────────── ④ 측정값 적는 방법 ─────────── */
     { accent:A, step:"④ 측정값 적는 방법", title:"이제 측정값 적는 법을 익혀요",
