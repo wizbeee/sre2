@@ -585,10 +585,15 @@ table.tbl .blank.s{width:2.8em}
 /* 답 줄 — 발문과 눈에 띄게 구분한다 */
 .ls-list li.ans > .tx{font-weight:800; color:var(--c-accel)}
 .ls-list li.ans::before{background:var(--c-accel)}
-/* 아직 나타날 것이 남았다는 표시 */
+/* 아직 나타날 것이 남았다는 표시.
+   전에는 화면 오른쪽 아래 구석에 떠 있어 조작줄의 「전체 화면」 단추와 타이머에 가려
+   보이지 않았다 — 답이 있는 장이 발문만 있는 장처럼 보였다(2026-09-27 발주자 지적).
+   그래서 본문과 조작줄 사이에 한 줄을 따로 두고 오른쪽에 붙인다. 자리는 늘 차지한다 —
+   글이 생기고 사라질 때 본문 높이가 출렁이지 않게. 타이머(아래 16px)보다 위에 온다. */
 .ls-more{
-  position:absolute; right:clamp(18px,3.5vw,54px); bottom:clamp(10px,1.6vw,26px);
-  font-size:clamp(11px,1.2vw,18px); color:var(--ink-3); opacity:.75;
+  flex:none; display:block; text-align:right; min-height:1.5em; line-height:1.5em;
+  padding:0 clamp(18px,3.5vw,54px) 14px;
+  font-size:clamp(12px,1.3vw,19px); color:var(--ink-3); font-weight:600;
 }
 .ls-list li.no{padding-left:calc(clamp(17px,2.3vw,30px) * var(--ls-k,1))}
 .ls-list li.num b{color:var(--c-accel)}
@@ -1781,7 +1786,7 @@ table.tbl .blank.s{width:2.8em}
     <span class="ls-step" id="ls-step"></span>
   </div>
   <div class="ls-body" id="ls-body"></div>
-  <span class="ls-more" id="ls-more"></span>
+  <div class="ls-more" id="ls-more"></div>
   <div class="ls-foot">
     <button class="btn sm" type="button" id="ls-prev">← 이전</button>
     <button class="btn primary sm" type="button" id="ls-next">다음 →</button>
@@ -3695,7 +3700,11 @@ function drawVec(){
 
 /* ==========================================================================
    ④ 연습 채점
-   숫자만 견준다. '6', '6.0', '6.00' 을 모두 맞다고 본다.
+   크기와 함께 소수점 아래 자릿수까지 본다(shape) — 크기가 같아도 자릿수가 다르면 틀린 답이다.
+   (2026-09-27 발주자 지적: 3번에 4.4 ± 0.1 을 넣어도 「맞았어요」 가 떴다. 2번 7.60,
+    4번 0.044 ± 0.001 도 맞다고 했다. 이 단원이 가르치는 것이 바로 자릿수인데 채점이 보지 않았다.)
+   전에는 '6', '6.0', '6.00' 을 모두 맞다고 봤다 — 그렇게 되돌리지 마라.
+   크기가 맞고 자릿수만 틀리면 shapeMsg 를 띄운다. 1번은 개수를 묻는 문항이라 자릿수와 상관없다.
    틀리면 규칙 표에서 봐야 할 줄을 밝힌다.
    두 번까지 다시 시도하게 하고, 그 뒤에 정답을 보여 준다.
    ========================================================================== */
@@ -3709,6 +3718,12 @@ function near(a, b, tol){
   if (isNaN(a)) return false;
   return Math.abs(a - b) <= (tol === undefined ? Math.abs(b) * 0.005 + 1e-12 : tol);
 }
+/* 소수점 아래 자릿수. '4.40' → 2, '4.4' → 1, '4' → 0. 단위나 ± 가 섞여 있어도 숫자만 본다. */
+function decOf(v){
+  var t = String(v === null || v === undefined ? "" : v).replace(/[^0-9.]/g, "");
+  var i = t.indexOf(".");
+  return i < 0 ? 0 : t.length - i - 1;
+}
 var ALL_ROWS = ["r-sf1","r-sf2","r-sf3","r-sf4","r-sf5",
                 "r-sf-add","r-sf-mul","r-ruler","r-sensor","r-addsub",
                 "r-mean","r-scale","r-ratio","r-unit-v","r-unit-u"];
@@ -3720,12 +3735,16 @@ function makeCheck(opt){
   var tries = 0;
   return function(){
     var fb = $(opt.fb), ok = opt.test();
+    /* 크기는 맞았는데 자릿수가 다르면 따로 알린다 — 「다시 해 봐요」 만 띄우면 맞은 숫자까지 바꾼다 */
+    var shapeOnly = ok && opt.shape && !opt.shape();
     litRows(ALL_ROWS, false);
-    if (ok) { fb.className = "fb ok"; fb.textContent = "맞았어요."; return; }
+    if (ok && !shapeOnly) { fb.className = "fb ok"; fb.textContent = "맞았어요."; return; }
     tries++;
-    litRows(opt.rows, true);
+    litRows(shapeOnly ? opt.shapeRows : opt.rows, true);
     fb.className = "fb no";
-    if (tries < 3) {
+    if (tries < 3 && shapeOnly) {
+      fb.textContent = opt.shapeMsg + " (남은 기회 " + (3 - tries) + "번)";
+    } else if (tries < 3) {
       fb.textContent = "다시 한 번 해 봐요. 밝힌 규칙을 보세요. (남은 기회 " + (3 - tries) + "번)";
     } else {
       fb.textContent = "정답은 " + opt.answer + " 예요. 규칙을 다시 보고 왜 그런지 확인해요.";
@@ -3747,17 +3766,27 @@ $("p1b").onclick = makeCheck({
   /* 「맞추기」 줄만 밝히면 학생이 채울 빈칸이 있는 「기준」 줄은 꺼진 채 남는다 */
 
   fb:"p1f", rows:["r-sf-add","r-sf-mul"], answer:"7.6 m²",
-  test: function(){ return near(numOf($("p1v").value), 7.6, 0.005); }
+  test: function(){ return near(numOf($("p1v").value), 7.6, 1e-9); },
+  /* 7.60 은 유효숫자 3개라 틀리다 — 2.4 가 두 개뿐이다 */
+  shape: function(){ return decOf($("p1v").value) === 1; },
+  shapeRows: ["r-sf-add","r-sf-mul"],
+  shapeMsg: "크기는 맞아요. 자릿수를 다시 보세요 — 곱하기는 유효숫자 개수가 가장 적은 값에 맞춰요."
 });
 
 /* 3. 최소 눈금 0.1 cm → ±0.05 cm. 빼기라 두 불확정도를 그대로 더한다 → ±0.10 cm.
       값은 17.60 − 13.20 = 4.40 cm.
+      자릿수까지 본다 — 두 값이 소수 둘째 자리까지 읽은 값이라(뺄셈 기준은 소수점 자리수)
+      값은 4.40, 불확정도도 그 자리에 맞춰 0.10 이다. 4.4 ± 0.1 은 크기만 같고 자릿수가 틀리다.
+      전에는 값 허용폭이 4.40 의 0.5 % (±0.022) 라 4.42 도 맞다고 했다 — 정확히 같아야 한다.
       이 숫자는 함부로 바꾸지 마라. 5차시 지도안과 6차시 바이킹 모범답안이 쓰는 값을
       모두 피해서 고른 것이다 — 예제에 그 값이 나오면 수행평가 답이 새어 나간다.
       바꿔야 한다면 지도안 유의점의 금지 목록과 모범답안 표를 먼저 확인할 것. */
 $("p2b").onclick = makeCheck({
   fb:"p2f", rows:["r-ruler","r-addsub"], answer:"4.40 ± 0.10 cm",
-  test: function(){ return near(numOf($("p2v").value), 4.40) && near(numOf($("p2u").value), 0.10, 0.005); }
+  test: function(){ return near(numOf($("p2v").value), 4.40, 1e-9) && near(numOf($("p2u").value), 0.10, 1e-9); },
+  shape: function(){ return decOf($("p2v").value) === 2 && decOf($("p2u").value) === 2; },
+  shapeRows: ["r-sf-add","r-sf-mul","r-ruler"],
+  shapeMsg: "크기는 맞아요. 자릿수를 다시 보세요 — 두 값을 소수 몇째 자리까지 읽었나요? 값과 불확정도를 그 자리까지 적어요."
 });
 
 /* 4. 4.40 ± 0.10 cm → m. 배율만 바뀌므로 유효숫자 개수(3개)는 그대로,
@@ -3766,8 +3795,12 @@ $("p2b").onclick = makeCheck({
 $("p4b").onclick = makeCheck({
   fb:"p4f", rows:["r-unit-v","r-unit-u"], answer:"0.0440 ± 0.0010 m",
   test: function(){
-    return near(numOf($("p4v").value), 0.0440, 0.00005) && near(numOf($("p4u").value), 0.0010, 0.00005);
-  }
+    return near(numOf($("p4v").value), 0.0440, 1e-9) && near(numOf($("p4u").value), 0.0010, 1e-9);
+  },
+  /* 0.044 ± 0.001 은 유효숫자가 3개에서 2개로 줄어든다 — 단위를 바꿨을 뿐인데 정밀도가 떨어진 셈이다 */
+  shape: function(){ return decOf($("p4v").value) === 4 && decOf($("p4u").value) === 4; },
+  shapeRows: ["r-unit-v","r-unit-u"],
+  shapeMsg: "크기는 맞아요. 자릿수를 다시 보세요 — 단위를 바꿔도 유효숫자 개수는 그대로예요. 값과 불확정도를 같은 자리까지 적어요."
 });
 
 /* ==========================================================================
@@ -3819,19 +3852,40 @@ $("m4b2").onclick = function(){
   else say("m4f", "no", "평균을 다시 계산해 봐요. 두 값을 더해서 2로 나눠요.");
 };
 
+/* ⑤ 최종값 — 맺은 값만 통과시킨다(2026-09-27 발주자 지시).
+   전에는 2.3569 ± 0.0098 처럼 계산기 숫자를 그대로 적어도 「적었어요」 가 떴다.
+   바로 위 안내(「계산기에 뜬 숫자를 그대로 옮겨 적으면 안 돼요」)와 어긋났다.
+   맺는 기준 : 불확정도 0.0098 → 0.01 이므로 가속도도 소수 둘째 자리. 딱 5 이면 짝수 맺음.
+   평균은 정수나 .5 라 (평균 − 1000) × 98 이 정수로 떨어진다 — 1 = 0.0001 m/s² 단위로 셈해
+   부동소수점 때문에 딱 5 를 놓치지 않게 한다. 예 : 평균 1025 → 0.245 → 0.24 (4 는 짝수). */
+function roundEven2(m){
+  var n = Math.round((m - 1000) * 98);          /* 0.0001 m/s² 단위 */
+  var q = Math.floor(n / 100), r = n - q * 100;
+  if (r > 50 || (r === 50 && q % 2 !== 0)) q++;
+  return q / 100;
+}
 $("m5b").onclick = function(){
   var m = numOf($("m4m").value), v = numOf($("m5v").value), u = numOf($("m5u").value);
   var msg = [];
   if (isNaN(v)) { say("m5f", "no", "가속도 값을 적어요."); return; }
   if (isNaN(u)) { say("m5f", "no", "불확정도도 적어요."); return; }
   if (isNaN(m)) { say("m5f", "no", "④ 의 평균을 먼저 적어요."); return; }
-  if (!isNaN(m)) {
-    if (m < 1000) msg.push("④ 의 평균이 1000 보다 작아요. 센서값을 다시 확인해요.");
-    else if (!near(v, (m - 1000) * 9.80 / 1000, 0.02)) {
-      msg.push("④ 의 평균으로 다시 계산해 봐요. ( 평균 − 1000 ) × 9.80 ÷ 1000 이에요.");
-    }
+  if (m < 1000) { say("m5f", "no", "④ 의 평균이 1000 보다 작아요. 센서값을 다시 확인해요."); return; }
+
+  var raw = (m - 1000) * 9.80 / 1000;
+  if (!near(v, raw, 0.02)) {
+    msg.push("④ 의 평균으로 다시 계산해 봐요. ( 평균 − 1000 ) × 9.80 ÷ 1000 이에요.");
+  } else if (decOf($("m5v").value) !== 2) {
+    msg.push("가속도를 소수 둘째 자리로 맺어요. 계산기 숫자를 그대로 옮기지 않아요.");
+  } else if (!near(v, roundEven2(m), 1e-9)) {
+    msg.push("맺는 법을 다시 보세요 — 버리는 부분을 보고 정해요. 딱 5 이면 짝수 맺음이에요. (④ 자리를 맺는 법)");
   }
-  if (!isNaN(u) && Math.abs(u - 0.0098) > 0.0025) msg.push("불확정도는 바로 위 표를 따라가 봐요.");
+
+  if (Math.abs(u - 0.0098) > 0.0025) msg.push("불확정도는 바로 위 표를 따라가 봐요.");
+  else if (!near(u, 0.01, 1e-9) || decOf($("m5u").value) !== 2) {
+    msg.push("불확정도도 소수 둘째 자리로 맺어요. 가속도와 소수점 끝자리를 맞춰요.");
+  }
+
   if (msg.length) say("m5f", "no", msg.join(" "));
   else say("m5f", "ok", "적었어요. 선생님께 확인받아요.");
 };
