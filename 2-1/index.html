@@ -104,10 +104,11 @@
    · 단계 · 조각마다 활동 형태 · AI 딱지(1차시도) · 두 차시 ① 에 딱지 보는 법.
 
   [2026-09-30 발주자 고침 둘째 — 설계서 §13]
-   · 의뢰서는 세 칸(문제 상황 · 불편한 사람 · 원하는 상태 — 모두 적음). '해결하려면 알아야 할 것' · '감지해야 할 변화' 를 없앴다 —
+   · 의뢰서는 세 칸(문제 상황 · 불편을 겪는 사람 · 원하는 상태 — 모두 적음). '해결하려면 알아야 할 것' · '감지해야 할 변화' 를 없앴다 —
      교과서 58쪽 '문제 인식하기' 는 의뢰하는 쪽, '아이디어 내기' 는 해결하는 쪽. ①-다 받은 의뢰서도 세 칸(b_rx_change → b_rx_who).
    · ② 해결안 · ④ 최종 해결서에 '장치가 알아내야 할 것'(b_h_know · b_f_know — 교과서 60쪽 '수집해야 할 정보')을 더했다.
    · ⑦ 전시관 PDF 세 개 → 한 파일(gal — 전시관은 PDF 1개만 받는다): 1 의뢰서 · 2 해결서 · 3 받은 피드백, 부분마다 새 쪽.
+   · 칸 이름 '불편한 사람' → '불편을 겪는 사람'(칸 id a_r_who · b_g_who · b_rx_who 는 그대로).
    · ③ 사례 카드 쪽 꼬리표 — 스마트워치 '교과서 54쪽 · 인터넷 조사'(54쪽은 원리를 조사하게 한다), 보안등 '교과서 56 · 59쪽'('움직임' 은 59쪽).
 
   [요청 밖 변경 — 의뢰서에 없어 따로 알린 것]
@@ -1210,7 +1211,7 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
                 <textarea id="b_rx_prob" class="input" rows="2" style="min-height:70px" placeholder="여기에 적어요."></textarea>
               </div>
               <div class="field">
-                <label for="b_rx_who">불편한 사람</label>
+                <label for="b_rx_who">불편을 겪는 사람</label>
                 <input id="b_rx_who" class="input" type="text" placeholder="여기에 적어요.">
               </div>
               <div class="field">
@@ -2671,7 +2672,7 @@ function lesson2Deck(){
     { step:dstep(S, 0), mode:TEAM, title:"다. 받은 의뢰서",
       lines:[ {t:"먼저 두 모둠을 적어요 — 받는 모둠 · 준 모둠(앞 장 표)"},
               {t:"구글 챗으로 받은 의뢰서 PDF 를 열어요"},
-              {t:"문제 상황 · 불편한 사람 · 원하는 상태를 옮겨 적어요"},
+              {t:"문제 상황 · 불편을 겪는 사람 · 원하는 상태를 옮겨 적어요"},
               {t:"모둠원 모두 같게 적어요"} ] },
 
     /* ② — AI 없이. 제목은 두 차시를 꿰는 질문을 줄인 발문 */
@@ -2995,7 +2996,7 @@ var CASE_H = ["알아내려는 것", "감지할 변화", "센서", "정보 활�
 /* 의뢰서 세 칸(발주자 고침 설계서 §13 — '알아야 할 것' · '감지해야 할 변화' 는 해결하는 쪽이 생각한다) — 1차시 ④ 칸 id(REQ_IDS — 2차시 ①-나 가 읽는 이름이라 바꾸지 않는다, REQ_IDS21 은 같은 배열의 옛 2-2 이름) ·
    2차시 칸 꼬리(REQ_KEYS — b_g_<꼬리>) · 이름 · 무엇을 적나(REQ_HINT) · 예(REQ_EXS — 한 사례로 세 칸을 잇는다) */
 var REQ_IDS = ["a_r_prob", "a_r_who", "a_r_goal"];
-var REQ_NAMES = ["문제 상황", "불편한 사람", "원하는 상태"];
+var REQ_NAMES = ["문제 상황", "불편을 겪는 사람", "원하는 상태"];
 var REQ_STEP = 3;                      /* ④ 의 차례(0부터) — 이 단계를 열 때 ① 메모를 첫 칸에 넣는다(syncProb) */
 var REQ_HINT = [
   "언제, 어디에서, 무엇 때문에 불편하거나 위험한지 한두 문장으로 적어요. 처음 읽는 다른 모둠도 그 장면이 떠오르게 써요.",
@@ -3008,7 +3009,7 @@ var REQ_EXS = [
   "사람이 복도를 지나갈 때만 조명이 켜져 있고, 사람이 없으면 꺼져 있다."
 ];
 /* 1차시 ④ 예시(수업 화면 「의뢰서 예시」 장 hold 줄) — REQ_EXS 에서 */
-var REQ_EX = [["문제 상황", REQ_EXS[0]], ["불편한 사람", REQ_EXS[1]], ["원하는 상태", REQ_EXS[2]]];
+var REQ_EX = [["문제 상황", REQ_EXS[0]], ["불편을 겪는 사람", REQ_EXS[1]], ["원하는 상태", REQ_EXS[2]]];
 /* 센서 이름 부드러운 알림(설계서 §2 ⑤) — 막지 않는다. '마이크로컨트롤러 · 마이크로파 · 마이크로미터 · 마이크로그램' 만 빼고
    '마이크로 소리를' · '마이크로폰' 은 잡는다. '조도' 는 앞 글자가 구 · 강 · 건 이면 뺀다(구조도 · 강조도 · 건조도).
    뒤돌아보기 정규식은 옛 사파리에서 스크립트 전체를 멈추므로 쓰지 않는다. '센서등' 은 설계서 낱말 '센서' 그대로 걸린다. */
@@ -3976,7 +3977,7 @@ function paintRefill(){
 /* ② 받은 의뢰서(①-다 — 읽기 전용). 세 칸이 모두 비면 알림 + [①-다 로 가기] */
 function paintRx(){
   var ok = !!(Store.key && Store.ready), empty = !(val("b_rx_prob") || val("b_rx_who") || val("b_rx_goal"));
-  setLines($("rx-body"), [["의뢰한 모둠", val("b_from_team")], ["문제 상황", val("b_rx_prob")], ["불편한 사람", val("b_rx_who")], ["원하는 상태", val("b_rx_goal")]]);
+  setLines($("rx-body"), [["의뢰한 모둠", val("b_from_team")], ["문제 상황", val("b_rx_prob")], ["불편을 겪는 사람", val("b_rx_who")], ["원하는 상태", val("b_rx_goal")]]);
   $("rx-none").style.display = (ok && empty) ? "" : "none";
 }
 /* ③-나 받은 답 칸 머리의 상황 글(가 에서 적은 것) */
@@ -4537,7 +4538,7 @@ var Cards = {
         "",
         "[의뢰서]",
         "- 문제 상황: " + pv("b_rx_prob"),
-        "- 불편한 사람: " + pv("b_rx_who"),
+        "- 불편을 겪는 사람: " + pv("b_rx_who"),
         "- 원하는 상태: " + pv("b_rx_goal"),
         "",
         "[해결안]"
@@ -4568,7 +4569,7 @@ var Cards = {
         "[의뢰서]",
         "- 문제 상황: " + pv("b_g_prob")
       ];
-      L.push("- 불편한 사람: " + pv("b_g_who"),
+      L.push("- 불편을 겪는 사람: " + pv("b_g_who"),
              "- 원하는 상태: " + pv("b_g_goal"),
              "",
              "[해결서]",
@@ -5016,7 +5017,7 @@ function solKv(d, pre){
 }
 function rxKv(d){
   d.kv("문제 상황", val("b_rx_prob"));
-  d.kv("불편한 사람", val("b_rx_who"));
+  d.kv("불편을 겪는 사람", val("b_rx_who"));
   d.kv("원하는 상태", val("b_rx_goal"));
 }
 function shSol(){
@@ -5080,7 +5081,7 @@ function shGal(){
   shareHead(d, SHARE_FOOT2 + " · 1. 우리가 해결한 의뢰", "의뢰서", t);
   d.kvBig("의뢰한 모둠", val("b_from_team"));
   d.kvBig("문제 상황", val("b_rx_prob"));
-  d.kvBig("불편한 사람", val("b_rx_who"));
+  d.kvBig("불편을 겪는 사람", val("b_rx_who"));
   d.kvBig("원하는 상태", val("b_rx_goal"));
   d.newPage();
   rsBody(d, SHARE_FOOT2 + " · 2. 우리 모둠의 최종 해결서", t);
@@ -5098,14 +5099,14 @@ function missOf(pairs){
   for (i = 0; i < pairs.length; i++) if (!pairs[i][0]) out.push(pairs[i][1]);
   return out;
 }
-function needRx(){ return [[val("b_rx_prob"), "①-다 받은 의뢰서의 문제 상황"], [val("b_rx_who"), "①-다 받은 의뢰서의 불편한 사람"], [val("b_rx_goal"), "①-다 받은 의뢰서의 원하는 상태"]]; }
+function needRx(){ return [[val("b_rx_prob"), "①-다 받은 의뢰서의 문제 상황"], [val("b_rx_who"), "①-다 받은 의뢰서의 불편을 겪는 사람"], [val("b_rx_goal"), "①-다 받은 의뢰서의 원하는 상태"]]; }
 function needFin(){ return [[val("b_f_desc"), "④ 한 줄 설명"], [val("b_f_know"), "④ 장치가 알아내야 할 것"], [sensStr("b_f_"), "④ 센서와 감지할 변화"], [condsStr("b_f_"), "④ 작동 조건"]]; }
 /* 종류마다: 만들기 · 파일 이름 · 먼저 적을 칸 */
 var SHARE = {
   req1: { build:shReq1, name:function(){ var nm = fileSafe(Student.name); return "2-1_의뢰서_" + Student.cur + (nm ? "_" + nm : "") + ".pdf"; },
-          need:function(){ return missOf([[val("a_r_prob"), "문제 상황"], [val("a_r_who"), "불편한 사람"], [val("a_r_goal"), "원하는 상태"]]); } },
+          need:function(){ return missOf([[val("a_r_prob"), "문제 상황"], [val("a_r_who"), "불편을 겪는 사람"], [val("a_r_goal"), "원하는 상태"]]); } },
   reqg: { build:shReqG, name:function(){ return "2-2_모둠의뢰서" + teamSfx() + ".pdf"; },
-          need:function(){ return missOf([[val("b_g_prob"), "①-나 모둠 의뢰서의 문제 상황"], [val("b_g_who"), "①-나 불편한 사람"], [val("b_g_goal"), "①-나 원하는 상태"]]); } },
+          need:function(){ return missOf([[val("b_g_prob"), "①-나 모둠 의뢰서의 문제 상황"], [val("b_g_who"), "①-나 불편을 겪는 사람"], [val("b_g_goal"), "①-나 원하는 상태"]]); } },
   sol:  { build:shSol, name:function(){ return "2-2_해결안" + teamSfx() + ".pdf"; },
           need:function(){ return missOf(needRx().concat([[val("b_h_desc"), "② 한 줄 설명"], [val("b_h_know"), "② 장치가 알아내야 할 것"], [sensStr("b_h_"), "② 센서와 감지할 변화"], [condsStr("b_h_"), "② 작동 조건"]])); } },
   rs:   { build:shRs, name:function(){ return "2-2_해결서" + teamSfx() + ".pdf"; },
@@ -5379,7 +5380,7 @@ function ws22(d){
   d.kv("다. 우리 의뢰서를 받는 모둠", val("b_to_team"));
   d.kv("다. 우리에게 의뢰서를 준 모둠 (의뢰한 모둠)", val("b_from_team"));
   d.kv("다. 받은 의뢰서 — 문제 상황", val("b_rx_prob"));
-  d.kv("다. 받은 의뢰서 — 불편한 사람", val("b_rx_who"));
+  d.kv("다. 받은 의뢰서 — 불편을 겪는 사람", val("b_rx_who"));
   d.kv("다. 받은 의뢰서 — 원하는 상태", val("b_rx_goal"));
 
   d.head("② 해결 방법 고안 (모둠 활동 · AI 없이)");
