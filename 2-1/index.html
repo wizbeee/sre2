@@ -51,7 +51,7 @@
      → ② 해결 방법 고안(9분, 모둠, AI 없이 — 해결안 하나 · 센서 세 개까지) → ③ AI 시뮬레이션(13분, 모둠 → 개별 → 모둠 — 가 우리 먼저 예측하기 3분 ·
      나 대화 1 7분 · 다 견주기 3분) → ④ 최종 해결서(6분, 모둠) → ⑤ 해결서 제공(4분, 모둠 ↔ 모둠)
      → ⑥ 검증 · 피드백(10분 — 가 대화 2 개별 · 나 AI 답을 내 말로 · 다 나의 생각 · 라 모둠 피드백 · 마 받은 피드백)
-     → ⑦ 전시관에 올리기(수업 끝 뒤, 모둠 대표 한 명 — 가 활동지 PDF · 뒷정리(각자 · 종 치기 전) · 나 전시관 PDF 세 개 · 다 전시관에 올리기)   합 50분(⑦ 은 시간 밖)
+     → ⑦ 전시관에 올리기(수업 끝 뒤, 모둠 대표 한 명 — 가 활동지 PDF · 뒷정리(각자 · 종 치기 전) · 나 전시관 PDF 한 개 · 다 전시관에 올리기)   합 50분(⑦ 은 시간 밖)
 
   [차시] 머리 띠 [1차시 | 2차시](#g_lesson) 로 고른다(setLesson). 처음 열면 이 기기에서 마지막에 연 차시(sre2.2-1.lesson), 없으면 1차시.
    · 차시를 바꾸면 그 차시의 #stage1 / #stage2 가 보이고, 제목 · 부제 · 차시 딱지 · 「오늘은 이렇게 해요」 · 「오늘 지킬 것」 · 이번 단계 줄 ·
@@ -68,7 +68,7 @@
    · sre2.2-1.last {s, n} · sre2.2-1.step {l:차시, s:단계} · sre2.2-1.lesson(1 또는 2) · sre2.2-1.timerPos {x, y} ·
      sre2.2-1.save(쓰지 않는다 — can() 이 떠보기만)
    · 새로 고치면 마지막으로 연 학번을 곧바로 다시 열고 화면 아래쪽에 알림을 띄운다(빌린 기기 대비 — [① 로 가기] 는 지금 차시의 ①).
-   · 2차시 ①-나 는 같은 기록의 1차시 ④ 다섯 칸(a_r_*)을 읽기 전용으로 보이고, 칩이 '나의 의뢰서' 면 그 값으로 모둠 의뢰서(b_g_*)를 채운다.
+   · 2차시 ①-나 는 같은 기록의 1차시 ④ 세 칸(a_r_*)을 읽기 전용으로 보이고, 칩이 '나의 의뢰서' 면 그 값으로 모둠 의뢰서(b_g_*)를 채운다.
      [1차시 사례 표 보기] 와 2차시 활동지 PDF 의 1차시 부분도 같은 기록(이 문서의 1차시 칸)에서 읽는다.
    · [적은 것 지우기] 는 그 학번 기록(1 · 2차시 모두)을 지우고 닫는다. last 가 그 학번이면 last · step 도 지운다.
    · 학번 · 이름은 클래스룸용 활동지 PDF 두 가지와 나의 의뢰서 PDF 에만 들어간다. AI 에게 보내는 글 · PDF 와 전시관 PDF 에는 들어가지 않는다.
@@ -83,7 +83,7 @@
   ES5 문법만 쓰고, iOS 13 사파리에 없는 것은 쓰지 않는다 — NodeList.forEach · includes · Object.assign ·
   Array.from · Promise 를 직접 부르는 코드 · 옵셔널 체이닝 · CSS inset 금지.
   파일 내려받기는 Blob + <a download> 이고, 누른 단추의 처리 안에서 곧바로 부른다(태블릿은 사용자 동작 밖 내려받기를 막는다).
-  모든 PDF(활동지 · 의뢰서 · 해결안 · 해결서 · 피드백 · 전시관 세 개)는 단추 한 번에 만들고 곧바로 받는다(쪽을 넘치면 다음 쪽으로 잇는다 — WsDoc).
+  모든 PDF(활동지 · 의뢰서 · 해결안 · 해결서 · 피드백 · 전시관)는 단추 한 번에 만들고 곧바로 받는다(쪽을 넘치면 다음 쪽으로 잇는다 — WsDoc).
   [복사하기] 는 글상자를 모두 고른 뒤(setSelectionRange) 복사를 시도한다(execCommand → 안 되면 clipboard API).
   막힌 기기에서도 글은 골라져 있어 학생이 직접 복사한다. 학생 문구에 단축키를 박지 않는다 — 기기마다 누르는 법이 다르다.
   localStorage 는 전부 try-catch 로 감싼다. 막힌 기기에서도 멈추지 않고 알림만 띄우고, "저장돼요 · 남아 있어요 · 저절로 불러와요" 라고
@@ -102,6 +102,13 @@
      ⑥ 새 조건 → 받은 해결서 · 의뢰서 PDF 로 가능성 시뮬레이션 + 63쪽 평가 항목으로 나의 생각 + 모둠 피드백 PDF ·
      모둠 사이 주고받기는 PDF(구글 챗) · 전시관 PDF 세 개(의뢰서 · 해결서 · 피드백), 모둠 대표 한 명 · 수업 화면을 모두 맞춤.
    · 단계 · 조각마다 활동 형태 · AI 딱지(1차시도) · 두 차시 ① 에 딱지 보는 법.
+
+  [2026-09-30 발주자 고침 둘째 — 설계서 §13]
+   · 의뢰서는 세 칸(문제 상황 · 불편한 사람 · 원하는 상태 — 모두 적음). '해결하려면 알아야 할 것' · '감지해야 할 변화' 를 없앴다 —
+     교과서 58쪽 '문제 인식하기' 는 의뢰하는 쪽, '아이디어 내기' 는 해결하는 쪽. ①-다 받은 의뢰서도 세 칸(b_rx_change → b_rx_who).
+   · ② 해결안 · ④ 최종 해결서에 '장치가 알아내야 할 것'(b_h_know · b_f_know — 교과서 60쪽 '수집해야 할 정보')을 더했다.
+   · ⑦ 전시관 PDF 세 개 → 한 파일(gal — 전시관은 PDF 1개만 받는다): 1 의뢰서 · 2 해결서 · 3 받은 피드백, 부분마다 새 쪽.
+   · ③ 사례 카드 쪽 꼬리표 — 스마트워치 '교과서 54쪽 · 인터넷 조사'(54쪽은 원리를 조사하게 한다), 보안등 '교과서 56 · 59쪽'('움직임' 은 59쪽).
 
   [요청 밖 변경 — 의뢰서에 없어 따로 알린 것]
    · 대화 1 · 2 받은 답의 AI 결과 칩에 '분명히 말하지 않았어요'(기준 페이지 보기 전례 — 설계서 9-3).
@@ -1021,15 +1028,15 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
       </section>
 
       <!-- ══════════ ④ 의뢰서 쓰기 (개별 활동) ══════════
-           칸 id(a_r_prob · a_r_who · a_r_goal · a_r_know · a_r_change)는 2차시 ①-나 가 읽는 이름이라 바꾸지 않는다.
+           칸 id(a_r_prob · a_r_who · a_r_goal)는 2차시 ①-나 가 읽는 이름이라 바꾸지 않는다. 옛 칸 a_r_know · a_r_change 는 발주자 고침(설계서 §13)으로 없앴다 — 해결하는 쪽이 생각할 것이다.
            첫 칸에는 ① 메모가 저절로 들어간다(syncProb — 숨은 칸 a_r_prob_auto 에 저절로 넣은 값을 둔다).
            칸마다 무엇을 적는지(REQ_HINT)와 예(REQ_EXS)는 buildReq1 이 그린다. 센서 이름 알림(sn-<칸 id>)은 막지 않는다.
            [나의 의뢰서 PDF 저장] — 의뢰서만 한 장(학번 · 이름 포함 — 발주자 결정 2026-09-30). 2차시에 구글 챗으로 다른 모둠과 주고받는다. -->
       <section class="stepsec">
         <div class="stack">
           <div class="notice">
-            <b>2차시에 다른 모둠이 이 의뢰서를 받아 해결해요. 다섯 칸을 모두 적어요.</b><br>
-            의뢰서는 '무엇이 문제이고, 어떻게 되면 좋겠는지' 를 적는 글이에요. <b>센서 고르기와 해결 방법은 적지 않아요</b> — 2차시에 다른 모둠이 맡아요.
+            <b>2차시에 다른 모둠이 이 의뢰서를 받아 해결해요. 세 칸을 모두 적어요.</b><br>
+            의뢰서는 '어떤 상황에서 누가 무엇이 불편한지, 어떻게 되면 좋겠는지' 를 적는 글이에요. <b>무엇을 감지할지 · 센서 · 해결 방법은 적지 않아요</b> — 2차시에 해결하는 모둠이 스스로 생각해요.
           </div>
 
           <div class="piece">
@@ -1039,7 +1046,7 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
 
           <div class="piece">
             <div class="ph"><span class="pn">나</span><span class="pt">나의 의뢰서 PDF 저장</span><span class="tag mode-solo">개별 활동</span></div>
-            <p>의뢰서 다섯 칸만 담은 <b>한 장짜리 PDF</b> 예요(학번 · 이름이 들어가요). 2차시에 모둠에서 고른 의뢰서를 이 PDF 로 <b>구글 챗</b>에서 다른 모둠과 주고받아요.</p>
+            <p>의뢰서 세 칸만 담은 <b>한 장짜리 PDF</b> 예요(학번 · 이름이 들어가요). 2차시에 모둠에서 고른 의뢰서를 이 PDF 로 <b>구글 챗</b>에서 다른 모둠과 주고받아요.</p>
             <div class="row" style="margin-top:8px">
               <button class="btn primary" type="button" id="req-pdf-a">나의 의뢰서 PDF 저장</button>
             </div>
@@ -1156,7 +1163,7 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
               </div>
               <div class="notice" id="req-msg-my" style="display:none; margin-top:8px"></div>
             </div>
-            <p style="margin-top:10px">모둠원이 서로 의뢰서를 보여 주고 <b>1장</b>을 골라요. 기준 — <b>원하는 상태와 감지해야 할 변화가 가장 분명한 것</b>.</p>
+            <p style="margin-top:10px">모둠원이 서로 의뢰서를 보여 주고 <b>1장</b>을 골라요. 기준 — <b>문제 상황과 원하는 상태가 가장 분명한 것</b>.</p>
             <div class="field" style="margin-top:8px">
               <span class="flab">우리 모둠이 고른 의뢰서</span>
               <div class="choice-row" role="radiogroup" aria-label="우리 모둠이 고른 의뢰서">
@@ -1164,7 +1171,7 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
                 <label class="choice"><input type="radio" name="b_g_pick" value="다른 모둠원의 의뢰서"> 다른 모둠원의 의뢰서</label>
               </div>
               <p class="small muted">나의 의뢰서를 고르면 아래 칸이 저절로 들어와요. 다른 모둠원의 의뢰서면 그 모둠원의 의뢰서 PDF 를 보고 적어요.
-                문제 상황 · 원하는 상태 · 감지해야 할 변화는 꼭 적어요.</p>
+                세 칸을 모두 적어요.</p>
             </div>
             <div class="row" id="g-refill-row" style="display:none; margin-top:6px">
               <button class="btn sm" type="button" id="g-refill">나의 의뢰서로 다시 채우기</button>
@@ -1203,12 +1210,12 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
                 <textarea id="b_rx_prob" class="input" rows="2" style="min-height:70px" placeholder="여기에 적어요."></textarea>
               </div>
               <div class="field">
-                <label for="b_rx_goal">원하는 상태</label>
-                <textarea id="b_rx_goal" class="input" rows="2" style="min-height:70px" placeholder="여기에 적어요."></textarea>
+                <label for="b_rx_who">불편한 사람</label>
+                <input id="b_rx_who" class="input" type="text" placeholder="여기에 적어요.">
               </div>
               <div class="field">
-                <label for="b_rx_change">감지해야 할 변화</label>
-                <textarea id="b_rx_change" class="input" rows="2" style="min-height:70px" placeholder="여기에 적어요."></textarea>
+                <label for="b_rx_goal">원하는 상태</label>
+                <textarea id="b_rx_goal" class="input" rows="2" style="min-height:70px" placeholder="여기에 적어요."></textarea>
               </div>
             </div>
           </div>
@@ -1219,6 +1226,7 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
            받은 의뢰서(①-다)를 읽기 전용으로 다시 보인다(paintRx). 해결안은 하나(발주자 결정 2026-09-30 — A · B 두 개를 없앴다),
            센서는 여러 개 쓸 수 있다(SEN_N 줄). 칸은 buildSol 이 SOL_F 에서 만든다(b_h_*). 걱정되는 점(b_h_worry)은 AI 에게 올리는 PDF 에 넣지 않는다.
            칸 이름 · 차례는 교과서 60쪽 과정 3(발명품 이름 · 사용 목적 · 담고 싶은 기능 · 수집해야 할 정보와 사용하는 센서)을 따랐다.
+           '장치가 알아내야 할 것'(b_h_know)은 옛 의뢰서의 '알아야 할 것' 을 해결하는 쪽으로 옮긴 칸이다(발주자 고침 설계서 §13).
            제한 조건 머리는 교과서 58쪽 글자 그대로, '안전' 은 교과서 63쪽 평가 항목. -->
       <section class="stepsec">
         <div class="stack">
@@ -1593,9 +1601,9 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
 
       <!-- ══════════ ⑦ 전시관에 올리기 (가 는 각자 종 치기 전 · 나 · 다 는 수업 끝 뒤 모둠 대표 한 명) ══════════
            가 모두 — 활동지 PDF(1 · 2차시) · 뒷정리 체크(b_end_gemini · b_end_pdf — 활동지 PDF 에는 넣지 않는다).
-           나 대표 — 작품 제목 b_title(비었으면 ④ 해결안 이름으로 저절로 — syncTitle, 60자 넘으면 자른다) → PDF 세 개를 하나씩 [저장]:
-                의뢰서(①-다 받은 의뢰서) · 해결서(④ — ④ · ⑤ 의 해결서 PDF 와 같은 것) · 피드백(⑥-마 받은 피드백). 학번 · 이름 없음.
-           다 대표 — [전시관 열기] 와 올리는 순서(PDF 세 개). 전시관이 파일 여러 개를 받는지는 실기기에서 확인 못 했다. -->
+           나 대표 — 작품 제목 b_title(비었으면 ④ 해결안 이름으로 저절로 — syncTitle, 60자 넘으면 자른다) → [전시관 PDF 저장] 한 번:
+                한 파일에 1 의뢰서(①-다 받은 의뢰서) · 2 해결서(④ — ④ · ⑤ 의 해결서 PDF 와 같은 내용) · 3 피드백(⑥-마 받은 피드백). 학번 · 이름 없음.
+           다 대표 — [전시관 열기] 와 올리는 순서(PDF 한 개). 전시관은 PDF 1개만 받는다(발주자 확인 — 설계서 §13). -->
       <section class="stepsec">
         <div class="stack">
           <p class="notice" id="up-keep"><b>기록은 이 기기에 남아 있어요. 수업이 끝난 뒤 대표가 올려요.</b></p>
@@ -1620,7 +1628,7 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
           </div>
 
           <div class="piece" id="piece-7b">
-            <div class="ph"><span class="pn">나</span><span class="pt">전시관 PDF 세 개 저장</span><span class="tag mode-team">모둠 대표 한 명</span><span class="tag ai-no">AI 없이</span></div>
+            <div class="ph"><span class="pn">나</span><span class="pt">전시관 PDF 저장</span><span class="tag mode-team">모둠 대표 한 명</span><span class="tag ai-no">AI 없이</span></div>
             <p class="small" style="margin-bottom:8px">작품 제목은 모둠이 함께 정하고 <b>모두 각자</b> 적어요(클래스룸 활동지에도 들어가요).
               전시관 PDF 를 저장하고 전시관에 올리는 것은 <b>모둠에서 대표 한 명만</b> 해요.</p>
             <div class="field">
@@ -1628,14 +1636,16 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
               <p class="small muted">비어 있으면 ④ 최종 해결서의 해결안 이름이 들어와요. 고쳐 써도 돼요.</p>
               <input id="b_title" class="input" type="text" placeholder="여기에 적어요."><input type="hidden" id="b_title_auto">
             </div>
-            <p class="small" style="margin-top:10px">세 PDF 모두 학번 · 이름이 들어가지 않아요.</p>
-            <div class="stack" style="gap:8px; margin-top:8px">
-              <div class="row"><button class="btn primary" type="button" id="gal-pdf-1">1. 의뢰서 PDF 저장</button><span class="small muted">①-다 받은 의뢰서 — 우리가 해결한 의뢰</span></div>
-              <div class="row"><button class="btn primary" type="button" id="gal-pdf-2">2. 해결서 PDF 저장</button><span class="small muted">④ 최종 해결서 · ③ 견주기</span></div>
-              <div class="row"><button class="btn primary" type="button" id="gal-pdf-3">3. 피드백 PDF 저장</button><span class="small muted">⑥-마 받은 피드백</span></div>
-            </div>
+            <p style="margin-top:10px">전시관에는 <b>PDF 한 개</b>만 올려요. 단추를 한 번 누르면 <b>세 부분을 한 파일</b>로 만들어 내려받아요.</p>
+            <ol class="small" style="margin:6px 0 0 20px">
+              <li>의뢰서 — ①-다 받은 의뢰서(우리가 해결한 의뢰)</li>
+              <li>해결서 — ④ 최종 해결서 · ③ 견주기</li>
+              <li>피드백 — ⑥-마 받은 피드백</li>
+            </ol>
+            <p class="small" style="margin-top:6px">학번 · 이름은 들어가지 않아요.</p>
+            <div class="row" style="margin-top:8px"><button class="btn primary" type="button" id="gal-pdf">전시관 PDF 저장</button></div>
             <div class="notice" id="pdf-msg" style="display:none; margin-top:10px"></div>
-            <p class="small muted" style="margin-top:8px">만든 PDF 는 이 기기에 저장되지 않아요. 새로 고치면 그 단추를 다시 눌러요.</p>
+            <p class="small muted" style="margin-top:8px">만든 PDF 는 이 기기에 저장되지 않아요. 새로 고치면 단추를 다시 눌러요.</p>
           </div>
 
           <div class="piece">
@@ -1652,7 +1662,7 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
                 <b>모둠 이름 칸에 모둠 이름(예: 3모둠)을 적고, 팻말은 '모둠 이름'을 골라요. 제목은 60자 안으로, 종류는 '카드뉴스'를 골라요.</b>
               </div></div>
               <div class="st"><div class="n"></div><div class="tx">
-                <b>조원 칸에 나(대표)를 뺀 모둠원의 학번과 이름을 넣고(6명까지), 저장한 PDF 세 개(의뢰서 · 해결서 · 피드백)를 골라요.</b>
+                <b>조원 칸에 나(대표)를 뺀 모둠원의 학번과 이름을 넣고(6명까지), 저장한 전시관 PDF 한 개를 골라요.</b>
               </div></div>
               <div class="st"><div class="n"></div><div class="tx">
                 <b>올린 뒤 우리 작품이 잘 보이는지 봐요. 고칠 것이 있으면 [고치기] 로 바꿔요.</b>
@@ -2546,25 +2556,23 @@ function lesson1Deck(){
   }
 
   out.push(
-    /* ④ — 다섯 칸 · 센서 이름은 적지 않는다 · 칸 안내 · 예시는 다음 장(hold) */
+    /* ④ — 세 칸 · 감지할 것 · 센서 이름은 적지 않는다 · 칸 안내 · 예시는 다음 장(hold) */
     { step:dstep(S, 3), mode:SOLO, title:"의뢰서 쓰기",
       lines:[ {t:"① 의 문제 인식 메모가 첫 칸에 들어와 있어요 — 고쳐 써요"},
-              {t:"다섯 칸을 혼자 적어요 — 2차시에 다른 모둠이 받아요"},
-              {t:"무엇이 문제이고, 어떻게 되면 좋은지를 적어요"},
-              {t:"센서 고르기와 해결 방법은 적지 않아요 — 2차시에 다른 모둠이 맡아요"} ] },
+              {t:"세 칸을 혼자 적어요 — 2차시에 다른 모둠이 받아요"},
+              {t:"어떤 상황에서 누가 불편한지, 어떻게 되면 좋은지를 적어요"},
+              {t:"무엇을 감지할지 · 센서 · 해결 방법은 적지 않아요 — 해결하는 모둠이 생각해요"} ] },
 
     { step:dstep(S, 3), mode:SOLO, title:"칸마다 무엇을 적나요?",
       lines:[ {t:"1. " + REQ_NAMES[0] + " — 언제 · 어디에서 · 무엇 때문에"},
               {t:"2. " + REQ_NAMES[1] + " — 누가 불편하거나 위험한지"},
-              {t:"3. " + REQ_NAMES[2] + " — 문제가 풀리면 어떤 모습인지"},
-              {t:"4. " + REQ_NAMES[3] + " — 기계가 알아야 할 것 '~인지'"},
-              {t:"5. " + REQ_NAMES[4] + " — 빛 · 소리 · 움직임 · 온도 · 압력 등"} ] },
+              {t:"3. " + REQ_NAMES[2] + " — 문제가 풀리면 어떤 모습인지"} ] },
 
     { step:dstep(S, 3), mode:SOLO, title:"의뢰서 예시",
       lines:[ {t:"이렇게 적을 수 있어요", k:"label"},
               {t:REQ_EX[0][0] + " — " + deckLine(REQ_EX[0][1]), k:"ans", hold:true},
               {t:REQ_EX[1][0] + " — " + REQ_EX[1][1], k:"ans", hold:true},
-              {t:REQ_EX[2][0] + " — " + REQ_EX[2][1], k:"ans", hold:true} ] },
+              {t:REQ_EX[2][0] + " — " + deckLine(REQ_EX[2][1]), k:"ans", hold:true} ] },
 
     /* 저장이 막힌 기기는 창을 닫으면 적은 것이 사라진다 — "저장이 막힌 기기는 …" 한 줄로 알린다 */
     { step:dstep(S, 3), mode:SOLO, title:"PDF 두 가지를 저장해요",
@@ -2580,7 +2588,7 @@ function lesson1Deck(){
 /* 덱 글은 띄운 기기의 저장 상태와 상관없이 늘 같다 — 수업 화면은 주로 교사 기기로 띄운다.
    '저장돼요 · 남아 있어요 · 불러와요 · 저절로 들어와요' 라고 단정하지 않고, 기기마다 다른 것은 "저장이 막힌 기기는 …" 꼴로 적는다(설계서 9-1). */
 /* 2차시 덱(발주자 고침 2026-09-30: ①-가 공학적 설계 받아 적기 · 해결안 하나(센서 여럿) · PDF 를 제미나이에 올리기 · 모둠원 AI 답 요약 ·
-   ⑥ 가능성 시뮬레이션과 63쪽 평가 항목 · PDF 를 구글 챗으로 주고받기 · 전시관 PDF 세 개 · 딱지 보는 법) */
+   ⑥ 가능성 시뮬레이션과 63쪽 평가 항목 · PDF 를 구글 챗으로 주고받기 · 전시관 PDF 한 개 · 딱지 보는 법) */
 function lesson2Deck(){
   var S = STEPS2, SOLO = "개별 활동", TEAM = "모둠 활동", REP = "모둠 대표 한 명", EST = { t:EST_LINE, k:"label" };
   return [
@@ -2652,7 +2660,7 @@ function lesson2Deck(){
     /* ①-나 — 제목은 이 조각의 핵심 발문 */
     { step:dstep(S, 0), mode:TEAM, title:"나. 어느 의뢰서가 가장 분명할까요?",
       lines:[ {t:"1차시 나의 의뢰서를 서로 보여 주고 1장을 골라요"},
-              {t:"기준 — 원하는 상태와 감지해야 할 변화가 가장 분명한 것"},
+              {t:"기준 — 문제 상황과 원하는 상태가 가장 분명한 것"},
               {t:"고른 의뢰서 PDF 를 받는 모둠에 구글 챗으로 보내요(대표)"},
               {t:"[우리 모둠 의뢰서 PDF 저장] — ⑥ 에서 AI 에게 올려요", k:"meta"} ] },
 
@@ -2663,7 +2671,7 @@ function lesson2Deck(){
     { step:dstep(S, 0), mode:TEAM, title:"다. 받은 의뢰서",
       lines:[ {t:"먼저 두 모둠을 적어요 — 받는 모둠 · 준 모둠(앞 장 표)"},
               {t:"구글 챗으로 받은 의뢰서 PDF 를 열어요"},
-              {t:"문제 상황 · 원하는 상태 · 감지해야 할 변화를 옮겨 적어요"},
+              {t:"문제 상황 · 불편한 사람 · 원하는 상태를 옮겨 적어요"},
               {t:"모둠원 모두 같게 적어요"} ] },
 
     /* ② — AI 없이. 제목은 두 차시를 꿰는 질문을 줄인 발문 */
@@ -2774,7 +2782,7 @@ function lesson2Deck(){
     /* ⑦ — 전시관 올리기는 수업 끝 뒤(분 없음). 가(활동지 PDF · 뒷정리)는 각자 종 치기 전 */
     { step:dstep(S, 6), mode:REP, title:"전시관에 올리기",
       lines:[ {t:"가. 모두 — 활동지 PDF 저장 · 뒷정리(종 치기 전에)"},
-              {t:"나. 대표 한 명 — 전시관 PDF 세 개 저장"},
+              {t:"나. 대표 한 명 — 전시관 PDF 한 개 저장"},
               {t:"다. 대표 한 명 — 전시관에 올리기(모둠마다 한 번)"},
               {t:"나 · 다 — 수업이 끝난 뒤"},
               {t:"저장이 막힌 기기는 닫기 전에 PDF 를 저장해요", k:"meta"} ] },
@@ -2786,11 +2794,10 @@ function lesson2Deck(){
               {t:"시간이 모자라면 수업 뒤에 이 기기에서"},
               {t:"뒷정리 — 제미나이 창을 닫아요"} ] },
 
-    { step:dstep(S, 6), mode:REP, title:"나. 전시관 PDF 세 개",
+    { step:dstep(S, 6), mode:REP, title:"나. 전시관 PDF 한 개",
       lines:[ {t:"작품 제목(60자 안) — 비었으면 ④ 해결안 이름이 들어와요"},
-              {t:"1. 의뢰서 PDF — 우리가 해결한 의뢰"},
-              {t:"2. 해결서 PDF — 최종 해결서 · 견주기"},
-              {t:"3. 피드백 PDF — 우리가 받은 피드백"},
+              {t:"[전시관 PDF 저장] 한 번 — 세 부분이 한 파일에"},
+              {t:"1 의뢰서 → 2 해결서(최종 해결서 · 견주기) → 3 받은 피드백"},
               {t:"학번 · 이름은 들어가지 않아요", k:"meta"} ] },
 
     { step:dstep(S, 6), mode:REP, title:"다. 전시관에 올리기",
@@ -2798,7 +2805,7 @@ function lesson2Deck(){
               {t:"'내 작품 올리기' 가 안 보이면 [내 작품 올리기]", k:"meta"},
               {t:"2. 모둠 이름(예: 3모둠) · 팻말 '모둠 이름' · 종류 '카드뉴스'"},
               {t:"3. 조원 칸에 나(대표)를 뺀 모둠원 학번 · 이름(6명까지)"},
-              {t:"4. 저장한 PDF 세 개를 골라 올려요"},
+              {t:"4. 저장한 전시관 PDF 한 개를 골라 올려요"},
               {t:"올린 뒤 우리 작품이 잘 보이는지 봐요", k:"meta"} ] }
   ];
 }
@@ -2896,7 +2903,7 @@ function deckRules(list){
 var RULES1 = [
   "오늘은 생성형 AI(제미나이 · 챗GPT 등)를 쓰지 않아요.",
   "인터넷 조사는 ③ 사례 탐구에서만 해도 돼요.",
-  "④ 의뢰서는 2차시에 다른 모둠이 받아요. 다섯 칸을 모두 적어요."
+  "④ 의뢰서는 2차시에 다른 모둠이 받아요. 세 칸을 모두 적어요."
 ];
 var RULES2 = [
   "AI 는 생각을 돕는 도구예요. 생각과 결정은 우리가 해요.",
@@ -2957,18 +2964,22 @@ var SUPP = {
 
 /* ③ 사례 카드 6장 — 이름 · 교과서 쪽(page 0 = 교과서에 없는 사례 — 「교사 보충」). ex 는 예시 답(수업 화면 hold 줄에만 쓴다 — 학생 카드에는 없다).
    화재 경보기의 센서 이름은 교과서에 없어 "연기를 감지하는 센서" 로만 쓴다(의뢰서 부록 B ※).
-   카드 6 은 발주자 결정(2026-09-30)으로 스마트 줄넘기 대신 로봇 청소기 — 교과서 52~63쪽에 없어 학생이 인터넷으로 조사한다. 예시 답은 교사 보충(제품마다 다르다) */
+   카드 6 은 발주자 결정(2026-09-30)으로 스마트 줄넘기 대신 로봇 청소기 — 교과서 52~63쪽에 없어 학생이 인터넷으로 조사한다. 예시 답은 교사 보충(제품마다 다르다).
+   net — 교과서 쪽이 있어도 네 칸을 다 채우려면 조사가 필요한 카드(스마트워치: 54쪽은 원리를 "조사해 보자" 로 남긴다). page2 — 둘째 쪽(보안등: '움직임' 은 59쪽) — 설계서 §13 */
 var CASES = [
   { name:"자율주행 자동차",         page:53, ex:["주변 사물의 위치 · 거리", "쏘아 보낸 빛 · 전파가 반사되어 돌아오는 신호", "라이다 · 레이더 · 초음파 센서", "장애물을 피해 운전"] },
-  { name:"스마트워치(심박)",         page:54, ex:["심장박동수", "혈관에 흐르는 혈액량의 변화", "광혈류 측정 센서", "심박수 표시 · 기록"] },
-  { name:"전기 절약형 자동 보안등",  page:56, ex:["사람이 있는지", "사람의 움직임", "인체 감지 센서", "사람이 있을 때만 불을 켬"] },
+  { name:"스마트워치(심박)",         page:54, net:true, ex:["심장박동수", "혈관에 흐르는 혈액량의 변화", "광혈류 측정 센서", "심박수 표시 · 기록"] },
+  { name:"전기 절약형 자동 보안등",  page:56, page2:59, ex:["사람이 있는지", "사람의 움직임", "인체 감지 센서", "사람이 있을 때만 불을 켬"] },
   { name:"화재 경보기",             page:59, ex:["불이 났는지", "연기", "연기를 감지하는 센서", "경보를 울림"] },
   { name:"스마트 칫솔",             page:59, ex:["제대로 양치했는지", "칫솔질하는 빠르기와 방향", "가속도 센서", "양치 상태를 알려 줌"] },
   { name:"로봇 청소기",             page:0,  ex:["앞에 장애물이나 계단이 있는지", "쏘아 보낸 빛 · 소리가 되돌아오는 신호",
                                                "적외선 · 초음파 · 라이다 센서 등", "장애물을 피해 방향을 바꾸고 계단 앞에서 멈춤"] }
 ];
 /* 카드 쪽 꼬리표 — 교과서 쪽이 있으면 "교과서 ○쪽", 없으면 "교과서에 없음 · 인터넷 조사" */
-function casePage(c){ return c.page ? "교과서 " + c.page + "쪽" : "교과서에 없음 · 인터넷 조사"; }
+function casePage(c){
+  if (!c.page) return "교과서에 없음 · 인터넷 조사";
+  return "교과서 " + c.page + (c.page2 ? " · " + c.page2 : "") + "쪽" + (c.net ? " · 인터넷 조사" : "");
+}
 /* 카드마다 같은 네 물음(의뢰서 2장 ③) · 물음마다 적는 법(CASE_HINT — 카드마다 보인다) · 활동지 PDF 표 머리와 수업 화면 예시 답 줄의 짧은 이름 */
 var CASE_Q = ["이 기술은 무엇을 알아내려고 하나요?", "그것을 알아내려면 무엇의 변화를 감지해야 하나요?", "어떤 센서를 쓸까요?", "감지한 정보를 어떻게 쓰나요?"];
 var CASE_HINT = [
@@ -2981,34 +2992,30 @@ var CASE_HINT = [
 var CASE_GUIDE = ["문 앞에 사람이 왔는지", "사람의 발 동작(움직임)", "발 동작을 인식하는 센서(문 아래에 단다)", "사람이 오면 손을 대지 않아도 문을 연다"];
 var CASE_H = ["알아내려는 것", "감지할 변화", "센서", "정보 활용"];
 
-/* 의뢰서 다섯 칸 — 1차시 ④ 칸 id(REQ_IDS — 2차시 ①-나 가 읽는 이름이라 바꾸지 않는다, REQ_IDS21 은 같은 배열의 옛 2-2 이름) ·
-   2차시 칸 꼬리(REQ_KEYS — b_g_<꼬리>) · 이름 · 무엇을 적나(REQ_HINT) · 예(REQ_EXS — 한 사례로 다섯 칸을 잇는다) */
-var REQ_IDS = ["a_r_prob", "a_r_who", "a_r_goal", "a_r_know", "a_r_change"];
-var REQ_NAMES = ["문제 상황", "불편한 사람", "원하는 상태", "해결하려면 알아야 할 것", "감지해야 할 변화"];
+/* 의뢰서 세 칸(발주자 고침 설계서 §13 — '알아야 할 것' · '감지해야 할 변화' 는 해결하는 쪽이 생각한다) — 1차시 ④ 칸 id(REQ_IDS — 2차시 ①-나 가 읽는 이름이라 바꾸지 않는다, REQ_IDS21 은 같은 배열의 옛 2-2 이름) ·
+   2차시 칸 꼬리(REQ_KEYS — b_g_<꼬리>) · 이름 · 무엇을 적나(REQ_HINT) · 예(REQ_EXS — 한 사례로 세 칸을 잇는다) */
+var REQ_IDS = ["a_r_prob", "a_r_who", "a_r_goal"];
+var REQ_NAMES = ["문제 상황", "불편한 사람", "원하는 상태"];
 var REQ_STEP = 3;                      /* ④ 의 차례(0부터) — 이 단계를 열 때 ① 메모를 첫 칸에 넣는다(syncProb) */
 var REQ_HINT = [
   "언제, 어디에서, 무엇 때문에 불편하거나 위험한지 한두 문장으로 적어요. 처음 읽는 다른 모둠도 그 장면이 떠오르게 써요.",
   "이 문제로 불편하거나 위험한 사람이 누구인지 적어요. 여러 사람이면 모두 적어요.",
-  "문제가 풀리면 어떤 모습이 되는지 적어요. '어떻게 만들지' 가 아니라 '어떻게 되면 좋은지' 를 적어요.",
-  "그 상태를 만들려면 기계가 스스로 알아야 하는 것을 '~인지' 꼴로 적어요.",
-  "그것을 알려면 무엇의 변화를 감지해야 하는지 적어요(빛 · 소리 · 움직임 · 온도 · 압력 등). 센서 이름은 적지 않아요."
+  "문제가 풀리면 어떤 모습이 되는지 적어요. '어떻게 만들지' 가 아니라 '어떻게 되면 좋은지' 를 적어요."
 ];
 var REQ_EXS = [
   "밤에 기숙사 복도를 지날 때, 사람이 없어도 복도 조명이 계속 켜져 있어 전기가 낭비된다.",
   "기숙사 학생 · 기숙사를 관리하는 선생님",
-  "사람이 복도를 지나갈 때만 조명이 켜져 있고, 사람이 없으면 꺼져 있다.",
-  "복도에 사람이 있는지",
-  "사람의 움직임"
+  "사람이 복도를 지나갈 때만 조명이 켜져 있고, 사람이 없으면 꺼져 있다."
 ];
 /* 1차시 ④ 예시(수업 화면 「의뢰서 예시」 장 hold 줄) — REQ_EXS 에서 */
-var REQ_EX = [["문제 상황", REQ_EXS[0]], ["알아야 할 것", REQ_EXS[3]], ["감지해야 할 변화", REQ_EXS[4]]];
+var REQ_EX = [["문제 상황", REQ_EXS[0]], ["불편한 사람", REQ_EXS[1]], ["원하는 상태", REQ_EXS[2]]];
 /* 센서 이름 부드러운 알림(설계서 §2 ⑤) — 막지 않는다. '마이크로컨트롤러 · 마이크로파 · 마이크로미터 · 마이크로그램' 만 빼고
    '마이크로 소리를' · '마이크로폰' 은 잡는다. '조도' 는 앞 글자가 구 · 강 · 건 이면 뺀다(구조도 · 강조도 · 건조도).
    뒤돌아보기 정규식은 옛 사파리에서 스크립트 전체를 멈추므로 쓰지 않는다. '센서등' 은 설계서 낱말 '센서' 그대로 걸린다. */
 var SENSOR_RE = /센서|라이다|레이더|초음파|적외선|카메라|마이크(?!로\s*(?:컨트롤러|파|미터|그램))|(?:^|[^구강건])조도|자이로/;
-var SENSOR_MSG = "센서 이름은 적지 않아도 돼요. 센서 고르기는 2차시에 다른 모둠이 맡아요. 여기에는 '무엇의 변화'를 적어요.";
+var SENSOR_MSG = "센서 이름은 적지 않아요. 센서 고르기와 해결 방법은 2차시에 다른 모둠이 맡아요. 의뢰서에는 무엇이 불편하고 어떻게 되면 좋은지만 적어요.";
 var REQ_IDS21 = REQ_IDS;             /* 옛 2-2 이름 — 같은 배열 */
-var REQ_KEYS = ["prob", "who", "goal", "know", "change"];
+var REQ_KEYS = ["prob", "who", "goal"];
 
 /* ③ 시험할 상황 · 고르는 보기. AI 결과 보기 끝의 '분명히 말하지 않았어요' 는 AI 가 하나로 고르지 않을 때(설계서 9-3) */
 var SIT_NAMES = ["평소 상황", "드문 상황", "까다로운 상황"];
@@ -3024,7 +3031,9 @@ var SOL_F = [
   { k:"name",  name:"해결안 이름", hint:"우리 장치에 붙일 이름이에요. 장치가 하는 일이 드러나게 지어요. (교과서 60쪽 '발명품 이름')", ex:"예: 스마트 복도등" },
   { k:"desc",  name:"한 줄 설명", hint:"어떤 장치이고, 받은 의뢰서의 '원하는 상태' 를 어떻게 이루는지 한 문장으로 적어요. (교과서 60쪽 '사용 목적')",
     ex:"예: 사람이 지나갈 때만 복도 조명을 켜서 전기 낭비를 줄이는 장치", multi:true },
-  { k:"sens",  name:"센서와 감지할 변화", hint:"장치가 알아야 할 것마다 센서를 하나씩 적고, 그 센서가 무엇의 변화를 감지하는지 적어요. 센서는 하나여도 되고 세 개까지 써도 돼요. (교과서 60쪽 '수집해야 할 정보와 사용하는 센서')",
+  { k:"know",  name:"장치가 알아내야 할 것", hint:"받은 의뢰서의 '원하는 상태' 를 만들려면 장치가 스스로 알아내야 하는 것을 '~인지' 꼴로 적어요. 여러 개면 모두 적어요. 1차시 ③ 사례 표의 '알아내려는 것' 과 같은 생각이에요. (교과서 60쪽 '수집해야 할 정보')",
+    ex:"예: 복도에 사람이 있는지 / 주변이 어두운지", multi:true },
+  { k:"sens",  name:"센서와 감지할 변화", hint:"위 칸의 '알아내야 할 것' 마다 센서를 하나씩 적고, 그 센서가 무엇의 변화를 감지하는지 적어요. 센서는 하나여도 되고 세 개까지 써도 돼요. (교과서 60쪽 '수집해야 할 정보와 사용하는 센서')",
     ex:"예: 인체 감지 센서 — 사람의 움직임 / 빛을 감지하는 센서 — 주변 밝기" },
   { k:"cond",  name:"작동 조건 (처리)", hint:"마이크로컨트롤러가 센서 신호를 보고 어떻게 판단할지 '만약 ○ 이면 ○ 한다' 꼴로 적어요. 앞 칸은 센서가 감지한 상태, 뒤 칸은 장치가 할 일이에요. 조건이 둘이면 둘째 줄에도 적어요.",
     ex:"예: 만약 [복도에 사람이 움직이는 상태] 이면 [조명이 켜지게] 한다" },
@@ -3041,7 +3050,7 @@ var FIN_MORE = [
   { k:"limit",  name:"예상되는 한계", hint:"이 해결안이 잘 안 될 수 있는 때와 그 까닭을 적어요.", ex:"", multi:true }
 ];
 /* ④ 가 ② 에서 가져오는 칸 꼬리(b_f_<k> ← b_h_<k>) */
-var FIN_KEYS = ["name", "desc", "sen1", "chg1", "sen2", "chg2", "sen3", "chg3", "if", "then", "if2", "then2", "out"];
+var FIN_KEYS = ["name", "desc", "know", "sen1", "chg1", "sen2", "chg2", "sen3", "chg3", "if", "then", "if2", "then2", "out"];
 
 /* ⑥-나 AI 가 본 가능성(칩) */
 var VER_OPTS = ["이룰 수 있다", "조건이 맞으면 이룰 수 있다", "이루기 어렵다", "분명히 말하지 않았어요"];
@@ -3527,11 +3536,11 @@ function trimS(s){ return String(s == null ? "" : s).replace(/^\s+|\s+$/g, ""); 
 function rawv(id){ var e = $(id); return e ? String(e.value == null ? "" : e.value) : ""; }
 
 /* ==========================================================================
-   [1차시 칸 읽기] 2차시가 쓰는 1차시 값(①-가 의뢰서 다섯 칸 a_r_* · [1차시 사례 표 보기] a_c*_* · 2차시 활동지 PDF 의 1차시 부분)은
+   [1차시 칸 읽기] 2차시가 쓰는 1차시 값(①-가 의뢰서 세 칸 a_r_* · [1차시 사례 표 보기] a_c*_* · 2차시 활동지 PDF 의 1차시 부분)은
    같은 학번의 같은 기록 — 이 문서의 1차시 칸 — 에서 읽는다(설계서 §10). 다른 저장 열쇠를 읽지 않는다.
    값은 val() 로 읽는다(앞뒤 빈칸을 걷는다). 기록을 열기 전에는 칸이 모두 비어 있다.
    ========================================================================== */
-/* 1차시 ④ 의뢰서 다섯 칸 가운데 하나라도 적었나 */
+/* 1차시 ④ 의뢰서 세 칸 가운데 하나라도 적었나 */
 function has1req(){
   var i;
   for (i = 0; i < REQ_IDS21.length; i++) if (val(REQ_IDS21[i])) return true;
@@ -3580,7 +3589,7 @@ function paintProbSrc(){
   e.style.display = (a.value && p.value === a.value) ? "" : "none";
 }
 
-/* 센서 이름 알림 — 의뢰서 다섯 칸 어디든 센서 이름이 들어가면 그 칸 아래에. 막지 않고, 지우면 사라진다(글이 없으면 .snote:empty 로 높이 0) */
+/* 센서 이름 알림 — 의뢰서 세 칸 어디든 센서 이름이 들어가면 그 칸 아래에. 막지 않고, 지우면 사라진다(글이 없으면 .snote:empty 로 높이 0) */
 function paintSensorNotes(){
   var i, e, n, hit;
   for (i = 0; i < REQ_IDS.length; i++) {
@@ -3607,7 +3616,7 @@ function buildCases(){
     c = CASES[i];
     card = el("div", { "class":"dcard case", id:"case-" + (i + 1) }, [
       el("div", { "class":"dh" }, [ "카드 " + (i + 1) + " · " + c.name, el("span", { "class":"small", text:casePage(c) }),
-        c.page ? null : el("span", { "class":"tag net", text:"인터넷 조사 가능" }) ])
+        (c.page && !c.net) ? null : el("span", { "class":"tag net", text:"인터넷 조사 가능" }) ])
     ]);
     for (q = 0; q < CASE_Q.length; q++) {
       id = "a_c" + (i + 1) + "_" + (q + 1);
@@ -3633,7 +3642,7 @@ function renderCaseGuide(){
     ul.appendChild(li);
   }
 }
-/* 1차시 ④ 의뢰서 다섯 칸(a_r_*) — 칸마다 무엇을 적나(REQ_HINT) + 예(REQ_EXS) + 센서 이름 알림 자리. 첫 칸에는 ① 메모 알림 · 숨은 칸 a_r_prob_auto */
+/* 1차시 ④ 의뢰서 세 칸(a_r_*) — 칸마다 무엇을 적나(REQ_HINT) + 예(REQ_EXS) + 센서 이름 알림 자리. 첫 칸에는 ① 메모 알림 · 숨은 칸 a_r_prob_auto */
 function buildReq1(){
   var box = $("req1-fields"), i, id, kids;
   if (!box) return;
@@ -3671,7 +3680,7 @@ function autoEdited(id){
   now = String(e.value || "");
   return trimS(now) !== "" && now !== a.value;
 }
-/* ①-나 — 칩이 '나의 의뢰서' 면 같은 기록의 1차시 ④ 다섯 칸(a_r_*)으로. '다른 모둠원의 의뢰서' 면 저절로 넣은 값만 비운다(고쳐 쓴 칸은 둔다) */
+/* ①-나 — 칩이 '나의 의뢰서' 면 같은 기록의 1차시 ④ 세 칸(a_r_*)으로. '다른 모둠원의 의뢰서' 면 저절로 넣은 값만 비운다(고쳐 쓴 칸은 둔다) */
 function syncGroup(force){
   var pick = rv("b_g_pick"), ch = [], i, id;
   if (!(Store.key && Store.ready) || !pick) return ch;
@@ -3682,7 +3691,7 @@ function syncGroup(force){
   }
   return ch;
 }
-/* ④ — ② 해결안(b_h_*)의 칸으로(해결안 이름 · 한 줄 설명 · 센서와 감지할 변화 · 작동 조건 · 출력) */
+/* ④ — ② 해결안(b_h_*)의 칸으로(해결안 이름 · 한 줄 설명 · 알아내야 할 것 · 센서와 감지할 변화 · 작동 조건 · 출력) */
 function syncFinal(force){
   var ch = [], i, id;
   if (!(Store.key && Store.ready)) return ch;
@@ -3739,7 +3748,7 @@ $("f-refill").onclick = function(){
 /* ==========================================================================
    [칸 만들기] 되풀이되는 칸은 상수에서 만든다 — Store 가 칸을 찾기(clearFields) 전에 부른다(초기화 차례).
    ========================================================================== */
-/* ①-나 모둠 의뢰서 다섯 칸(b_g_* · 숨은 칸 <id>_auto). 불편한 사람 · 알아야 할 것은 "(있으면)" */
+/* ①-나 모둠 의뢰서 세 칸(b_g_* · 숨은 칸 <id>_auto) */
 function buildReqFields(boxId, pre, auto){
   var box = $(boxId), i, id, lab, inp;
   if (!box) return;
@@ -3747,7 +3756,6 @@ function buildReqFields(boxId, pre, auto){
   for (i = 0; i < REQ_KEYS.length; i++) {
     id = pre + REQ_KEYS[i];
     lab = [REQ_NAMES[i]];
-    if (auto && (i === 1 || i === 3)) lab.push(el("span", { "class":"muted", text:" (있으면)" }));
     inp = (i === 1)
       ? el("input", { id:id, "class":"input", type:"text", placeholder:"여기에 적어요." })
       : el("textarea", { id:id, "class":"input", rows:"2", style:"min-height:70px", placeholder:"여기에 적어요." });
@@ -3915,6 +3923,7 @@ function solItems(){
   return [
     ["해결안 이름", val("b_f_name"), 0],
     ["한 줄 설명", val("b_f_desc"), 1],
+    ["장치가 알아내야 할 것", val("b_f_know"), 1],
     ["센서와 감지할 변화", sensStr("b_f_"), 1],
     ["작동 조건", condsStr("b_f_"), 1],
     ["출력", val("b_f_out"), 1],
@@ -3966,8 +3975,8 @@ function paintRefill(){
 }
 /* ② 받은 의뢰서(①-다 — 읽기 전용). 세 칸이 모두 비면 알림 + [①-다 로 가기] */
 function paintRx(){
-  var ok = !!(Store.key && Store.ready), empty = !(val("b_rx_prob") || val("b_rx_goal") || val("b_rx_change"));
-  setLines($("rx-body"), [["의뢰한 모둠", val("b_from_team")], ["문제 상황", val("b_rx_prob")], ["원하는 상태", val("b_rx_goal")], ["감지해야 할 변화", val("b_rx_change")]]);
+  var ok = !!(Store.key && Store.ready), empty = !(val("b_rx_prob") || val("b_rx_who") || val("b_rx_goal"));
+  setLines($("rx-body"), [["의뢰한 모둠", val("b_from_team")], ["문제 상황", val("b_rx_prob")], ["불편한 사람", val("b_rx_who")], ["원하는 상태", val("b_rx_goal")]]);
   $("rx-none").style.display = (ok && empty) ? "" : "none";
 }
 /* ③-나 받은 답 칸 머리의 상황 글(가 에서 적은 것) */
@@ -4052,7 +4061,7 @@ function paintSaveHints(){
   if (k) {
     clear(k);
     k.appendChild(mk("b", null, ok ? "기록은 이 기기에 남아 있어요. 수업이 끝난 뒤 대표가 올려요."
-                                   : "이 기기는 저장이 막혀 있어요 — 새로 고치면 적은 것이 사라져요. 대표는 수업이 끝나기 전에 전시관 PDF 세 개를 저장해요."));
+                                   : "이 기기는 저장이 막혀 있어요 — 새로 고치면 적은 것이 사라져요. 대표는 수업이 끝나기 전에 전시관 PDF 를 저장해요."));
     k.className = ok ? "notice" : "notice warn";
   }
   var w = $("ws-late");   /* ⑦-가 '시간이 모자라면' — 저장이 막힌 기기는 창을 닫으면 적은 것이 사라진다(설계서 9-1) */
@@ -4242,7 +4251,7 @@ var STEPS1 = [
     todo:"사례 카드 6장마다 네 가지를 모둠이 함께 이야기하고 각자 적어요. 인터넷 조사는 해도 되고, 생성형 AI 는 쓰지 않아요. (교과서 53 · 54 · 56 · 59쪽)",
     desc:"사례 카드 6장 — 무엇의 변화를 감지하는지 찾아요" },
   { g:"④", name:"의뢰서 쓰기",             min:10, ai:"없이", mode:"개별 활동",
-    todo:"① 메모를 다듬어 의뢰서 다섯 칸을 혼자 적고, 나의 의뢰서 PDF 와 활동지 PDF 를 저장해요. 활동지 PDF 는 클래스룸에 내요.",
+    todo:"① 메모를 다듬어 의뢰서 세 칸을 혼자 적고, 나의 의뢰서 PDF 와 활동지 PDF 를 저장해요. 활동지 PDF 는 클래스룸에 내요.",
     desc:"나의 의뢰서를 써요 — 2차시에 다른 모둠이 받아요" }
 ];
 var STEPS2 = [
@@ -4265,8 +4274,8 @@ var STEPS2 = [
     todo:"가 각자 받은 해결서 PDF 와 우리 모둠 의뢰서 PDF 를 제미나이에 올려 가능성을 시뮬레이션하고, 나 · 다 내 말과 내 생각으로 적은 뒤(AI 없이), 라 모둠 피드백을 PDF 로 보내고, 마 받은 피드백을 적어요.",
     desc:"받은 해결서의 가능성을 AI 로 시뮬레이션하고 피드백을 주고받아요" },
   { g:"⑦", name:"전시관에 올리기",   min:0, when:"수업 끝 뒤", ai:"없이", mode:"모둠 활동 · 대표",
-    todo:"⑥-마 까지 적었으면 종 치기 전에 각자 활동지 PDF 를 저장해 클래스룸에 내요. 수업이 끝난 뒤 모둠 대표 한 명이 전시관 PDF 세 개를 저장해 전시관에 올려요.",
-    desc:"활동지 PDF 저장(각자, 종 치기 전) · 수업이 끝난 뒤 대표 한 명이 PDF 세 개를 전시관에 올리기" }
+    todo:"⑥-마 까지 적었으면 종 치기 전에 각자 활동지 PDF 를 저장해 클래스룸에 내요. 수업이 끝난 뒤 모둠 대표 한 명이 전시관 PDF 한 개를 저장해 전시관에 올려요.",
+    desc:"활동지 PDF 저장(각자, 종 치기 전) · 수업이 끝난 뒤 대표 한 명이 PDF 한 개를 전시관에 올리기" }
 ];
 /* AI 딱지 글 — "AI 없이" 또는 "AI 사용 · 대화 n" */
 function aiTag(s){ return s.ai === "없이" ? "AI 없이" : "AI 사용 · " + s.ai; }
@@ -4437,8 +4446,8 @@ function setLesson(n, how){
    · c1 · c2 는 요청만 담는다(PDF 에 내용이 있다). PDF 를 올리지 못하거나 AI 가 PDF 를 읽지 못할 때를 위해
      c1t · c2t(PDF 대신 글로 보내기)는 PDF 의 내용 + 같은 요청을 담는다.
    · 보낼 글은 넣을 칸만 이름으로 골라 읽는다(허용 목록):
-       c1t = 받은 의뢰서 b_rx_* · 해결안 b_h_*(이름 · 한 줄 설명 · 센서와 변화 · 작동 조건 · 출력) · 시험할 상황 b_s1~3
-       c2t = 우리 모둠 의뢰서 b_g_*(불편한 사람 · 알아야 할 것은 비면 줄째 뺀다) · 받은 해결서 b_rs_*
+       c1t = 받은 의뢰서 b_rx_* · 해결안 b_h_*(이름 · 한 줄 설명 · 알아내야 할 것 · 센서와 변화 · 작동 조건 · 출력) · 시험할 상황 b_s1~3
+       c2t = 우리 모둠 의뢰서 b_g_* 세 칸 · 받은 해결서 b_rs_*
      읽지 않는 것: 학번 · 이름 · 모둠 이름(b_team · b_to_team · b_from_team · b_solver_team) · 우리 예측 b_p* · 까닭 · 걱정되는 점 b_h_worry.
      빈 칸은 "(비어 있음)" — 꾸며 채우지 않는다. AI 에게 보내는 글은 반말이다.
    · 가벼운 잠금: c1 · c1t 는 ③-가 상황 3 · 예측 3 · 까닭 3 이 차야 연다(잠기면 #box-c1 이 통째로 숨고 #note-c1 에 무엇을 적으면 열리는지 보인다).
@@ -4452,7 +4461,7 @@ function pv(id){ return val(id) || PACK_NONE; }
 
 /* 해결안 칸 한 벌(pre)을 글로 — 걱정되는 점은 넣지 않는다. 센서 · 작동 조건 줄은 적은 것만 */
 function solLines(pre){
-  var L = ["- 해결안 이름: " + pv(pre + "name"), "- 한 줄 설명: " + pv(pre + "desc")], s = sensStr(pre), c = condsStr(pre);
+  var L = ["- 해결안 이름: " + pv(pre + "name"), "- 한 줄 설명: " + pv(pre + "desc"), "- 장치가 알아내야 할 것: " + pv(pre + "know")], s = sensStr(pre), c = condsStr(pre);
   L.push("- 센서와 감지할 변화: " + (s ? "\n  " + s.split("\n").join("\n  ") : PACK_NONE));
   L.push("- 작동 조건: " + (c ? "\n  " + c.split("\n").join("\n  ") : PACK_NONE));
   L.push("- 출력: " + pv(pre + "out"));
@@ -4528,8 +4537,8 @@ var Cards = {
         "",
         "[의뢰서]",
         "- 문제 상황: " + pv("b_rx_prob"),
+        "- 불편한 사람: " + pv("b_rx_who"),
         "- 원하는 상태: " + pv("b_rx_goal"),
-        "- 감지해야 할 변화: " + pv("b_rx_change"),
         "",
         "[해결안]"
       ].concat(solLines("b_h_"), [
@@ -4559,10 +4568,8 @@ var Cards = {
         "[의뢰서]",
         "- 문제 상황: " + pv("b_g_prob")
       ];
-      if (val("b_g_who")) L.push("- 불편한 사람: " + val("b_g_who"));
-      L.push("- 원하는 상태: " + pv("b_g_goal"));
-      if (val("b_g_know")) L.push("- 해결하려면 알아야 할 것: " + val("b_g_know"));
-      L.push("- 감지해야 할 변화: " + pv("b_g_change"),
+      L.push("- 불편한 사람: " + pv("b_g_who"),
+             "- 원하는 상태: " + pv("b_g_goal"),
              "",
              "[해결서]",
              "- 해결안 이름과 한 줄 설명: " + pv("b_rs_final"),
@@ -4955,12 +4962,13 @@ function saveNote(r, name, len, again){
 /* ==========================================================================
    [주고받는 PDF] 발주자 결정(2026-09-30): 모둠 사이 주고받기 · AI 에게 올리기 · 전시관 올리기는 PDF 파일로 한다(모둠 사이는 구글 챗).
    단추마다 누른 처리 안에서 곧바로 만들고 내려받는다(태블릿은 사용자 동작 밖 내려받기를 막는다). 쪽을 넘치면 다음 쪽으로 잇는다(WsDoc).
-     req1 1차시 ④-나 · 2차시 ①-나 [나의 의뢰서 PDF 저장] — 1차시 의뢰서 다섯 칸 + 학번 · 이름(발주자 결정) · 구글 챗으로 모둠 사이에
-     reqg ①-나 · ⑥-가 [우리 모둠 의뢰서 PDF 저장] — b_g_* 다섯 칸, 학번 · 이름 · 모둠 이름 없음 — ⑥ 에서 AI 에게 올린다
+     req1 1차시 ④-나 · 2차시 ①-나 [나의 의뢰서 PDF 저장] — 1차시 의뢰서 세 칸 + 학번 · 이름(발주자 결정) · 구글 챗으로 모둠 사이에
+     reqg ①-나 · ⑥-가 [우리 모둠 의뢰서 PDF 저장] — b_g_* 세 칸, 학번 · 이름 · 모둠 이름 없음 — ⑥ 에서 AI 에게 올린다
      sol  ③-나 [해결안 PDF 저장] — 받은 의뢰서 세 칸 · 해결안(걱정되는 점 뺌) · 시험할 상황 셋. 우리 예측 없음 — AI 에게 올린다
      rs   ④ · ⑤ · ⑦ [해결서 PDF 저장] — 받은 의뢰서 · 최종 해결서 · 견주기 표(대표 기기) · 모둠원 AI 답 요약 — 의뢰 모둠에 · AI 에게 · 전시관에
      fb   ⑥-라 [피드백 PDF 저장] — 모둠 피드백 세 칸 — 해결 모둠에
-     g1 · g3 ⑦-나 전시관 의뢰서(①-다 받은 의뢰서) · 전시관 피드백(⑥-마 받은 피드백). 전시관 해결서는 rs 와 같은 PDF(작품 제목을 머리에).
+     gal  ⑦-나 [전시관 PDF 저장] — 한 파일(전시관은 PDF 1개만 받는다 — 설계서 §13): 1 의뢰서(①-다 받은 의뢰서) · 2 해결서(rs 와 같은 내용, 작품 제목을 머리에) ·
+          3 피드백(⑥-마 받은 피드백). 부분마다 새 쪽.
    AI 에게 올리는 PDF(reqg · sol · rs)의 쪽 안에는 학번 · 이름 · 모둠 이름이 없다. 파일 이름에는 구별하려고 모둠 이름을 붙인다(req1 은 학번 · 이름).
    ========================================================================== */
 var SHARE_FOOT1 = "과학탐구실험2 Ⅱ-1";
@@ -4997,18 +5005,19 @@ function shReqG(){
   for (i = 0; i < REQ_KEYS.length; i++) d.kvBig(REQ_NAMES[i], val("b_g_" + REQ_KEYS[i]));
   return d.finish();
 }
-/* 해결안 칸 한 벌(pre)을 PDF 에 — 이름 · 한 줄 설명 · 센서와 변화 · 작동 조건 · 출력 */
+/* 해결안 칸 한 벌(pre)을 PDF 에 — 이름 · 한 줄 설명 · 알아내야 할 것 · 센서와 변화 · 작동 조건 · 출력 */
 function solKv(d, pre){
   d.kv("해결안 이름", val(pre + "name"));
   d.kv("한 줄 설명", val(pre + "desc"));
+  d.kv("장치가 알아내야 할 것", val(pre + "know"));
   d.kv("센서와 감지할 변화", sensStr(pre));
   d.kv("작동 조건", condsStr(pre));
   d.kv("출력", val(pre + "out"));
 }
 function rxKv(d){
   d.kv("문제 상황", val("b_rx_prob"));
+  d.kv("불편한 사람", val("b_rx_who"));
   d.kv("원하는 상태", val("b_rx_goal"));
-  d.kv("감지해야 할 변화", val("b_rx_change"));
 }
 function shSol(){
   var d = new WsDoc(SHARE_FOOT2 + " 해결안"), i;
@@ -5039,16 +5048,20 @@ function finKv(d){
   d.kv("따르지 않은 AI 의견과 까닭", val("b_f_reject"));
   d.kv("예상되는 한계", val("b_f_limit"));
 }
-function shRs(withTitle){
+function shRs(){
   var d = new WsDoc(SHARE_FOOT2 + " 해결서");
-  shareHead(d, SHARE_FOOT2 + " · 2차시 ④ 최종 해결서", "해결서", withTitle ? val("b_title") : "");
+  rsBody(d, SHARE_FOOT2 + " · 2차시 ④ 최종 해결서", "");
+  return d.finish();
+}
+/* 해결서 내용 — 해결서 PDF(rs) · 전시관 PDF(gal) 둘째 부분이 같이 쓴다 */
+function rsBody(d, kicker, workTitle){
+  shareHead(d, kicker, "해결서", workTitle);
   d.head("우리가 해결한 의뢰");
   rxKv(d);
   d.head("최종 해결서");
   finKv(d);
   d.table([0.34, 0.33, 0.33], cmpRows(), "우리 예측과 AI 결과 (대표 기기)", "우리가 시험한 상황");
   if (rv("b_diff") === "예") d.kv("모둠원이 받은 AI 답 요약", val("b_diff_sum"));
-  return d.finish();
 }
 function shFb(){
   var d = new WsDoc(SHARE_FOOT2 + " 피드백");
@@ -5061,18 +5074,18 @@ function shFb(){
   d.kvBig("더 알아봐야 할 점", val("b_fb_more"));
   return d.finish();
 }
-function shG1(){
-  var d = new WsDoc(SHARE_FOOT2 + " 전시관 · 의뢰서");
-  shareHead(d, SHARE_FOOT2 + " · 우리가 해결한 의뢰", "의뢰서", val("b_title"));
+/* 전시관 PDF 하나(발주자 고침 설계서 §13 — 전시관은 PDF 1개만 받는다) — 1 의뢰서 → 2 해결서 → 3 피드백, 부분마다 새 쪽에서 시작 */
+function shGal(){
+  var d = new WsDoc(SHARE_FOOT2 + " 전시관"), t = val("b_title");
+  shareHead(d, SHARE_FOOT2 + " · 1. 우리가 해결한 의뢰", "의뢰서", t);
   d.kvBig("의뢰한 모둠", val("b_from_team"));
   d.kvBig("문제 상황", val("b_rx_prob"));
+  d.kvBig("불편한 사람", val("b_rx_who"));
   d.kvBig("원하는 상태", val("b_rx_goal"));
-  d.kvBig("감지해야 할 변화", val("b_rx_change"));
-  return d.finish();
-}
-function shG3(){
-  var d = new WsDoc(SHARE_FOOT2 + " 전시관 · 피드백");
-  shareHead(d, SHARE_FOOT2 + " · 우리가 받은 피드백", "피드백", val("b_title"));
+  d.newPage();
+  rsBody(d, SHARE_FOOT2 + " · 2. 우리 모둠의 최종 해결서", t);
+  d.newPage();
+  shareHead(d, SHARE_FOOT2 + " · 3. 우리가 받은 피드백", "피드백", t);
   d.kvBig("피드백을 준 모둠", val("b_from_team"));
   d.kvBig("받아들일 점", val("b_rf_ok"));
   d.kvBig("고쳐야 할 점", val("b_rf_fix"));
@@ -5085,32 +5098,29 @@ function missOf(pairs){
   for (i = 0; i < pairs.length; i++) if (!pairs[i][0]) out.push(pairs[i][1]);
   return out;
 }
-function needRx(){ return [[val("b_rx_prob"), "①-다 받은 의뢰서의 문제 상황"], [val("b_rx_goal"), "①-다 받은 의뢰서의 원하는 상태"], [val("b_rx_change"), "①-다 받은 의뢰서의 감지해야 할 변화"]]; }
-function needFin(){ return [[val("b_f_desc"), "④ 한 줄 설명"], [sensStr("b_f_"), "④ 센서와 감지할 변화"], [condsStr("b_f_"), "④ 작동 조건"]]; }
+function needRx(){ return [[val("b_rx_prob"), "①-다 받은 의뢰서의 문제 상황"], [val("b_rx_who"), "①-다 받은 의뢰서의 불편한 사람"], [val("b_rx_goal"), "①-다 받은 의뢰서의 원하는 상태"]]; }
+function needFin(){ return [[val("b_f_desc"), "④ 한 줄 설명"], [val("b_f_know"), "④ 장치가 알아내야 할 것"], [sensStr("b_f_"), "④ 센서와 감지할 변화"], [condsStr("b_f_"), "④ 작동 조건"]]; }
 /* 종류마다: 만들기 · 파일 이름 · 먼저 적을 칸 */
 var SHARE = {
   req1: { build:shReq1, name:function(){ var nm = fileSafe(Student.name); return "2-1_의뢰서_" + Student.cur + (nm ? "_" + nm : "") + ".pdf"; },
-          need:function(){ return missOf([[val("a_r_prob"), "문제 상황"], [val("a_r_goal"), "원하는 상태"], [val("a_r_change"), "감지해야 할 변화"]]); } },
+          need:function(){ return missOf([[val("a_r_prob"), "문제 상황"], [val("a_r_who"), "불편한 사람"], [val("a_r_goal"), "원하는 상태"]]); } },
   reqg: { build:shReqG, name:function(){ return "2-2_모둠의뢰서" + teamSfx() + ".pdf"; },
-          need:function(){ return missOf([[val("b_g_prob"), "①-나 모둠 의뢰서의 문제 상황"], [val("b_g_goal"), "①-나 원하는 상태"], [val("b_g_change"), "①-나 감지해야 할 변화"]]); } },
+          need:function(){ return missOf([[val("b_g_prob"), "①-나 모둠 의뢰서의 문제 상황"], [val("b_g_who"), "①-나 불편한 사람"], [val("b_g_goal"), "①-나 원하는 상태"]]); } },
   sol:  { build:shSol, name:function(){ return "2-2_해결안" + teamSfx() + ".pdf"; },
-          need:function(){ return missOf(needRx().concat([[val("b_h_desc"), "② 한 줄 설명"], [sensStr("b_h_"), "② 센서와 감지할 변화"], [condsStr("b_h_"), "② 작동 조건"]])); } },
-  rs:   { build:function(){ return shRs(false); }, name:function(){ return "2-2_해결서" + teamSfx() + ".pdf"; },
+          need:function(){ return missOf(needRx().concat([[val("b_h_desc"), "② 한 줄 설명"], [val("b_h_know"), "② 장치가 알아내야 할 것"], [sensStr("b_h_"), "② 센서와 감지할 변화"], [condsStr("b_h_"), "② 작동 조건"]])); } },
+  rs:   { build:shRs, name:function(){ return "2-2_해결서" + teamSfx() + ".pdf"; },
           need:function(){ return missOf(needRx().concat(needFin())); } },
   fb:   { build:shFb, name:function(){ return "2-2_피드백" + teamSfx() + ".pdf"; },
           need:function(){ return (val("b_fb_ok") || val("b_fb_fix") || val("b_fb_more")) ? [] : ["⑥-라 피드백(세 칸 가운데 하나 이상)"]; } },
-  g1:   { build:shG1, name:function(){ return "2-2_전시관1_의뢰서" + teamSfx() + ".pdf"; },
-          need:function(){ return missOf([[val("b_title"), "작품 제목"]].concat(needRx())); } },
-  g2:   { build:function(){ return shRs(true); }, name:function(){ return "2-2_전시관2_해결서" + teamSfx() + ".pdf"; },
-          need:function(){ return missOf([[val("b_title"), "작품 제목"]].concat(needRx(), needFin())); } },
-  g3:   { build:shG3, name:function(){ return "2-2_전시관3_피드백" + teamSfx() + ".pdf"; },
-          need:function(){ return missOf([[val("b_title"), "작품 제목"], [val("b_rf_ok") || val("b_rf_fix") || val("b_rf_more"), "⑥-마 받은 피드백(세 칸 가운데 하나 이상)"]]); } }
+  gal:  { build:shGal, name:function(){ return "2-2_전시관" + teamSfx() + ".pdf"; },
+          need:function(){ return missOf([[val("b_title"), "작품 제목"]].concat(needRx(), needFin(),
+                                   [[val("b_rf_ok") || val("b_rf_fix") || val("b_rf_more"), "⑥-마 받은 피드백(세 칸 가운데 하나 이상)"]])); } }
 };
 /* 단추 id → [종류, 알림 id] */
 var SHARE_BTNS = {
   "req-pdf-a":["req1", "req-msg-a"], "req-pdf-my":["req1", "req-msg-my"], "req-pdf-g":["reqg", "req-msg-g"], "req-pdf-g2":["reqg", "req-msg-g2"],
   "sol-pdf":["sol", "sol-msg"], "rs-pdf":["rs", "rs-msg"], "rs-pdf2":["rs", "rs-msg2"], "fb-pdf":["fb", "fb-msg"],
-  "gal-pdf-1":["g1", "pdf-msg"], "gal-pdf-2":["g2", "pdf-msg"], "gal-pdf-3":["g3", "pdf-msg"]
+  "gal-pdf":["gal", "pdf-msg"]
 };
 var Pdf = {
   msg: function(id, text, warn){
@@ -5369,8 +5379,8 @@ function ws22(d){
   d.kv("다. 우리 의뢰서를 받는 모둠", val("b_to_team"));
   d.kv("다. 우리에게 의뢰서를 준 모둠 (의뢰한 모둠)", val("b_from_team"));
   d.kv("다. 받은 의뢰서 — 문제 상황", val("b_rx_prob"));
+  d.kv("다. 받은 의뢰서 — 불편한 사람", val("b_rx_who"));
   d.kv("다. 받은 의뢰서 — 원하는 상태", val("b_rx_goal"));
-  d.kv("다. 받은 의뢰서 — 감지해야 할 변화", val("b_rx_change"));
 
   d.head("② 해결 방법 고안 (모둠 활동 · AI 없이)");
   solKv(d, "b_h_");
@@ -5490,7 +5500,7 @@ $("g_sid").value = ""; $("g_name").value = "";
 /* 스크립트가 만드는 칸 — Store 가 칸을 찾기(clearFields) 전에 */
 buildCases();          /* 1차시 ③ 사례 카드 6장 */
 renderCaseGuide();     /* 1차시 ③ 네 가지 적는 법(예: 자동문) */
-buildReq1();           /* 1차시 ④ 의뢰서 다섯 칸(적는 법 · 예) */
+buildReq1();           /* 1차시 ④ 의뢰서 세 칸(적는 법 · 예) */
 buildReqFields("g-fields", "b_g_", true);
 buildSolForm("sol", "b_h_", "해결안", false, [SOL_WORRY]);
 buildSolForm("final", "b_f_", "최종 해결서", true, FIN_MORE);
