@@ -37,12 +37,12 @@
   옛 자료 그림(PNG, MatImg)은 없앴다. 수업 전 학생 시험 계정으로 파일 올리기(+) 단추 · 사진 올리기를 확인할 것.
   [대화 수] 대화 1(추천 3가지) · 대화 2(근거 묻기, 같은 대화창) — 1차시 · 대화 3(시뮬레이션, 새 대화) — 2차시.
 
-  1차시  ① 오늘 할 일(2분) → ② 왜 안 깨질까(9분, AI 없이) → ③ 나의 설계(9분, AI 없이)
-         → ④ AI 에게 묻기(15분, 대화 1 · 2) → ⑤ 비교하고 고르기(13분)   합 48분 — 정리 단계 없음(A13-12)
-  2차시  ① 오늘 할 일(1분) → ② 만들기(12분, AI 없이) → ③ AI 시뮬레이션(7분, 가 AI 없이 · 나 대화 3)
-         → ④ 마지막 고치기(7분) → ⑤ 떨어뜨리기(7분, AI 없이) → ⑥ 돌아보고 올리기(14분)   합 48분
+  1차시  ① 오늘 할 일(2분, AI 없이) → ② 왜 안 깨질까(11분, AI 없이) → ③ 나의 설계(9분, AI 없이)
+         → ④ AI 에게 묻기(15분, AI 사용 — 대화 1 · 2) → ⑤ 비교하고 고르기(13분, AI 답 다시 보기만)   합 50분 — 정리 단계 없음(A13-12)
+  2차시  ① 오늘 할 일(1분, AI 없이) → ② 만들기(12분, AI 없이) → ③ AI 시뮬레이션(7분, 가 AI 없이 · 나 AI 사용 — 대화 3)
+         → ④ 마지막 고치기(7분, AI 답 다시 보기만) → ⑤ 떨어뜨리기(7분, AI 없이) → ⑥ 돌아보고 올리기(14분, AI 없이)   합 48분
   (2026-09-28 개념 보강으로 1차시 ② · 2차시 ⑥ 을 1분씩 늘렸다 — 여유는 차시마다 2분. 아래 [개념 보강] 참고.
-   A14 로 1차시 ②-나 3 → 4분 · ⑤-가 4 → 3분 — 합은 그대로 48분)
+   A14 로 1차시 ②-나 3 → 4분 · ⑤-가 4 → 3분 — 합은 그대로 48분. A15 로 1차시 ② 9 → 11분 — 1차시 여유 2분을 썼다, 합 50분)
   (실제 값은 STEPS1 · STEPS2 배열에 있다. 고칠 때 여기도 같이 고칠 것. 조각(가·나·다)의 분은 화면 글이다.)
 
   [교과서와 다른 운영] 교과서 40~41쪽과 다르게 운영하는 것(발주자 결정 A8 · A11 · A12 · A13). 학생 화면에는 교과서 내용처럼 쓰지 않는다.
@@ -187,6 +187,19 @@
      K9 「나. 고르고 까닭 쓰기」 예 · 「받은 답을 내 말로 정리해요」 놓는 자리 잔글씨. 장 수는 그대로(1차시 35 · 2차시 29).
    고치기 전 사본은 .work/1-5-안전장치.before_A14fix.html.
   (2026-09-28 A13 반영 — 고치기 전 사본은 .work/1-5-안전장치.before_v2.html, 개념 보강 전은 .before_concepts.html)
+  [A15 반영] 2026-09-30 발주자 요청(시험 대비 개념 강화 · AI 쓰임 표시 · 자료 PDF 단추 · 친절한 보낼 글)과 결정(1차시 ② 11분 ·
+   ⑤ · 2차시 ④ 는 AI 답 다시 보기만 · ① · 2차시 ⑥ 은 AI 없이 · 개념 A 용어와 단위 + B 힘-시간 그래프 + C 셈 확인 — 43쪽 인명보호장구 기준은 넣지 않음) —
+   · 1차시 ② — 나 머리에 운동량(p = mv · kg·m/s) · 충격량(I = FΔt · N·s) · 충격량 = 운동량의 변화량(.defs), 새 조각 다 「그래프와 셈으로
+     확인하기」(넓이가 같은 두 삼각형 힘-시간 그래프 · 빈칸 a_ft1~3 · 0.1 kg 공 10 m/s 셈 빈칸 a_cal1~3 — 셈을 익히려고 정한 예시 값),
+     옛 다 「오늘의 조건」 은 라. 조각 분 가 3 · 나 4 · 다 2 · 라 2. 답은 수업 화면 「힘-시간 그래프」(그림 #ls-fig-ftg, data-cls) · 「셈으로 확인하기」 장.
+     활동지 PDF 에도 두 줄(wsBuild).
+   · AI 쓰임 딱지 — 모든 단계에 STEPS ai 셋 가운데 하나("없이" · "보기만" · 대화 이름 = AI 사용). aiTag · aiShort · aiCls.
+     모든 조각 머리에 AI 딱지(.tag.ai-no · ai-use · ai-view)와 활동 형태 딱지. 수업 화면 머리 줄에 #ls-ai(deckAi — 장 단계의 STEPS ai,
+     2차시 ③-가 장은 ai:"없이"), dstep 은 더 이상 " · AI 없이" 를 붙이지 않는다. RULES1 · RULES2 에 AI 는 어디서만 묻는지 한 줄.
+   · 대화 1 · 3 상자(box-c1 · box-c3)를 잠겨 있을 때도 숨기지 않는다 — 단추는 누를 수 없고 보낼 글 자리에 잠금 까닭(placeholder).
+     대화 1 잠금 알림 아래 [③ 나의 예측으로 가기](go3-c1 → #pane-a3pred).
+   · 보낼 글 — 대화 1 · 3 위에 「보낼 글은 이렇게 짜여 있어요」(.anat), 대화 2 위에 묻는 것 한 줄. c1Ask · c3Ask · c2 에 '고등학교 1학년이
+     읽기 쉬운 말로 · 차례대로 짧게'. 수업 화면 「좋은 지시의 짜임」 [부탁] 줄 · 새 장 「대화 3 · 보낼 글의 짜임」.
 -->
 <style>
 /* ==========================================================================
@@ -447,6 +460,12 @@ table.tbl .blank.s{width:2.8em}
 .ls-mode.solo{border-color:#a9bedb; background:#eef3fb; color:#2a4a78}
 .ls-mode.team{border-color:#dcc08f; background:#fbf3e6; color:#74500f}
 .ls-mode.none{display:none}
+/* A15 AI 쓰임 딱지 — 활동지의 .tag.ai-no / ai-use / ai-view 와 같은 색 */
+.ls-ai{display:inline-block; padding:2px 12px; border-radius:999px; border:1px solid var(--line-2); font-weight:600; white-space:nowrap}
+.ls-ai.ai-no{border-color:#cdc6b8; background:#f1eee7; color:#525b66}
+.ls-ai.ai-use{border-color:#9fd0b0; background:#eaf7ef; color:#1d6b3c}
+.ls-ai.ai-view{border-color:#e0c48a; background:#fdf6e6; color:#7a5a12}
+.ls-ai.none{display:none}
 
 .ls-body{
   /* --ls-k 는 '한 화면에 담기' 배율이다(lessonFit 이 줄이거나 키운다).
@@ -483,6 +502,9 @@ table.tbl .blank.s{width:2.8em}
 .ls-figbox svg{position:absolute; top:0; left:0; width:100%; height:100%; max-width:none; margin:0}
 .ls-figbox .plc .lab{font-size:32px}
 .ls-figbox .plc .cap{font-size:28px}   /* A14 고침 K8 — 22 → 28px(앞 화면에서 읽히게) */
+.ls-figbox .ftg{margin:0}
+.ls-figbox .ftg .lab{font-size:30px}   /* A15 힘-시간 그래프 — 앞 화면용 */
+.ls-figbox .ftg .cap{font-size:24px}
 
 .ls-body{cursor:pointer}          /* 화면을 누르면 다음으로 넘어간다 */
 
@@ -764,6 +786,28 @@ table.tbl.qty .blank{width:2.8em}
 .plc .lab{font-size:15px; font-weight:800; fill:var(--c-accel)}
 .plc .cap{font-size:13px; fill:var(--ink-2)}
 .plc .arr{stroke:var(--ink-2); stroke-width:2; fill:none}
+/* A15 ②-나 용어의 뜻과 단위 · ②-다 힘-시간 그래프(넓이가 같은 두 삼각형) */
+.defs{list-style:none; padding:0; margin:6px 0 0}
+.defs li{margin:0 0 3px; font-size:1.02rem}
+.defs .unit{display:inline-block; margin-left:6px; font-size:.84rem; color:var(--ink-2); background:var(--card-2);
+            border:1px solid var(--line); border-radius:999px; padding:0 8px}
+.ftg{display:block; width:100%; max-width:460px; height:auto; margin-top:8px}
+.ftg .ax{stroke:var(--ink); stroke-width:2; fill:none}
+.ftg .ga{fill:rgba(37,99,235,.14); stroke:var(--c-accel); stroke-width:2.5}
+.ftg .gb{fill:rgba(22,163,74,.14); stroke:var(--c-speed); stroke-width:2.5}
+.ftg .lab{font-size:15px; font-weight:800}
+.ftg .la{fill:var(--c-accel)}
+.ftg .lb{fill:var(--c-speed)}
+.ftg .cap{font-size:13px; fill:var(--ink-2)}
+/* A15 AI 쓰임 딱지 — 단계 · 조각 머리 · 수업 화면이 같은 세 가지 말(AI 없이 · AI 사용 · AI 답 다시 보기만)과 색을 쓴다 */
+.tag.ai-no{border-color:#cdc6b8; background:#f1eee7; color:#525b66}
+.tag.ai-use{border-color:#9fd0b0; background:#eaf7ef; color:#1d6b3c}
+.tag.ai-view{border-color:#e0c48a; background:#fdf6e6; color:#7a5a12}
+/* A15 보낼 글의 짜임 — 글 머리 [ ] 가 무슨 뜻인지 */
+.anat{list-style:none; padding:0; margin:6px 0 0; font-size:.88rem}
+.anat li{margin:0 0 3px}
+.anat code{font-family:inherit; font-weight:800; color:var(--chrome); background:var(--card-2); border:1px solid var(--line);
+           border-radius:6px; padding:0 5px; margin-right:4px}
 /* 2차시 ⑥-가 문장 틀(D18) — 무엇을 어떤 차례로 쓰면 되는지 보이는 예. 적는 칸이 아니다 */
 .frame{border:1px dashed var(--line-2); border-radius:var(--r-s); background:#fff; padding:9px 12px; margin-top:6px;
        font-size:.92rem; line-height:1.75; color:var(--ink-2)}
@@ -845,6 +889,9 @@ table.tbl.qty .blank{width:2.8em}
           <div class="notice">
             교과서 <b>38~41쪽</b>을 펴요. ① ~ ④ 는 <b>각자</b> 해요(개별 활동). ⑤ 에서 모둠원이 받은 설계를 서로 보여 주고 <b>모둠이 함께</b> 골라요(모둠 활동).
             활동지는 <b>각자</b> 적어요.<br>
+            <!-- A15: AI 쓰임 딱지 세 가지 -->
+            조각마다 붙은 딱지를 보고 따라요 — <span class="tag ai-no">AI 없이</span> 제미나이를 열지 않아요 ·
+            <span class="tag ai-use">AI 사용</span> 제미나이에게 물어요 · <span class="tag ai-view">AI 답 다시 보기만</span> 받은 답을 다시 보기만 하고 새로 묻지 않아요.<br>
             <span class="small">적은 것은 이 기기에 저절로 저장돼요. 활동지는 일반 창에서 열어요(시크릿 창은 닫으면 적은 것이 사라져요).</span>
           </div>
 
@@ -904,7 +951,7 @@ table.tbl.qty .blank{width:2.8em}
         <div class="stack">
 
           <div class="piece">
-            <div class="ph"><span class="pn">가</span><span class="pt">머리 보호대 보기</span><span class="pm">3분</span></div>
+            <div class="ph"><span class="pn">가</span><span class="pt">머리 보호대 보기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-solo">개별 활동</span><span class="pm">3분</span></div>
             <p>머리 보호대는 <b>외피</b> · <b>라이너</b> · <b>턱끈</b> 으로 되어 있어요. <span class="small muted">교과서 39쪽</span></p>
             <div class="ask" style="margin-top:10px"><b>생각해 볼 것</b>부딪힐 때 라이너는 무슨 일을 할까요?</div>
             <textarea id="a_liner" class="input" style="margin-top:8px; min-height:78px" aria-label="부딪힐 때 라이너는 무슨 일을 할까요"
@@ -923,11 +970,16 @@ table.tbl.qty .blank{width:2.8em}
                (3) 우리 달걀에 세 걸음(빈칸 a_pr4 · a_pr5 는 그대로) → (4) 생활 예 셋과 달걀 헬멧에 잇기(새 빈칸 a_pr6 — 평균 힘).
                답은 [수업 화면] 의 hold 줄. 조각 분 3 → 4(⑤-가 가 4 → 3 — 비교 표가 저절로 셈해져 줄었다) -->
           <div class="piece">
-            <div class="ph"><span class="pn">나</span><span class="pt">원리 받아 적기</span><span class="pm">4분</span></div>
+            <div class="ph"><span class="pn">나</span><span class="pt">원리 받아 적기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-solo">개별 활동</span><span class="pm">4분</span></div>
+            <!-- A15(2026-09-30) 개념 강화 A — 용어의 뜻과 단위(통합과학1 02. 역학 시스템과 중력의 작용 연계, 교과서 38쪽) -->
             <div class="recap">
-              <p class="small" style="font-weight:700; color:var(--ink-2)">먼저 떠올려요 — 통합과학1 에서 배운 식</p>
-              <p class="eq">충격량 = 운동량의 변화량 = 평균 힘 × 충돌 시간</p>
-              <p class="small muted">이 식을 떠올리며 교과서 40쪽을 읽어요.</p>
+              <p class="small" style="font-weight:700; color:var(--ink-2)">먼저 떠올려요 — 통합과학1 에서 배운 것</p>
+              <ul class="defs">
+                <li><b>운동량</b> = 질량 × 속도 <span class="unit">p = mv · 단위 kg·m/s</span></li>
+                <li><b>충격량</b> = 평균 힘 × 충돌 시간 <span class="unit">I = FΔt · 단위 N·s</span></li>
+              </ul>
+              <p class="eq">충격량 = 운동량의 변화량 = 나중 운동량 − 처음 운동량</p>
+              <p class="small muted">1 N·s = 1 kg·m/s 로 두 단위는 같아요. 이 식을 떠올리며 교과서 40쪽을 읽어요.</p>
             </div>
             <div class="fillnote">
               <b>받아 적기</b> 교과서 40쪽을 보고 빈칸을 채워요. 다 채우면 선생님 화면에서 확인해요.
@@ -967,8 +1019,36 @@ table.tbl.qty .blank{width:2.8em}
               달걀이 받는 <input class="blank w" type="text" id="a_pr6" aria-label="달걀 헬멧 빈칸 — 작아지는 것">이 작아져요.</p>
           </div>
 
+          <!-- A15(2026-09-30) 개념 강화 B · C — 힘-시간 그래프(넓이 = 충격량)와 셈으로 확인하기. 채점 · 맞음/틀림 표시는 없다(답은
+               [수업 화면] 「힘-시간 그래프」 · 「셈으로 확인하기」 장의 hold 줄). 셈의 수는 셈을 익히려고 정한 예시 값이다 — 교과서 · 문헌 값이 아니다.
+               그래프는 두 삼각형(밑변 × 높이가 같다 — 넓이가 같다). 빈칸 a_ft1~3 · a_cal1~3 -->
           <div class="piece">
-            <div class="ph"><span class="pn">다</span><span class="pt">오늘의 조건</span><span class="pm">2분</span></div>
+            <div class="ph"><span class="pn">다</span><span class="pt">그래프와 셈으로 확인하기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-solo">개별 활동</span><span class="pm">2분</span></div>
+            <p><b>① 힘-시간 그래프</b> 같은 달걀이 같은 빠르기로 떨어져 멈출 때, 바닥에 따라 받는 힘이 이렇게 달라요.</p>
+            <svg class="ftg" viewBox="0 0 460 250" role="img" aria-label="힘-시간 그래프 — A 딱딱한 바닥은 높고 좁은 삼각형, B 푹신한 방석은 낮고 넓은 삼각형. 두 삼각형의 넓이는 같다">
+              <line class="ax" x1="50" y1="210" x2="440" y2="210"></line>
+              <line class="ax" x1="50" y1="210" x2="50" y2="20"></line>
+              <path class="ax" d="M44 30 L50 18 L56 30 M428 204 L442 210 L428 216"></path>
+              <text class="cap" x="58" y="24">힘</text>
+              <text class="cap" x="438" y="236" text-anchor="end">시간</text>
+              <path class="ga" d="M70 210 L100 40 L130 210 Z"></path>
+              <path class="gb" d="M70 210 L155 150 L240 210 Z"></path>
+              <text class="lab la" x="112" y="54">A 딱딱한 바닥</text>
+              <text class="lab lb" x="172" y="144">B 푹신한 방석</text>
+              <text class="cap" x="450" y="90" text-anchor="end">두 그래프 아래 넓이는 같아요</text>
+            </svg>
+            <p class="mid" style="line-height:2">그래프 아래 넓이는 <input class="blank w" type="text" id="a_ft1" aria-label="그래프 빈칸 1 — 넓이가 나타내는 것">이에요.
+              충돌 시간이 더 긴 것은 <input class="blank s" type="text" id="a_ft2" aria-label="그래프 빈칸 2 — 충돌 시간이 더 긴 것(A 또는 B)">,
+              평균 힘이 더 큰 것은 <input class="blank s" type="text" id="a_ft3" aria-label="그래프 빈칸 3 — 평균 힘이 더 큰 것(A 또는 B)">예요.</p>
+            <p style="margin-top:12px"><b>② 셈으로 확인하기</b> 질량 0.1 kg 인 공이 10 m/s 로 날아와 벽에 부딪혀 튀지 않고 멈춰요. <span class="small muted">(크기만 셈해요)</span></p>
+            <p class="mid" style="line-height:2">운동량의 변화량(= 충격량)은 <input class="blank s" type="text" inputmode="decimal" id="a_cal1" aria-label="셈 빈칸 1 — 운동량의 변화량(kg·m/s)"> kg·m/s 예요.<br>
+              0.01 초 만에 멈추면 평균 힘은 <input class="blank s" type="text" inputmode="decimal" id="a_cal2" aria-label="셈 빈칸 2 — 0.01초에 멈출 때 평균 힘(N)"> N,
+              0.1 초 동안 멈추면 <input class="blank s" type="text" inputmode="decimal" id="a_cal3" aria-label="셈 빈칸 3 — 0.1초에 멈출 때 평균 힘(N)"> N 이에요.</p>
+            <p class="small muted" style="margin-top:4px">셈을 익히려고 정한 예시 값이에요. 다 채우면 선생님 화면에서 확인해요.</p>
+          </div>
+
+          <div class="piece">
+            <div class="ph"><span class="pn">라</span><span class="pt">오늘의 조건</span><span class="tag ai-no">AI 없이</span><span class="tag mode-solo">개별 활동</span><span class="pm">2분</span></div>
             <p class="big mid" style="margin-bottom:8px">달걀에게 씌울 헬멧을 만들어요.</p>
             <p>큰 지퍼 백은 <b>외피</b>, 우리 장치는 <b>라이너</b>, 달걀은 <b>머리</b>예요.
               작은 지퍼 백에 담은 날달걀과 우리 장치를 큰 지퍼 백 안에 넣어요.</p>
@@ -1022,7 +1102,8 @@ table.tbl.qty .blank{width:2.8em}
               placeholder="어떤 재료를 어디에 놓는지, 그래서 충돌 시간과 평균 힘이 어떻게 되는지 적어요."></textarea>
           </div>
 
-          <div class="pane">
+          <!-- id="pane-a3pred" — ④-나 잠금 알림 아래 [③ 나의 예측으로 가기](go3-c1) 가 이 상자까지 내리고 초점을 옮긴다(A15) -->
+          <div class="pane" id="pane-a3pred" tabindex="-1">
             <h4>나의 예측과 까닭</h4>
             <p style="margin-bottom:8px"><b>실제로 해 보지 말고 예측해 봅시다.</b> 2 m 에서 떨어뜨리면 날달걀은 어떻게 될까요?</p>
             <div class="row">
@@ -1067,7 +1148,7 @@ table.tbl.qty .blank{width:2.8em}
           </div>
 
           <div class="piece">
-            <div class="ph"><span class="pn">가</span><span class="pt">제미나이에 들어가기</span><span class="pm">3분</span></div>
+            <div class="ph"><span class="pn">가</span><span class="pt">제미나이에 들어가기</span><span class="tag ai-use">AI 사용</span><span class="tag mode-solo">개별 활동</span><span class="pm">3분</span></div>
             <p><b>제미나이에 접속하고 학교 계정으로 로그인해서 AI 를 사용해 봐요.</b></p>
             <div class="howto" style="margin-top:6px">
               <div class="st"><div class="n"></div><div class="tx">
@@ -1088,12 +1169,16 @@ table.tbl.qty .blank{width:2.8em}
             </div>
           </div>
 
-          <!-- 대화 1 「설계 3가지 받기」 — 잠금: ③ 의 나의 예측(a_our_pred)과 까닭(a_our_why). 잠겨 있으면 box-c1(자료 PDF · 보낼 글 · 접은 상자)이 통째로 숨는다.
+          <!-- 대화 1 「설계 3가지 받기」 — 잠금: ③ 의 나의 예측(a_our_pred)과 까닭(a_our_why). 잠겨 있어도 box-c1(자료 PDF · 보낼 글 · 접은 상자)은 보이고 단추만 눌리지 않는다(A15).
                자료에는 나의 설계 · 나의 예측 · 학번 · 이름을 넣지 않는다(상수에서만 만든다). -->
           <div class="piece">
-            <div class="ph"><span class="pn">나</span><span class="pt">대화 1 · 설계 3가지 받기</span><span class="pm">9분</span></div>
+            <div class="ph"><span class="pn">나</span><span class="pt">대화 1 · 설계 3가지 받기</span><span class="tag ai-use">AI 사용</span><span class="tag mode-solo">개별 활동</span><span class="pm">9분</span></div>
             <p>AI 에게 조건을 모두 지키는 설계를 <b>서로 다르게 3가지</b> 추천받아요.</p>
             <p class="notice" id="note-c1" style="display:none; margin-top:8px"></p>
+            <!-- A15: 잠겨 있어도 자료 PDF 단추 · 보낼 글 자리는 보인다(누를 수 없음). 알림 아래에 ③ 으로 가는 단추(data-free — 옮겨 가기만) -->
+            <div class="row" id="go3-c1-row" style="display:none; margin-top:6px">
+              <button class="btn sm" type="button" id="go3-c1" data-free>③ 나의 예측으로 가기</button>
+            </div>
             <div id="box-c1">
               <div class="stepline"><span class="sn">1</span><span class="st">제미나이에게 줄 자료를 받아요</span></div>
               <p class="small" style="margin-top:4px">상황 · 날달걀 · 지퍼 백 크기 · 가격표 · 규칙 · 떨어뜨리는 방법이 PDF <b>한 파일</b>에 모두 들어 있어요.
@@ -1111,6 +1196,14 @@ table.tbl.qty .blank{width:2.8em}
                   PDF 는 사진 앱이 아니라 '다운로드'에 있어요(아이패드는 파일 앱, 안드로이드는 내 파일).</li>
                 <li>아래 글을 [복사하기] 로 복사해 대화창에 붙여 넣고 보내요.</li>
               </ol>
+              <!-- A15 보낼 글의 짜임 — 글 머리 [ ] 마다 무슨 뜻인지(수업 화면 「좋은 지시의 짜임」 장과 같은 차례) -->
+              <p class="small" style="margin-top:8px"><b>보낼 글은 이렇게 짜여 있어요</b> — 내 말로 고쳐 보낼 때도 이 차례를 지켜요.</p>
+              <ul class="anat">
+                <li><code>[자료]</code> 올린 PDF 가 우리 수업의 상황과 조건이라고 알려요.</li>
+                <li><code>[요청]</code> AI 에게 시키는 일 — 조건을 모두 지키는 설계를 서로 다르게 3가지.</li>
+                <li><code>[설계마다 알려 줄 것]</code> 답에 꼭 들어가야 할 것 — 재료와 개수 · 총비용 · 놓는 자리 · 예상과 까닭 · 가장 약한 곳.</li>
+                <li><code>[부탁]</code> 답하는 방식 — 쉬운 말로 짧게 · 계산은 총비용만 · 되묻지 말고 가정을 밝혀서.</li>
+              </ul>
               <textarea id="send-c1" class="input" data-nosave readonly style="margin-top:6px; min-height:230px; background:var(--card-2)"
                 aria-label="대화 1 보낼 글 예시(PDF 를 올릴 때)"></textarea>
               <div class="row" style="margin-top:6px"><button class="btn sm" type="button" id="sel-c1" aria-label="대화 1 글 복사하기(PDF 를 올릴 때)">복사하기</button><span class="small muted" id="cpm-c1" aria-live="polite"></span></div>
@@ -1200,7 +1293,7 @@ table.tbl.qty .blank{width:2.8em}
                «그 설계의 예상» 은 학생이 고른 예상(a_d<n>_pred)을 쓴다. 고르지 않았으면 글을 만들지 않고 할 일을 알린다.
                적을 것: AI 가 말한 근거(a_c2_basis, 내 말로) · 계산 / 실험 / 짐작(a_c2_kind) · 얼마나 믿을까(a_c2_trust, 까닭). -->
           <div class="piece">
-            <div class="ph"><span class="pn">다</span><span class="pt">대화 2 · 근거 묻기</span><span class="pm">3분</span></div>
+            <div class="ph"><span class="pn">다</span><span class="pt">대화 2 · 근거 묻기</span><span class="tag ai-use">AI 사용</span><span class="tag mode-solo">개별 활동</span><span class="pm">3분</span></div>
             <p><b>AI 가 무엇을 근거로 그렇게 예상했는지 알아보는 단계예요.</b> 근거를 알아야 믿을지 말지 정할 수 있어요.
               <span class="small muted">대화창을 닫았으면 제미나이 왼쪽 목록(최근 대화)에서 그 대화를 다시 열어 이어서 보내요.</span></p>
 
@@ -1212,6 +1305,7 @@ table.tbl.qty .blank{width:2.8em}
             </div>
 
             <div class="stepline"><span class="sn">2</span><span class="st">[질문 복사하기] 를 눌러 <b>같은 대화창</b>에 붙여 넣어 보내요</span></div>
+            <p class="small" style="margin-top:6px">질문은 세 가지를 물어요 — 그 설계를 왜 그렇게 예상했는지 · '충돌 시간'과 '평균 힘'으로 설명하기 · 계산이나 실험인지, 짐작인지.</p>
             <p class="notice" id="note-c2" style="display:none; margin-top:8px"></p>
             <textarea id="send-c2" class="input" data-nosave readonly style="margin-top:8px; min-height:130px; background:var(--card-2)"
               aria-label="대화 2 보낼 질문"></textarea>
@@ -1257,11 +1351,12 @@ table.tbl.qty .blank{width:2.8em}
           <div class="notice">
             <b>가</b> 는 각자 해요 — 나의 안과 내가 받은 설계 셋을 비교해요.
             <b>나 · 다</b> 는 모둠이 함께 해요 — 모둠원이 받은 설계를 서로 보여 주고, <b>무엇으로 만들지 하나를 골라요.</b>
-            고른 까닭은 각자 적고, 최종 설계 · 놓은 자리는 모둠원 모두 같게 적어요.
+            고른 까닭은 각자 적고, 최종 설계 · 놓은 자리는 모둠원 모두 같게 적어요.<br>
+            <b>제미나이에게 새로 묻지 않아요.</b> ④ 에서 받은 답을 다시 보기만 해요(놓은 자리를 적을 때 등).
           </div>
 
           <div class="piece">
-            <div class="ph"><span class="pn">가</span><span class="pt">한눈에 비교하기</span><span class="tag mode-solo">개별 활동</span><span class="pm">3분</span></div>
+            <div class="ph"><span class="pn">가</span><span class="pt">한눈에 비교하기</span><span class="tag ai-view">AI 답 다시 보기만</span><span class="tag mode-solo">개별 활동</span><span class="pm">3분</span></div>
             <p>③ · ④ 에서 적은 것이 저절로 들어와요. 총비용과 규칙은 활동지가 가격표로 셈한 거예요(설계 1 · 2 · 3 은 내가 받은 설계).</p>
             <div class="tblwrap" style="margin-top:8px">
               <table class="tbl" id="cmp">
@@ -1298,7 +1393,7 @@ table.tbl.qty .blank{width:2.8em}
           </div>
 
           <div class="piece">
-            <div class="ph"><span class="pn">나</span><span class="pt">고르고 까닭 쓰기</span><span class="tag mode-team">모둠 활동</span><span class="pm">5분</span></div>
+            <div class="ph"><span class="pn">나</span><span class="pt">고르고 까닭 쓰기</span><span class="tag ai-view">AI 답 다시 보기만</span><span class="tag mode-team">모둠 활동</span><span class="pm">5분</span></div>
             <p style="margin-bottom:8px"><b>모둠원이 받은 설계를 서로 보여 주고, 무엇으로 만들지 하나를 골라요.</b></p>
             <div class="field">
               <label>무엇으로 만들까요? <span class="muted">(설계 1 · 2 · 3 은 내가 받은 설계 — 다른 모둠원의 설계로 정했으면 「모둠원이 받은 설계」)</span></label>
@@ -1327,7 +1422,7 @@ table.tbl.qty .blank{width:2.8em}
           <!-- id="piece-a5c" — [1차시 ⑤-다 로 가기](go5) 가 이 조각까지 내리고 초점을 옮긴다(tabindex="-1" — 탭 차례에는 들지 않는다).
                머리 아래 한 줄은 흐름 검토(2026-09-29): 이 칸이 2차시 ②-가 재료 받기 · 대화 3 양식 PDF 에 그대로 쓰인다는 것을 먼저 알린다 -->
           <div class="piece" id="piece-a5c" tabindex="-1">
-            <div class="ph"><span class="pn">다</span><span class="pt">최종 설계</span><span class="tag mode-team">모둠 활동</span><span class="pm">5분</span></div>
+            <div class="ph"><span class="pn">다</span><span class="pt">최종 설계</span><span class="tag ai-view">AI 답 다시 보기만</span><span class="tag mode-team">모둠 활동</span><span class="pm">5분</span></div>
             <p class="small muted" style="margin-bottom:8px">최종 설계 · 놓은 자리는 <b>모둠원 모두</b> 같게 적어요 — 2차시에 재료를 받을 때와 대화 3 에 이 칸이 그대로 쓰여요.</p>
             <p><b>재료와 개수</b> <span class="small muted">비용과 총비용은 저절로 셈해져요 · 총비용은 <span class="js-budget"></span> 이하</span></p>
             <div class="row" style="margin-top:6px">
@@ -1421,7 +1516,7 @@ table.tbl.qty .blank{width:2.8em}
           </div>
 
           <div class="piece">
-            <div class="ph"><span class="pn">가</span><span class="pt">재료 받기</span><span class="pm">2분</span></div>
+            <div class="ph"><span class="pn">가</span><span class="pt">재료 받기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-team">모둠 활동</span><span class="pm">2분</span></div>
             <p>1차시 ⑤-다 최종 설계(아래 상자)대로 재료를 받아요. 더 가져가면 ②-나 「만들면서 바꾼 것」 에 적고, ④ 「고친 뒤 비용」 에서 [1차시 최종 비용 가져오기] 를 누른 뒤 더한 재료를 고쳐 적어요.</p>
             <!-- 상자 · 알림은 기록을 연 뒤에만 paintFrom1 이 켠다(열기 전에는 둘 다 숨김). 상자 머리 아래 한 줄과 [1차시 ⑤-다 로 가기](go5-b2b)는
                  재검토(2026-09-29): 모둠원끼리 맞춰 보고 고칠 곳으로 가는 길만 둔다 — 같은지 판정하거나 경고하지 않는다 -->
@@ -1440,7 +1535,7 @@ table.tbl.qty .blank{width:2.8em}
           </div>
 
           <div class="piece">
-            <div class="ph"><span class="pn">나</span><span class="pt">만들기</span><span class="pm">8분</span></div>
+            <div class="ph"><span class="pn">나</span><span class="pt">만들기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-team">모둠 활동</span><span class="pm">8분</span></div>
             <div class="howto">
               <div class="st"><div class="n"></div><div class="tx">최종 설계의 재료와 함께 큰 지퍼 백 · 작은 지퍼 백 · 날달걀 · 종이테이프를 받아요.</div></div>
               <div class="st"><div class="n"></div><div class="tx">설계대로 달걀 헬멧(충격 흡수 장치)을 만들어요.</div></div>
@@ -1465,7 +1560,7 @@ table.tbl.qty .blank{width:2.8em}
           </div>
 
           <div class="piece">
-            <div class="ph"><span class="pn">다</span><span class="pt">담고 닫기</span><span class="pm">2분</span></div>
+            <div class="ph"><span class="pn">다</span><span class="pt">담고 닫기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-team">모둠 활동</span><span class="pm">2분</span></div>
             <!-- A14 D12: 안쪽 구조를 잘 짜서 넣으라는 한 줄 -->
             <p><b>달걀이 큰 지퍼 백 안에서 흔들리거나 바로 부딪히지 않도록, 만든 헬멧(안쪽 구조)을 잘 짜서 넣어요.</b></p>
             <!-- A14 고침 H15 — 대화 3 에 올릴 헬멧 사진은 닫기 전에(닫은 뒤 다시 열지 않게) -->
@@ -1494,7 +1589,7 @@ table.tbl.qty .blank{width:2.8em}
       <section class="stepsec">
         <div class="stack">
           <div class="piece">
-            <div class="ph"><span class="pn">가</span><span class="pt">우리 먼저 예측하기</span><span class="tag">AI 없이</span><span class="tag mode-team">모둠 활동</span><span class="pm">2분</span></div>
+            <div class="ph"><span class="pn">가</span><span class="pt">우리 먼저 예측하기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-team">모둠 활동</span><span class="pm">2분</span></div>
             <p>만든 헬멧을 보고 <b>우리끼리 먼저</b> 예측해요. 실제로 떨어뜨리지 않아요.</p>
             <div class="field" style="margin-top:8px">
               <label>2 m 에서 떨어뜨리면 날달걀은?</label>
@@ -1517,7 +1612,7 @@ table.tbl.qty .blank{width:2.8em}
           </div>
 
           <div class="piece">
-            <div class="ph"><span class="pn">나</span><span class="pt">대화 3 · AI 에게 미리 떨어뜨려 보게 하기</span><span class="tag mode-solo">개별 활동</span><span class="pm">5분</span></div>
+            <div class="ph"><span class="pn">나</span><span class="pt">대화 3 · AI 에게 미리 떨어뜨려 보게 하기</span><span class="tag ai-use">AI 사용</span><span class="tag mode-solo">개별 활동</span><span class="pm">5분</span></div>
             <p>AI 가 우리 헬멧을 <b>머릿속으로 떨어뜨려 보고</b> 결과를 예상하게 해요. 제미나이에서 <b>새 채팅</b>을 열어요.</p>
             <div class="brief-links" style="margin-top:8px"><a class="brief-link play" id="gemini-link2" href="https://gemini.google.com/" target="_blank" rel="noopener">제미나이 열기</a></div>
             <p class="small muted" style="margin-top:4px">대화 3 은 <b>각자</b> 보내요. AI 예측이 모둠원마다 다를 수 있어요 — 서로 보여 주고, ④ 에서 고칠 것은 모둠이 하나로 정해요.</p>
@@ -1549,6 +1644,14 @@ table.tbl.qty .blank{width:2.8em}
                   PDF 는 사진 앱이 아니라 '다운로드'에 있어요(아이패드는 파일 앱, 안드로이드는 내 파일).</li>
                 <li>아래 글을 [복사하기] 로 복사해 대화창에 붙여 넣고 보내요.</li>
               </ol>
+              <!-- A15 보낼 글의 짜임(대화 3) -->
+              <p class="small" style="margin-top:8px"><b>보낼 글은 이렇게 짜여 있어요</b> — 내 말로 고쳐 보낼 때도 이 차례를 지켜요.</p>
+              <ul class="anat">
+                <li><code>[자료]</code> 올린 사진과 PDF 가 우리 헬멧의 최종 설계와 조건이라고 알려요.</li>
+                <li><code>[요청]</code> AI 에게 시키는 일 — 머릿속으로 2 m 에서 떨어뜨려 보고 달걀이 어떻게 될지 예상하기.</li>
+                <li><code>[알려 줄 것]</code> 답에 꼭 들어가야 할 것 — 예상 · 까닭 · 가장 약한 곳 · 보강 방법.</li>
+                <li><code>[부탁]</code> 답하는 방식 — 쉬운 말로 짧게 · 확실하지 않으면 그렇다고 · 계산하지 않기 · 되묻지 말고 가정을 밝혀서.</li>
+              </ul>
               <textarea id="send-c3" class="input" data-nosave readonly style="margin-top:6px; min-height:230px; background:var(--card-2)"
                 aria-label="대화 3 보낼 글 예시(사진과 PDF 를 올릴 때)"></textarea>
               <div class="row" style="margin-top:6px"><button class="btn sm" type="button" id="sel-c3" aria-label="대화 3 글 복사하기(사진과 PDF 를 올릴 때)">복사하기</button><span class="small muted" id="cpm-c3" aria-live="polite"></span></div>
@@ -1609,8 +1712,9 @@ table.tbl.qty .blank{width:2.8em}
       <section class="stepsec">
         <div class="stack">
           <div class="piece">
-            <div class="ph"><span class="pn">가</span><span class="pt">정하고 고치기</span><span class="tag mode-team">모둠 활동</span><span class="pm">5분</span></div>
-            <p>AI 의견은 <b>두 번째 의견</b>이에요. 모둠원이 받은 AI 의견을 함께 보고, 고칠 것은 <b>모둠이 하나로</b> 정해요(헬멧은 하나예요).
+            <div class="ph"><span class="pn">가</span><span class="pt">정하고 고치기</span><span class="tag ai-view">AI 답 다시 보기만</span><span class="tag mode-team">모둠 활동</span><span class="pm">5분</span></div>
+            <p>AI 의견은 <b>두 번째 의견</b>이에요. <b>제미나이에게 새로 묻지 않고</b>, ③ 에서 받은 답을 다시 봐요.
+              모둠원이 받은 AI 의견을 함께 보고, 고칠 것은 <b>모둠이 하나로</b> 정해요(헬멧은 하나예요).
               세 칸은 각자 <b>내 말로</b> 적어요. 고치지 않아도 돼요.</p>
             <!-- 흐름 검토(2026-09-29): ③-나 에 적은 내 AI 의견을 다시 보인다(읽기 전용 · 판정 없음, paintMyAi) -->
             <p class="small muted" id="b_myai" style="margin-top:6px"></p>
@@ -1634,7 +1738,7 @@ table.tbl.qty .blank{width:2.8em}
 
           <!-- 사진은 떨어뜨리기 바로 전에(A13-16). 전시관 PDF 는 ⑥-나 에서 이 사진을 사진 1 로 골라 만든다. -->
           <div class="piece">
-            <div class="ph"><span class="pn">나</span><span class="pt">장치 사진 찍기</span><span class="tag mode-team">모둠 활동 · 대표</span><span class="pm">2분</span></div>
+            <div class="ph"><span class="pn">나</span><span class="pt">장치 사진 찍기</span><span class="tag ai-view">AI 답 다시 보기만</span><span class="tag mode-team">모둠 활동 · 대표</span><span class="pm">2분</span></div>
             <p><b>떨어뜨리기 전에 대표가 자기 기기의 카메라 앱으로</b> 다 만든 헬멧을 찍어요(전시관 PDF 는 대표 기기에서 만들어요). <b>장치가 잘 보이게</b> 찍어요.</p>
             <p class="small muted" style="margin-top:4px">큰 지퍼 백을 열어 헬멧이 보이게 찍고, 다시 닫아요. 이 사진은 ⑥-나 에서 사진 1 로 골라요.</p>
           </div>
@@ -1719,8 +1823,8 @@ table.tbl.qty .blank{width:2.8em}
       <section class="stepsec">
         <div class="stack">
           <div class="piece">
-            <div class="ph"><span class="pn">가</span><span class="pt">돌아보기</span><span class="tag mode-solo">개별 활동</span><span class="pm">5분</span></div>
-            <p class="small" style="margin-bottom:6px">우리 예측 · AI 예측 · 실제가 저절로 들어와요. <b>실제 · 약한 곳</b> 칸에는 실제로 문제였던 곳을 적어요(⑤ 에서 본 장치의 상태를 보고).</p>
+            <div class="ph"><span class="pn">가</span><span class="pt">돌아보기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-solo">개별 활동</span><span class="pm">5분</span></div>
+            <p class="small" style="margin-bottom:6px"><b>이 단계는 AI 를 쓰지 않아요 — 내 생각으로 적어요.</b> 우리 예측 · AI 예측 · 실제가 저절로 들어와요. <b>실제 · 약한 곳</b> 칸에는 실제로 문제였던 곳을 적어요(⑤ 에서 본 장치의 상태를 보고).</p>
             <div class="tblwrap">
               <table class="tbl" id="rv-tbl">
                 <tr><th></th><th>우리 예측</th><th>AI 예측</th><th>실제</th></tr>
@@ -1757,7 +1861,7 @@ table.tbl.qty .blank{width:2.8em}
           </div>
 
           <div class="piece">
-            <div class="ph"><span class="pn">나</span><span class="pt">전시관 PDF 만들기</span><span class="tag mode-team">모둠 활동 · 대표</span><span class="pm">3분</span></div>
+            <div class="ph"><span class="pn">나</span><span class="pt">전시관 PDF 만들기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-team">모둠 활동 · 대표</span><span class="pm">3분</span></div>
             <p class="small" style="margin-bottom:8px">제목 · 구성한 이유 · 결과 이야기는 모둠이 함께 정하고 <b>모두 각자</b> 적어요(클래스룸 활동지에도 들어가요).
               사진 두 장을 넣어 PDF 를 만들고 전시관에 올리는 것은 <b>대표만</b> 해요.</p>
             <div class="field">
@@ -1817,7 +1921,7 @@ table.tbl.qty .blank{width:2.8em}
           </div>
 
           <div class="piece">
-            <div class="ph"><span class="pn">다</span><span class="pt">전시관에 올리기</span><span class="tag mode-team">모둠 활동 · 대표</span><span class="pm">4분</span></div>
+            <div class="ph"><span class="pn">다</span><span class="pt">전시관에 올리기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-team">모둠 활동 · 대표</span><span class="pm">4분</span></div>
             <p class="small muted" style="margin-bottom:6px">대표만 해요.</p>
             <div class="howto">
               <div class="st"><div class="n"></div><div class="tx">
@@ -1846,7 +1950,7 @@ table.tbl.qty .blank{width:2.8em}
           <!-- 클래스룸에 낼 통합 활동지(A13-18) — 1 · 2차시에 적은 것을 모두, 학번 · 이름과 함께. 사진은 넣지 않는다.
                한 번 누르면 만들고 곧바로 내려받는다(만드는 일이 한 처리 안에서 끝나므로 태블릿도 막지 않는다). -->
           <div class="piece">
-            <div class="ph"><span class="pn">라</span><span class="pt">클래스룸에 낼 활동지</span><span class="tag mode-solo">개별 활동</span><span class="pm">2분</span></div>
+            <div class="ph"><span class="pn">라</span><span class="pt">클래스룸에 낼 활동지</span><span class="tag ai-no">AI 없이</span><span class="tag mode-solo">개별 활동</span><span class="pm">2분</span></div>
             <p>1 · 2차시에 적은 것을 모두 담은 <b>활동지 PDF</b> 를 내려받아 <b>클래스룸 과제</b>에 올려요. <b>각자</b> 해요.</p>
             <div class="row" style="margin-top:8px">
               <button class="btn primary" type="button" id="ws-save">활동지 PDF 저장</button>
@@ -1892,6 +1996,8 @@ table.tbl.qty .blank{width:2.8em}
     <span class="spacer"></span>
     <!-- 활동 형태 딱지(A14 D23) — 덱의 mode(개별 활동 · 모둠 활동 …). go 가 글과 색을 바꾸고, 없으면 숨긴다 -->
     <span class="ls-mode none" id="ls-mode"></span>
+    <!-- A15 AI 쓰임 딱지(AI 없이 · AI 사용 · AI 답 다시 보기만) — go 가 글과 색을 바꾸고, 표지에서는 숨긴다 -->
+    <span class="ls-ai none" id="ls-ai"></span>
     <span class="ls-step" id="ls-step"></span>
   </div>
   <div class="ls-body" id="ls-body"></div>
@@ -1924,6 +2030,21 @@ table.tbl.qty .blank{width:2.8em}
     <text class="cap" x="542" y="294" text-anchor="end">바닥</text>
     <path class="arr" d="M505 50 L505 226 M495 212 L505 228 L515 212"></path>
     <text class="cap" x="505" y="38" text-anchor="middle">떨어짐</text>
+  </svg>
+  <!-- A15 힘-시간 그래프 틀 — 1차시 「힘-시간 그래프」 장이 복제해 쓴다. 활동지 ②-다 그림과 같은 모양(넓이가 같은 두 삼각형 —
+       A 밑변 60 · 높이 220, B 밑변 220 · 높이 60)을 앞 화면용으로 넓혔다. 복제본의 class 는 data-cls(ftg) -->
+  <svg id="ls-fig-ftg" class="ls-figtpl" data-cls="ftg" viewBox="0 0 640 320" style="display:none" role="img"
+    aria-label="힘-시간 그래프 — A 딱딱한 바닥은 높고 좁은 삼각형, B 푹신한 방석은 낮고 넓은 삼각형. 두 삼각형의 넓이는 같다">
+    <line class="ax" x1="70" y1="280" x2="620" y2="280"></line>
+    <line class="ax" x1="70" y1="280" x2="70" y2="24"></line>
+    <path class="ax" d="M62 38 L70 22 L78 38 M604 272 L622 280 L604 288"></path>
+    <text class="cap" x="84" y="34">힘</text>
+    <text class="cap" x="618" y="314" text-anchor="end">시간</text>
+    <path class="ga" d="M90 280 L120 60 L150 280 Z"></path>
+    <path class="gb" d="M90 280 L200 220 L310 280 Z"></path>
+    <text class="lab la" x="140" y="84">A 딱딱한 바닥</text>
+    <text class="lab lb" x="250" y="206">B 푹신한 방석</text>
+    <text class="cap" x="610" y="140" text-anchor="end">넓이가 같아요</text>
   </svg>
   <span class="ls-more" id="ls-more"></span>
   <div class="ls-foot">
@@ -2291,7 +2412,7 @@ var Lesson = {
       if (d.cover) {
         sub = [];
         for (j = 0; j < lines.length; j++) if (lines[j].t) sub.push(lines[j].t);
-        out.push({ cover:true, kicker:"Ⅰ-5 · " + LESSON + "차시", title:d.title, sub:sub.join("  ·  "), step:"", mode:"" });
+        out.push({ cover:true, kicker:"Ⅰ-5 · " + LESSON + "차시", title:d.title, sub:sub.join("  ·  "), step:"", mode:"", ai:"" });
         continue;
       }
       list = [];
@@ -2299,7 +2420,8 @@ var Lesson = {
         if (!lines[j].t) continue;
         list.push({ t:lines[j].t, k:lines[j].k || "body", hold:!!lines[j].hold });
       }
-      out.push({ title:d.title, list:list, step:d.step || "", mode:d.mode || "", fig:d.fig || "" });
+      out.push({ title:d.title, list:list, step:d.step || "", mode:d.mode || "", fig:d.fig || "",
+                 ai:deckAi(d, LESSON === 2 ? STEPS2 : STEPS1) });
     }
     return out;
   },
@@ -2414,6 +2536,10 @@ var Lesson = {
     var md = this.slides[n].mode || "";
     $("ls-mode").textContent = md;
     $("ls-mode").className = "ls-mode " + (md ? (/모둠/.test(md) ? "team" : "solo") : "none");
+    /* A15 AI 쓰임 딱지 — 활동지 단계 · 조각 머리와 같은 말과 색(aiShort · aiCls) */
+    var ai = this.slides[n].ai || "";
+    $("ls-ai").textContent = ai ? aiShort(ai) : "";
+    $("ls-ai").className = ai ? "ls-ai " + aiCls(ai) : "ls-ai none";
     this.render(this.slides[n]);
     this.reveal();
     var dots = $("ls-dots").getElementsByTagName("button"), i;
@@ -2517,7 +2643,7 @@ var Lesson = {
         fig = tpl.cloneNode(true);
         fig.removeAttribute("id");
         fig.removeAttribute("style");
-        fig.setAttribute("class", "plc");
+        fig.setAttribute("class", tpl.getAttribute("data-cls") || "plc");   /* A15 — 힘-시간 그래프 틀은 data-cls="ftg" */
         fb = mk("div", "ls-figbox");
         fb.appendChild(fig);
         box.appendChild(fb);
@@ -2562,7 +2688,15 @@ var Lesson = {
 /* 단계 딱지 — STEPS 의 i 번째 단계 이름에 「AI 없이」 단계면 " · AI 없이", extra 가 있으면 " · extra" 를 붙인다 */
 function dstep(list, i, extra){
   var s = list[i];
-  return s.g + " " + s.name + (s.ai === "없이" ? " · AI 없이" : "") + (extra ? " · " + extra : "");
+  return s.g + " " + s.name + (extra ? " · " + extra : "");
+}
+/* A15 수업 화면 머리 줄의 AI 쓰임 딱지 — 장의 ai 가 있으면 그것(2차시 ③-가 처럼 조각이 단계와 다를 때), 없으면 장 단계(step 의 첫 글자 ①~⑥)의 STEPS ai */
+function deckAi(d, steps){
+  var i, g;
+  if (d.ai) return d.ai;
+  g = (d.step || "").charAt(0);
+  for (i = 0; i < steps.length; i++) if (steps[i].g === g) return steps[i].ai;
+  return "";
 }
 
 function lesson1Deck(){
@@ -2575,8 +2709,8 @@ function lesson1Deck(){
     /* ① — 단계 차례와 활동 형태. 「오늘 지킬 것」은 다음 장(RULES1 한 곳에서 읽는다) */
     { step:dstep(S, 0), mode:SOLO, title:"오늘 할 일",
       lines:[ {t:"② 왜 안 깨질까 · ③ 나의 설계 — AI 없이"},
-              {t:"④ AI 에게 묻기 — 제미나이와 대화 두 번"},
-              {t:"⑤ 비교하고 고르기 — 모둠이 함께 골라요"},
+              {t:"④ AI 에게 묻기 — AI 사용 · 제미나이와 대화 두 번"},
+              {t:"⑤ 비교하고 고르기 — AI 답 다시 보기만 · 모둠이 함께 골라요"},
               {t:"① ~ ④ 와 ⑤-가 는 각자 · ⑤-나 · 다 는 모둠 활동"},
               {t:"학번과 이름을 적고 [시작해요] 를 눌러요"},
               {t:"교과서 38~41쪽을 펴요", k:"meta"} ] },
@@ -2608,11 +2742,14 @@ function lesson1Deck(){
               {t:"빈칸 1 : 완화", k:"ans", hold:true},
               {t:"빈칸 2 : 목", k:"ans", hold:true} ] },
 
-    /* ② 나 — A14 D3: 원리를 차근차근. (1) 통합과학1 식 */
-    { step:dstep(S, 1), mode:SOLO, title:"먼저 떠올려요 — 통합과학1",
-      lines:[ {t:"충격량 = 운동량의 변화량"},
-              {t:"충격량 = 평균 힘 × 충돌 시간"},
-              {t:"이 식을 떠올리며 교과서 40쪽을 읽어요"} ] },
+    /* ② 나 — A14 D3: 원리를 차근차근. (1) 통합과학1 — A15 개념 강화 A: 용어의 뜻과 단위 */
+    { step:dstep(S, 1), mode:SOLO, title:"먼저 떠올려요 — 운동량과 충격량",
+      lines:[ {t:"운동량 = 질량 × 속도 (p = mv)"},
+              {t:"단위 kg·m/s", k:"meta"},
+              {t:"충격량 = 평균 힘 × 충돌 시간 (I = FΔt)"},
+              {t:"단위 N·s — 1 N·s = 1 kg·m/s", k:"meta"},
+              {t:"충격량 = 운동량의 변화량 = 나중 운동량 − 처음 운동량"},
+              {t:"이 식을 떠올리며 교과서 40쪽을 읽어요", k:"label"} ] },
 
     /* (2) 40쪽 원리 빈칸의 답 */
     { step:dstep(S, 1), mode:SOLO, title:"교과서 40쪽 원리 받아 적기",
@@ -2639,7 +2776,22 @@ function lesson1Deck(){
               {t:"달걀 헬멧도 — 충돌 시간이 길어져 달걀이 받는 ____ 이 작아져요"},
               {t:"빈칸 : 평균 힘", k:"ans", hold:true} ] },
 
-    /* ② 다 — 목적 문장(A8). [갈래 외피 규격] 규격이 비면 그 줄이 없다. */
+    /* ② 다 — A15 개념 강화 B: 힘-시간 그래프(활동지 빈칸 a_ft1~3 의 답). 그림은 #ls-fig-ftg(넓이가 같은 두 삼각형) */
+    { step:dstep(S, 1), mode:SOLO, title:"힘-시간 그래프",
+      lines:[ {t:"A 딱딱한 바닥 · B 푹신한 방석 — 두 그래프 아래 넓이는 같아요"},
+              {t:"그래프 아래 넓이 = 충격량", k:"ans", hold:true},
+              {t:"충돌 시간이 더 긴 것 : B · 평균 힘이 더 큰 것 : A", k:"ans", hold:true} ], fig:"ftg" },
+
+    /* ② 다 — A15 개념 강화 C: 셈으로 확인하기(활동지 빈칸 a_cal1~3 의 답). 셈을 익히려고 정한 예시 값 — 교과서 · 문헌 값이 아니다 */
+    { step:dstep(S, 1), mode:SOLO, title:"셈으로 확인하기",
+      lines:[ {t:"0.1 kg 공이 10 m/s 로 날아와 튀지 않고 멈춰요"},
+              {t:"크기만 셈해요 · 셈을 익히려고 정한 예시 값", k:"meta"},
+              {t:"운동량의 변화량 = 0.1 kg × 10 m/s = 1 kg·m/s (= 충격량 1 N·s)", k:"ans", hold:true},
+              {t:"0.01 초에 멈추면 평균 힘 = 1 N·s ÷ 0.01 s = 100 N", k:"ans", hold:true},
+              {t:"0.1 초 동안 멈추면 평균 힘 = 1 N·s ÷ 0.1 s = 10 N", k:"ans", hold:true},
+              {t:"충돌 시간이 10배 길어지면 평균 힘은 10분의 1", k:"ans", hold:true} ] },
+
+    /* ② 라(A15 전 다) — 목적 문장(A8). [갈래 외피 규격] 규격이 비면 그 줄이 없다. */
     { step:dstep(S, 1), mode:SOLO, title:"달걀에게 씌울 헬멧을 만들어요",
       lines:[ {t:"큰 지퍼 백 = 외피 · 우리 장치 = 라이너 · 달걀 = 머리"},
               {t:"작은 지퍼 백에 담은 날달걀과 우리 장치를 큰 지퍼 백 안에"},
@@ -2705,7 +2857,7 @@ function lesson1Deck(){
               {t:"[요청] 서로 다른 설계 3가지"},
               {t:"예: 비용을 아끼는 · 안전을 앞세운 · 가벼운 설계", k:"meta"},
               {t:"[알려 줄 것] 설계마다 재료 · 총비용 · 놓는 자리 · 예상과 까닭 · 약한 곳"},
-              {t:"[부탁] 계산은 총비용만 · 되묻지 말고 가정을 밝혀서"} ] },
+              {t:"[부탁] 쉬운 말로 짧게 · 계산은 총비용만 · 되묻지 말고 가정을 밝혀서"} ] },
 
     { step:dstep(S, 3), mode:SOLO, title:"왜 이렇게 길게 적을까요?",
       lines:[ {t:"보낼 글 예시를 읽어 봐요"},
@@ -2835,7 +2987,7 @@ function lesson2Deck(){
       lines:deckRulesMe(2, RULES_ME.length).concat([
               {t:"가위 — 쓰고 나면 닫아 두고, 손잡이 쪽으로 건네요"} ]) },
 
-    { step:dstep(S, 2, "가 AI 없이"), mode:TEAM, title:"가. 우리 먼저 예측하기",
+    { step:dstep(S, 2), ai:"없이", mode:TEAM, title:"가. 우리 먼저 예측하기",
       lines:[ {t:"만든 헬멧을 보고 우리끼리 먼저 예측해요"},
               {t:"실제로 떨어뜨리지 않아요", k:"meta"},
               {t:"2 m 에서 떨어뜨리면 날달걀은? · 까닭"},
@@ -2850,6 +3002,13 @@ function lesson2Deck(){
               {t:"3. 제미나이 새 채팅에 사진과 PDF 를 올려요"},
               {t:"4. 추천 글을 [복사하기] → 붙여 넣고 보내요"},
               {t:"파일이 안 올라가면 — 접힌 상자를 펼쳐 [글 복사하기] → 그 글을 보내요"} ] },
+
+    /* A15 — 활동지 ③-나 「보낼 글은 이렇게 짜여 있어요」 와 같은 차례 */
+    { step:dstep(S, 2), mode:SOLO, title:"대화 3 · 보낼 글의 짜임",
+      lines:[ {t:"[자료] 사진과 PDF — 우리 헬멧의 최종 설계와 조건"},
+              {t:"[요청] 머릿속으로 2 m 에서 떨어뜨려 보고 예상하기"},
+              {t:"[알려 줄 것] 예상 · 까닭 · 가장 약한 곳 · 보강 방법"},
+              {t:"[부탁] 쉬운 말로 짧게 · 확실하지 않으면 그렇다고 · 계산하지 않기"} ] },
 
     { step:dstep(S, 2), mode:SOLO, title:"대화 3 · 꼭 들어가야 할 것",
       lines:[ {t:"만든 헬멧 사진 · 최종 설계 양식 PDF"},
@@ -3116,13 +3275,15 @@ var DROP_ME = [
 var RULES1 = [
   "AI 는 생각을 돕는 도구예요. 생각과 결정은 우리가 해요.",
   "AI 는 제미나이를 써요. 학교 계정으로 접속해요.",
-  "AI 답은 읽고 내 말로 바꾸어 적어요."
+  "AI 답은 읽고 내 말로 바꾸어 적어요.",
+  "AI 는 「AI 사용」 딱지가 붙은 ④ 에서만 새로 물어요. ⑤ 는 받은 답을 다시 보기만 해요."
 ];
 var RULES2 = [
   "가위는 쓰고 나면 닫아 두고, 종이테이프는 붙이는 데만 써요.",
   "떨어뜨릴 때는 의자나 책상 위에 올라서고, 잡아 주는 사람이 의자 · 책상을 잡아요. 바퀴 달린 의자는 쓰지 않아요.",
   "떨어뜨리는 곳 아래와 둘레에는 잡아 주는 사람 말고 아무도 없게 해요.",
-  "날달걀을 만진 뒤에는 손을 씻어요."
+  "날달걀을 만진 뒤에는 손을 씻어요.",
+  "AI 는 「AI 사용」 딱지가 붙은 ③-나 대화 3 에서만 새로 물어요. ④ 는 받은 답을 다시 보기만 해요."
 ];
 /* 데크 줄로 — 수업 화면은 줄 끝 마침표를 쓰지 않는다 */
 function deckRules(list){
@@ -3942,7 +4103,8 @@ function c1Ask(src){
     "- 예상의 까닭 — '충돌 시간'과 '평균 힘'이라는 말로 한두 줄",
     "- 가장 약한 곳 — 장치에서 가장 먼저 망가질 것 같은 곳 한 군데",
     "",
-    "[부탁] 계산은 총비용만 해 줘. 힘 · 속력은 계산하지 마."
+    "[부탁] 고등학교 1학년이 읽기 쉬운 말로, 세 설계 모두 위 [설계마다 알려 줄 것] 의 차례대로 짧게 답해 줘.",
+    "계산은 총비용만 해 줘. 힘 · 속력은 계산하지 마."
   ].concat(bag, ["모르는 것이 있어도 되묻지 말고, 어떻게 가정했는지 밝히고 답해 줘."]).join("\n");
 }
 /* 대화 3 의 [요청] · [알려 줄 것] · [부탁]. src 는 설계 · 조건이 있는 곳("PDF 의" 또는 "위의"), seen 은 AI 가 보는 것.
@@ -3957,7 +4119,8 @@ function c3Ask(src, seen){
     "- 가장 약한 곳 — 가장 먼저 망가질 것 같은 곳 한 군데",
     "- 보강 방법 — 그곳을 " + src + " 조건 안에서 보강할 방법 한 가지",
     "",
-    "[부탁] " + seen + "만 보고 짐작하는 것이니 확실하지 않은 것은 그렇다고 말해 줘. 힘 · 속력 같은 계산은 하지 말고 글로만 답해 줘.",
+    "[부탁] 고등학교 1학년이 읽기 쉬운 말로, 위 [알려 줄 것] 의 차례대로 짧게 답해 줘.",
+    seen + "만 보고 짐작하는 것이니 확실하지 않은 것은 그렇다고 말해 줘. 힘 · 속력 같은 계산은 하지 말고 글로만 답해 줘.",
     "모르는 것이 있어도 되묻지 말고, 어떻게 가정했는지 밝히고 답해 줘."
   ].join("\n");
 }
@@ -4004,7 +4167,7 @@ var Cards = {
           : "방금 추천한 설계 " + pick + "에서 날달걀이 '" + pred + "'이라고 예상한 근거를 알려 줘.",
         "- '충돌 시간'과 '평균 힘'이라는 말로 설명해 줘.",
         "- 그 예상이 직접 계산하거나 실험한 것인지, 비슷한 사례로 짐작한 것인지도 솔직하게 말해 줘.",
-        "다섯 줄 안으로 답해 줘. 총비용 계산은 빼 줘."
+        "고등학교 1학년이 읽기 쉬운 말로 다섯 줄 안으로 답해 줘. 총비용 계산은 빼 줘."
       ].join("\n");
     }
     /* A14 D13 — c3: 헬멧 사진 + 양식 PDF 를 올릴 때(설계는 PDF 에 있다). c3b: 파일이 안 올라갈 때 — 조건과 설계를 글로 */
@@ -4033,14 +4196,15 @@ var Cards = {
         box.value = t;
         if ($("cpm-" + n)) $("cpm-" + n).textContent = "";   /* 글이 바뀌면 '복사했어요' 알림을 지운다 — 옛 글을 복사한 채로 보내지 않게 */
       }
-      box.style.display = blk ? "none" : "";
+      box.placeholder = blk ? "(잠김) " + blk : "";   /* A15 — 숨기지 않고 무엇을 먼저 적어야 하는지 보인다 */
       if (note) { note.textContent = blk; note.style.display = blk ? "" : "none"; }
       if (sel) sel.disabled = !ok || !!blk;
       if (save) save.disabled = !ok || !!blk;
     }
-    /* 대화 1 상자(자료 PDF · 보낼 글 · 접은 상자) · 대화 3 상자(양식 PDF · 사진 · 보낼 글 · 접은 상자) — 잠겨 있으면 통째로 숨고, 잠금 문구(note-c1 · note-c3)만 보인다 */
-    if ($("box-c1")) $("box-c1").style.display = (ok && !this.block("c1")) ? "" : "none";
-    if ($("box-c3")) $("box-c3").style.display = (ok && !this.block("c3")) ? "" : "none";
+    /* 대화 1 상자(자료 PDF · 보낼 글 · 접은 상자) · 대화 3 상자(양식 PDF · 사진 · 보낼 글 · 접은 상자) — A15: 잠겨 있어도 숨기지 않는다.
+       단추는 누를 수 없고(위 save · sel disabled), 보낼 글 자리에는 무엇을 먼저 적어야 열리는지가 흐리게 보인다(placeholder).
+       예전처럼 통째로 숨기면 학생이 [제미나이에게 줄 자료 받기 (PDF)] 단추가 없다고 여겼다(2026-09-30 발주자 지적). */
+    if ($("go3-c1-row")) $("go3-c1-row").style.display = (ok && this.block("c1")) ? "" : "none";
     /* 대화 3 이 1차시 ⑤-다 가 비어 막혔을 때만 [1차시 ⑤-다 로 가기] — 단추는 data-free 라 잠금이 끄지 않는다 */
     if ($("go5-c3-row")) $("go5-c3-row").style.display = (this.block("c3") === MINE1_MSG) ? "" : "none";
     /* 자료 PDF 미리 보기 — 대화 1 이 열렸을 때만 보인다. 처음 열릴 때 한 번 그린다(A14 D6) */
@@ -4590,31 +4754,32 @@ $("fin-clear").onclick = function(){
 
 /* ==========================================================================
    [단계와 차시] STEPS1 · STEPS2 — 단계 이름과 분은 여기 한 곳에서만 읽는다(A13 단계표).
-   머리 주석의 분 목록과 함께 고칠 것. 두 차시 모두 합 48분(50분 수업에 2분 여유 — 2026-09-28 개념 보강으로 1분씩 늘림).
-   ai: 그 단계에서 AI 를 어떻게 쓰나 — "없이" 면 「AI 없이」 딱지(A9), 대화 이름이면 그 딱지. 없으면 딱지 없음.
+   머리 주석의 분 목록과 함께 고칠 것. 1차시 합 50분(A15 로 ② 에 여유 2분을 썼다) · 2차시 합 48분(2분 여유).
+   ai(A15 — 모든 단계에 있다): "없이" 면 「AI 없이」, "보기만" 이면 「AI 답 다시 보기만」(받은 답을 다시 보기만 · 새로 묻지 않음),
+   대화 이름이면 「AI 사용 · 대화 이름」 딱지.
    2차시 ③ 은 가(우리 먼저)가 AI 없이, 나(대화 3)가 AI 라서 단계 딱지는 대화 3 이고 가 조각 머리에 「AI 없이」 를 단다.
    ========================================================================== */
 /* desc 는 ① 「오늘은 이렇게 해요」 목록의 한 줄 설명이다(목록도 STEPS 에서 만든다). */
 var STEPS1 = [
-  { g:"①", name:"오늘 할 일",       min:2,  ai:"", mode:"개별 활동",
+  { g:"①", name:"오늘 할 일",       min:2,  ai:"없이", mode:"개별 활동",
     todo:"오늘 지킬 것을 보고, 학번과 이름을 적어 [시작해요] 를 눌러요.",
     desc:"학번과 이름을 적어요" },
-  { g:"②", name:"왜 안 깨질까",     min:9,  ai:"없이", mode:"개별 활동",
-    todo:"충돌 시간과 평균 힘의 관계를 차근차근 받아 적고, 오늘의 조건을 봐요. (교과서 38~41쪽)",
-    desc:"원리와 오늘의 조건을 확인해요" },
+  { g:"②", name:"왜 안 깨질까",     min:11, ai:"없이", mode:"개별 활동",
+    todo:"운동량 · 충격량의 뜻과 충돌 시간 · 평균 힘의 관계를 받아 적고, 그래프와 셈으로 확인한 뒤 오늘의 조건을 봐요. (교과서 38~41쪽)",
+    desc:"원리를 받아 적고 그래프 · 셈으로 확인해요" },
   { g:"③", name:"나의 설계",        min:9,  ai:"없이", mode:"개별 활동",
     todo:"재료와 개수 · 장치 설명 · 나의 예측을 AI 보다 먼저 혼자 정해요. (교과서 40~41쪽)",
     desc:"나의 설계와 나의 예측을 먼저 적어요" },
   { g:"④", name:"AI 에게 묻기",    min:15, ai:"대화 1 · 2", mode:"개별 활동",
     todo:"각자 제미나이에게 자료 PDF 를 주고 설계 3가지를 받아 내 말로 정리하고, 한 설계의 근거를 물어요.",
     desc:"제미나이에게 설계 3가지를 받고 근거를 물어요" },
-  { g:"⑤", name:"비교하고 고르기",  min:13, ai:"", mode:"개별 → 모둠 활동",
+  { g:"⑤", name:"비교하고 고르기",  min:13, ai:"보기만", mode:"개별 → 모둠 활동",
     todo:"가 는 각자 비교하고, 나 · 다 는 모둠원이 받은 설계를 서로 보여 주고 무엇으로 만들지 모둠이 함께 골라요.",
     desc:"각자 비교하고, 모둠이 함께 골라요" }
 ];
 /* A14 D4: 2차시 활동 형태 — ① · ② · ④ · ⑤ 모둠, ③ 가 모둠 → 나(대화 3) 개별, ⑥ 가 · 라 개별 · 나 · 다 모둠(대표). 조각 머리에도 딱지가 있다 */
 var STEPS2 = [
-  { g:"①", name:"오늘 할 일",       min:1,  ai:"", mode:"모둠 활동",
+  { g:"①", name:"오늘 할 일",       min:1,  ai:"없이", mode:"모둠 활동",
     todo:"오늘 지킬 것을 보고, 모둠 대표를 정해요. 1차시 활동지에 이어서 적어요.",
     desc:"오늘 지킬 것 · 모둠 대표 정하기" },
   { g:"②", name:"만들기",           min:12, ai:"없이", mode:"모둠 활동",
@@ -4623,18 +4788,21 @@ var STEPS2 = [
   { g:"③", name:"AI 시뮬레이션",    min:7,  ai:"대화 3", mode:"모둠 → 개별 활동",
     todo:"우리 예측을 먼저 적고, 각자 제미나이에게 헬멧 사진과 최종 설계 양식 PDF 를 주고 떨어뜨리면 어떻게 될지 물어 내 말로 적어요.",
     desc:"우리 예측 먼저 → 제미나이 시뮬레이션" },
-  { g:"④", name:"마지막 고치기",    min:7,  ai:"", mode:"모둠 활동",
+  { g:"④", name:"마지막 고치기",    min:7,  ai:"보기만", mode:"모둠 활동",
     todo:"AI 가 추천한 것 가운데 받아들일 것을 모둠이 함께 정해 마지막으로 고치고, 대표가 장치 사진을 찍어요.",
     desc:"마지막으로 고치고 사진을 찍어요" },
   { g:"⑤", name:"떨어뜨리기",       min:7,  ai:"없이", mode:"모둠 활동",
     todo:"의자나 책상 위에서 한 번 떨어뜨리고, 본 것을 먼저 적은 뒤 달걀 사진을 올려요. (교과서 41쪽)",
     desc:"한 번 떨어뜨리고 본 것을 적어요" },
-  { g:"⑥", name:"돌아보고 올리기",  min:14, ai:"", mode:"개별 · 모둠 활동",
+  { g:"⑥", name:"돌아보고 올리기",  min:14, ai:"없이", mode:"개별 · 모둠 활동",
     todo:"우리 예측 · AI 예측 · 실제를 나란히 놓고 돌아보고, 사진 두 장으로 전시관 PDF 를 만들고 클래스룸 활동지를 내요.",
     desc:"돌아보고 전시관 · 클래스룸에 내요" }
 ];
-/* 딱지 글 — "AI 없이" 또는 대화 이름 */
-function aiTag(s){ return s.ai === "없이" ? "AI 없이" : s.ai; }
+/* 딱지 글(A15) — 모든 단계에 셋 가운데 하나: "없이" → AI 없이 · "보기만" → AI 답 다시 보기만(이미 받은 답을 다시 보기만, 새로 묻지 않음) ·
+   대화 이름 → AI 사용(대화 이름). aiShort 는 대화 이름 없이(수업 화면 머리 줄), aiCls 는 색 */
+function aiShort(a){ return a === "없이" ? "AI 없이" : (a === "보기만" ? "AI 답 다시 보기만" : (a ? "AI 사용" : "")); }
+function aiCls(a){ return a === "없이" ? "ai-no" : (a === "보기만" ? "ai-view" : "ai-use"); }
+function aiTag(s){ return (s.ai === "없이" || s.ai === "보기만") ? aiShort(s.ai) : (s.ai ? "AI 사용 · " + s.ai : ""); }
 /* 활동 형태 딱지(A14 D4) — STEPS 의 mode("개별 활동" · "모둠 활동" · "개별 → 모둠 활동"). 모둠이 들어가면 모둠 색 */
 function modeCls(md){ return "tag " + (/모둠/.test(md || "") ? "mode-team" : "mode-solo"); }
 
@@ -4649,7 +4817,7 @@ function paintPlanRules(){
       li = document.createElement("li");
       li.appendChild(mk("b", null, st.name));
       li.appendChild(document.createTextNode(" — " + st.desc + " "));
-      if (st.ai) li.appendChild(mk("span", "tag", aiTag(st)));
+      if (st.ai) li.appendChild(mk("span", "tag " + aiCls(st.ai), aiTag(st)));
       if (st.mode) { li.appendChild(document.createTextNode(" ")); li.appendChild(mk("span", modeCls(st.mode), st.mode)); }
       ol.appendChild(li);
     }
@@ -4705,6 +4873,7 @@ function goStep(n){
   paintStepBtns();
   $("todo-text").textContent = STEPS[n].todo;
   $("todo-ai").textContent = aiTag(STEPS[n]);
+  $("todo-ai").className = "tag " + aiCls(STEPS[n].ai);
   $("todo-ai").style.display = STEPS[n].ai ? "" : "none";
   $("todo-mode").textContent = STEPS[n].mode || "";
   $("todo-mode").className = modeCls(STEPS[n].mode);
@@ -4762,6 +4931,8 @@ function scrollY0(){ return window.pageYOffset || document.documentElement.scrol
 $("go5-b2").onclick = goFinal1;
 $("go5-b2b").onclick = goFinal1;
 $("go5-c3").onclick = goFinal1;
+/* A15 [③ 나의 예측으로 가기] — 대화 1 잠금 알림 아래. 1차시 ③ 「나의 예측과 까닭」 상자까지 내리고 초점을 옮긴다 */
+$("go3-c1").onclick = function(){ goSpot(1, 2, "pane-a3pred"); };
 
 /* 차시 바꾸기 — 두 차시가 한 파일에 있다. 학번 · 이름 칸은 1차시 ① 에만 있다(A13-14).
    how(흐름 검토 2026-09-29): 없으면 옛 동작 — ① · ✓ 없음(수업 화면 Lesson 이 부른다 — 그쪽 동작은 바꾸지 않는다).
@@ -5613,6 +5784,13 @@ function wsBuild(){
     : "");
   d.kv("달걀 헬멧에 잇기", val("a_pr6")
     ? "장치가 천천히 눌리며 달걀이 멈추게 하면 충돌 시간이 길어져, 달걀이 받는 [" + val("a_pr6") + "]이 작아져요."
+    : "");
+  /* A15 ②-다 그래프와 셈으로 확인하기 */
+  d.kv("힘-시간 그래프 (A 딱딱한 바닥 · B 푹신한 방석 — 넓이가 같다)", (val("a_ft1") || val("a_ft2") || val("a_ft3"))
+    ? "그래프 아래 넓이는 [" + orNW(val("a_ft1")) + "]이에요. 충돌 시간이 더 긴 것은 [" + orNW(val("a_ft2")) + "], 평균 힘이 더 큰 것은 [" + orNW(val("a_ft3")) + "]예요."
+    : "");
+  d.kv("셈으로 확인하기 (0.1 kg 공 · 10 m/s · 튀지 않고 멈춤)", (val("a_cal1") || val("a_cal2") || val("a_cal3"))
+    ? "운동량의 변화량 [" + orNW(val("a_cal1")) + "] kg·m/s · 0.01 초에 멈추면 평균 힘 [" + orNW(val("a_cal2")) + "] N · 0.1 초 동안 멈추면 [" + orNW(val("a_cal3")) + "] N"
     : "");
 
   d.table([0.4, 0.2, 0.2, 0.2], wsCostRows("a_n_"), "재료와 비용", "③ 나의 설계 (AI 없이 · 개별 활동)");
