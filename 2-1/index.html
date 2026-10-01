@@ -109,6 +109,9 @@
    · ② 해결안 · ④ 최종 해결서에 '장치가 알아내야 할 것'(b_h_know · b_f_know — 교과서 60쪽 '수집해야 할 정보')을 더했다.
    · ⑦ 전시관 PDF 세 개 → 한 파일(gal — 전시관은 PDF 1개만 받는다): 1 의뢰서 · 2 해결서 · 3 받은 피드백, 부분마다 새 쪽.
    · 칸 이름 '불편한 사람' → '불편을 겪는 사람'(칸 id a_r_who · b_g_who · b_rx_who 는 그대로).
+   · 점검 고침: ⑥-마 '전시관 PDF' · ⑤ 출력 예시의 수치 뺌 · ⑤ 에 '장치가 알아내야 할 것'(b_rs_know) · ①-가 연결 정답(③ · ⑥ = 4 시험, ④ = 4 개선) ·
+     카드 1 예시 '빛 · 전파 · 소리(초음파)' · 1차시 덱 '52~59쪽' 뺌 · 덱 「오늘 지킬 것」 = 학생 화면 · AI 딱지 이름 하나(제미나이) · ⑦ '개별 활동 · 모둠 대표' ·
+     2차시 첫 안내 '58 · 60 · 63쪽' · 저장 · 시크릿 창 줄 뺌 · 52쪽 빈칸 '앞서가는'(교과서 글자 층 · 사전).
    · ③ 사례 카드 — 인터넷 조사는 모든 카드에 허용(교과서 쪽을 먼저, 교과서에 없는 칸은 조사). 카드마다 붙던 「인터넷 조사 가능」 딱지를 없앴다(단계 딱지 · 안내 한 줄).
      쪽 꼬리표: 보안등 '교과서 56 · 59쪽'('움직임' 은 59쪽) · 로봇 청소기 '교과서에 없음'.
 
@@ -1096,10 +1099,8 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
             <ul id="rules1" style="margin-top:6px"></ul>
           </div>
           <div class="notice">
-            교과서 <b>58쪽</b>을 펴요. 이번 시간은 대부분 <b>모둠이 함께</b> 해요. 제미나이와의 대화(③-나 · ⑥-가)는 <b>각자</b> 해요.
-            활동지는 <b>각자</b> 적어요.<br>
-            <!-- 저장이 막힌 기기에서는 paintSaveHints 가 "저장돼요" 를 뺀 글로 바꾼다 -->
-            <span class="small" id="save-hint">적은 것은 이 기기에 저절로 저장돼요. 활동지는 일반 창에서 열어요(시크릿 창은 닫으면 적은 것이 사라져요).</span>
+            교과서 <b>58 · 60 · 63쪽</b>을 펴요. 이번 시간은 대부분 <b>모둠이 함께</b> 해요. 제미나이와의 대화(③-나 · ⑥-가)는 <b>각자</b> 해요.
+            활동지는 <b>각자</b> 적어요.
           </div>
 
           <!-- 모둠 이름 · 대표 · 다녀오는 사람. 모둠 이름은 PDF 파일 이름에 들어간다(AI 에게 보내는 글 · AI 에게 올리는 PDF 의 쪽 안에는 넣지 않는다) -->
@@ -1426,7 +1427,7 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
 
       <!-- ══════════ ⑤ 해결서 제공 (AI 없이 · 모둠 ↔ 모둠) ══════════
            해결 모둠: [해결서 PDF 저장] → 의뢰한 모둠(b_from_team)에 구글 챗으로 보낸다 · [크게 보기] 로 설명해도 된다.
-           의뢰 모둠: 우리 의뢰서를 해결한 모둠(b_solver_team — ①-다 b_to_team 으로 저절로, 고칠 수 있음) + 받은 해결서 여섯 칸(b_rs_*). -->
+           의뢰 모둠: 우리 의뢰서를 해결한 모둠(b_solver_team — ①-다 b_to_team 으로 저절로, 고칠 수 있음) + 받은 해결서 일곱 칸(§13 — 장치가 알아내야 할 것 b_rs_know 더함)(b_rs_*). -->
       <section class="stepsec">
         <div class="stack">
           <div class="piece">
@@ -1450,6 +1451,9 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
               <div class="field"><label for="b_rs_final">해결안 이름과 한 줄 설명</label>
                 <p class="small muted">어떤 장치이고, 우리 의뢰서의 원하는 상태를 어떻게 이루려 하나요?</p>
                 <textarea id="b_rs_final" class="input" rows="2" style="min-height:66px" placeholder="예: 스마트 복도등 — 사람이 지나갈 때만 복도 조명을 켜 주는 장치"></textarea></div>
+              <div class="field"><label for="b_rs_know">장치가 알아내야 할 것</label>
+                <p class="small muted">해결 모둠의 장치가 스스로 알아내려는 것을 모두 적어요.</p>
+                <textarea id="b_rs_know" class="input" rows="2" style="min-height:66px" placeholder="예: 복도에 사람이 있는지 / 주변이 어두운지"></textarea></div>
               <div class="field"><label for="b_rs_sensor">센서와 감지할 변화</label>
                 <p class="small muted">쓴 센서마다 무엇의 변화를 감지하는지 모두 적어요.</p>
                 <textarea id="b_rs_sensor" class="input" rows="2" style="min-height:66px" placeholder="예: 인체 감지 센서 — 사람의 움직임 / 빛을 감지하는 센서 — 주변 밝기"></textarea></div>
@@ -1457,7 +1461,7 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
                 <p class="small muted">'만약 ○ 이면 ○ 한다' 꼴로 모두 적어요.</p>
                 <textarea id="b_rs_cond" class="input" rows="2" style="min-height:66px" placeholder="만약 ○ 이면 ○ 한다"></textarea></div>
               <div class="field"><label for="b_rs_out">출력</label>
-                <input id="b_rs_out" class="input" type="text" placeholder="예: 복도 조명이 켜지고 30초 뒤 꺼진다"></div>
+                <input id="b_rs_out" class="input" type="text" placeholder="예: 복도 조명이 켜지고, 사람이 지나간 뒤 잠시 있다가 꺼진다"></div>
               <div class="field"><label for="b_rs_sits">해결 모둠이 시험한 상황</label>
                 <textarea id="b_rs_sits" class="input" rows="2" style="min-height:66px" placeholder="여기에 적어요."></textarea></div>
               <div class="field"><label for="b_rs_limit">해결 모둠이 적은 예상되는 한계</label>
@@ -1596,7 +1600,7 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
               <div class="field"><label for="b_rf_more">더 알아봐야 할 점</label>
                 <textarea id="b_rf_more" class="input" rows="2" style="min-height:66px" placeholder="여기에 적어요."></textarea></div>
             </div>
-            <p class="small muted" style="margin-top:8px">⑦ 전시관의 피드백 PDF 에 들어가요. 활동지 PDF 는 이 세 칸을 적은 뒤 ⑦-가 에서 저장해요.</p>
+            <p class="small muted" style="margin-top:8px">⑦ 전시관 PDF 에 들어가요. 활동지 PDF 는 이 세 칸을 적은 뒤 ⑦-가 에서 저장해요.</p>
           </div>
         </div>
       </section>
@@ -2415,10 +2419,10 @@ function lesson1Deck(){
     /* ① — 단계 차례와 활동 형태 · AI 딱지. 「오늘 지킬 것」 · 딱지 보는 법은 다음 장 */
     { step:dstep(S, 0), mode:SOLO, title:"오늘 할 일",
       lines:[ {t:deckPlanLine(S[0])}, {t:deckPlanLine(S[1])}, {t:deckPlanLine(S[2])}, {t:deckPlanLine(S[3])},
-              {t:"학번과 이름을 적고 [시작해요] 를 눌러요 · 교과서 52~59쪽을 펴요", k:"meta"} ] },
+              {t:"학번과 이름을 적고 [시작해요] 를 눌러요", k:"meta"} ] },
 
     { step:dstep(S, 0), mode:SOLO, title:"오늘 지킬 것",
-      lines:deckRules(RULES1).concat([ {t:"활동지는 각자 적어요 — 끝나면 활동지 PDF 를 꼭 저장해요"} ]) },
+      lines:deckRules(RULES1) },
 
     { step:dstep(S, 0), mode:SOLO, title:"딱지 보는 법",
       lines:deckTagHelp(1).concat([ {t:"단계마다 · 조각마다 이 딱지를 보고 스스로 해요", k:"meta"} ]) },
@@ -2440,7 +2444,7 @@ function lesson1Deck(){
       lines:[ {t:"교과서 52쪽을 보고 빈칸을 채워요", k:"label"},
               {t:TB.p52a.join("____")},
               {t:"빈칸 1 : 수준 높고", k:"ans", hold:true},
-              {t:"빈칸 2 : 앞서 가는", k:"ans", hold:true} ] },
+              {t:"빈칸 2 : 앞서가는", k:"ans", hold:true} ] },
 
     { step:dstep(S, 1), mode:SOLO, title:"첨단 과학기술의 시작",
       lines:[ {t:"교과서 52쪽을 보고 빈칸을 채워요", k:"label"},
@@ -2608,7 +2612,7 @@ function lesson2Deck(){
               {t:"⑦ 전시관에 올리기 — 수업이 끝난 뒤 모둠 대표 한 명이"} ] },
 
     { step:dstep(S, 0), mode:TEAM, title:"오늘 지킬 것",
-      lines:deckRules(RULES2).concat([ {t:"학번과 이름을 적고 [시작해요] 를 눌러요"} ]) },
+      lines:deckRules(RULES2) },
 
     { step:dstep(S, 0), mode:TEAM, title:"딱지 보는 법",
       lines:deckTagHelp(2) },
@@ -2752,7 +2756,7 @@ function lesson2Deck(){
     { step:dstep(S, 4), mode:S[4].mode, title:"우리 의뢰는 어떻게 풀렸을까요?",
       lines:[ {t:"해결 모둠 — 해결서 PDF 를 의뢰한 모둠에 구글 챗으로(대표)"},
               {t:"해결서는 교환 순서를 거꾸로 돌아가요", k:"meta"},
-              {t:"의뢰 모둠 — 받은 해결서 PDF 를 열고 여섯 칸을 적어요"},
+              {t:"의뢰 모둠 — 받은 해결서 PDF 를 열고 일곱 칸을 적어요"},
               {t:"받은 해결서 PDF 는 ⑥ 에서 AI 에게 올려요 — 지우지 않아요"} ] },
 
     /* ⑥ — 장 머리에 추정 한 줄(EST) */
@@ -2961,8 +2965,8 @@ var SUPP = {
   ppg:    "혈액은 빛을 흡수하므로 혈액량이 변하면 되돌아오는 빛의 양이 달라지고, 광혈류 측정 센서는 이 변화를 감지한다.",   /* 수업 화면에만 */
   est:    ["AI 의 시뮬레이션 결과는 계산이 아니라 ", "이다."],                                                     /* ③-다 빈칸 b_b1 */
   /* 2차시 ①-가 연결 물음의 답(수업 화면 hold 줄) — 오늘 활동과 공학적 설계 네 단계 */
-  link:   ["1차시 의뢰서 — 1 문제 인식하기", "② 해결안 — 2 아이디어 내기", "③ AI 시뮬레이션 — 3 시제품 만들기 대신 머릿속 시험",
-           "④ 최종 해결서 · ⑥ 검증 — 4 시험하고 개선하기"]
+  link:   ["1차시 의뢰서 — 1 문제 인식하기", "② 해결안 — 2 아이디어 내기", "③ AI 시뮬레이션 · ⑥ 검증 — 4 시험하고 개선하기(시험)",
+           "④ 최종 해결서 — 4 시험하고 개선하기(개선) · 3 시제품 만들기는 AI 시뮬레이션으로 대신"]
 };
 
 /* ③ 사례 카드 6장 — 이름 · 교과서 쪽(page 0 = 교과서에 없는 사례 — 「교사 보충」). ex 는 예시 답(수업 화면 hold 줄에만 쓴다 — 학생 카드에는 없다).
@@ -2970,7 +2974,7 @@ var SUPP = {
    카드 6 은 발주자 결정(2026-09-30)으로 스마트 줄넘기 대신 로봇 청소기 — 교과서 52~63쪽에 없어 학생이 인터넷으로 조사한다. 예시 답은 교사 보충(제품마다 다르다).
    page2 — 둘째 쪽(보안등: '움직임' 은 59쪽) — 설계서 §13. 인터넷 조사는 모든 카드에 허용(교과서 먼저, 없는 칸은 조사) — 카드마다 딱지를 달지 않는다 */
 var CASES = [
-  { name:"자율주행 자동차",         page:53, ex:["주변 사물의 위치 · 거리", "쏘아 보낸 빛 · 전파가 반사되어 돌아오는 신호", "라이다 · 레이더 · 초음파 센서", "장애물을 피해 운전"] },
+  { name:"자율주행 자동차",         page:53, ex:["주변 사물의 위치 · 거리", "쏘아 보낸 빛 · 전파 · 소리(초음파)가 반사되어 돌아오는 신호", "라이다 · 레이더 · 초음파 센서", "장애물을 피해 운전"] },
   { name:"스마트워치(심박)",         page:54, ex:["심장박동수", "혈관에 흐르는 혈액량의 변화", "광혈류 측정 센서", "심박수 표시 · 기록"] },
   { name:"전기 절약형 자동 보안등",  page:56, page2:59, ex:["사람이 있는지", "사람의 움직임", "인체 감지 센서", "사람이 있을 때만 불을 켬"] },
   { name:"화재 경보기",             page:59, ex:["불이 났는지", "연기", "연기를 감지하는 센서", "경보를 울림"] },
@@ -4049,13 +4053,9 @@ function paintCard(){
   }
 }
 /* 저장이 막힌 기기에서는 "저장돼요 · 남아 있어요 · 저절로 불러와요" 라고 하지 않는다(기준 페이지 Student.openMsg 와 같은 뜻).
-   2차시 ① 의 안내(#save-hint) · 1차시 ④ (#ws-keep) · 2차시 ⑦ (#up-keep) · ⑦-가 (#ws-late) */
+   1차시 ④ (#ws-keep) · 2차시 ⑦ (#up-keep) · ⑦-가 (#ws-late) */
 function paintSaveHints(){
-  var ok = Store.can(), h, k;
-  h = $("save-hint");
-  if (h) h.textContent = ok
-    ? "적은 것은 이 기기에 저절로 저장돼요. 활동지는 일반 창에서 열어요(시크릿 창은 닫으면 적은 것이 사라져요)."
-    : "활동지는 일반 창에서 열어요(시크릿 창은 닫으면 적은 것이 사라져요).";
+  var ok = Store.can(), k;
   k = $("ws-keep");
   if (k) k.textContent = ok
     ? "의뢰서는 이 기기에 저장돼요. 2차시에 같은 기기로 오면 저절로 불러와요. 시간이 모자라면 수업이 끝난 뒤 이 기기에서 내려받아 올려도 돼요."
@@ -4236,7 +4236,7 @@ $("go-1c").onclick = function(){ goSpot(0, "piece-1c"); };
    [단계와 차시] STEPS1(1차시) · STEPS2(2차시) — 단계 이름과 분은 여기 한 곳에서만 읽는다
    (단계 막대 · 이번 단계 줄 · ① 목록 · 타이머 '이 단계 n분' · 덱 dstep). STEPS 는 지금 차시의 것이다(setLesson 이 바꾼다).
    머리 주석의 단계표와 함께 고칠 것. 두 차시 모두 합 50분.
-   ai: "없이" 면 「AI 없이」 딱지, 대화 이름이면 「AI 사용 · 대화 n」 딱지(발주자 요청 2026-09-30 — 1차시도 단계마다 AI 딱지를 단다).
+   ai: "없이" 면 「AI 없이」 딱지, AI 를 쓰면 「AI 사용 · 제미나이」 딱지(조각 딱지 · 딱지 보는 법과 같은 이름 — 설계서 §13)(발주자 요청 2026-09-30 — 1차시도 단계마다 AI 딱지를 단다).
    net: true 면 「인터넷 조사 가능」 딱지(1차시 ③).
    mode 는 활동 형태 딱지("모둠" 이 들어가면 모둠 색). 2차시 ⑦ 은 수업 끝 뒤라 min 0 · when(단계 막대 둘째 줄 글) —
    타이머에는 '이 단계' 단추가 없다(min 이 0).
@@ -4264,23 +4264,23 @@ var STEPS2 = [
   { g:"②", name:"해결 방법 고안",    min:9,  ai:"없이", mode:"모둠 활동",
     todo:"AI 에게 묻기 전에, 받은 의뢰서를 풀 해결안 하나를 모둠이 함께 정해 각자 적어요. 센서는 세 개까지 써도 돼요. (교과서 58 · 60쪽)",
     desc:"우리 해결안을 우리끼리 먼저 정해요" },
-  { g:"③", name:"AI 시뮬레이션",     min:13, ai:"대화 1", mode:"모둠 → 개별 → 모둠 활동",
+  { g:"③", name:"AI 시뮬레이션",     min:13, ai:"제미나이", mode:"모둠 → 개별 → 모둠 활동",
     todo:"가 시험할 상황과 우리 예측을 모둠이 먼저 적고(AI 없이), 나 각자 해결안 PDF 를 제미나이에 올려 시뮬레이션을 맡긴 뒤 내 말로 적고, 다 모둠이 견주고 요약해요.",
     desc:"우리 예측 먼저 → 제미나이 시뮬레이션 → 견주기" },
   { g:"④", name:"최종 해결서",       min:6,  ai:"없이", mode:"모둠 활동",
     todo:"우리 예측과 AI 결과를 보고 ② 의 해결안을 모둠이 함께 다듬어 해결서를 완성하고, 해결서 PDF 를 저장해요.",
     desc:"해결안을 다듬어 해결서를 완성해요" },
   { g:"⑤", name:"해결서 제공",       min:4,  ai:"없이", mode:"모둠 ↔ 모둠 활동",
-    todo:"대표가 해결서 PDF 를 의뢰한 모둠에 구글 챗으로 보내요. 우리가 받은 해결서 PDF 를 보고 여섯 칸을 적어요.",
+    todo:"대표가 해결서 PDF 를 의뢰한 모둠에 구글 챗으로 보내요. 우리가 받은 해결서 PDF 를 보고 일곱 칸을 적어요.",
     desc:"해결서 PDF 를 주고받아요" },
-  { g:"⑥", name:"검증 · 피드백",     min:10, ai:"대화 2", mode:"개별 → 모둠 활동",
+  { g:"⑥", name:"검증 · 피드백",     min:10, ai:"제미나이", mode:"개별 → 모둠 활동",
     todo:"가 각자 받은 해결서 PDF 와 우리 모둠 의뢰서 PDF 를 제미나이에 올려 가능성을 시뮬레이션하고, 나 · 다 내 말과 내 생각으로 적은 뒤(AI 없이), 라 모둠 피드백을 PDF 로 보내고, 마 받은 피드백을 적어요.",
     desc:"받은 해결서의 가능성을 AI 로 시뮬레이션하고 피드백을 주고받아요" },
-  { g:"⑦", name:"전시관에 올리기",   min:0, when:"수업 끝 뒤", ai:"없이", mode:"모둠 활동 · 대표",
+  { g:"⑦", name:"전시관에 올리기",   min:0, when:"수업 끝 뒤", ai:"없이", mode:"개별 활동 · 모둠 대표",
     todo:"⑥-마 까지 적었으면 종 치기 전에 각자 활동지 PDF 를 저장해 클래스룸에 내요. 수업이 끝난 뒤 모둠 대표 한 명이 전시관 PDF 한 개를 저장해 전시관에 올려요.",
     desc:"활동지 PDF 저장(각자, 종 치기 전) · 수업이 끝난 뒤 대표 한 명이 PDF 한 개를 전시관에 올리기" }
 ];
-/* AI 딱지 글 — "AI 없이" 또는 "AI 사용 · 대화 n" */
+/* AI 딱지 글 — "AI 없이" 또는 "AI 사용 · 제미나이" */
 function aiTag(s){ return s.ai === "없이" ? "AI 없이" : "AI 사용 · " + s.ai; }
 function aiCls(s){ return "tag " + (s.ai === "없이" ? "ai-no" : "ai-yes"); }
 /* 활동 형태 딱지 — STEPS 의 mode("개별 활동" · "모둠 활동" · "모둠 → 개별 → 모둠 활동" …). 모둠이 들어가면 모둠 색 */
@@ -4576,6 +4576,7 @@ var Cards = {
              "",
              "[해결서]",
              "- 해결안 이름과 한 줄 설명: " + pv("b_rs_final"),
+             "- 장치가 알아내야 할 것: " + pv("b_rs_know"),
              "- 센서와 감지할 변화: " + pv("b_rs_sensor"),
              "- 작동 조건: " + pv("b_rs_cond"),
              "- 출력: " + pv("b_rs_out"),
@@ -5404,6 +5405,7 @@ function ws22(d){
   d.head("⑤ 해결서 제공 (모둠 ↔ 모둠 · AI 없이)");
   d.kv("우리 의뢰서를 해결한 모둠", val("b_solver_team"));
   d.kv("받은 해결서 — 해결안 이름과 한 줄 설명", val("b_rs_final"));
+  d.kv("받은 해결서 — 장치가 알아내야 할 것", val("b_rs_know"));
   d.kv("받은 해결서 — 센서와 감지할 변화", val("b_rs_sensor"));
   d.kv("받은 해결서 — 작동 조건", val("b_rs_cond"));
   d.kv("받은 해결서 — 출력", val("b_rs_out"));
