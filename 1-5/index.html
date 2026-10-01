@@ -212,6 +212,11 @@
    · 수업 화면 「좋은 지시의 짜임」 [알려 줄 것] → [설계마다 알려 줄 것](보낼 글 머리와 같게) · 2차시 「나. 대화 3」 '추천 글' → '보낼 글' ·
      「대화 3 · 보낼 글의 짜임」 [부탁] 에 '되묻지 말고 가정을 밝혀서'.
    · 2차시 ④-나 장치 사진 찍기 조각 · 수업 화면 장의 AI 딱지 → AI 없이(장 ai:"없이").
+  [A18 반영] 2026-10-01 학생 화면 ↔ 수업 화면 2차 대조 —
+   · 2차시 ②-나 4단계 '넣고, 닫아요' → '넣어요(닫기는 다 에서 사진 뒤)' — 수업 화면 「담고 닫기」(넣기 → 사진 → 닫기)와 ②-다 '닫기 전에' 에 맞춤.
+   · 1차시 ②-가 '외피와 턱끈이 하는 일은 선생님 화면에서 함께 봐요' 한 줄(수업 화면 「머리 보호대의 세 부분」).
+   · 1차시 ① 안내 상자 '① ~ ④ 와 ⑤-가 는 각자 · ⑤-나 · 다 모둠'(수업 화면 「오늘 할 일」과 같게).
+   · 수업 화면 「모둠마다 무엇이 같고」 2 의 뒤쪽을 학생 화면 문장('모둠마다 달걀이 받는 ____ 은 거의 같아요')과 같게.
 -->
 <style>
 /* ==========================================================================
@@ -899,7 +904,7 @@ table.tbl.qty .blank{width:2.8em}
             <ul id="rules1" style="margin-top:6px"></ul>
           </div>
           <div class="notice">
-            교과서 <b>38~41쪽</b>을 펴요. ① ~ ④ 는 <b>각자</b> 해요(개별 활동). ⑤ 에서 모둠원이 받은 설계를 서로 보여 주고 <b>모둠이 함께</b> 골라요(모둠 활동).
+            교과서 <b>38~41쪽</b>을 펴요. ① ~ ④ 와 ⑤-가 는 <b>각자</b> 해요(개별 활동). ⑤-나 · 다 에서 모둠원이 받은 설계를 서로 보여 주고 <b>모둠이 함께</b> 골라요(모둠 활동).
             활동지는 <b>각자</b> 적어요.<br>
             <!-- A15: AI 쓰임 딱지 세 가지 -->
             조각마다 붙은 딱지를 보고 따라요 — <span class="tag ai-no">AI 없이</span> 제미나이를 열지 않아요 ·
@@ -965,6 +970,8 @@ table.tbl.qty .blank{width:2.8em}
           <div class="piece">
             <div class="ph"><span class="pn">가</span><span class="pt">머리 보호대 보기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-solo">개별 활동</span><span class="pm">3분</span></div>
             <p>머리 보호대는 <b>외피</b> · <b>라이너</b> · <b>턱끈</b> 으로 되어 있어요. <span class="small muted">교과서 39쪽</span></p>
+            <!-- A18: 수업 화면 「머리 보호대의 세 부분」 장(외피 · 내관통성 · 턱끈 정답 줄)과 맞춘다 -->
+            <p class="small muted" style="margin-top:4px">외피와 턱끈이 하는 일은 선생님 화면에서 함께 봐요.</p>
             <div class="ask" style="margin-top:10px"><b>생각해 볼 것</b>부딪힐 때 라이너는 무슨 일을 할까요?</div>
             <textarea id="a_liner" class="input" style="margin-top:8px; min-height:78px" aria-label="부딪힐 때 라이너는 무슨 일을 할까요"
               placeholder="내 생각과 그렇게 생각한 까닭을 적어요."></textarea>
@@ -1552,7 +1559,7 @@ table.tbl.qty .blank{width:2.8em}
               <div class="st"><div class="n"></div><div class="tx">최종 설계의 재료와 함께 큰 지퍼 백 · 작은 지퍼 백 · 날달걀 · 종이테이프를 받아요.</div></div>
               <div class="st"><div class="n"></div><div class="tx">설계대로 달걀 헬멧(충격 흡수 장치)을 만들어요.</div></div>
               <div class="st"><div class="n"></div><div class="tx">날달걀을 작은 지퍼 백에 담아 닫아요. 날달걀은 깨지기 쉬우니 떨어뜨리기 전까지 살살 다뤄요.</div></div>
-              <div class="st"><div class="n"></div><div class="tx">큰 지퍼 백 안에 헬멧과 작은 지퍼 백을 넣고, 큰 지퍼 백을 닫아요.</div></div>
+              <div class="st"><div class="n"></div><div class="tx">큰 지퍼 백 안에 헬멧과 작은 지퍼 백을 넣어요. 큰 지퍼 백을 닫는 것은 다 에서 헬멧 사진을 찍은 뒤에 해요.</div></div>
             </div>
             <p style="margin-top:8px"><b>만들 때 지킬 규칙</b></p>
             <ul id="rules-me-b2" style="list-style:none; padding-left:0; margin-top:4px"></ul>
@@ -2775,7 +2782,7 @@ function lesson1Deck(){
     { step:dstep(S, 1), mode:SOLO, title:"모둠마다 무엇이 같고, 무엇이 다를까요?",
       lines:[ {t:"1. 같은 2 m → 부딪히기 직전 빠르기가 같아요"},
               {t:"공기 저항은 무시해요", k:"meta"},
-              {t:"2. 튀어 오르지 않고 멈추면 운동량의 변화량이 거의 같아요 → 받는 ____ 도 거의 같아요"},
+              {t:"2. 튀어 오르지 않고 멈추면 운동량의 변화량이 거의 같아요 → 모둠마다 달걀이 받는 ____ 은 거의 같아요"},
               {t:"3. 장치에 따라 ____ 이 달라요 → 평균 힘이 달라요"},
               {t:"2 의 빈칸 : 충격량", k:"ans", hold:true},
               {t:"3 의 빈칸 : 충돌 시간", k:"ans", hold:true} ] },
