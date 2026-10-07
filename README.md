@@ -2,7 +2,7 @@
 
 **현재 수업 → https://wizbeee.github.io/sre2/1-1/**  (Ⅰ-1. 팝콘의 비밀)
 
-예전 주소 https://wizbeee.github.io/sre2/ 로 들어와도 Ⅰ-1 주소(/1-1/)로 곧바로 넘어갑니다.
+**단원 고르기 → https://wizbeee.github.io/sre2/** — 단원 카드를 누르면 그 단원 주소로 갑니다(아직 없는 단원은 「준비 중」).
 
 스마트기기·PC 어디서나 열립니다. 설치와 로그인이 필요 없습니다.
 활동지를 작성해 PDF로 내보낼 수 있습니다.
@@ -18,7 +18,7 @@
 | Ⅰ-5. 안전장치를 어떻게 만들 수 있을까? **(AI 활용 수업 · 2차시)** | https://wizbeee.github.io/sre2/1-5/ |
 | Ⅰ-6. 생활 속 문제를 과학으로 해결해 볼까? | https://wizbeee.github.io/sre2/1-6/ |
 | Ⅱ-1. 첨단 과학기술에는 어떤 과학 원리가 있을까? **(1 · 2차시 수업용 — Ⅱ-2 활동까지)** | https://wizbeee.github.io/sre2/2-1/ |
-| Ⅱ-2. 센서를 활용해 발명품을 만들어 볼까? | Ⅱ-1 주소의 **2차시** → https://wizbeee.github.io/sre2/2-1/ |
+| Ⅱ-2. 센서를 활용해 발명품을 만들어 볼까? | Ⅱ-1 주소의 **2차시** → https://wizbeee.github.io/sre2/2-1/?lesson=2 |
 | Ⅱ-3. 과학기술의 윤리적 발전 방향은? | https://wizbeee.github.io/sre2/2-3/ |
 
 ## Ⅰ-4 는 5차시 수업용입니다
