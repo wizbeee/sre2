@@ -219,6 +219,7 @@ button,input,textarea,select{font:inherit; color:inherit}
 .btn.sm{padding:6px 11px; min-height:36px; font-size:.9rem}
 .btn[disabled]{opacity:.42; cursor:not-allowed; box-shadow:none}
 .btn[disabled]:hover{background:var(--card); border-color:var(--line-2)}
+.btn.primary[disabled]:hover{background:linear-gradient(180deg,#3b4854,var(--chrome)); border-color:var(--chrome-d)}   /* 흐린 진한 단추(③-나 [해결안 PDF 저장] 등) — 흰 글자가 사라지지 않게 */
 .btn:focus-visible,.step-btn:focus-visible,.seg-btn:focus-visible,
 .input:focus-visible{outline:3px solid var(--focus); outline-offset:2px}
 .choice:focus-within{outline:3px solid var(--focus); outline-offset:2px}
@@ -1324,7 +1325,7 @@ table.bigtbl td:first-child{background:var(--card-2); font-weight:700}
           <div class="notice">
             <b>제미나이와 대화는 두 번이에요.</b> ③-나 대화 1 — 우리 해결안 시뮬레이션 맡기기 · ⑥-나 대화 2 — 받은 해결서의 가능성 시뮬레이션.
             두 대화 모두 <b>새 채팅</b>에서, <b>PDF 를 올리고 글을 함께 보내요</b>.<br>
-            <b>대화는 각자 자기 기기에서 해요.</b> 모둠 안에서 두 조로 나눠 시험할 상황을 하나씩 맡아요. AI 답이 친구마다 달라도 괜찮아요 — ③-다 에서 같은 상황을 맡은 친구끼리 견줘요.<br>
+            <b>대화는 각자 자기 기기에서 해요.</b> 모둠 안에서 두 조로 나눠 시험할 상황을 하나씩 맡아요. AI 답이 친구마다 달라도 괜찮아요 — ③-다 에서 같은 상황을 맡은 친구끼리 비교해요.<br>
             받은 답은 읽고 <b>내 말로 바꾸어</b> 아래 칸에 적어요.
           </div>
 
@@ -2795,7 +2796,7 @@ function lesson2Deck(){
       lines:[ {t:"모둠 대표를 한 명 정해요 — 의뢰서 · 해결서 PDF 는 대표가 구글 챗으로"},
               {t:"1차시 나의 의뢰서를 서로 보여 주고 1장을 골라요"},
               {t:"기준 — 문제 상황과 원하는 상태가 가장 분명한 것"},
-              {t:"대표가 고른 의뢰서 PDF 를 받는 모둠에 구글 챗으로 보내요"} ] },
+              {t:"고른 의뢰서 PDF 는 대표가 받는 모둠에 구글 챗으로 보내요"} ] },
 
     /* 교환 순서 표 — 모둠 수 − / + (기본 6, 2~12). 표는 render 가 Lesson.teams 로 그린다(swapInto).
        표 장에 줄을 더하면 1280×720 에서 글자가 기준보다 작아진다 — ①-다 는 다음 장 */
@@ -2827,11 +2828,11 @@ function lesson2Deck(){
     /* ③-나 — 제미나이 들어가기 · 보낼 글의 짜임(SHAPE1 부분 이름) · 빗나가면은 학생 화면에(2026-10-19 요점만) */
     { step:dstep(S, 2, "나 AI 사용 · 제미나이"), mode:SOLO, title:"나. 대화 1 · AI 에게 시뮬레이션 맡기기",
       lines:[ EST,
-              {t:"1. 제미나이 — 학교 계정 · 새 채팅(활동지 탭은 닫지 않아요)"},
-              {t:"2. [해결안 PDF 저장] → 새 채팅에 PDF 를 올려요"},
-              {t:"3. [복사하기] 한 글을 함께 보내요"},
+              {t:"제미나이 — 학교 계정 · 새 채팅(활동지 탭은 닫지 않아요)"},
+              {t:"1. [해결안 PDF 저장] 을 눌러 PDF 를 내려받아요"},
+              {t:"2. 새 채팅에 PDF 를 올리고 [복사하기] 한 글을 함께 보내요"},
               {t:"글의 짜임 " + SHAPE1[0][0] + " " + SHAPE1[1][0] + " " + SHAPE1[2][0] + " " + SHAPE1[3][0] + " — 예시 글이에요", k:"meta"},
-              {t:"4. 받은 답을 내 말로 적어요 — 나 · 우리 예측은 보내지 않아요"} ] },
+              {t:"3. 받은 답을 내 말로 적어요 — 나 · 우리 예측은 보내지 않아요"} ] },
 
     { step:dstep(S, 2, "다 AI 없이"), mode:TEAM, title:"다. 비교하기",
       lines:[ EST,
@@ -2890,7 +2891,7 @@ function lesson2Deck(){
       lines:[ {t:"모든 모둠은 의뢰 모둠이면서 해결 모둠이에요"},
               {t:"교과서 63쪽", k:"label"},
               {t:TB.p63imp},
-              {t:"구글 챗 방의 피드백에서 「고쳐야 할 점」 을 골라 — 혼자 또는 모둠이 함께"},
+              {t:"구글 챗 방의 피드백에서 「고쳐야 할 점」 을 골라 개선할 점을 적어요 — 혼자 또는 모둠이 함께"},
               {t:"대표 기기의 개선할 점이 전시관 PDF 에 들어가요", k:"meta"},
               {t:"기다리는 동안 — ⑦ 작품 제목을 정해요", k:"meta"} ] },
 
@@ -2898,8 +2899,9 @@ function lesson2Deck(){
        올리는 순서 · 조원 칸은 학생 화면 ⑦-다 에 */
     { step:dstep(S, 6), mode:S[6].mode, title:"전시관에 올리기",
       lines:[ {t:"가. 모두 — ⑥-마 까지 적은 뒤 활동지 PDF 를 클래스룸에(종 치기 전)"},
-              {t:"뒷정리 — 제미나이 창을 닫아요 · 저장이 막힌 기기는 닫기 전에 PDF 를 저장해요", k:"meta"},
+              {t:"뒷정리 — 제미나이 창을 닫아요", k:"meta"},
               {t:"나 · 다. 대표 한 명 — 수업이 끝난 뒤"},
+              {t:"저장이 막힌 기기는 활동지 창을 닫기 전에 PDF 를 저장해요", k:"meta"},
               {t:"[전시관 PDF 저장] 으로 PDF 한 개를 만들어 전시관에 올려요"},
               {t:"1 의뢰서 → 2 해결서 → 3 개선할 점 · 모둠마다 한 번 · 학번 · 이름은 들어가지 않아요", k:"meta"} ] }
   ];
@@ -3838,10 +3840,11 @@ function syncFinal(force){
    b_s3 은 한 줄 칸(input)이라 브라우저가 줄바꿈을 지운다 — 줄바꿈은 띄어쓰기로 바꿔 넣는다(2026-10-19 고침: 여러 줄이면 저절로 넣은 값과 어긋나 따라가지 않았다).
    고치기 전 기록(숨은 칸에만 줄바꿈이 남은 것)은 줄바꿈을 지운 값과 같으면 저절로 넣은 값으로 본다 */
 function syncWorry(force){
-  var e = $("b_s3"), a = $("b_s3_auto");
+  var e = $("b_s3"), a = $("b_s3_auto"), fixed = false;
   if (!(Store.key && Store.ready)) return [];
-  if (e && a && /[\r\n]/.test(a.value) && e.value === a.value.replace(/[\r\n]/g, "")) a.value = e.value;
-  return autoPut("b_s3", oneLine(rawv("b_h_worry")), force) ? ["b_s3"] : [];
+  if (e && a && /[\r\n]/.test(a.value) && e.value === a.value.replace(/[\r\n]/g, "")) { a.value = e.value; fixed = true; }
+  /* 숨은 칸만 고쳤어도 바뀐 칸으로 돌려준다 — 그래야 알림(#s3-same)을 곧바로 다시 그리고 고친 값을 저장한다(검토 고침) */
+  return (autoPut("b_s3", oneLine(rawv("b_h_worry")), force) || fixed) ? ["b_s3"] : [];
 }
 function oneLine(v){ return String(v == null ? "" : v).replace(/\s*[\r\n]+\s*/g, " ").replace(/^\s+|\s+$/g, ""); }
 /* ⑤ 우리 의뢰서를 해결한 모둠 ← ①-다 우리 의뢰서를 받는 모둠 */
