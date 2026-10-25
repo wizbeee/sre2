@@ -47,6 +47,12 @@
    A14 로 1차시 ②-나 3 → 4분 · ⑤-가 4 → 3분 — 합은 그대로 48분. A15 로 1차시 ② 9 → 11분 — 1차시 여유 2분을 썼다, 합 50분.
    v4(2026-10-13) 로 2차시 ③ 7 → 8분(③-가 2 → 3분) · ⑥ 14 → 15분(⑥-가 5 → 6분) — 2차시 여유 2분을 썼다, 합 50분)
   (실제 값은 STEPS1 · STEPS2 배열에 있다. 고칠 때 여기도 같이 고칠 것. 조각(가·나·다)의 분은 화면 글이다.)
+  (2026-10-25 발주자 결정 — 흐름 · 중복 검토 반영. 단계 · 조각 시간 · 칸은 그대로, 칸 id · 저장 열쇠 그대로.
+   [저절로 넣기](autoPut · autoSync — 2-2 와 같은 방식: 뒤 칸이 비었거나 전에 저절로 넣은 값 그대로일 때만, 고쳐 쓴 칸은 덮지 않는다 ·
+   숨은 칸 <id>_auto): ⑥-나 피드백 ← ⑥-가 생각해 볼 것 3 · ④-가 AI 가 추천한 것 ← ③-나 보강 방법 · ④ 고친 뒤 비용 수량 ← 1차시 최종 설계 수량 ·
+   ⑥-가 생각해 볼 것 1 첫 문장 ← 표의 예측 · 실제 · 생각해 볼 것 2 첫 문장(따랐는지) ← ④-가 받아들인 AI 의견 · ⑥-나 구성한 이유 초안 ← 1차시 고른 까닭 ·
+   놓은 자리 · 만들면서 바꾼 것 · 최종 반영한 것. 최종 헬멧 예측 · 대화 2 근거는 저절로 넣지 않는다(연구 칸). 그 밖에 안내 문구 · 되풀이 정리 ·
+   수업 화면 「꼭 들어가야 할 것」 두 장을 앞 장에 합침 · 활동지 PDF 반복 줄 정리)
 
   [교과서와 다른 운영] 교과서 40~41쪽과 다르게 운영하는 것(발주자 결정 A8 · A11 · A12 · A13). 학생 화면에는 교과서 내용처럼 쓰지 않는다.
    · 겉껍데기: 교과서 준비물의 바구니 대신 **큰 지퍼 백**(약 25 × 30 cm — [갈래 외피 규격]). 그 안에 '달걀 헬멧'(우리 장치)과
@@ -1094,7 +1100,7 @@ table.tbl.qty .blank{width:2.8em}
 
             <p style="margin-top:12px"><b>가격표</b></p>
             <div class="tblwrap" id="price-tbl"></div>
-            <p class="small" style="margin-top:6px">재료는 가격표에 있는 것만, <b>모둠당 최대 개수</b> 안에서 써요. 규격은 대략이에요. 한 개를 사서 잘라 써도 돼요.</p>
+            <p class="small" style="margin-top:6px">규격은 대략이에요. 한 개를 사서 잘라 써도 돼요.</p>
 
             <p style="margin-top:12px"><b>규칙</b></p>
             <ul id="rules-me-2" style="list-style:none; padding-left:0; margin-top:4px"></ul>
@@ -1147,7 +1153,7 @@ table.tbl.qty .blank{width:2.8em}
             </div>
             <div class="field" style="margin-top:10px">
               <label for="a_our_why">까닭</label>
-              <input id="a_our_why" class="input" type="text" placeholder="여기에 적어요.">
+              <input id="a_our_why" class="input" type="text" placeholder="예: 아래는 풍선이 받치지만 옆이 얇아서, 옆으로 닿으면 금이 갈 것 같아요">
             </div>
             <div class="field" style="margin-top:10px">
               <label for="a_cmp_our_weak">나의 설계에서 가장 약해 보이는 곳</label>
@@ -1232,7 +1238,7 @@ table.tbl.qty .blank{width:2.8em}
               <ul class="anat">
                 <li><code>[자료]</code> 올린 PDF 가 우리 수업의 상황과 조건이라고 알려요.</li>
                 <li><code>[요청]</code> AI 에게 시키는 일 — 조건을 모두 지키는 설계를 서로 다르게 3가지.</li>
-                <li><code>[설계마다 알려 줄 것]</code> 답에 꼭 들어가야 할 것 — 재료와 개수 · 총비용 · 놓는 자리 · 예상과 까닭 · 가장 약한 곳.</li>
+                <li><code>[설계마다 알려 줄 것]</code> 설계마다 답에 들어갈 것 — 아래 「꼭 들어가야 할 것」 에 있어요.</li>
                 <li><code>[부탁]</code> 답하는 방식 — 쉬운 말로 짧게 · 계산은 총비용만 · 되묻지 말고 가정을 밝혀서.</li>
               </ul>
               <textarea id="send-c1" class="input" data-nosave readonly style="margin-top:6px; min-height:230px; background:var(--card-2)"
@@ -1266,7 +1272,8 @@ table.tbl.qty .blank{width:2.8em}
             <div class="stepline"><span class="sn">3</span><span class="st">받은 답을 읽고, 설계 1 · 2 · 3 칸에 내 말로 정리해요</span></div>
             <p class="small muted" style="margin-top:4px">AI 답이 표가 아니어도 돼요. 답을 읽고 내 말로 정리해요.
               <b>재료와 개수</b>는 수량 칸에 숫자로 적으면 비용과 총비용이 저절로 셈해져요. 규칙을 어긴 설계도 그대로 적어요 — ⑤ 에서 따져요.
-              재료를 놓는 자리는 적지 않아요 — ⑤ 에서 놓은 자리를 적을 때 제미나이 창에서 다시 봐요(대화창을 닫지 않아요).</p>
+              재료를 놓는 자리는 적지 않아요 — ⑤ 에서 놓은 자리를 적을 때 제미나이 창에서 다시 봐요(대화창을 닫지 않아요).
+              <br><b>시간이 모자라면</b> 설계마다 「까닭」 은 나중에 채우고 나머지 칸부터 적어요 — 예상이 있어야 대화 2 가 열리고, 나머지 칸은 ⑤ 비교 표에 들어가요. 까닭은 ④-다 에서 근거를 물을 설계부터 채워요.</p>
             <div class="grid3" style="margin-top:8px" id="dcards">
               <div class="dcard">
                 <div class="dh">설계 1</div>
@@ -1349,9 +1356,9 @@ table.tbl.qty .blank{width:2.8em}
             </div>
 
             <div class="stepline"><span class="sn">3</span><span class="st">받은 답을 읽고 적어요</span></div>
-            <div class="field" style="margin-top:8px"><label for="a_c2_basis">AI 가 말한 근거 <span class="muted">(내 말로 두 줄)</span></label>
+            <div class="field" style="margin-top:8px"><label for="a_c2_basis">AI 가 말한 근거 <span class="muted">(내 말로 두 줄 — ④-나 설계 칸의 「까닭」 과 같으면 '같음' 이라 적고 새로 말한 것만)</span></label>
               <textarea id="a_c2_basis" class="input" style="min-height:78px"
-                placeholder="예: 풍선이 눌리는 동안 달걀이 천천히 멈춰 충돌 시간이 길어지고, 그래서 평균 힘이 작아진다고 했어요. 비슷한 실험 이야기를 들어 짐작했대요."></textarea></div>
+                placeholder="예: 풍선이 눌리는 동안 달걀이 천천히 멈춰 충돌 시간이 길어지고, 그래서 평균 힘이 작아진다고 했어요."></textarea></div>
             <div class="field" style="margin-top:10px">
               <label>이 근거는 무엇에 가까운가요?</label>
               <div class="row">
@@ -1384,10 +1391,8 @@ table.tbl.qty .blank{width:2.8em}
       <section class="stepsec">
         <div class="stack">
           <div class="notice">
-            <b>가</b> 는 각자 해요 — 나의 안과 내가 받은 설계 셋을 비교해요.
-            <b>나 · 다</b> 는 모둠이 함께 해요 — 모둠원이 받은 설계를 서로 보여 주고, <b>무엇으로 만들지 하나를 골라요.</b>
-            고른 까닭은 각자 적고, 최종 설계 · 놓은 자리는 모둠원 모두 같게 적어요.<br>
-            <b>제미나이에게 새로 묻지 않아요.</b> ④ 에서 받은 답을 다시 보기만 해요(놓은 자리를 적을 때 등).
+            <b>가</b> 는 각자, <b>나 · 다</b> 는 모둠이 함께 해요. 고른 까닭은 각자, 최종 설계 · 놓은 자리는 모둠원 모두 같게 적어요.<br>
+            <b>제미나이에게 새로 묻지 않아요.</b> 놓은 자리를 적을 때 ④ 에서 받은 답을 다시 봐요.
           </div>
 
           <div class="piece">
@@ -1429,9 +1434,9 @@ table.tbl.qty .blank{width:2.8em}
 
           <div class="piece">
             <div class="ph"><span class="pn">나</span><span class="pt">고르고 까닭 쓰기</span><span class="tag ai-view">AI 답 다시 보기만</span><span class="tag mode-team">모둠 활동</span><span class="pm">5분</span></div>
-            <p style="margin-bottom:8px"><b>모둠원이 받은 설계를 서로 보여 주고, 무엇으로 만들지 하나를 골라요.</b></p>
+            <p style="margin-bottom:8px"><b>각자 ④-다 에서 근거를 물은 설계(또는 나의 안) 하나를 먼저 보여 주고, 무엇으로 만들지 모둠이 하나를 골라요.</b></p>
             <div class="field">
-              <label>무엇으로 만들까요? <span class="muted">(설계 1 · 2 · 3 은 내가 받은 설계 — 다른 모둠원의 설계로 정했으면 「모둠원이 받은 설계」)</span></label>
+              <label>무엇으로 만들까요? <span class="muted">(나의 안 · 설계 1 · 2 · 3 은 내 것 — 다른 모둠원의 안이나 설계로 정했으면 「모둠원이 받은 설계」)</span></label>
               <div class="row">
                 <div class="choice-row" role="radiogroup" aria-label="무엇으로 만들까요">
                   <label class="choice"><input type="radio" name="a_pick" value="나의 안"> 나의 안</label>
@@ -1446,7 +1451,7 @@ table.tbl.qty .blank{width:2.8em}
               <p class="small muted" id="pick-note" style="margin-top:4px">고르면 아래 다 「최종 설계」 표에 들어가요.</p>
             </div>
             <div class="field" style="margin-top:10px"><label for="a_take">고른 까닭</label>
-              <p class="small muted">무엇을 앞세웠는지(비용 절감 · 안전 · 경량화)와 '충돌 시간' · '평균 힘'을 넣어 적어요. 모둠원 설계면 어떤 설계인지도 함께요.</p>
+              <p class="small muted">무엇을 앞세웠는지(비용 절감 · 안전 · 경량화)와 '충돌 시간' · '평균 힘'을 넣어 적어요. 모둠원 설계면 어떤 설계인지도 함께요. ④-다 에서 알아본 근거와 믿을 만한 정도를 넣어도 좋아요.</p>
               <textarea id="a_take" class="input" style="min-height:90px"
                 placeholder="예: 민지가 받은 설계 2 를 골랐어요. 풍선이 천천히 눌리며 충돌 시간을 늘려 평균 힘을 줄일 것 같고, 총비용도 1,300원 안이라서요."></textarea></div>
             <div class="field" style="margin-top:10px"><label for="a_reject">AI 추천 가운데 따르지 않기로 한 것과 까닭</label>
@@ -1458,7 +1463,8 @@ table.tbl.qty .blank{width:2.8em}
                머리 아래 한 줄은 흐름 검토(2026-09-29): 이 칸이 2차시 ②-가 재료 받기 · 대화 3 양식 PDF 에 그대로 쓰인다는 것을 먼저 알린다 -->
           <div class="piece" id="piece-a5c" tabindex="-1">
             <div class="ph"><span class="pn">다</span><span class="pt">최종 설계</span><span class="tag ai-view">AI 답 다시 보기만</span><span class="tag mode-team">모둠 활동</span><span class="pm">5분</span></div>
-            <p class="small muted" style="margin-bottom:8px">최종 설계 · 놓은 자리는 <b>모둠원 모두</b> 같게 적어요 — 2차시에 재료를 받을 때와 대화 3 에 이 칸이 그대로 쓰여요.</p>
+            <p class="small muted" style="margin-bottom:8px">최종 설계 · 놓은 자리는 <b>모둠원 모두</b> 같게 적어요 — 2차시에 재료를 받을 때와 대화 3 에 이 칸이 그대로 쓰여요.
+              모둠원이 받은 설계로 정했으면, 그 설계를 받은 사람이 제미나이 창을 보며 재료 · 개수 · 놓은 자리를 먼저 적고 화면을 보여 주면(불러 주면) 모두 자기 칸에 옮겨 적어요.</p>
             <p><b>재료와 개수</b> <span class="small muted">비용과 총비용은 저절로 셈해져요 · 총비용은 <span class="js-budget"></span> 이하</span></p>
             <div class="row" style="margin-top:6px">
               <span class="small" id="fin-src" aria-live="polite"></span>
@@ -1493,6 +1499,8 @@ table.tbl.qty .blank{width:2.8em}
               <path class="arr" d="M418 40 L418 178 M410 166 L418 180 L426 166"></path>
               <text class="cap" x="424" y="30" text-anchor="middle">떨어짐</text>
             </svg>
+            <!-- 2026-10-25 — 「나의 안」 으로 정했으면 ③ 에 적은 장치 설명을 읽기 전용으로(paintMyIdea · 저장하지 않음) -->
+            <p class="small muted" id="fin-myidea" style="display:none; margin-top:8px; white-space:pre-line"></p>
             <div class="grid2" style="margin-top:8px">
               <div class="field"><label for="a_f_below">아래 <span class="muted">(바닥 쪽)</span></label>
                 <input id="a_f_below" class="input" type="text" placeholder="예: 풍선 2개를 불어 작은 지퍼 백 아래에 깔았어요"></div>
@@ -1552,7 +1560,7 @@ table.tbl.qty .blank{width:2.8em}
 
           <div class="piece">
             <div class="ph"><span class="pn">가</span><span class="pt">재료 받기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-team">모둠 활동</span><span class="pm">2분</span></div>
-            <p>1차시 ⑤-다 최종 설계(아래 상자)대로 재료를 받아요. 더 가져가면 ②-나 「만들면서 바꾼 것」 에 적고, ④ 「고친 뒤 비용」 에서 [1차시 최종 비용 가져오기] 를 누른 뒤 더한 재료를 고쳐 적어요.</p>
+            <p>대표가 아래 「1차시에 고른 최종 설계」 상자를 보여 주고, 그 재료와 큰 지퍼 백 · 작은 지퍼 백 · 날달걀 · 종이테이프를 한 번에 받아요. 더 가져가면 ②-나 「만들면서 바꾼 것」 에 적고, ④ 「고친 뒤 비용」 에서 더한 재료만 고쳐 적어요(1차시 최종 설계 수량이 저절로 들어와 있어요).</p>
             <!-- 상자 · 알림은 기록을 연 뒤에만 paintFrom1 이 켠다(열기 전에는 둘 다 숨김). 상자 머리 아래 한 줄과 [1차시 ⑤-다 로 가기](go5-b2b)는
                  재검토(2026-09-29): 모둠원끼리 맞춰 보고 고칠 곳으로 가는 길만 둔다 — 같은지 판정하거나 경고하지 않는다 -->
             <div class="pane" id="b_from1" style="margin-top:10px; display:none">
@@ -1572,7 +1580,7 @@ table.tbl.qty .blank{width:2.8em}
           <div class="piece">
             <div class="ph"><span class="pn">나</span><span class="pt">만들기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-team">모둠 활동</span><span class="pm">8분</span></div>
             <div class="howto">
-              <div class="st"><div class="n"></div><div class="tx">최종 설계의 재료와 함께 큰 지퍼 백 · 작은 지퍼 백 · 날달걀 · 종이테이프를 받아요.</div></div>
+              <div class="st"><div class="n"></div><div class="tx">가 에서 받은 재료와 지퍼 백 · 날달걀 · 종이테이프를 펼쳐 놓고, 최종 설계와 맞는지 봐요.</div></div>
               <div class="st"><div class="n"></div><div class="tx">설계대로 달걀 헬멧(충격 흡수 장치)을 만들어요.</div></div>
               <div class="st"><div class="n"></div><div class="tx">날달걀을 작은 지퍼 백에 담아 닫아요. 날달걀은 깨지기 쉬우니 떨어뜨리기 전까지 살살 다뤄요.</div></div>
               <div class="st"><div class="n"></div><div class="tx">큰 지퍼 백 안에 헬멧과 작은 지퍼 백을 넣어요. 큰 지퍼 백을 닫는 것은 다 에서 헬멧 사진을 찍은 뒤에 해요.</div></div>
@@ -1659,7 +1667,6 @@ table.tbl.qty .blank{width:2.8em}
               <div class="field"><label for="b_weak_our">가장 약해 보이는 곳</label>
                 <input id="b_weak_our" class="input" type="text" placeholder="예: 솜공이 적은 옆쪽"></div>
             </div>
-            <p class="small muted" style="margin-top:6px">나의 예측 · 까닭과 우리 예측 · 까닭 · 가장 약해 보이는 곳을 적어야 대화 3 이 열려요.</p>
           </div>
 
           <div class="piece">
@@ -1700,7 +1707,7 @@ table.tbl.qty .blank{width:2.8em}
               <ul class="anat">
                 <li><code>[자료]</code> 올린 사진과 PDF 가 우리 헬멧의 최종 설계와 조건이라고 알려요.</li>
                 <li><code>[요청]</code> AI 에게 시키는 일 — 머릿속으로 2 m 에서 떨어뜨려 보고 달걀이 어떻게 될지 예상하기.</li>
-                <li><code>[알려 줄 것]</code> 답에 꼭 들어가야 할 것 — 예상 · 까닭 · 가장 약한 곳 · 보강 방법.</li>
+                <li><code>[알려 줄 것]</code> 답에 들어갈 것 — 아래 「꼭 들어가야 할 것」 에 있어요.</li>
                 <li><code>[부탁]</code> 답하는 방식 — 쉬운 말로 짧게 · 확실하지 않으면 그렇다고 · 계산하지 않기 · 되묻지 말고 가정을 밝혀서.</li>
               </ul>
               <textarea id="send-c3" class="input" data-nosave readonly style="margin-top:6px; min-height:230px; background:var(--card-2)"
@@ -1777,21 +1784,23 @@ table.tbl.qty .blank{width:2.8em}
             <!-- 흐름 검토(2026-09-29): ③-나 에 적은 내 AI 의견을 다시 보인다(읽기 전용 · 판정 없음, paintMyAi) -->
             <p class="small muted" id="b_myai" style="margin-top:6px"></p>
             <div class="field" style="margin-top:8px"><label for="b_ai_rec">AI 가 추천한 것</label>
-              <p class="small muted">나와 모둠원이 받은 AI 답에서 '이렇게 고치면 좋겠다'고 한 것을 적어요.</p>
-              <textarea id="b_ai_rec" class="input" style="min-height:78px" placeholder="예: 작은 지퍼 백 아래가 얇으니 솜공을 더 깔라고 했어요. 옆쪽 빨대를 묶어 세우라는 것도 있었어요."></textarea></div>
+              <p class="small muted">나와 모둠원이 받은 AI 답에서 '이렇게 고치면 좋겠다'고 한 것을 적어요. ③-나 에 적은 내 보강 방법이 저절로 들어와요 — 모둠원이 받은 것을 이어서 더해 적어요.</p>
+              <textarea id="b_ai_rec" class="input" style="min-height:78px" placeholder="예: 작은 지퍼 백 아래가 얇으니 솜공을 더 깔라고 했어요. 옆쪽 빨대를 묶어 세우라는 것도 있었어요."></textarea>
+              <input type="hidden" id="b_ai_rec_auto"></div>
             <div class="field" style="margin-top:10px"><label for="b_take">받아들인 AI 의견</label>
               <p class="small muted">그 가운데 우리가 따르기로 한 것과 그 까닭을 적어요. 따르지 않기로 했으면 '없음'과 까닭을 적어요.</p>
               <textarea id="b_take" class="input" style="min-height:78px" placeholder="예: 솜공을 더 까는 의견을 받아들였어요. 우리도 아래가 가장 약해 보였고, 총비용도 1,300원 안이라서요."></textarea></div>
             <div class="field" style="margin-top:10px"><label for="b_fixed">최종 반영한 것 <span class="muted">(고치지 않았으면 '없음')</span></label>
               <p class="small muted">헬멧을 실제로 어떻게 고쳤는지 적어요.</p>
               <input id="b_fixed" class="input" type="text" placeholder="예: 솜공 10개를 작은 지퍼 백 아래에 더 깔았어요"></div>
-            <p style="margin-top:12px"><b>고친 뒤 비용</b> <span class="small muted">만들 때도 고칠 때도 재료를 바꾸지 않았으면 비워 둬요 — 1차시 최종 비용과 같아요</span></p>
+            <p style="margin-top:12px"><b>고친 뒤 비용</b> <span class="small muted">1차시 최종 설계 수량이 저절로 들어와요 — 만들 때나 고칠 때 재료를 바꿨으면 바뀐 줄만 고쳐요</span></p>
             <div class="row" style="margin-top:6px">
-              <button class="btn sm" type="button" id="copy-f-to-r">1차시 최종 비용 가져오기</button>
-              <span class="small muted" id="ccm-r" aria-live="polite">재료를 바꿨으면 가져온 뒤 바뀐 줄만 고쳐요.</span>
+              <button class="btn sm" type="button" id="copy-f-to-r">1차시 최종 설계 수량 다시 가져오기</button>
+              <span class="small muted" id="ccm-r" aria-live="polite">고친 줄을 1차시 최종 설계 수량으로 되돌릴 때만 눌러요.</span>
+              <input type="hidden" id="b_rn_auto">
             </div>
             <div class="tblwrap" id="cost-r" style="margin-top:6px"></div>
-            <p class="small muted" style="margin-top:7px">고친 헬멧에 들어간 재료의 수량을 모두 적어요. 비용과 총비용은 저절로 셈해져요. 총비용은 <span class="js-budget"></span> 이하예요.</p>
+            <p class="small muted" style="margin-top:7px">고친 헬멧에 들어간 재료의 수량이 모두 맞는지 봐요. 비용과 총비용은 저절로 셈해져요. 총비용은 <span class="js-budget"></span> 이하예요.</p>
             <!-- v4(2026-10-13) 최종 헬멧 예측(계획서 v4 3-2) — id="pane-b4fin": ⑤ 결과 잠김 알림 아래 [④ 로 가기](go4-fin)가 이 상자까지 내리고 초점을 옮긴다
                  (tabindex="-1" — 탭 차례에는 들지 않는다). 칩 읽기 이름은 상자 머리(aria-labelledby) -->
             <div class="pane" id="pane-b4fin" tabindex="-1" style="margin-top:14px; box-shadow:none">
@@ -1818,7 +1827,8 @@ table.tbl.qty .blank{width:2.8em}
           <div class="piece">
             <div class="ph"><span class="pn">나</span><span class="pt">장치 사진 찍기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-team">모둠 활동 · 대표</span><span class="pm">2분</span></div>
             <p><b>떨어뜨리기 전에 대표가 자기 기기의 카메라 앱으로</b> 다 만든 헬멧을 찍어요(전시관 PDF 는 대표 기기에서 만들어요). <b>장치가 잘 보이게</b> 찍어요.</p>
-            <p class="small muted" style="margin-top:4px">큰 지퍼 백을 열어 헬멧이 보이게 찍고, 다시 닫아요. 이 사진은 ⑥-나 에서 사진 1 로 골라요.</p>
+            <p class="small muted" style="margin-top:4px">큰 지퍼 백을 열어 헬멧이 보이게 찍고, 다시 닫아요. 이 사진은 ⑥-나 에서 사진 1 로 골라요.
+              ④-가 에서 고치지 않았으면 ②-다 에서 찍은 사진을 사진 1 로 써도 돼요 — 큰 지퍼 백을 다시 열지 않아도 돼요.</p>
           </div>
         </div>
       </section>
@@ -1851,7 +1861,7 @@ table.tbl.qty .blank{width:2.8em}
               <li>떨어뜨린 사람이 천천히 내려온 뒤에 꺼내는 사람이 가요.</li>
               <li>꺼내는 사람이 작은 지퍼 백째 꺼내 떨어뜨린 자리에서 비켜 나와요. 작은 지퍼 백은 <b>열지 않고</b> 모두 함께 달걀을 살펴요 — 지퍼 백 위로 손끝으로 껍데기를 한 바퀴 만져 봐요.</li>
               <li>장치도 살펴요 — 먼저 닿은 쪽, 찌그러지거나 떨어지거나 밀려난 곳. 꺼내는 사람이 본 것을 소리 내어 알려 주면 모두 자기 활동지에 적어요.</li>
-              <li>대표는 카메라 앱으로 작은 지퍼 백째 <b>달걀 사진</b>을 찍고, 아래에서 골라 올려요(활동지는 사진을 저장하지 않아요).</li>
+              <li>대표는 작은 지퍼 백째 <b>달걀 사진</b>을 찍어 아래 「달걀 사진 올리기」 에서 올려요.</li>
             </ul>
           </div>
 
@@ -1931,10 +1941,12 @@ table.tbl.qty .blank{width:2.8em}
             <!-- v4(2026-10-13) 「고침 여부」(계획서 v4 3-3) — 옛 줄 '우리 예측 · AI 예측은 고치기 전 헬멧 …' 을 바꿨다. 글은 fixState(활동지 PDF 와 같은 글) -->
             <p class="small muted" style="margin-top:6px">고침 여부: <span id="rv_fixed"></span></p>
             <div class="ask" style="margin-top:10px"><b>생각해 볼 것 1</b>누구 예측이 왜 맞거나 빗나갔을까요?</div>
-            <p class="small" style="margin-top:6px">위 표에서 우리 예측 · AI 예측 · 실제를 나란히 놓고, 맞았거나 빗나간 까닭을 '충돌 시간'과 '평균 힘'으로 적어요.</p>
+            <p class="small" style="margin-top:6px">위 표에서 우리 예측 · AI 예측 · 우리 최종 예측 · 실제를 나란히 놓고, 맞았거나 빗나간 까닭을 '충돌 시간'과 '평균 힘'으로 적어요. 헬멧을 고쳤으면 최종 예측과 실제를 비교해요.
+              첫 문장은 위 표에서 저절로 들어와요 — 까닭 문장을 이어서 적어요.</p>
             <div class="frame"><b>이렇게 써 봐요</b>우리는 ____ 라고 예측했는데 실제로는 ____ 였어요. AI 는 ____ 라고 했어요.
               ____ 때문에 충돌 시간이 ( 길어져 / 짧아져 ) 평균 힘이 ( 작아졌던 / 커졌던 ) 것 같아요.</div>
             <textarea id="b_why" class="input" style="margin-top:8px" aria-label="누구 예측이 왜 맞거나 빗나갔을까요" placeholder="문장 틀을 따라 내 말로 적어요."></textarea>
+            <input type="hidden" id="b_why_auto">
             <!-- v4(2026-10-13) 생각해 볼 것 2 — AI 의견 다시 판단(계획서 v4 3-3). 판단 대상은 ④-가 에서 받아들이거나 따르지 않은 AI 보강 방법.
                  #rv_aisrc 는 ④-가 「AI 가 추천한 것」 · 「받아들인 AI 의견」 을 읽기 전용으로(paintReflect → paintAiSrc, 저장하지 않음). 잠그지 않는다.
                  칩 · [비우기] 읽기 이름은 칩 이름표(aria-labelledby) -->
@@ -1942,7 +1954,8 @@ table.tbl.qty .blank{width:2.8em}
             <p class="small" style="margin-top:6px">④-가 에 적은 것을 다시 보고, ⑤ 에서 본 결과를 근거로 판단해요.</p>
             <div class="small muted" id="rv_aisrc" style="margin-top:6px; white-space:pre-line"></div>
             <div class="frame"><b>이렇게 써 봐요</b>AI 는 ____ 하라고 했고, 우리는 그 의견을 ( 따랐어요 / 따르지 않았어요 ).
-              실제로 ____ 를 보니 그 방법은 ( 맞았어요 / 빗나갔어요 / 조건에 따라 달랐어요 / 판단할 수 없어요 ). 그 근거는 ____ 예요.</div>
+              실제로 ____ 를 보니, 그렇게 판단한 근거는 ____ 예요.</div>
+            <p class="small muted" style="margin-top:6px">맞았는지는 아래 칩으로 골라요. 따랐는지는 ④-가 「받아들인 AI 의견」 에서 저절로 들어와요 — 근거를 이어서 적어요.</p>
             <div class="field" style="margin-top:8px">
               <label id="lab-b_ai_judge">그 AI 보강 방법은</label>
               <div class="row">
@@ -1956,6 +1969,7 @@ table.tbl.qty .blank{width:2.8em}
               </div>
             </div>
             <textarea id="b_ai_judge_why" class="input" style="margin-top:8px; min-height:78px" aria-label="AI 보강 방법을 그렇게 판단한 근거" placeholder="문장 틀을 따라 ⑤ 에서 본 것을 근거로 적어요."></textarea>
+            <input type="hidden" id="b_ai_judge_why_auto">
             <div class="ask" style="margin-top:12px"><b>생각해 볼 것 3</b>다시 만든다면 무엇을 바꿀까요? 까닭은요?</div>
             <p class="small" style="margin-top:6px">실제로 문제였던 곳을 보고, 어떤 재료를 어디에 어떻게 바꿀지와 그렇게 하면 무엇이 달라질지 적어요.</p>
             <div class="frame"><b>이렇게 써 봐요</b>다시 만든다면 ____ 을(를) ____ 로 바꾸고 싶어요.
@@ -1975,7 +1989,7 @@ table.tbl.qty .blank{width:2.8em}
 
           <div class="piece">
             <div class="ph"><span class="pn">나</span><span class="pt">전시관 PDF 만들기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-team">모둠 활동 · 대표</span><span class="pm">3분</span></div>
-            <p class="small" style="margin-bottom:8px">제목 · 구성한 이유 · 결과 이야기는 모둠이 함께 정하고 <b>모두 각자</b> 적어요(클래스룸 활동지에도 들어가요).
+            <p class="small" style="margin-bottom:8px">제목 · 구성한 이유 · 결과 이야기는 모둠이 함께 정하고 <b>모두 각자</b> 적어요(클래스룸 활동지에도 들어가요). 대표 화면을 보고 그대로 옮겨 적어도 돼요.
               사진 두 장을 넣어 PDF 를 만들고 전시관에 올리는 것은 <b>대표만</b> 해요.</p>
             <div class="field">
               <label for="b_title">작품 제목 <span class="muted" id="b_title_n">0 / 60자</span></label>
@@ -1983,8 +1997,10 @@ table.tbl.qty .blank{width:2.8em}
             </div>
             <div class="field" style="margin-top:10px">
               <label for="b_reason">우리 헬멧을 이렇게 구성한 이유</label>
+              <p class="small muted">1차시 고른 까닭 · 놓은 자리와 ② · ④ 에서 바꾼 것이 초안으로 들어와요 — 어떤 재료를 어디에 왜 놓았는지, '충돌 시간'과 '평균 힘'이라는 말로 다듬어요.</p>
               <textarea id="b_reason" class="input" style="min-height:100px"
                 placeholder="어떤 재료를 어디에 왜 놓았는지, '충돌 시간'과 '평균 힘'이라는 말로 적어요."></textarea>
+              <input type="hidden" id="b_reason_auto">
             </div>
             <!-- A14 D19: 떨어뜨린 결과(⑤ 보기)를 보여 주고, 깨짐 · 금이 감이면 피드백 칸, 깨지지 않음이면 까닭 칸(paintResult) -->
             <div class="field" style="margin-top:12px">
@@ -1996,20 +2012,21 @@ table.tbl.qty .blank{width:2.8em}
             </div>
             <div class="field" id="b_feedback_f" style="margin-top:10px; display:none">
               <label for="b_feedback">무엇을 바꾸면 좋을까요? <span class="muted">(피드백)</span></label>
-              <p class="small muted">깨지거나 금이 간 까닭을 생각하고, 어디를 어떻게 바꾸면 좋을지 적어요.</p>
+              <p class="small muted">깨지거나 금이 간 까닭을 생각하고, 어디를 어떻게 바꾸면 좋을지 적어요. ⑥-가 생각해 볼 것 3 에 적은 것이 저절로 들어와요 — 결과를 보고 다듬어요.</p>
               <textarea id="b_feedback" class="input" style="min-height:90px"
                 placeholder="예: 아래쪽 풍선이 터져 달걀이 바닥에 바로 닿았어요. 솜공을 더 깔아 천천히 멈추게 하면 충돌 시간이 길어져 평균 힘이 작아질 거예요."></textarea>
+              <input type="hidden" id="b_feedback_auto">
             </div>
             <div class="field" id="b_unbroken_f" style="margin-top:10px; display:none">
               <label for="b_unbroken">깨지지 않은 까닭</label>
-              <p class="small muted">우리 헬멧의 어느 부분이 달걀을 지켜 주었는지 적어요.</p>
+              <p class="small muted">우리 헬멧의 어느 부분이 달걀을 지켜 주었는지 적어요. ⑥-가 생각해 볼 것 1 에 적은 까닭을 옮겨 고쳐 써도 돼요.</p>
               <textarea id="b_unbroken" class="input" style="min-height:90px"
                 placeholder="예: 아래에 깐 풍선이 천천히 눌리며 달걀이 멈추는 시간이 길어져, 달걀이 받는 평균 힘이 작아졌어요."></textarea>
             </div>
 
             <p style="margin-top:14px"><b>사진 두 장</b> <span class="small muted">둘 다 있어야 PDF 를 만들어요</span></p>
             <div class="grid2" style="margin-top:6px">
-              <div class="field"><label for="b_photo1">사진 1 · 장치 <span class="muted">(장치가 최대한 잘 보이게 — ④-나 에서 찍은 사진)</span></label>
+              <div class="field"><label for="b_photo1">사진 1 · 장치 <span class="muted">(장치가 최대한 잘 보이게 — ④-나 에서 찍은 사진, 고치지 않았으면 ②-다 사진도 돼요)</span></label>
                 <input id="b_photo1" class="input" type="file" accept="image/*">
                 <p class="small muted" id="b_photo1_st"></p>
                 <div class="phprev" id="b_photo1_prev"></div></div>
@@ -2044,7 +2061,7 @@ table.tbl.qty .blank{width:2.8em}
                 <b>'내 작품 올리기' 화면이 안 보이면 [내 작품 올리기] 를 눌러요.</b>
               </div></div>
               <div class="st"><div class="n"></div><div class="tx">
-                <b>모둠 이름 칸에 모둠 이름(예: 3모둠)을 적고, 팻말은 '모둠 이름'을 골라요. 제목은 60자 안으로, 종류는 '카드뉴스'를 골라요.</b>
+                <b>모둠 이름 칸에 모둠 이름(예: 3모둠)을 적고, 팻말은 '모둠 이름'을 골라요. 제목은 60자 안으로(⑥-나 작품 제목 칸의 글을 복사해 붙여 넣어도 돼요), 종류는 '카드뉴스'를 골라요.</b>
               </div></div>
               <div class="st"><div class="n"></div><div class="tx">
                 <b>조원 칸에 나(대표)를 뺀 모둠원의 학번과 이름을 넣고(6명까지), <span class="key">PDF 저장</span> 으로 저장한 PDF 를 골라요.</b>
@@ -2970,6 +2987,7 @@ function lesson1Deck(){
               {t:"[요청] 서로 다른 설계 3가지"},
               {t:"예: 비용을 아끼는 · 안전을 앞세운 · 가벼운 설계", k:"meta"},
               {t:"[설계마다 알려 줄 것] 재료 · 총비용 · 놓는 자리 · 예상과 까닭 · 약한 곳"},
+              {t:"까닭은 '충돌 시간' · '평균 힘'으로 — 고쳐 보내도 이 짜임은 지켜요", k:"meta"},
               {t:"[부탁] 쉬운 말로 짧게 · 계산은 총비용만 · 되묻지 말고 가정을 밝혀서"} ] },
 
     { step:dstep(S, 3), mode:SOLO, title:"왜 이렇게 길게 적을까요?",
@@ -2977,13 +2995,7 @@ function lesson1Deck(){
               {t:"AI 는 우리 수업을 몰라요 — 알려 준 조건만큼만 맞게 답해요", k:"ans", hold:true},
               {t:"그래서 자료 PDF 와 조건을 빠짐없이 줘요", k:"ans", hold:true} ] },
 
-    /* 활동지 ④-나 「꼭 들어가야 할 것」 일곱 가지를 다섯 줄로 */
-    { step:dstep(S, 3), mode:SOLO, title:"꼭 들어가야 할 것",
-      lines:[ {t:"보낼 글은 예시 — 내 말로 고쳐도 이것만은 빠지지 않게", k:"label"},
-              {t:"자료 PDF 함께 올리기 · 설계 3가지(서로 다르게)"},
-              {t:"설계마다 재료와 개수 · 총비용 · 재료를 놓는 자리"},
-              {t:"예상과 까닭 — '충돌 시간' · '평균 힘'으로"},
-              {t:"가장 약한 곳"} ] },
+    /* 2026-10-25 — 「꼭 들어가야 할 것」 장은 「좋은 지시의 짜임」 장과 같은 목록이라 그 장의 잔글씨 한 줄로 합쳤다 */
 
     /* A14 D6 — 한 길: 자료 PDF → 올리기 → 보낼 글. 파일이 안 올라가면 접은 상자 */
     { step:dstep(S, 3), mode:SOLO, title:"대화 1 · 설계 3가지 받기",
@@ -2999,6 +3011,7 @@ function lesson1Deck(){
               {t:"설계 1 · 2 · 3 — 어떤 설계인가요 · 재료와 개수"},
               {t:"AI 가 말한 총비용 · 예상 · 까닭 · 가장 약한 곳"},
               {t:"놓는 자리는 ⑤ 에서 제미나이 창을 다시 봐요 — 대화창을 닫지 않아요", k:"meta"},
+              {t:"모자라면 까닭은 나중에 — 예상이 있어야 대화 2 가 열려요", k:"meta"},
               {t:"수량을 적으면 비용 · 총비용은 저절로 셈해져요"},
               {t:"규칙을 어긴 설계도 적어요 — ⑤ 에서 따져요"} ] },
 
@@ -3027,7 +3040,7 @@ function lesson1Deck(){
               {t:"큰 지퍼 백 안에서만 · 작은 지퍼 백 안에는 넣지 않기", k:"meta"} ] },
 
     { step:dstep(S, 4), mode:TEAM, title:"나. 고르고 까닭 쓰기",
-      lines:[ {t:"모둠원이 받은 설계를 서로 보여 줘요"},
+      lines:[ {t:"각자 ④-다 에서 근거를 물은 설계를 먼저 보여 줘요"},
               {t:"무엇으로 만들지 모둠이 하나를 골라요"},
               {t:"고른 까닭 — 무엇을 앞세웠는지 · '충돌 시간' · '평균 힘'"},
               {t:"앞세운 것: 비용 절감 · 안전 · 경량화", k:"meta"},
@@ -3037,7 +3050,7 @@ function lesson1Deck(){
 
     { step:dstep(S, 4), mode:TEAM, title:"다. 최종 설계",
       lines:[ {t:"나의 안 · 설계 1~3 을 고르면 표가 저절로 채워져요"},
-              {t:"설계 1~3 은 내가 받은 설계 — 모둠원 것을 골랐으면 「모둠원이 받은 설계」", k:"meta"},
+              {t:"나의 안 · 설계 1~3 은 내 것 — 모둠원의 안이나 설계면 「모둠원이 받은 설계」", k:"meta"},
               {t:"모둠원이 받은 설계 · 섞거나 고친 안 → 표에 직접 적어요"},
               {t:"총비용은 " + won(BUDGET) + " 이하 — 저절로 셈해져요"},
               {t:"최종 설계는 모둠원 모두 같게 적어요"},
@@ -3052,7 +3065,8 @@ function lesson1Deck(){
       lines:[ {t:"아래 · 위 · 옆 · 테이프로 붙인 곳"},
               {t:"무엇을 어떻게 놓았는지 — 구김 · 세움 · 접음 · 묶음"},
               {t:"예: 풍선 2개를 불어 작은 지퍼 백 아래에 깔았어요"},
-              {t:"없으면 '없음' · 모둠원 모두 같게"} ] },
+              {t:"없으면 '없음' · 모둠원 모두 같게"},
+              {t:"모둠원이 받은 설계면 — 받은 사람이 제미나이 창을 보며 불러 줘요", k:"meta"} ] },
 
     { step:dstep(S, 4), mode:TEAM, title:"1차시 끝",
       lines:[ {t:"최종 설계 · 놓은 자리를 모둠원 모두 같게 적었나요?"},
@@ -3083,7 +3097,7 @@ function lesson2Deck(){
       lines:[ {t:"큰 지퍼 백 = 외피 · 우리 장치 = 라이너 · 달걀 = 머리"},
               {t:"우리 헬멧은 시제품 — 설계의 타당성을 평가하려고 만든 제품"},
               {t:"최종 제품을 만들기 전에 만들어요 · 교과서 38쪽", k:"meta"},
-              {t:"1. 1차시 최종 설계대로 재료를 받아요 — 모둠이 한 번에"},
+              {t:"1. 대표가 최종 설계를 보여 주고 재료를 한 번에 받아요"},
               {t:"큰 지퍼 백 · 작은 지퍼 백 · 날달걀 · 종이테이프도", k:"meta"},
               {t:"2. 설계대로 헬멧을 만들어요 — 달라지면 모둠원 모두 같게 적어요"} ] },
 
@@ -3122,14 +3136,9 @@ function lesson2Deck(){
       lines:[ {t:"[자료] 사진과 PDF — 우리 헬멧의 최종 설계와 조건"},
               {t:"[요청] 머릿속으로 2 m 에서 떨어뜨려 보고 예상하기"},
               {t:"[알려 줄 것] 예상 · 까닭 · 가장 약한 곳 · 보강 방법"},
+              {t:"까닭은 '충돌 시간' · '평균 힘'으로 · 나의 예측 · 우리 예측은 보내지 않아요", k:"meta"},
               {t:"[부탁] 쉬운 말로 짧게 · 확실하지 않으면 그렇다고 · 계산하지 않기 · 되묻지 말고 가정을 밝혀서"} ] },
-
-    { step:dstep(S, 2), mode:SOLO, title:"대화 3 · 꼭 들어가야 할 것",
-      lines:[ {t:"만든 헬멧 사진 · 최종 설계 양식 PDF"},
-              {t:"떨어뜨렸을 때 달걀 예상"},
-              {t:"까닭 — '충돌 시간' · '평균 힘'으로"},
-              {t:"가장 약한 곳 · 보강 방법"},
-              {t:"나의 예측 · 우리 예측은 보내지 않아요"} ] },
+    /* 2026-10-25 — 「대화 3 · 꼭 들어가야 할 것」 장은 위 장과 같은 목록이라 그 장의 잔글씨 한 줄로 합쳤다 */
 
     { step:dstep(S, 2), mode:SOLO, title:"받은 답을 나의 말로 바꾸어 적어요",
       lines:[ {t:"AI 예상 · 까닭 · 가장 약한 곳 · 보강 방법"},
@@ -3153,11 +3162,10 @@ function lesson2Deck(){
               {t:"고칠 것은 모둠이 하나로 · 세 칸은 각자 내 말로"} ] },
 
     { step:dstep(S, 3), mode:TEAM, title:"고친 뒤 비용",
-      lines:[ {t:"재료를 바꿨으면 [1차시 최종 비용 가져오기]"},
-              {t:"가져온 뒤 바뀐 줄만 고쳐요", k:"meta"},
+      lines:[ {t:"1차시 최종 설계 수량이 저절로 들어와요"},
+              {t:"재료를 바꿨으면 바뀐 줄만 고쳐요", k:"meta"},
               {t:"수량만 적으면 비용 · 총비용은 저절로 셈해져요"},
-              {t:"총비용은 " + won(BUDGET) + " 이하"},
-              {t:"재료를 바꾸지 않았으면 비워 둬요"} ] },
+              {t:"총비용은 " + won(BUDGET) + " 이하"} ] },
 
     /* v4(2026-10-13) — ④-가 끝 최종 헬멧 예측(계획서 v4 3-2). 활동지 #pane-b4fin 과 같은 내용 */
     { step:dstep(S, 3), mode:TEAM, title:"최종 헬멧 예측",
@@ -3170,6 +3178,7 @@ function lesson2Deck(){
     { step:dstep(S, 3), ai:"없이", mode:REP, title:"나. 장치 사진 찍기",
       lines:[ {t:"떨어뜨리기 전에 대표가 카메라 앱으로 찍어요"},
               {t:"장치가 잘 보이게 — 큰 지퍼 백을 열어 찍고 다시 닫아요"},
+              {t:"④-가 에서 고치지 않았으면 ② 사진을 써도 돼요 — 다시 열지 않아도 돼요", k:"meta"},
               {t:"이 사진이 전시관 PDF 의 사진 1 이 돼요"} ] },
 
     /* ⑤ — 2 m 낙하는 학생이 한다(A12). 한 번뿐(A13-16). A14 D16: 의자나 책상 위에서 · 역할 넷 */
@@ -3232,6 +3241,7 @@ function lesson2Deck(){
     /* A14 D18 — 활동지 ⑥-가 문장 틀(.frame)과 같은 글. 한 문장을 나눈 뒤쪽 줄은 cont(A14 고침 K3) */
     { step:dstep(S, 5), mode:SOLO, title:"이렇게 써 봐요 — 생각해 볼 것 1",
       lines:[ {t:"누구 예측이 왜 맞거나 빗나갔을까요?", k:"label"},
+              {t:"고쳤으면 — 최종 예측과 실제를 비교해요", k:"meta"},
               {t:"우리는 ____ 라고 예측했는데 실제로는 ____ 였어요"},
               {t:"AI 는 ____ 라고 했어요"},
               {t:"____ 때문에 충돌 시간이 ( 길어져 / 짧아져 )"},
@@ -3241,9 +3251,8 @@ function lesson2Deck(){
     { step:dstep(S, 5), mode:SOLO, title:"이렇게 써 봐요 — 생각해 볼 것 2",
       lines:[ {t:"④-가 의 AI 보강 방법을 지금 다시 판단해요", k:"label"},
               {t:"AI 는 ____ 하라고 했고, 우리는 그 의견을 ( 따랐어요 / 따르지 않았어요 )"},
-              {t:"실제로 ____ 를 보니 그 방법은"},
-              {t:"( 맞았어요 / 빗나갔어요 / 조건에 따라 달랐어요 / 판단할 수 없어요 )", k:"cont"},
-              {t:"그 근거는 ____ 예요"} ] },
+              {t:"실제로 ____ 를 보니, 그렇게 판단한 근거는 ____ 예요"},
+              {t:"맞았는지는 칩으로 골라요 — 맞았다 · 빗나갔다 · 조건에 따라 달랐다 · 판단할 수 없다"} ] },
 
     { step:dstep(S, 5), mode:SOLO, title:"이렇게 써 봐요 — 생각해 볼 것 3",
       lines:[ {t:"다시 만든다면 무엇을 바꿀까요? 까닭은요?", k:"label"},
@@ -3265,12 +3274,13 @@ function lesson2Deck(){
       lines:[ {t:"제목 · 구성한 이유 · 결과 이야기는 모두 각자 적어요"},
               {t:"떨어뜨렸을 때 달걀이 깨졌나요?", k:"label"},
               {t:"깨졌거나 금이 갔으면 — 무엇을 바꾸면 좋을지(피드백)"},
+              {t:"생각해 볼 것 3 에 적은 것이 저절로 들어와요 — 다듬어요", k:"meta"},
               {t:"깨지지 않았으면 — 깨지지 않은 까닭"},
               {t:"PDF 만들기와 올리기는 대표만"} ] },
 
     { step:dstep(S, 5), mode:REP, title:"사진 두 장",
       lines:[ {t:"사진 1 — 장치가 최대한 잘 보이게"},
-              {t:"④-나 에서 찍은 사진", k:"meta"},
+              {t:"④-나 사진 · 고치지 않았으면 ② 사진도 돼요", k:"meta"},
               {t:"사진 2 — 떨어뜨린 뒤 달걀(작은 지퍼 백째)"},
               {t:"⑤ 에서 올린 사진이 저절로 들어와요", k:"meta"},
               {t:"두 장이 모두 있어야 PDF 를 만들어요"},
@@ -3462,10 +3472,8 @@ function deckPrices(from, to){
 /* 「가격표에서 지킬 것」 장 — 활동지 ②-다 가격표 아래 줄 · ③ 비용표 아래 줄과 같은 뜻 */
 function deckPriceNotes(){
   return [
-    { t:"재료는 가격표에 있는 것만 — 모둠당 최대 개수 안에서" },
     { t:"규격은 대략이에요 · 한 개를 사서 잘라 써도 돼요" },
-    { t:"총비용은 모둠당 " + won(BUDGET) + " 이하" },
-    { t:"수량만 적으면 비용 · 총비용은 활동지가 셈해요" }
+    { t:"수량만 적으면 비용 · 총비용은 활동지가 셈해요" }   /* 2026-10-25 — 가격표에 있는 것만 · 최대 개수 · 총비용은 다음 장 규칙 1 · 2 와 같아 뺐다 */
   ];
 }
 /* 두 장으로 나누는 자리 — 재료를 반씩(10종이면 5 · 5) */
@@ -4118,6 +4126,7 @@ function paintLock(){
   /* 1차시 ① 에는 칸이 바로 아래에 있으니 띄우지 않는다. 2차시는 ① 부터 띄운다(학번 칸이 1차시에만 있다) */
   note.style.display = (locked && (cur > 0 || LESSON === 2)) ? "" : "none";
   if (!locked) {
+    if (autoSync().length) { paintDerived(); Store.bump(); }   /* 2026-10-25 저절로 넣기 — 기록을 연 뒤 · 단계를 옮길 때 */
     paintPdfBtns();                       /* [PDF 저장] 은 만든 PDF 가 있을 때만 */
     Cards.paint();                        /* 대화 잠금(A9) — 위에서 모든 단추를 켰으므로 다시 닫을 것을 닫는다 */
     paintResLock();                       /* v4(2026-10-13) ⑤ 결과 잠금 — 같은 까닭으로 다시 닫는다 */
@@ -4909,10 +4918,95 @@ function paintTitleN(){
   else { tag.textContent = n + " / 60자"; tag.style.color = ""; }
 }
 
+/* ==========================================================================
+   [저절로 넣기] 2026-10-25 발주자 결정 — 앞에서 적은 것과 같은 내용의 뒤 칸에 저절로 넣는다(2-2 와 같은 방식).
+   뒤 칸이 비었거나 전에 저절로 넣은 값(숨은 칸 <id>_auto) 그대로일 때만 넣는다 — 학생이 고쳐 쓴 칸은 덮지 않는다.
+   옛 기록(숨은 칸이 빈 채로 글이 있는 칸)은 고쳐 쓴 칸으로 본다. 기록을 연 뒤에만(Store.key && Store.ready).
+   AI 에게 보내는 글 · 대화 3 양식 PDF 에는 이 칸들이 들어가지 않는다. 최종 헬멧 예측 · 대화 2 근거는 넣지 않는다(연구 칸).
+   ========================================================================== */
+function autoPut(id, v){
+  var e = $(id), a = $(id + "_auto"), now;
+  if (!e || !a) return false;
+  v = v == null ? "" : String(v);
+  now = String(e.value || "");
+  if (now.replace(/^\s+|\s+$/g, "") !== "" && now !== a.value) return false;     /* 고쳐 쓴 칸 */
+  if (now === v && a.value === v) return false;
+  e.value = v; a.value = v;
+  return true;
+}
+/* 받침이 있으면 a, 없으면 b — 「…」 뒤 조사(이라고 / 라고 · 이었어요 / 였어요) */
+function josa(s, a, b){
+  var c = String(s || "").charCodeAt(String(s || "").length - 1);
+  return (c >= 0xAC00 && c <= 0xD7A3 && (c - 0xAC00) % 28 !== 0) ? a : b;
+}
+function notNone(v){ return !!v && !/^없음\.?$/.test(v); }
+function qtyJoin(pre){ var i, o = []; for (i = 0; i < MATS.length; i++) o.push(String(($(pre + MATS[i].k) || {}).value || "")); return o.join("|"); }
+/* ④ 고친 뒤 비용 수량 ← 1차시 ⑤-다 최종 설계 수량 — 수량 칸 열 개를 한 묶음으로(하나라도 고쳤으면 따라가지 않는다) */
+function autoQty(){
+  var a = $("b_rn_auto"), cur = qtyJoin("b_rn_"), src = qtyJoin("a_fn_"), i, k, empty = !cur.replace(/\|/g, "").replace(/\s+/g, "");
+  if (!a) return false;
+  if (empty && !/[^|\s]/.test(src)) return false;                                   /* 둘 다 비었으면 빈 기록을 만들지 않는다 */
+  if (!empty && cur !== a.value) return false;
+  if (cur === src && a.value === src) return false;
+  for (i = 0; i < MATS.length; i++) { k = MATS[i].k; $("b_rn_" + k).value = $("a_fn_" + k).value; }
+  a.value = src;
+  return true;
+}
+/* ⑥-가 생각해 볼 것 1 첫 문장 — 표의 우리 예측 · (고쳤으면) 최종 예측 · 실제 · AI 예측. 실제를 고르기 전에는 넣지 않는다 */
+function why1Draft(){
+  var our = rv("b_pred_our"), fin = rv("b_pred_fin"), real = rv("b_res"), ai = val("b_ai_pred"), t;
+  if (!real) return "";
+  t = our ? "우리는 「" + our + "」 " + josa(our, "이라고", "라고") + " 예측했" : "";
+  if (t && fin && /^고침/.test(fixState())) t += "고, 고친 뒤에는 「" + fin + "」 " + josa(fin, "이라고", "라고") + " 예측했";
+  t = t ? t + "는데 실제로는 「" + real + "」 " + josa(real, "이었어요", "였어요") + "."
+        : "실제로는 「" + real + "」 " + josa(real, "이었어요", "였어요") + ".";
+  if (ai === "분명히 말하지 않았어요") t += " AI 는 분명히 말하지 않았어요.";
+  else if (ai) t += " AI 는 「" + ai + "」 " + josa(ai, "이라고", "라고") + " 했어요.";
+  return t;
+}
+/* ⑥-가 생각해 볼 것 2 첫 문장 — ④-가 「받아들인 AI 의견」 이 '없음'(으로 시작)이거나 '따르지 않' · '받아들이지 않' 같은 말이면 따르지 않았어요, 그 밖의 글이면 따랐어요 */
+function judge2Draft(){
+  var tk = val("b_take");
+  if (!tk) return "";
+  return /^(없음|없어)|따르지 않|안 따르|안 따랐|받아들이지 않|안 받아들/.test(tk) ? "우리는 ④-가 에서 그 AI 의견을 따르지 않았어요." : "우리는 ④-가 에서 그 AI 의견을 따랐어요.";
+}
+/* ⑥-나 구성한 이유 초안 — 1차시 고른 까닭 · 놓은 자리 · ②-나 만들면서 바꾼 것 · ④-가 최종 반영한 것('없음' 은 뺀다) */
+function reasonDraft(){
+  var out = [], pl = [], P = [["아래", "a_f_below"], ["위", "a_f_above"], ["옆", "a_f_side"], ["테이프로 붙인 곳", "a_f_tape"]], i;
+  if (val("a_take")) out.push(val("a_take"));
+  for (i = 0; i < P.length; i++) if (notNone(val(P[i][1]))) pl.push(P[i][0] + " — " + val(P[i][1]));
+  if (pl.length) out.push("놓은 자리: " + pl.join(" · "));
+  if (notNone(val("b_changed"))) out.push("만들면서 바꾼 것: " + val("b_changed"));
+  if (notNone(val("b_fixed"))) out.push("떨어뜨리기 전에 고친 것: " + val("b_fixed"));
+  return out.join("\n");
+}
+/* 바뀐 칸 id 목록을 돌려준다 — 전시관 PDF 에 들어가는 칸이 바뀌면 만든 PDF 를 낡았다고 알린다(pdfStaleBy) */
+function autoSync(){
+  var ch = [], i;
+  if (!(Store.key && Store.ready)) return ch;
+  if (autoPut("b_ai_rec", val("b_ai_fix"))) ch.push("b_ai_rec");
+  if (autoQty()) ch.push("b_rn_");
+  if (autoPut("b_why", why1Draft())) ch.push("b_why");
+  if (autoPut("b_ai_judge_why", judge2Draft())) ch.push("b_ai_judge_why");
+  if (autoPut("b_feedback", val("b_next"))) ch.push("b_feedback");
+  if (autoPut("b_reason", reasonDraft())) ch.push("b_reason");
+  for (i = 0; i < ch.length; i++) if (ch[i] !== "b_feedback" || resultKind() === "fb") pdfStaleBy(ch[i]);   /* 깨지지 않음이면 b_feedback 은 PDF 밖 */
+  return ch;
+}
+/* ⑤-다 — 「나의 안」 으로 정했으면 ③ 장치 설명을 읽기 전용 한 줄로(저장하지 않음) */
+function paintMyIdea(){
+  var e = $("fin-myidea"), show = rv("a_pick") === "나의 안" && !!val("a_idea"), t = show ? "③ 에 적은 장치 설명 — " + val("a_idea") : "";
+  if (!e) return;
+  if (e.textContent !== t) e.textContent = t;
+  e.style.display = show ? "" : "none";
+}
+
 function paintDerived(){
+  autoSync();            /* 2026-10-25 저절로 넣기 — 다른 파생 표시보다 먼저 */
   whoami();
   paintWho2();
   paintFinal();          /* ⑤-다 최종 설계 표 — 고른 설계로 맞춘 뒤(A14 D9) */
+  paintMyIdea();         /* ⑤-다 「나의 안」 이면 ③ 장치 설명(2026-10-25) */
   paintCosts();          /* 비용 · 총비용 · 규칙 확인(A14 D2) */
   paintCmp();
   paintFrom1();          /* 2차시 ②-가 1차시 최종 설계(흐름 검토 2026-09-29) */
@@ -4955,7 +5049,8 @@ function copyQty(fN, tN, msgId, emptyMsg){
   Store.bump();
 }
 $("copy-f-to-r").onclick = function(){
-  copyQty("a_fn_", "b_rn_", "ccm-r", "1차시 최종 비용이 비어 있어 가져올 것이 없어요.");
+  copyQty("a_fn_", "b_rn_", "ccm-r", "1차시 최종 설계 수량이 비어 있어 가져올 것이 없어요.");
+  if (/[^|\s]/.test(qtyJoin("a_fn_")) && qtyJoin("b_rn_") === qtyJoin("a_fn_")) { $("b_rn_auto").value = qtyJoin("a_fn_"); Store.bump(); }   /* 2026-10-25 — 다시 1차시 수량을 따라간다 */
 };
 /* v4(2026-10-13) [③-가 우리 예측 그대로 가져오기](2차시 ④-가 최종 헬멧 예측, 계획서 v4 3-2) — 고치지 않은 모둠용.
    「1차시 최종 비용 가져오기」(copyQty)처럼 옮겨 적기만 한다: 우리 예측 칩(b_pred_our) → 최종 예측 칩(b_pred_fin),
@@ -5990,8 +6085,10 @@ function wsCostRows(nPre){
 /* 고친 뒤 비용을 "비워 둠(바꾼 것 없음)" 으로 찍어도 되는가 — 학생이 적은 것으로만 판단한다(지어 내지 않는다).
    수량 칸이 모두 비고, 마지막으로 고친 것이 비었거나 '없음', 만들면서 바꾼 것이 비고, 설계대로가 '그대로'(또는 안 고름)일 때만 */
 function wsNoFix(){
-  var i, fx = val("b_fixed"), same = rv("b_same");
-  for (i = 0; i < MATS.length; i++) if (val("b_rn_" + MATS[i].k)) return false;
+  var i, fx = val("b_fixed"), same = rv("b_same"), any = false, diff = false, r;
+  /* 2026-10-25 — 고친 뒤 수량이 1차시 최종 설계 수량을 저절로 받으므로, 모두 비었거나 1차시 수량과 같으면 바꾸지 않은 것으로 본다 */
+  for (i = 0; i < MATS.length; i++) { r = val("b_rn_" + MATS[i].k); if (r) any = true; if (r !== val("a_fn_" + MATS[i].k)) diff = true; }
+  if (any && diff) return false;
   if (fx && !/^없음\.?$/.test(fx)) return false;
   if (val("b_changed")) return false;
   return !same || same === "그대로";
@@ -6066,10 +6163,9 @@ function wsBuild(){
   d.kv("이 근거는 무엇에 가까운가요 (계산 · 실험 · 짐작)", rv("a_c2_kind"));
   d.kv("이 예상을 얼마나 믿을 수 있을까요? 까닭은요?", val("a_c2_trust"));
 
-  /* ⑤ 비교 — 화면 표와 같은 값(cmpCol). 재료와 개수는 ③ · ④ 표에 있어 뺐다 */
+  /* ⑤ 비교 — 화면 표와 같은 값(cmpCol). 재료와 개수 · 총비용 · AI 총비용 · 예상 · 가장 약한 곳은 같은 PDF ③ · ④ 에 있어 뺐다(2026-10-25) */
   (function(){
-    var names = [["총비용 (가격표로 셈)", "cost"], ["AI 가 말한 총비용", "aicost"], ["AI 셈이 맞나요", "aichk"],
-                 ["규칙 (총비용 · 최대 개수)", "rule"], ["예상", "pred"], ["가장 약한 곳", "weak"]], cols = [], r, j, row;
+    var names = [["AI 셈이 맞나요", "aichk"], ["규칙 (총비용 · 최대 개수)", "rule"]], cols = [], r, j, row;
     for (j = 0; j < CMP_COLS.length; j++) cols.push(cmpCol(CMP_COLS[j]));
     crows = [["", "나의 안", "설계 1", "설계 2", "설계 3"]];
     for (r = 0; r < names.length; r++) {
@@ -6108,7 +6204,7 @@ function wsBuild(){
   /* v4(2026-10-13) 최종 헬멧 예측(계획서 v4 3-2) — '최종 반영한 것' 다음. 나의 예측과 까닭 줄과 같은 꼴 */
   d.kv("최종 헬멧 예측 (모둠원 모두 같게)", rv("b_pred_fin") ? rv("b_pred_fin") + (val("b_pred_fin_why") ? " — 까닭: " + val("b_pred_fin_why") : "")
                                                             : (val("b_pred_fin_why") ? "까닭: " + val("b_pred_fin_why") : ""));
-  if (wsNoFix()) d.kv("고친 뒤 비용", "비워 둠 — 만들 때도 고칠 때도 재료를 바꾸지 않음(1차시 최종 비용과 같음)");
+  if (wsNoFix()) d.kv("고친 뒤 비용", "1차시 최종 비용과 같음 — 만들 때도 고칠 때도 재료를 바꾸지 않음");
   else d.table([0.4, 0.2, 0.2, 0.2], wsCostRows("b_rn_"), "고친 뒤 비용");
 
   d.head("⑤ 떨어뜨리기 (한 번 · 모둠 활동)");
@@ -6133,8 +6229,7 @@ function wsBuild(){
   d.head("전시관 PDF (모둠 활동)");
   d.kv("작품 제목", val("b_title"));
   d.kv("우리 헬멧을 이렇게 구성한 이유", val("b_reason"));
-  d.kv("떨어뜨렸을 때 달걀이 깨졌나요?", rv("b_res") || "고르지 않음");
-  rn = resultNote();
+  rn = resultNote();     /* 결과 보기는 ⑤ · ⑥ 표에 이미 있다(2026-10-25 — 세 번째 줄을 뺐다) */
   if (rn) d.kv(rn.head, rn.text);
   return d.finish();
 }
@@ -6198,7 +6293,7 @@ buildCostTable("cost-r", "b_rn_", "b_rc_", "b_rtotal", "고친 뒤 ");
 renderRules("rules-me-2", 0, RULES_ME.length);
 renderRules("rules-me-5", 0, RULES_ME.length);
 renderRules("rules-me-b2", 2, RULES_ME.length);      /* 만들 때 지킬 규칙 3~6 */
-renderList("drop-me-2", DROP_ME);
+renderList("drop-me-2", [DROP_ME[0]]);   /* 2026-10-25 — 둘째 줄('한 번뿐')은 바로 위 알림과 겹쳐 뺐다 */
 renderList("bag-me-2", bagMeLines());                /* [갈래 외피 규격] 규격이 비면 줄이 없다 */
 /* 총비용 상한 글(js-budget) — BUDGET 한 곳에서 채운다(A14 D1) */
 (function(){
