@@ -80,6 +80,11 @@
    밀기 안내 · 카메라 기기 없음 · 폰: ⑥-가 「실제 · 약한 곳」 표 아래로 · 수량 칸 16px · 타이머 숨김 · 할 일 문장 본문색 ·
    깨짐 기준(⑤ 보기 · 대화 1 · 3 — AI 글이 바뀜) · 결과 살피기 · 장치 상태 · 속력 · 경량화 정답 줄 · 짐작 힌트 · ⑤-나 · ④-가 시간 안내 ·
    대화 1 잠금에 나의 설계(myDesign1). 풍선 규격(D7)은 발주자 결정으로 넣지 않았다(얼마나 불지는 안내하지 않음). 테이프 감기는 시험 낙하 뒤에 정한다.)
+  (2026-10-26 최종 검토 뒤 발주자 결정 — 테이프 감기(권장안 (나): ④-나 사진 · 닫기 뒤 지퍼 가운데를 가로질러 한 바퀴, TAPE_ME · TAPE_AI ·
+   규칙 5 · RULES2 · ⑤ 테이프 떼고 꺼내기 · 체크 b_chk_tape) · 고무풍선 최대 3개 · 가격표 펼쳐 두기 · 다듬기(타이머 단추 하나만 켜짐 · 단계 없는 장은 ① ·
+   떠 있는 단추에 이 단계 분 · 알림 띠 거두기 · 빈칸 높이 · 활동지 PDF 묻지 않은 설계 · 수업 화면 장 순서와 시간 줄 · 대화 2 가기 단추 ·
+   ③-가 양식 받기로 가기 · 사진 자리 알림 · '대표만') · ④-가 환불은 처음 받은 상태 그대로인 재료만.
+   폰에서만 생기는 지적은 발주자 결정으로 다루지 않는다(학생은 폰을 쓰지 않음).)
   (2026-09-28 개념 보강으로 1차시 ② · 2차시 ⑥ 을 1분씩 늘렸다 — 여유는 차시마다 2분. 아래 [개념 보강] 참고.
    A14 로 1차시 ②-나 3 → 4분 · ⑤-가 4 → 3분 — 합은 그대로 48분. A15 로 1차시 ② 9 → 11분 — 1차시 여유 2분을 썼다, 합 50분.
    v4(2026-10-13) 로 2차시 ③ 7 → 8분(③-가 2 → 3분) · ⑥ 14 → 15분(⑥-가 5 → 6분) — 2차시 여유 2분을 썼다, 합 50분)
@@ -468,6 +473,7 @@ table.tbl tr.hit td,table.tbl tr.hit th{background:#fdf3dd; box-shadow:inset 3px
   font-size:inherit; font-family:inherit; line-height:1.3;
 }
 .blank:focus{outline:0; border-bottom-color:var(--chrome); background:var(--chrome-soft)}
+@media (pointer:coarse){ .blank{padding-top:7px; padding-bottom:7px} }   /* 최종 검토 — 손가락으로 누르는 기기에서 빈칸 높이를 키운다 */
 .blank.w{width:6.5em}
 .blank.s{width:3.6em}
 table.tbl .blank{width:4.2em}
@@ -1193,9 +1199,9 @@ table.tbl.qty .blank{width:2.8em}
                수업 화면도 가격표 · 규칙 장을 ③ 머리로 옮겼다 -->
           <div class="pane">
             <h4>가격표와 규칙 <span class="hnote">설계할 때 지켜요</span></h4>
-            <!-- 2026-10-26 — 아래 「재료와 비용」 표에도 한 개의 가격 · 최대 개수가 있어 같은 표를 두 번 읽지 않게 가격표는 접어 둔다(규칙은 펼쳐 둔다) -->
+            <!-- 2026-10-26 — 가격표는 접은 상자에 둔다. 발주자 결정으로 처음부터 펼쳐 둔다(open) — 접으려면 머리를 누른다 -->
             <p class="small" style="margin-top:4px">한 개의 가격과 최대 개수는 아래 「재료와 비용」 표에도 있어요. 규격은 대략이에요. 한 개를 사서 잘라 써도 돼요.</p>
-            <details class="fold" style="margin-top:6px">
+            <details class="fold" style="margin-top:6px" open>
               <summary>가격표 보기</summary>
               <div class="tblwrap" id="price-tbl"></div>
             </details>
@@ -1373,7 +1379,7 @@ table.tbl.qty .blank{width:2.8em}
             <!-- 2026-10-26 최종 검토 — 시간이 모자랄 때 차례(단계 분은 그대로) -->
             <p class="small" style="margin-top:4px"><b>시간이 모자라면</b> 설계마다 어떤 설계 · 재료 수량 · 예상부터 적어요. 못 채운 칸은 ⑤-가 처음에 마저 적어요.</p>
             <div class="grid3" style="margin-top:8px" id="dcards">
-              <div class="dcard">
+              <div class="dcard" id="dcard1" tabindex="-1">
                 <div class="dh">설계 1</div>
                 <div class="field"><label for="a_d1_what">어떤 설계인가요 <span class="muted">(한 줄, 내 말로)</span></label>
                   <input id="a_d1_what" class="input" type="text" placeholder="예: 나무 막대로 네모 틀을 짜는 설계"></div>
@@ -1387,7 +1393,7 @@ table.tbl.qty .blank{width:2.8em}
                 <div class="field later"><label for="a_d1_weak">가장 약한 곳 <span class="muted">(후보로 뽑히면 ⑤-나 에서)</span></label>
                   <input id="a_d1_weak" class="input" type="text" placeholder="예: 틀의 모서리"></div>
               </div>
-              <div class="dcard">
+              <div class="dcard" id="dcard2" tabindex="-1">
                 <div class="dh">설계 2</div>
                 <div class="field"><label for="a_d2_what">어떤 설계인가요 <span class="muted">(한 줄, 내 말로)</span></label>
                   <input id="a_d2_what" class="input" type="text" placeholder="예: 마분지를 접어 상자를 만드는 설계"></div>
@@ -1401,7 +1407,7 @@ table.tbl.qty .blank{width:2.8em}
                 <div class="field later"><label for="a_d2_weak">가장 약한 곳 <span class="muted">(후보로 뽑히면 ⑤-나 에서)</span></label>
                   <input id="a_d2_weak" class="input" type="text" placeholder="예: 상자 바닥"></div>
               </div>
-              <div class="dcard">
+              <div class="dcard" id="dcard3" tabindex="-1">
                 <div class="dh">설계 3</div>
                 <div class="field"><label for="a_d3_what">어떤 설계인가요 <span class="muted">(한 줄, 내 말로)</span></label>
                   <input id="a_d3_what" class="input" type="text" placeholder="예: 위생 비닐봉지로 작은 지퍼 백을 한 겹 더 싸는 설계"></div>
@@ -1537,6 +1543,8 @@ table.tbl.qty .blank{width:2.8em}
             <div class="stepline"><span class="sn">2</span><span class="st">[질문 복사하기] 를 눌러 <b>같은 대화창</b>에 붙여 넣어 보내요</span></div>
             <p class="small" style="margin-top:6px">질문은 세 가지를 물어요 — ① 계산이나 실험인지, 짐작인지 ② 무엇을 가정했는지(정해 두고 생각한 것) 두 가지 ③ 가정이 틀리면 예상이 어떻게 달라지는지('충돌 시간' · '평균 힘'으로).</p>
             <p class="notice" id="note-c2" style="display:none; margin-top:8px"></p>
+            <!-- 최종 검토 — 「④-나 의 설계 n 칸에서 예상부터 골라요」 로 막혔을 때만 보인다(data-free — 옮겨 가기만) -->
+            <div class="row" id="go4-c2-row" style="display:none; margin-top:6px"><button class="btn sm" type="button" id="go4-c2" data-free>④-나 설계 칸으로 가기</button></div>
             <textarea id="send-c2" class="input" data-nosave readonly style="margin-top:8px; min-height:130px; background:var(--card-2)"
               aria-label="대화 2 보낼 질문"></textarea>
             <div class="row" style="margin-top:8px">
@@ -1597,7 +1605,7 @@ table.tbl.qty .blank{width:2.8em}
                 placeholder="예: 민지가 받은 설계 2 를 골랐어요. 풍선이 천천히 눌리며 충돌 시간을 늘려 평균 힘을 줄일 것 같고, 총비용도 1,300원 안이라서요."></textarea></div>
             <div class="field" style="margin-top:10px"><label for="a_reject">AI 추천 가운데 따르지 않기로 한 것과 까닭</label>
               <p class="small muted">AI 가 추천한 것 가운데 우리가 바꾸거나 빼기로 한 것과 그 까닭을 적어요. 없으면 비워도 돼요.</p>
-              <textarea id="a_reject" class="input" style="min-height:78px" placeholder="예: AI 는 풍선 4개와 마분지 1장(1,700원)을 추천했지만, 총비용이 넘어서 풍선을 2개로 줄였어요."></textarea></div>
+              <textarea id="a_reject" class="input" style="min-height:78px" placeholder="예: AI 는 풍선 3개와 마분지 1장(1,400원)을 추천했지만, 총비용이 넘어서 풍선을 2개로 줄였어요."></textarea></div>
           </div>
 
           <!-- id="piece-a5c" — [1차시 ⑤-다 로 가기](go5) 가 이 조각까지 내리고 초점을 옮긴다(tabindex="-1" — 탭 차례에는 들지 않는다).
@@ -1787,6 +1795,8 @@ table.tbl.qty .blank{width:2.8em}
             <!-- 2026-10-26 — ③-나 4분을 넘기지 않게 대표는 가 동안 새 채팅과 사진을 준비한다. 모둠 예측 전에 AI 답을 보지 않게 보내지는 않는다 -->
             <p class="small" style="margin-top:4px">대표는 이 동안 제미나이 새 채팅을 열고 헬멧 사진과 아래 나 1 의 최종 설계 양식 PDF 를 <b>올려만 둬요 — 보내지 않아요.</b>
               폰이면 사진만 올려 둬요 — 글은 나 에서 「파일이 안 올라가면」 의 글을 보내요.</p>
+            <!-- 최종 검토 — 대표가 위아래로 오가지 않게 나 1 의 [최종 설계 양식 받기 (PDF)] 로 바로 간다(data-free — 옮겨 가기만) -->
+            <div class="row" style="margin-top:4px"><button class="btn sm" type="button" id="go-c3save" data-free>대표: 나 1 양식 PDF 받기로 가기</button></div>
             <!-- 2026-10-26 5차 검토 — 깨짐 기준(js-break) -->
             <p class="small js-break" style="margin-top:6px"></p>
             <!-- v4(2026-10-13) 나의 예측(계획서 v4 3-1) — 우리 예측 위. 둘 다 대화 3 잠금에 든다(Cards.block). 칩 읽기 이름은 물음 글(aria-labelledby) -->
@@ -1985,6 +1995,8 @@ table.tbl.qty .blank{width:2.8em}
               <input id="b_fixed" class="input" type="text" placeholder="예: 솜공 10개를 작은 지퍼 백 아래에 더 깔았어요">
               <p class="notice" id="note-fixq" style="display:none; margin-top:6px"></p></div>
             <p style="margin-top:12px"><b>고친 뒤 비용</b> <span class="small muted">1차시 최종 설계 수량이 저절로 들어와요 — 만들 때나 고칠 때 재료를 바꿨으면 바뀐 줄만 고쳐요. 더 쓸 재료는 바구니에서 받아요.</span></p>
+            <!-- 2026-10-26 발주자 결정 — 마지막 고치기에서 재료 환불은 처음 받은 상태 그대로일 때만 -->
+            <p class="small" style="margin-top:4px"><b>환불은 처음 받은 상태 그대로인 재료만 돼요.</b> 쓰지 않은 재료를 바구니에 돌려주고 비용에서 빼려면, 받았을 때와 같은 상태여야 해요.</p>
             <div class="row" style="margin-top:6px">
               <button class="btn sm" type="button" id="copy-f-to-r">1차시 최종 설계 수량 다시 가져오기</button>
               <span class="small muted" id="ccm-r" aria-live="polite">고친 줄을 1차시 최종 설계 수량으로 되돌릴 때만 눌러요.</span>
@@ -2020,17 +2032,27 @@ table.tbl.qty .blank{width:2.8em}
 
           <!-- 사진은 떨어뜨리기 바로 전에(A13-16). 전시관 PDF 는 ⑥-나 에서 이 사진을 사진 1 로 골라 만든다. -->
           <div class="piece">
-            <div class="ph"><span class="pn">나</span><span class="pt">장치 사진 찍기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-team">모둠 활동 · 대표</span><span class="pm">2분</span></div>
+            <div class="ph"><span class="pn">나</span><span class="pt">장치 사진 찍기 · 테이프 감기</span><span class="tag ai-no">AI 없이</span><span class="tag mode-team">모둠 활동 · 대표</span><span class="pm">2분</span></div>
             <p><b>떨어뜨리기 전에 대표가 자기 기기의 카메라 앱으로</b> 다 만든 헬멧을 찍어요(전시관 PDF 는 대표 기기에서 만들어요). <b>장치가 잘 보이게</b> 찍어요.</p>
             <p class="small muted" style="margin-top:4px">큰 지퍼 백을 열어 헬멧이 보이게 찍고, 다시 닫아요.
               ④-가 에서 고치지 않았으면 ②-다 에서 찍은 사진을 사진 1 로 써도 돼요 — 큰 지퍼 백을 다시 열지 않아도 돼요.</p>
             <!-- 2026-10-26 5차 — 사진 1(장치)은 떨어뜨리기 전에 여기서 고른다. ⑥-나 의 사진 1 과 같은 칸이다(PH_IN[1]) — 저장하지 않는다(Photo) -->
             <div class="field" style="margin-top:10px">
-              <label for="b_photo1a">사진 1 · 장치 고르기 <span class="muted">(대표 — 전시관 PDF 사진 1 이 돼요. ⑥-나 에 저절로 들어가요)</span></label>
+              <label for="b_photo1a">사진 1 · 장치 고르기 — <b>대표만</b> <span class="muted">(전시관 PDF 사진 1 이 돼요. ⑥-나 에 저절로 들어가요)</span></label>
               <input id="b_photo1a" class="input" type="file" accept="image/*">
               <p class="small muted" id="b_photo1a_st"></p>
               <div class="phprev" id="b_photo1a_prev"></div>
             </div>
+            <!-- 2026-10-26 발주자 결정(권장안 (나)) — 사진을 찍고 닫은 뒤 큰 지퍼 백을 종이테이프로 한 바퀴(TAPE_ME). 모든 모둠이 같게 하므로
+                 ④-가 고침 칩 · 「최종 반영한 것」 에는 넣지 않는다. 체크 b_chk_tape 는 저장만 한다(활동지 PDF 에는 넣지 않는다) -->
+            <p style="margin-top:12px"><b>사진을 찍고 큰 지퍼 백을 닫았으면, 종이테이프로 큰 지퍼 백을 한 바퀴 감아요.</b> 떨어질 때 지퍼가 열리지 않게 하려는 거예요.</p>
+            <ul class="small" style="padding-left:1.2em; margin-top:4px">
+              <li>지퍼 가운데를 가로질러 큰 지퍼 백을 한 바퀴 감고, 끝은 처음 붙인 곳에 조금 겹쳐요.</li>
+              <li>세게 조이지 않아요 — 안쪽 헬멧을 누르지 않게요.</li>
+              <li>대표가 사진을 찍는 동안 다른 모둠원이 테이프를 준비해요.</li>
+              <li>모든 모둠이 똑같이 하니 ④-가 「최종 반영한 것」 에는 적지 않아요.</li>
+            </ul>
+            <div class="choice-row" style="margin-top:8px"><label class="choice"><input type="checkbox" id="b_chk_tape"> 테이프로 한 바퀴 감았어요</label></div>
           </div>
         </div>
       </section>
@@ -2066,7 +2088,7 @@ table.tbl.qty .blank{width:2.8em}
               <li>떨어뜨리는 사람은 <b>선 채로</b> 큰 지퍼 백 아래쪽이 벽의 <b>1 m 표시</b>에 오게 들어요(높이 보는 사람이 봐요).</li>
               <li>큰 지퍼 백을 <b>눕혀 들고</b>(넓은 면이 아래로) <b>손을 펴서</b> 딱딱한 교실 바닥에 떨어뜨려요. 던지지 않아요.</li>
               <li>떨어진 뒤에 꺼내는 사람이 가요.</li>
-              <li>꺼내는 사람이 작은 지퍼 백째 꺼내 떨어뜨린 자리에서 비켜 나와요. 작은 지퍼 백은 <b>열지 않고</b> 모두 함께 달걀을 살펴요 — 먼저 눈으로 보고, 만질 때는 지퍼 백 위로 누르지 말고 살살 만져요(누르면 가는 금이 벌어질 수 있어요).</li>
+              <li>꺼내는 사람이 큰 지퍼 백째 들고 떨어뜨린 자리에서 비켜 나와, 테이프를 떼고 작은 지퍼 백째 꺼내요. 작은 지퍼 백은 <b>열지 않고</b> 모두 함께 달걀을 살펴요 — 먼저 눈으로 보고, 만질 때는 지퍼 백 위로 누르지 말고 살살 만져요(누르면 가는 금이 벌어질 수 있어요).</li>
               <li>장치도 살펴요 — 먼저 닿은 쪽, 튀어 올랐는지 · 기울어 닿았는지(높이 보는 사람이 알려 줘요), 찌그러지거나 떨어지거나 밀려난 곳. 꺼내는 사람이 본 것을 소리 내어 알려 주면 모두 자기 활동지에 적어요.</li>
               <li>대표는 작은 지퍼 백째 <b>달걀 사진</b>을 찍어 아래 「달걀 사진 올리기」 에서 올려요.</li>
             </ul>
@@ -2106,7 +2128,7 @@ table.tbl.qty .blank{width:2.8em}
             </div>
             <!-- A14 D17: 달걀 사진(사진 칸 2) — 저장하지 않는다(Photo). ⑥-나 의 사진 2 와 같은 칸이다 -->
             <div class="field" style="margin-top:12px">
-              <label for="b_photo2">달걀 사진 올리기 <span class="muted">(떨어뜨린 뒤 — 대표는 꼭 올려요. 전시관 PDF 사진 2 가 돼요)</span></label>
+              <label for="b_photo2">달걀 사진 올리기 — <b>대표만</b> <span class="muted">(떨어뜨린 뒤 꼭 올려요. 전시관 PDF 사진 2 가 돼요)</span></label>
               <p class="small muted" id="b_photo2_how">대표는 카메라 앱으로 작은 지퍼 백째 달걀 사진을 찍고, 아래에서 골라 올려요(활동지는 사진을 저장하지 않아요).</p>
               <input id="b_photo2" class="input" type="file" accept="image/*" aria-describedby="b_photo2_how">
               <p class="small muted" id="b_photo2_st"></p>
@@ -2316,18 +2338,7 @@ table.tbl.qty .blank{width:2.8em}
             <p class="small muted" style="margin-top:6px">시간이 모자라면 수업이 끝난 뒤 이 기기에서 내려받아 올려도 돼요(적은 것은 이 기기에 남아 있어요).</p>
           </div>
 
-          <!-- 뒷정리 — A14 D11(2026-09-29): 날달걀이라 깨졌으면 흘러나온다 — 작은 지퍼 백째 버리고(열지 않는다), 만진 손을 씻는다.
-               체크 id b_end_egg 는 그대로 두어 저장된 기록이 깨지지 않게. 손 씻기 체크(b_end_wash)를 더했다. 활동지 PDF 에는 뒷정리 체크가 들어가지 않는다 -->
-          <div class="pane">
-            <h4>뒷정리 <span class="tag mode-team">모둠 활동</span> <span class="hnote">종 치기 전에 — 45분 단계 시간 밖이에요</span></h4>
-            <div class="choice-row">
-              <label class="choice"><input type="checkbox" id="b_end_tools"> 가위 · 남은 재료를 돌려놨어요</label>
-              <label class="choice"><input type="checkbox" id="b_end_egg"> 달걀은 작은 지퍼 백째 버렸어요(깨졌어도 열지 않아요)</label>
-              <label class="choice"><input type="checkbox" id="b_end_wash"> 날달걀을 만진 손을 씻었어요</label>
-              <label class="choice"><input type="checkbox" id="b_end_trash"> 쓰레기를 치웠어요</label>
-              <label class="choice"><input type="checkbox" id="b_end_close"> 제미나이 · 전시관 창을 닫았어요</label>
-            </div>
-          </div>
+          <!-- 뒷정리 체크리스트(b_end_*)는 2026-10-26 발주자 결정으로 지웠다(활동지 PDF 에는 원래 들어가지 않았다). 수업 화면 「뒷정리」 장은 남겼다 -->
         </div>
       </section>
 
@@ -2473,6 +2484,7 @@ function timerStep(){
   if (typeof Lesson !== "undefined" && Lesson.root && /open/.test(Lesson.root.className || "") && Lesson.slides) {
     d = Lesson.slides[Lesson.idx]; g = d && d.step ? d.step.charAt(0) : "";
     for (i = 0; i < S.length; i++) if (S[i].g === g) return i;
+    return 0;   /* 최종 검토 다듬기 — 단계가 없는 장(표지 등)은 그 차시 ① (활동지 단계 번호를 다른 차시에 쓰지 않게) */
   }
   return cur;
 }
@@ -2499,7 +2511,7 @@ document.addEventListener("webkitfullscreenchange", timerHost, false);
 
 var Timer = {
   root:null, btn:null, timeEl:null, labelEl:null, pickRow:null, playBtn:null,
-  total:0, endAt:0, left:0, running:false, tick:null, ac:null, moved:false, pickedAt:"",
+  total:0, endAt:0, left:0, running:false, tick:null, ac:null, moved:false, pickedAt:"", pickedLabel:"",
   POSKEY:"sre2.1-5ai.timerPos",
 
   /* 화면에 한 번만 만든다 */
@@ -2535,6 +2547,7 @@ var Timer = {
     /* 250 ms 마다 다시 그린다. 끝날 시각으로 계산하므로 이 주기가 정확도를 좌우하지 않는다 */
     this.tick = setInterval(function(){ self.refresh(); }, 250);
     this.set(5 * 60);
+    this.idleStep();   /* 최종 검토 — 처음부터 이 단계 분 */
   },
 
   /* 끌어서 옮기기 — 마우스와 손가락 둘 다(Pointer Events).
@@ -2664,25 +2677,32 @@ var Timer = {
 
   /* 고를 시간 단추를 다시 그린다 — 단계가 바뀌면 '이 단계 n분' 도 바뀐다 */
   paintPicks: function(){
-    var self = this;
+    var self = this, ps, on = -1, i;
     if (!this.pickRow) return;
     clear(this.pickRow);
-    this.picks().forEach(function(p){
+    ps = this.picks();
+    /* 최종 검토 다듬기 — 분이 같은 단추가 여럿이어도(가 2분 · 다 2분 …) 고른 단추 하나만 켠다 */
+    for (i = 0; i < ps.length; i++) if (ps[i].sec === this.total && ps[i].label === this.pickedLabel) { on = i; break; }
+    if (on < 0) for (i = 0; i < ps.length; i++) if (ps[i].sec === this.total) { on = i; break; }
+    ps.forEach(function(p, j){
       self.pickRow.appendChild(el("button", {
-        "class":"tm-pick" + (p.sec === self.total ? " on" : ""), type:"button", text:p.label,
-        onclick:function(){ self.set(p.sec); self.pickedAt = self.stepKey(); self.paintPicks(); }
+        "class":"tm-pick" + (j === on ? " on" : ""), type:"button", text:p.label,
+        onclick:function(){ self.set(p.sec); self.pickedAt = self.stepKey(); self.pickedLabel = p.label; self.paintPicks(); }
       }));
     });
   },
 
   stepKey: function(){ return timerLesson() + ":" + timerStep(); },
-  open: function(){
+  /* 멈춰 있고 고른 시간 그대로면 '이 단계 n분' 으로 — 열 때(open)와 단계를 옮길 때(goStep) 부른다(떠 있는 단추에도 이 단계 분이 보인다) */
+  idleStep: function(){
     var p;
+    if (!this.btn || this.running || this.left !== this.total || this.pickedAt === this.stepKey()) return;
+    p = this.picks();
+    if (p.length && /^이 단계/.test(p[0].label) && (p[0].sec !== this.total || this.pickedLabel !== p[0].label)) { this.set(p[0].sec); this.pickedLabel = p[0].label; }
+  },
+  open: function(){
     this.mount();
-    if (!this.running && this.left === this.total && this.pickedAt !== this.stepKey()) {
-      p = this.picks();
-      if (p.length && /^이 단계/.test(p[0].label)) this.set(p[0].sec);
-    }
+    this.idleStep();
     this.paintPicks();
     this.paint();
     this.root.classList.add("on");
@@ -3217,7 +3237,7 @@ function lesson1Deck(){
 
     /* 떨어뜨리는 방법 — 지금 떨어뜨리는 것이 아니다(A13-6). 순서는 DROP_ME 에서(deckDropSteps) */
     { step:dstep(S, 1), mode:SOLO, title:"떨어뜨리는 방법",
-      lines:[ {t:"지금은 떨어뜨리지 않아요 — 2차시 마지막에 한 번", k:"label"} ].concat(deckDropSteps()) },
+      lines:[ {t:"지금은 떨어뜨리지 않아요 — 2차시 마지막에 한 번", k:"label"} ].concat(deckDropSteps(), [{t:"떨어뜨리기 전에 큰 지퍼 백을 종이테이프로 한 바퀴 감아요", k:"meta"}]) },
 
     /* 가격 줄은 MATS 에서 만든다 — 값을 여기 따로 치지 않는다(A13-4 한 표). 2026-10-26 — ③ 머리로 옮겼다(학생 화면과 같게) */
     { step:dstep(S, 2), mode:SOLO, title:"가격표 — 한 개의 가격 · 최대 개수",
@@ -3316,7 +3336,8 @@ function lesson1Deck(){
               {t:"2. [질문 복사하기] → 같은 대화창에 보내요"},
               {t:"3. 근거와 가정 · 계산 · 실험 · 짐작? · 얼마나 믿을까"},
               {t:"기다리는 동안 — 내 후보 설계의 까닭 · 약한 곳", k:"meta"},
-              {t:"4. 설명을 듣고 모둠이 하나 골라요"} ] },
+              {t:"4. 설명을 듣고 모둠이 하나 골라요"},
+              {t:"시간이 모자라면 고르기 → ⑤-다 최종 설계를 먼저", k:"meta"} ] },
 
     /* AI 리터러시 — 예상은 계산이 아니라 그럴듯한 말이다(학습 목표 ②) */
     { step:dstep(S, 4), mode:TEAM, title:"AI 의 예상은 계산일까요, 짐작일까요?",
@@ -3332,7 +3353,7 @@ function lesson1Deck(){
               {t:"고른 까닭 — 무엇을 앞세웠는지 · '충돌 시간' · '평균 힘'"},
               {t:"앞세운 것: 비용 절감 · 안전 · 경량화", k:"meta"},
               {t:"따르지 않기로 한 AI 추천과 까닭 — 없으면 비워요"},
-              {t:"예: 풍선 4 · 마분지 1(1,700원) — 넘어서 풍선 2개로", k:"meta"},
+              {t:"예: 풍선 3 · 마분지 1(1,400원) — 넘어서 풍선 2개로", k:"meta"},
               {t:"까닭은 각자 내 활동지에 적어요"} ] },
 
     { step:dstep(S, 4), ai:"보기만", mode:TEAM, title:"다. 최종 설계",
@@ -3389,6 +3410,14 @@ function lesson2Deck(){
               {t:"지퍼 백 · 날달걀 · 종이테이프는 선생님께", k:"meta"},
               {t:"나. 설계대로 헬멧을 만들어요 — 달라지면 모둠원 모두 같게 적어요"} ] },
 
+    /* 최종 검토 뒤 — 규칙 5 에 테이프 한 바퀴가 더해져 한 장에 들지 않아 두 장으로 나눴다(글자 크기) */
+    { step:dstep(S, 1), mode:TEAM, title:"만들 때 지킬 것 — 규칙 3 · 4",
+      lines:deckRulesMe(2, 4) },
+
+    { step:dstep(S, 1), mode:TEAM, title:"만들 때 지킬 것 — 규칙 5 · 6",
+      lines:deckRulesMe(4, RULES_ME.length).concat([
+              {t:"가위 — 쓰고 나면 닫아 두고, 손잡이 쪽으로 건네요"} ]) },
+
     /* A14 D12 — 안쪽 구조를 잘 짜서 넣기. 2026-10-26 5차 — 번호 대신 학생 화면 조각(나 · 다)으로 · 날달걀을 담은 사람은 바로 손 씻기 */
     { step:dstep(S, 1), mode:TEAM, title:"담고 닫기",
       lines:[ {t:"나. 날달걀을 작은 지퍼 백에 담아 닫아요 — 살살 다뤄요"},
@@ -3398,10 +3427,6 @@ function lesson2Deck(){
               {t:"달걀이 큰 지퍼 백 안에서 흔들리거나 바로 부딪히지 않도록", k:"meta"},
               {t:"닫기 전에 대표가 헬멧 사진을 찍어 둬요 — ③ 대화 3 에 올려요"},
               {t:"큰 지퍼 백을 닫아요"} ] },
-
-    { step:dstep(S, 1), mode:TEAM, title:"만들 때 지킬 것",
-      lines:deckRulesMe(2, RULES_ME.length).concat([
-              {t:"가위 — 쓰고 나면 닫아 두고, 손잡이 쪽으로 건네요"} ]) },
 
     /* v4(2026-10-13) — 나의 예측(각자) → 우리 예측(모둠). 활동지 ③-가 조각 머리와 같은 활동 형태 */
     { step:dstep(S, 2), ai:"없이", mode:"개별 → 모둠 활동", title:"가. 먼저 예측하기 — 나 → 우리",
@@ -3455,7 +3480,8 @@ function lesson2Deck(){
       lines:[ {t:"1차시 최종 설계 수량이 저절로 들어와요"},
               {t:"재료를 바꿨으면 바뀐 줄만 고쳐요 — 그대로면 알림이 떠요", k:"meta"},
               {t:"수량만 적으면 비용 · 총비용은 저절로 셈해져요"},
-              {t:"총비용은 " + won(BUDGET) + " 이하"} ] },
+              {t:"총비용은 " + won(BUDGET) + " 이하"},
+              {t:"환불은 처음 받은 상태 그대로인 재료만 돼요"} ] },
 
     /* v4(2026-10-13) — ④-가 끝 최종 헬멧 예측(계획서 v4 3-2). 활동지 #pane-b4fin 과 같은 내용 */
     { step:dstep(S, 3), mode:TEAM, title:"최종 헬멧 예측",
@@ -3465,11 +3491,13 @@ function lesson2Deck(){
               {t:"차례를 기다리는 동안 적어도 돼요 — 떨어뜨리기 전까지"},
               {t:"예측과 까닭(다섯 글자 이상)을 적어야 ⑤ 결과 칸이 열려요", k:"meta"} ] },
 
-    { step:dstep(S, 3), ai:"없이", mode:REP, title:"나. 장치 사진 찍기",
+    { step:dstep(S, 3), ai:"없이", mode:REP, title:"나. 장치 사진 찍기 · 테이프 감기",
       lines:[ {t:"떨어뜨리기 전에 대표가 카메라 앱으로 찍어요"},
               {t:"장치가 잘 보이게 — 큰 지퍼 백을 열어 찍고 다시 닫아요"},
               {t:"④-가 에서 고치지 않았으면 ② 사진을 써도 돼요 — 다시 열지 않아도 돼요", k:"meta"},
-              {t:"찍은 사진은 활동지 ④-나 에서 사진 1 로 골라 둬요"} ] },
+              {t:"찍은 사진은 활동지 ④-나 에서 사진 1 로 골라 둬요"},
+              {t:"닫은 뒤 종이테이프로 큰 지퍼 백을 한 바퀴 — 지퍼 가운데를 가로질러"},
+              {t:"조이지 않아요 · 모든 모둠이 같게 · 「최종 반영한 것」 에는 적지 않아요", k:"meta"} ] },
 
     /* ⑤ — 1 m 낙하는 학생이 한다(A12). 한 번뿐(A13-16). 2026-10-26: 선 채로 · 교실 바닥 · 역할 셋(잡아 주는 사람 없음) */
     { step:dstep(S, 4), mode:TEAM, title:"떨어뜨리기 — 역할 셋",
@@ -3487,7 +3515,7 @@ function lesson2Deck(){
     { step:dstep(S, 4), mode:TEAM, title:"떨어뜨리기 — 한 번뿐",
       lines:drop.concat([
               {t:"던지지 않아요", k:"meta"},
-              {t:(drop.length + 1) + ". 꺼내는 사람이 작은 지퍼 백째 꺼내요 — 열지 않아요"} ]) },
+              {t:(drop.length + 1) + ". 꺼내는 사람이 비켜 나와 테이프를 떼고 작은 지퍼 백째 꺼내요 — 열지 않아요"} ]) },
 
     /* A14 D22 — 차례를 기다리는 동안은 ⑥ 받아 적기 · 제목 · 구성한 이유 · 사진 1 까지.
        v4(2026-10-13) — ④-가 최종 예측을 맨 앞에. 여섯 줄이 되어 '떨어뜨린 뒤에' 줄을 잔글씨로(meta 아닌 줄 다섯) */
@@ -3633,7 +3661,7 @@ function dayStr(ms){
    ========================================================================== */
 var MATS = [
   { k:"rbr", n:"고무줄",         sp:"지름 약 4 cm",             p:50,  cap:6,  u:"개" },
-  { k:"bal", n:"고무풍선",       sp:"약 25 cm",                 p:300, cap:4,  u:"개" },
+  { k:"bal", n:"고무풍선",       sp:"약 25 cm",                 p:300, cap:3,  u:"개" },   /* 2026-10-26 발주자 결정 — 최대 4개 → 3개 */
   { k:"wdn", n:"나무 막대",      sp:"아이스크림 막대 약 11 cm", p:50,  cap:8,  u:"개" },
   { k:"crd", n:"마분지",         sp:"8절",                      p:500, cap:1,  u:"장" },   /* 2026-10-26 발주자 결정 — 400원 · 2장 → 500원 · 1장 */
   { k:"stw", n:"빨대",           sp:"약 20 cm",                 p:60,  cap:20, u:"개" },
@@ -3679,7 +3707,7 @@ var RULES_AI = [
   "가격표에 있는 재료만, 최대 개수 안에서 써.",
   "재료는 큰 지퍼 백 안에서만 써.",
   "작은 지퍼 백 안에는 아무것도 넣지 않고, 달걀에도 붙이지 않아. 작은 지퍼 백 겉에는 붙이거나 재료를 대도 돼.",
-  "종이테이프는 모둠마다 한 롤이고, 붙이는 데만 써. 큰 지퍼 백 안쪽 면에 붙여도 돼. 비용에 넣지 않아.",
+  "종이테이프는 모둠마다 한 롤이고, 붙이는 데만 써. 큰 지퍼 백 안쪽 면에 붙여도 돼. 비용에 넣지 않아. 큰 지퍼 백 겉에는 떨어뜨리기 전에 한 바퀴 감는 것 말고는 붙이지 않아.",
   "큰 지퍼 백이 닫혀야 해."
 ];
 var RULES_ME = [
@@ -3687,12 +3715,17 @@ var RULES_ME = [
   "재료는 가격표에 있는 것만, 최대 개수 안에서 써요.",
   "재료는 큰 지퍼 백 안에서만 써요.",
   "작은 지퍼 백 안에는 아무것도 넣지 않고, 달걀에도 붙이지 않아요. 작은 지퍼 백 겉에는 붙이거나 재료를 대도 돼요.",
-  "종이테이프는 모둠마다 한 롤이고, 붙이는 데만 써요. 큰 지퍼 백 안쪽 면에 붙여도 돼요. 비용에 넣지 않아요.",
+  "종이테이프는 모둠마다 한 롤이고, 붙이는 데만 써요. 큰 지퍼 백 안쪽 면에 붙여도 돼요. 비용에 넣지 않아요. 큰 지퍼 백 겉에는 떨어뜨리기 전에 한 바퀴 감는 것 말고는 붙이지 않아요.",
   "큰 지퍼 백이 닫혀야 해요."
 ];
 /* 떨어뜨리는 방법 — 눕혀서(넓은 면이 아래로) · 2차시 마지막에 한 번뿐(A13-16). 역할 · 안전은 2차시 ⑤ 화면에 있다.
    A14 D16(의자나 책상 위 · 2 m)은 2026-10-26 발주자 결정으로 바꿨다 — 1 m · 선 채로 · 잡아 주는 사람 없이 · 딱딱한 교실 바닥. */
+/* 2026-10-26 발주자 결정(권장안 (나)) — 2차시 ④-나 에서 사진을 찍고 큰 지퍼 백을 닫은 뒤, 지퍼 가운데를 가로질러 종이테이프로 한 바퀴 감는다
+   (지퍼가 열리지 않게 · 조이지 않게 · 모든 모둠이 같게). 고친 것(④-가 칩 · 최종 반영한 것)에는 넣지 않는다 */
+var TAPE_AI = "떨어뜨리기 전에 닫은 큰 지퍼 백을 종이테이프로 한 바퀴 감아 지퍼가 열리지 않게 해 — 지퍼 가운데를 가로질러 감고, 조이지 않아. 장치를 묶는 것이 아니야.";
+var TAPE_ME = "떨어뜨리기 전에 닫은 큰 지퍼 백을 종이테이프로 한 바퀴 감아요 — 지퍼 가운데를 가로질러, 조이지 않게.";
 var DROP_AI = [
+  TAPE_AI,
   "사람이 선 채로 큰 지퍼 백 아래쪽이 1 m 높이에 오게 들고, 눕혀서(넓은 면이 아래로) 손을 펴 딱딱한 교실 바닥에 떨어뜨려.",
   "떨어뜨리기는 한 번뿐이야."
 ];
@@ -3713,7 +3746,7 @@ var RULES1 = [
   "AI 는 「AI 사용」 딱지가 붙은 ④ 대화 1 · ⑤-나 대화 2 에서만 새로 물어요. 그 밖에는 받은 답을 다시 보기만 해요."
 ];
 var RULES2 = [
-  "가위는 쓰고 나면 닫아 두고, 종이테이프는 붙이는 데만 써요.",
+  "가위는 닫아 두고, 테이프는 붙이고 감는 데만 써요.",
   "떨어뜨릴 때는 선 채로 교실 바닥에 떨어뜨려요. 의자나 책상에는 올라서지 않아요.",
   "떨어뜨리는 곳 아래와 둘레에는 아무도 없게 해요.",
   "날달걀을 만진 뒤에는 손을 씻어요.",
@@ -4405,6 +4438,14 @@ var AutoNote = {
   }
 };
 $("auto-ok").onclick = function(){ AutoNote.hide(); };
+/* 최종 검토 다듬기 — 띠는 화면 아래에 떠서 칸을 덮는다. 띠 밖을 누르거나(손가락으로 밀 때도 누름으로 잡힌다) 마우스 휠을 굴리면 거둔다
+   (위쪽 학번 · 이름 표시는 늘 보인다). scroll 은 쓰지 않는다 — 새로 고칠 때 브라우저가 보던 자리로 되돌리는 움직임에도 나기 때문이다 */
+function autoNoteAway(ev){
+  var e = $("auto-note");
+  if (e && e.style.display !== "none" && !(ev && ev.target && e.contains(ev.target))) AutoNote.hide(true);
+}
+document.addEventListener("pointerdown", autoNoteAway, true);
+window.addEventListener("wheel", autoNoteAway, false);
 window.addEventListener("resize", function(){
   var e = $("auto-note");
   if (e && e.style.display !== "none") AutoNote.pad();   /* 숨은 뒤 남겨 둔 빈자리는 goStep 이 거둔다 */
@@ -4681,6 +4722,13 @@ var Cards = {
        단추는 누를 수 없고(위 save · sel disabled), 보낼 글 자리에는 무엇을 먼저 적어야 열리는지가 흐리게 보인다(placeholder).
        예전처럼 통째로 숨기면 학생이 [제미나이에게 줄 자료 받기 (PDF)] 단추가 없다고 여겼다(2026-09-30 발주자 지적). */
     if ($("go3-c1-row")) $("go3-c1-row").style.display = (ok && this.block("c1")) ? "" : "none";
+    /* 최종 검토 — 대화 2 가 ④-나 설계 칸의 예상이 비어 막혔으면 그 설계 칸으로 가는 단추 */
+    blk = this.block("c2");
+    if ($("go4-c2-row")) {
+      $("go4-c2-row").style.display = (ok && /^④-나 의 설계/.test(blk)) ? "" : "none";
+      t = "④-나 설계 " + rv("a_c2_pick") + " 칸으로 가기";
+      if (/^[123]$/.test(rv("a_c2_pick")) && $("go4-c2").textContent !== t) $("go4-c2").textContent = t;
+    }
     /* 5차 — 막힌 까닭이 나의 설계면 [③ 나의 설계로 가기], 예측이면 [③ 나의 예측으로 가기] */
     t = !myDesign1() ? "③ 나의 설계로 가기" : "③ 나의 예측으로 가기";
     if ($("go3-c1") && $("go3-c1").textContent !== t) $("go3-c1").textContent = t;
@@ -5613,8 +5661,8 @@ var STEPS2 = [
     todo:"나의 예측을 각자 먼저 적고 우리 예측을 모둠이 적은 뒤, 대표가 제미나이에게 헬멧 사진과 최종 설계 양식 PDF 를 주고 떨어뜨리면 어떻게 될지 물어요. 받은 답은 함께 읽고 각자 내 말로 적어요.",
     desc:"나의 예측 → 우리 예측 → 제미나이 예측(대표가 보냄)" },
   { g:"④", name:"마지막 고치기",    min:6,  ai:"보기만", mode:"모둠 활동",
-    todo:"AI 가 추천한 것 가운데 받아들일 것을 모둠이 함께 정해 마지막으로 고치고, 고친 헬멧의 최종 예측을 적은 뒤 대표가 장치 사진을 찍어요.",
-    desc:"마지막으로 고치고 최종 예측을 적은 뒤 사진을 찍어요" },
+    todo:"AI 가 추천한 것 가운데 받아들일 것을 모둠이 함께 정해 마지막으로 고치고, 고친 헬멧의 최종 예측을 적은 뒤 대표가 장치 사진을 찍고 큰 지퍼 백을 테이프로 한 바퀴 감아요.",
+    desc:"마지막으로 고치고 최종 예측을 적은 뒤 사진을 찍고 테이프를 감아요" },
   { g:"⑤", name:"떨어뜨리기",       min:7,  ai:"없이", mode:"모둠 활동",
     todo:"선 채로 교실 바닥에 한 번 떨어뜨리고, 본 것을 먼저 적은 뒤 달걀 사진을 올려요. (교과서 41쪽)",
     desc:"한 번 떨어뜨리고 본 것을 적어요" },
@@ -5699,6 +5747,7 @@ function goStep(n){
   for (i = 0; i < secs.length; i++) secs[i].className = "stepsec" + (i === n ? " on" : "");
   paintStepBtns();
   if (typeof paintSwipe === "function") paintSwipe();   /* 5차 — 보이게 된 단계의 표 너비로 */
+  if (typeof Timer !== "undefined" && Timer.idleStep) { Timer.idleStep(); Timer.paint(); }   /* 최종 검토 — 떠 있는 단추에 이 단계 분 */
   $("todo-text").textContent = STEPS[n].todo;
   $("todo-ai").textContent = aiTag(STEPS[n]);
   $("todo-ai").className = "tag " + aiCls(STEPS[n].ai);
@@ -5783,6 +5832,8 @@ $("done-b3a").onclick = function(){
 };
 $("go3a-b3").onclick = function(){ goSpot(2, 2, "piece-b3a"); };
 /* A15 [③ 나의 예측으로 가기] — 대화 1 잠금 알림 아래. 1차시 ③ 「나의 예측과 까닭」 상자까지 내리고 초점을 옮긴다 */
+$("go-c3save").onclick = function(){ goSpot(2, 2, "save-c3"); };
+$("go4-c2").onclick = function(){ var k = rv("a_c2_pick"); goSpot(1, 3, /^[123]$/.test(k) ? "dcard" + k : "dcards"); };
 $("go3-c1").onclick = function(){ goSpot(1, 2, !myDesign1() ? "pane-a3design" : "pane-a3pred"); };
 
 /* 차시 바꾸기 — 두 차시가 한 파일에 있다. 학번 · 이름 칸은 1차시 ① 에만 있다(A13-14).
@@ -5842,6 +5893,7 @@ function setLesson(n, how){
 var PH_IN   = { 1:["b_photo1a", "b_photo1"], 2:["b_photo2", "b_photo2b"] };                     /* 고르는 곳(파일 칸) */
 var PH_ST   = { 1:["b_photo1a_st", "b_photo1_st"], 2:["b_photo2_st", "b_photo2b_st"] };         /* 알림 줄 */
 var PH_PREV = { 1:["b_photo1a_prev", "b_photo1_prev"], 2:["b_photo2_prev", "b_photo2b_prev"] }; /* 미리 보기 자리 */
+var PH_WHERE = { b_photo1a:"④-나", b_photo1:"⑥-나", b_photo2:"⑤", b_photo2b:"⑥-나" };   /* 최종 검토 — 고른 자리 이름 */
 var PH_THUMB = 320;                                                           /* 미리 보기 긴 변(px) */
 var PH_LOST = "새로 고침되어 고른 사진이 지워졌어요 — 다시 골라요.";
 var PDF_REP = "전시관 PDF 는 대표 기기에서 만들어요 — 대표가 아니면 라 로 가요. 대표는 ";   /* 2026-10-26 5차 — Pdf.make 사진 알림(대표 안내를 앞에) */
@@ -5871,6 +5923,17 @@ var Photo = {
       if (!st) continue;
       st.textContent = text || "";
       st.className = bad ? "notice warn" : "small muted";
+    }
+  },
+
+  /* 최종 검토 다듬기 — 고른 자리에는 "골랐어요.", 다른 자리에는 어디서 고른 사진인지(그 자리 파일 칸은 '선택된 파일 없음' 으로 보인다) */
+  statusFrom: function(n, from){
+    var L = PH_ST[n], I = PH_IN[n], i, st;
+    for (i = 0; i < L.length; i++) {
+      st = $(L[i]);
+      if (!st) continue;
+      st.textContent = (I[i] === from) ? "골랐어요." : "골랐어요 — " + (PH_WHERE[from] || "다른 곳") + " 에서 고른 사진이 들어왔어요.";
+      st.className = "small muted";
     }
   },
 
@@ -5945,7 +6008,7 @@ var Photo = {
       self.thumb(n, c);
       /* 읽는 사이에 만든 PDF 가 있으면(사진 없이 만든 것) 버린다 — 다 읽은 사진이 빠진 PDF 가 [PDF 저장] 으로 나가지 않게 */
       Pdf.reset();
-      self.status(n, "골랐어요.");
+      self.statusFrom(n, input.id);
       photoHad(n, "1");
     };
     img.onerror = fail;
@@ -6686,7 +6749,8 @@ function wsBuild(){
   d.kv("", snapLine("c1"));          /* v4(2026-10-13) 대화 1 전 처음 값(계획서 v4 4-3) — 나의 예측과 까닭 바로 아래 */
   d.kv("나의 설계에서 가장 약해 보이는 곳", val("a_cmp_our_weak"));
 
-  /* ④ 대화 1 — 설계 칸마다 한 열(내 말로 정리한 것) */
+  /* ④ 대화 1 — 설계 칸마다 한 열(내 말로 정리한 것). 최종 검토 — 까닭 · 가장 약한 곳은 ⑤-나 에서 고른 설계만 적으므로 다른 설계는 NOT_ASKED */
+  var NOT_ASKED = "⑤-나 에서 묻지 않은 설계(적지 않아도 돼요)";
   drows = [["", "설계 1", "설계 2", "설계 3"]];
   (function(){
     var names = ["어떤 설계인가요", "재료와 개수", "총비용 (가격표로 셈)", "AI 가 말한 총비용", "예상", "까닭", "가장 약한 곳"], r, n, row, sm;
@@ -6699,8 +6763,8 @@ function wsBuild(){
         else if (r === 2) row.push((sm.any && !sm.bad) ? won(sm.total) : NOT_WRITTEN);
         else if (r === 3) row.push(orNW(val("a_d" + n + "_cost")));
         else if (r === 4) row.push(orNW(val("a_d" + n + "_pred")));
-        else if (r === 5) row.push(orNW(val("a_d" + n + "_why")));
-        else row.push(orNW(val("a_d" + n + "_weak")));
+        else if (r === 5) row.push(val("a_d" + n + "_why") || (rv("a_c2_pick") === String(n) ? NOT_WRITTEN : NOT_ASKED));
+        else row.push(val("a_d" + n + "_weak") || (rv("a_c2_pick") === String(n) ? NOT_WRITTEN : NOT_ASKED));
       }
       drows.push(row);
     }
@@ -6844,7 +6908,7 @@ buildCostTable("cost-r", "b_rn_", "b_rc_", "b_rtotal", "고친 뒤 ");
 renderRules("rules-me-2", 0, RULES_ME.length);
 renderRules("rules-me-5", 0, RULES_ME.length);
 renderRules("rules-me-b2", 2, RULES_ME.length);      /* 만들 때 지킬 규칙 3~6 */
-renderList("drop-me-2", [DROP_ME[0]]);   /* 2026-10-25 — 둘째 줄('한 번뿐')은 바로 위 알림과 겹쳐 뺐다 */
+renderList("drop-me-2", [TAPE_ME, DROP_ME[0]]);   /* 2026-10-25 — 둘째 줄('한 번뿐')은 바로 위 알림과 겹쳐 뺐다 · 2026-10-26 테이프 한 바퀴를 앞에 */
 renderList("bag-me-2", bagMeLines());                /* [갈래 외피 규격] 규격이 비면 줄이 없다 */
 /* 2026-10-26 5차 — 깨짐 기준 글(js-break) — 예측 칸 셋(1차시 ③ · 2차시 ③-가 · ④-가) · ⑤ 보기 위가 한 곳에서 읽는다(대화 1 · 3 의 BREAK_AI 와 같은 뜻) */
 var BREAK_ME = "완전히 깨짐 — 흰자나 노른자가 흘러나와요 · 금이 감 — 껍데기에 금은 있지만 흘러나오지 않아요 · 깨지지 않음 — 금이 없어요";
