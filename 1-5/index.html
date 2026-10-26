@@ -5418,7 +5418,8 @@ $("copy-pred-fin").onclick = function(){
   var p = rv("b_pred_our");
   /* 2026-10-26 — 헬멧을 고쳤으면 고친 헬멧의 예측을 새로 적는다. 고쳤는지 정하지 않았으면 먼저 정한다(칩으로 가는 단추) */
   if (fixYes()) { $("ccm-fin").textContent = "헬멧을 고쳤으면 고친 헬멧의 예측을 새로 적어요 — 이 단추는 고치지 않았을 때만 써요."; return; }
-  if (!fixNo()) { $("ccm-fin").textContent = "먼저 위 「헬멧을 고쳤나요?」 를 골라요."; $("go-fixq").style.display = ""; return; }
+  /* 2026-10-26 4차 — 가져오기는 칩 「안 고쳤어요」 만 본다(글 '없음' 만으로는 가져오지 않는다 — 옛 기록도 칩만 고르면 된다) */
+  if (rv("b_fixq") !== "안 고쳤어요") { $("ccm-fin").textContent = "먼저 위 「헬멧을 고쳤나요?」 를 골라요."; $("go-fixq").style.display = ""; return; }
   if (!p) { $("ccm-fin").textContent = "③-가 우리 예측이 비어 있어 가져올 것이 없어요."; return; }
   if ((rv("b_pred_fin") || val("b_pred_fin_why")) && !window.confirm("이미 적은 값이 있어요. 가져온 값으로 바꿀까요?")) return;
   setRadioVal("b_pred_fin", p);
@@ -6474,15 +6475,15 @@ function wsCostRows(nPre){
 
 /* 고친 뒤 비용을 "비워 둠(바꾼 것 없음)" 으로 찍어도 되는가 — 학생이 적은 것으로만 판단한다(지어 내지 않는다).
    수량 칸이 모두 비었거나 1차시 수량과 같고, 만들면서 바꾼 것이 비고,
-   2026-10-26 — 설계대로가 '그대로' 이고 고침 여부가 '고치지 않음'(칩 「안 고쳤어요」 또는 옛 기록 '없음')으로 실제로 정해졌을 때만.
+   2026-10-26 — 설계대로가 '그대로' 이고 칩 「안 고쳤어요」 를 실제로 골랐을 때만(4차 — 글 '없음' 만으로는 찍지 않는다).
    하나라도 안 정했으면 비용 표를 그대로 찍는다(비었으면 「(적힌 재료 없음)」) */
 function wsNoFix(){
   var i, same = rv("b_same"), any = false, diff = false, r;
   /* 2026-10-25 — 고친 뒤 수량이 1차시 최종 설계 수량을 저절로 받으므로, 모두 비었거나 1차시 수량과 같으면 바꾸지 않은 것으로 본다 */
   for (i = 0; i < MATS.length; i++) { r = val("b_rn_" + MATS[i].k); if (r) any = true; if (r !== val("a_fn_" + MATS[i].k)) diff = true; }
   if (any && diff) return false;
-  if (!fixNo()) return false;
-  if (rv("b_fixq") === "안 고쳤어요" && notNone(val("b_fixed"))) return false;   /* 3차 A4 — 칩과 글이 어긋나면 「바꾸지 않음」 을 지어 내지 않는다 */
+  if (rv("b_fixq") !== "안 고쳤어요") return false;
+  if (notNone(val("b_fixed"))) return false;   /* 3차 A4 — 칩과 글이 어긋나면 「바꾸지 않음」 을 지어 내지 않는다 */   /* 3차 A4 — 칩과 글이 어긋나면 「바꾸지 않음」 을 지어 내지 않는다 */
   if (notNone(val("b_changed"))) return false;
   return same === "그대로";
 }
