@@ -64,6 +64,11 @@
    ⑤-가 까닭 줄 · ④-나 까닭 · 약한 곳 흐리게 · ③ 가격표 접기 · ⑤-다 「모둠원의 안 · 설계」 로 바꿀 때 저절로 든 수량 비움 ·
    생각해 볼 것 2 칩 셋 · 구성한 이유 초안에서 고른 까닭 뺌 · ⑤ 기다리는 동안 가기 단추 · ③-나 [4 로 가기] · 사진 사라짐 알림 ·
    [수업 화면] 단추 되돌림(누구에게나) · ✓ 설명 한 줄 · 타이머 아래 여백.)
+  (2026-10-26 3차 교사 · 학생 검토 반영 — 발주자 "권장 사항에 맞게 모두 수정해줘". 단계 시간 · 칸 id 그대로 · AI 보낼 글 · 자료 PDF 그대로.
+   ③-나 4 알림이 실제 잠금 까닭(predBlock2) · [가 로 가기] · ③-가 까닭 칸 '다섯 글자 이상' · 대화 3 처음 판단은 다섯 칸이 찬 동안 새로 쓰다가(snapRoll3)
+   [복사하기] · [4 로 가기] · AI 답 첫 입력 가운데 먼저인 때 굳음 · '없음' 판정 넓힘(isNone) · 「그대로」 칩 먼저 · 칩과 글이 어긋나면 「바꾸지 않음」 줄 없음 ·
+   [가져오기] 알림 되돌림 · 열 수 없는 사진 · 양식 PDF 는 예측 전에도 받음(Cards.saveBlock) · 생각해 볼 것 2 기준 두 갈래 · ⑤-가 '나 에서 채워요' ·
+   ⑤-나 나의 안 갈래 · 칩 「내 설계 n」(저장값 그대로) · 수업 화면을 넘겨도 활동지 차시는 그대로(Lesson.ls) · AI 답 칸 순서 · 문구 다듬기.)
   (2026-09-28 개념 보강으로 1차시 ② · 2차시 ⑥ 을 1분씩 늘렸다 — 여유는 차시마다 2분. 아래 [개념 보강] 참고.
    A14 로 1차시 ②-나 3 → 4분 · ⑤-가 4 → 3분 — 합은 그대로 48분. A15 로 1차시 ② 9 → 11분 — 1차시 여유 2분을 썼다, 합 50분.
    v4(2026-10-13) 로 2차시 ③ 7 → 8분(③-가 2 → 3분) · ⑥ 14 → 15분(⑥-가 5 → 6분) — 2차시 여유 2분을 썼다, 합 50분)
@@ -950,7 +955,7 @@ table.tbl.qty .blank{width:2.8em}
             <ul id="rules1" style="margin-top:6px"></ul>
           </div>
           <div class="notice">
-            교과서 <b>38~41쪽</b>을 펴요. ① ~ ④ 는 <b>각자</b> 해요(개별 활동). ⑤ 에서 모둠이 후보 3가지를 고르고, 후보를 받은 사람이 나눠서 근거를 물은 뒤
+            교과서 <b>38~41쪽</b>을 펴요. ① ~ ④ 는 <b>각자</b> 해요(개별 활동). ⑤ 에서 모둠이 후보 3가지를 고르고, 후보가 된 AI 설계를 받은 사람이 나눠서 근거를 물은 뒤
             <b>모둠이 함께</b> 하나를 골라요(모둠 활동). 활동지는 <b>각자</b> 적어요.<br>
             <!-- A15: AI 쓰임 딱지 세 가지 -->
             조각(가 · 나 · 다 … 단계 안의 작은 활동)마다 붙은 딱지를 보고 따라요 — <span class="tag ai-no">AI 없이</span> 제미나이를 열지 않아요 ·
@@ -1231,7 +1236,7 @@ table.tbl.qty .blank{width:2.8em}
         <div class="stack">
           <div class="notice">
             <b>대화 1 은 각자 자기 기기에서 해요.</b> 서로 다른 설계 3가지를 받아요 — 받은 설계가 모둠원마다 달라도 괜찮아요.<br>
-            ⑤ 에서 모둠이 후보 3가지를 고르면, 후보를 받은 사람이 <b>같은 대화창</b>에서 대화 2(근거 묻기)를 이어서 해요 — 대화창을 닫지 않아요.<br>
+            ⑤ 에서 모둠이 후보 3가지를 고르면, 후보가 된 AI 설계를 받은 사람이 <b>같은 대화창</b>에서 대화 2(근거 묻기)를 이어서 해요 — 대화창을 닫지 않아요.<br>
             받은 답은 읽고 <b>내 말로 바꾸어</b> 아래 칸에 적어요.
           </div>
 
@@ -1311,6 +1316,10 @@ table.tbl.qty .blank{width:2.8em}
                   <li>재료를 놓는 자리</li>
                   <li>예상과 까닭 ('충돌 시간' · '평균 힘'으로)</li>
                   <li>가장 약한 곳</li>
+                </ul>
+                <p class="small" style="margin-top:8px"><b>보내지 않을 것</b></p>
+                <ul class="musts">
+                  <li>나의 예측 · 까닭 · ③ 나의 설계</li>
                 </ul>
               </div>
               <details class="fold" style="margin-top:10px">
@@ -1406,7 +1415,7 @@ table.tbl.qty .blank{width:2.8em}
       <section class="stepsec">
         <div class="stack">
           <div class="notice">
-            <b>가</b> 는 각자 비교한 뒤 모둠이 후보 3가지를 골라요. <b>나</b> 는 후보를 받은 사람이 나눠서 근거를 묻고 모둠이 하나를 골라요. <b>다</b> 는 모둠이 함께 정해요.<br>
+            <b>가</b> 는 각자 비교한 뒤 모둠이 후보 3가지를 골라요. <b>나</b> 는 후보가 된 AI 설계를 받은 사람이 나눠서 근거를 묻고 모둠이 하나를 골라요. <b>다</b> 는 모둠이 함께 정해요.<br>
             적는 것은 모두 <b>각자</b> 자기 활동지에 적어요 — 고른 까닭은 각자, 후보 · 최종 설계 · 놓은 자리는 모둠원 모두 같게.<br>
             제미나이에게 새로 묻는 것은 <b>나</b> 의 대화 2 뿐이에요(④ 와 같은 대화창). 놓은 자리를 적을 때는 ④ 에서 받은 답을 다시 봐요.
           </div>
@@ -1468,7 +1477,7 @@ table.tbl.qty .blank{width:2.8em}
                얼마나 믿을까(a_c2_trust, 각자 판단). 그 뒤 고르기 칩(a_pick) · 고른 까닭 · 따르지 않기로 한 것 — 칸 id 그대로. -->
           <div class="piece">
             <div class="ph"><span class="pn">나</span><span class="pt">근거 묻고 하나 고르기</span><span class="tag ai-use">AI 사용</span><span class="tag mode-team">나눠 묻기 → 모둠 활동</span><span class="pm">6분</span></div>
-            <p><b>후보를 받은 사람이 나눠서 AI 에게 근거를 묻고, 모둠이 가장 좋아 보이는 하나를 골라요.</b> 근거를 알아야 믿을지 말지 정할 수 있어요.
+            <p><b>후보가 된 AI 설계를 받은 사람이 나눠서 AI 에게 근거를 묻고, 모둠이 가장 좋아 보이는 하나를 골라요.</b> 근거를 알아야 믿을지 말지 정할 수 있어요.
               <span class="small muted">대화창을 닫았으면 제미나이 왼쪽 목록(최근 대화)에서 그 대화를 다시 열어 이어서 보내요.</span></p>
 
             <div class="stepline"><span class="sn">1</span><span class="st">근거를 물을 설계를 골라요</span></div>
@@ -1476,13 +1485,13 @@ table.tbl.qty .blank{width:2.8em}
             <ul class="small" style="margin-top:4px; padding-left:1.2em">
               <li>후보에 <b>내가 받은 AI 설계</b>가 있어요 → 그 설계 칩을 골라 <b>내가</b> 물어요. 둘이면 같은 대화창에서 둘 다 물어도 돼요 — 칸에는 하나만 적어요.</li>
               <li>없어요 → 「모둠원이 물어요」 를 골라 묻는 모둠원의 화면을 함께 읽어요. 묻는 사람이 여럿이면 한 사람의 답을 골라 적고, 누구 것인지 아래에 적어요.</li>
-              <li>내 「나의 안」 이 후보예요 → 「나의 안」 은 AI 에게 묻지 않고, 4 에서 ③ 에 적은 까닭으로 모둠에 설명해요.</li>
+              <li>내 「나의 안」 이 후보예요 → 「나의 안」 은 AI 에게 묻지 않아요. 그동안 「모둠원이 물어요」 를 골라 다른 후보의 답을 함께 읽고, 아래 4 에서 ③ 단계에 적은 까닭으로 모둠에 설명해요.</li>
             </ul>
             <p class="small muted" style="margin-top:2px">내 AI 설계와 「나의 안」 이 둘 다 후보면 AI 설계를 물어요.</p>
             <div class="choice-row" role="radiogroup" aria-label="대화 2 에서 물을 설계" style="margin-top:6px">
-              <label class="choice"><input type="radio" name="a_c2_pick" value="1"> 설계 1</label>
-              <label class="choice"><input type="radio" name="a_c2_pick" value="2"> 설계 2</label>
-              <label class="choice"><input type="radio" name="a_c2_pick" value="3"> 설계 3</label>
+              <label class="choice"><input type="radio" name="a_c2_pick" value="1"> 내 설계 1</label>
+              <label class="choice"><input type="radio" name="a_c2_pick" value="2"> 내 설계 2</label>
+              <label class="choice"><input type="radio" name="a_c2_pick" value="3"> 내 설계 3</label>
               <label class="choice"><input type="radio" name="a_c2_pick" value="모둠원"> 모둠원이 물어요</label>
             </div>
             <!-- 2026-10-26 — 「모둠원이 물어요」 면 누구의 어느 설계 근거를 적었는지(활동지 PDF 에 들어간다) -->
@@ -1490,7 +1499,7 @@ table.tbl.qty .blank{width:2.8em}
               <input id="a_c2_who" class="input" type="text" placeholder="예: 민지 · 설계 2"></div>
 
             <div class="stepline"><span class="sn">2</span><span class="st">[질문 복사하기] 를 눌러 <b>같은 대화창</b>에 붙여 넣어 보내요</span></div>
-            <p class="small" style="margin-top:6px">질문은 세 가지를 물어요 — 계산이나 실험인지, 짐작인지 · 무엇을 가정했는지 두 가지 · 가정이 틀리면 어떻게 달라지는지('충돌 시간' · '평균 힘'으로).</p>
+            <p class="small" style="margin-top:6px">질문은 세 가지를 물어요 — ① 계산이나 실험인지, 짐작인지 ② 무엇을 가정했는지(정해 두고 생각한 것) 두 가지 ③ 가정이 틀리면 예상이 어떻게 달라지는지('충돌 시간' · '평균 힘'으로).</p>
             <p class="notice" id="note-c2" style="display:none; margin-top:8px"></p>
             <textarea id="send-c2" class="input" data-nosave readonly style="margin-top:8px; min-height:130px; background:var(--card-2)"
               aria-label="대화 2 보낼 질문"></textarea>
@@ -1532,13 +1541,13 @@ table.tbl.qty .blank{width:2.8em}
             <div class="stepline"><span class="sn">4</span><span class="st">모둠이 가장 좋아 보이는 하나를 골라요</span></div>
             <p class="small" style="margin-top:4px; margin-bottom:8px">물은 사람은 AI 가 말한 근거와 가정을, 「나의 안」 을 낸 사람은 ③ 에 적은 까닭을 모둠에 설명해요. 그 뒤 후보 3가지 가운데 하나를 골라요.</p>
             <div class="field">
-              <label>무엇으로 만들까요? <span class="muted">(나의 안 · 설계 1 · 2 · 3 은 내 것 — 다른 모둠원의 안이나 설계로 정했으면 「모둠원의 안 · 설계」)</span></label>
+              <label>무엇으로 만들까요? <span class="muted">(나의 안 · 내 설계 1 · 2 · 3 은 내 것 — 다른 모둠원의 안이나 설계로 정했으면 「모둠원의 안 · 설계」)</span></label>
               <div class="row">
                 <div class="choice-row" role="radiogroup" aria-label="무엇으로 만들까요">
                   <label class="choice"><input type="radio" name="a_pick" value="나의 안"> 나의 안</label>
-                  <label class="choice"><input type="radio" name="a_pick" value="설계 1"> 설계 1</label>
-                  <label class="choice"><input type="radio" name="a_pick" value="설계 2"> 설계 2</label>
-                  <label class="choice"><input type="radio" name="a_pick" value="설계 3"> 설계 3</label>
+                  <label class="choice"><input type="radio" name="a_pick" value="설계 1"> 내 설계 1</label>
+                  <label class="choice"><input type="radio" name="a_pick" value="설계 2"> 내 설계 2</label>
+                  <label class="choice"><input type="radio" name="a_pick" value="설계 3"> 내 설계 3</label>
                   <label class="choice"><input type="radio" name="a_pick" value="모둠원이 받은 설계"> 모둠원의 안 · 설계</label>
                   <label class="choice"><input type="radio" name="a_pick" value="섞거나 고친 안"> 섞거나 고친 안</label>
                 </div>
@@ -1635,7 +1644,7 @@ table.tbl.qty .blank{width:2.8em}
             <ul id="rules2" style="margin-top:6px"></ul>
           </div>
           <p class="notice"><b>모둠 대표를 한 명 정해요.</b> 대표는 ③ 대화 3 을 보내고, 장치 사진 · 떨어뜨린 뒤 달걀 사진을 찍고, 전시관 PDF 를 만들어 올려요.
-            <b>카메라가 있는 태블릿이나 폰을 가진 사람</b>이 대표를 맡아요(노트북은 사진을 찍기 어려워요). 대표는 전시관 조원 칸에 넣을 모둠원 학번 · 이름을 미리 받아 둬요(종이나 교과서 여백에).</p>
+            <b>카메라가 있는 태블릿이나 폰을 가진 사람</b>이 대표를 맡아요(노트북은 사진을 찍기 어려워요). 1차시 ⑤-다(최종 설계)를 채운 사람이어야 대화 3 을 보낼 수 있어요. 대표는 전시관 조원 칸에 넣을 모둠원 학번 · 이름을 미리 받아 둬요(종이나 교과서 여백에).</p>
           <p class="notice" id="who2"></p>
         </div>
       </section>
@@ -1731,14 +1740,14 @@ table.tbl.qty .blank{width:2.8em}
            나의 예측 · 까닭도 대화 3 잠금에 들고(Cards.block), 양식 PDF · 보낼 글에는 넣지 않는다. 대화 3 의 처음 값은 숨은 칸 b_snap_c3(4장).
            2026-10-25 발주자 결정: 대화 3 은 모둠당 한 번(나 조각 모둠 활동 · 4분 — 2026-10-26 부터 대표가 보낸다). 보내지 않는 학생은 [복사하기] 를 누르지 않으므로,
            처음 값은 AI 답 칸(b_ai_pred · b_ai_why · b_ai_weak · b_ai_fix)에 처음 적을 때 남긴다(잠금이 풀린 뒤에만 — onEdit).
-           2026-10-26: 처음 값은 가 의 예측 다섯 칸(predBlock2)을 다 적은 뒤 그 칸에서 손을 뗄 때 먼저 남긴다(놓치면 AI 답 칸에 처음 적을 때). -->
+           2026-10-26 3차: 처음 값은 가 의 예측 다섯 칸(predBlock2)이 다 찬 동안 계속 새로 쓰고, [복사하기] · [4 로 가기] · AI 답 칸 첫 입력 가운데 먼저 일어난 때 굳는다. -->
       <section class="stepsec">
         <div class="stack">
-          <div class="piece">
+          <div class="piece" id="piece-b3a" tabindex="-1">
             <div class="ph"><span class="pn">가</span><span class="pt">먼저 예측하기 — 나 → 우리</span><span class="tag ai-no">AI 없이</span><span class="tag mode-team">개별 → 모둠 활동</span><span class="pm">3분</span></div>
             <p>만든 헬멧을 보고 나의 예측을 <b>각자 먼저</b> 적은 뒤, 우리끼리 예측해요. 실제로 떨어뜨리지 않아요.</p>
             <!-- 2026-10-26 — ③-나 4분을 넘기지 않게 대표는 가 동안 새 채팅과 사진을 준비한다. 모둠 예측 전에 AI 답을 보지 않게 보내지는 않는다 -->
-            <p class="small muted" style="margin-top:4px">대표는 이 동안 제미나이 새 채팅을 열고 헬멧 사진을 <b>올려만 둬요 — 보내지 않아요.</b></p>
+            <p class="small muted" style="margin-top:4px">대표는 이 동안 제미나이 새 채팅을 열고 헬멧 사진과 아래 나 1 의 최종 설계 양식 PDF 를 <b>올려만 둬요 — 보내지 않아요.</b></p>
             <!-- v4(2026-10-13) 나의 예측(계획서 v4 3-1) — 우리 예측 위. 둘 다 대화 3 잠금에 든다(Cards.block). 칩 읽기 이름은 물음 글(aria-labelledby) -->
             <div class="field" style="margin-top:8px">
               <label id="lab-b_pred_me">나의 예측 — 1 m 에서 떨어뜨리면 날달걀은? (각자)</label>
@@ -1751,7 +1760,7 @@ table.tbl.qty .blank{width:2.8em}
                 <button class="btn sm ghost" type="button" data-unpick="b_pred_me" aria-label="2차시 나의 예측 비우기">비우기</button>
               </div>
             </div>
-            <div class="field" style="margin-top:10px"><label for="b_pred_me_why">나의 예측 까닭</label>
+            <div class="field" style="margin-top:10px"><label for="b_pred_me_why">나의 예측 까닭 <span class="muted">(다섯 글자 이상)</span></label>
               <input id="b_pred_me_why" class="input" type="text" placeholder="예: 옆쪽은 솜공이 적어서 옆으로 닿으면 충돌 시간이 짧을 것 같아요"></div>
             <div class="field" style="margin-top:12px">
               <label>우리 예측 — 1 m 에서 떨어뜨리면 날달걀은? <span class="muted">(모둠원 모두 같게)</span></label>
@@ -1765,11 +1774,13 @@ table.tbl.qty .blank{width:2.8em}
               </div>
             </div>
             <div class="grid2" style="margin-top:10px">
-              <div class="field"><label for="b_pred_why">우리 예측 까닭</label>
+              <div class="field"><label for="b_pred_why">우리 예측 까닭 <span class="muted">(다섯 글자 이상)</span></label>
                 <input id="b_pred_why" class="input" type="text" placeholder="예: 아래 풍선이 천천히 눌려 충돌 시간이 길어질 것 같아요"></div>
               <div class="field"><label for="b_weak_our">가장 약해 보이는 곳</label>
                 <input id="b_weak_our" class="input" type="text" placeholder="예: 솜공이 적은 옆쪽"></div>
             </div>
+            <!-- 2026-10-26 3차 — 무엇을 적어야 나 가 열리는지 · 처음 판단이 언제 남는지(predBlock2 · snapRoll3) -->
+            <p class="small muted" style="margin-top:8px">다섯 칸(까닭은 다섯 글자 이상)을 다 적으면 나 의 대화 3 과 AI 답 칸이 열려요. AI 답을 보기 전에 적은 마지막 값이 '처음 판단'으로 남아요.</p>
           </div>
 
           <div class="piece">
@@ -1791,7 +1802,7 @@ table.tbl.qty .blank{width:2.8em}
             <div id="box-c3">
               <div class="stepline"><span class="sn">1</span><span class="st">최종 설계 양식을 받아요</span></div>
               <p class="small" style="margin-top:4px">우리 헬멧의 재료 · 개수 · 비용 · 총비용 · 놓은 자리 · 만들면서 바꾼 것과 조건(날달걀 · 지퍼 백 · 규칙 · 떨어뜨리는 방법)이
-                PDF <b>한 파일</b>에 모두 들어 있어요. 나의 예측 · 우리 예측은 들어 있지 않아요. 내려받을지 물으면 [다운로드] 를 눌러요.</p>
+                PDF <b>한 파일</b>에 모두 들어 있어요. 나의 예측 · 우리 예측은 들어 있지 않아요 — 그래서 가 조각을 다 적기 전에도 받을 수 있어요(보낼 글은 가 조각을 다 적으면 열려요). 내려받을지 물으면 [다운로드] 를 눌러요.</p>
               <div class="row" style="margin-top:6px"><button class="btn primary sm" type="button" id="save-c3" aria-label="최종 설계 양식 받기 (PDF)">최종 설계 양식 받기 (PDF)</button></div>
               <div class="notice" id="msg-c3" style="display:none; margin-top:6px"></div>
               <details class="fold matprev" id="prev-c3" style="margin-top:6px">
@@ -1805,7 +1816,7 @@ table.tbl.qty .blank{width:2.8em}
 
               <div class="stepline"><span class="sn">3</span><span class="st">제미나이 새 채팅에 사진과 PDF 를 올리고, 아래 글을 붙여 넣어 보내요</span></div>
               <ol class="small" style="padding-left:1.2em; margin-top:4px">
-                <li>제미나이 대화창의 <b>+</b> 를 눌러 찍어 둔 <b>헬멧 사진</b>과 받은 <b>PDF</b>(1-5_최종설계_양식.pdf)를 올려요.
+                <li>제미나이 대화창의 <b>+</b> 를 눌러 찍어 둔 <b>헬멧 사진</b>과 받은 <b>PDF</b>(1-5_최종설계_양식.pdf)를 올려요 — 가 동안 올려 뒀으면 다시 올리지 않아요.
                   PDF 는 사진 앱이 아니라 '다운로드'에 있어요(아이패드는 파일 앱, 안드로이드는 내 파일).</li>
                 <li>아래 글을 [복사하기] 로 복사해 대화창에 붙여 넣고 보내요.</li>
               </ol>
@@ -1821,7 +1832,7 @@ table.tbl.qty .blank{width:2.8em}
                 aria-label="대화 3 보낼 글 예시(사진과 PDF 를 올릴 때)"></textarea>
               <div class="row" style="margin-top:6px"><button class="btn sm" type="button" id="sel-c3" aria-label="대화 3 글 복사하기(사진과 PDF 를 올릴 때)">복사하기</button><span class="small muted" id="cpm-c3" aria-live="polite"></span></div>
               <!-- v4(2026-10-13) 처음 값 기록 안내(계획서 v4 4-4) — [복사하기] 아래 한 번. 접은 상자 [글 복사하기] 아래에는 두지 않는다 -->
-              <p class="small muted" style="margin-top:4px">복사하기를 누르면 지금 적은 판단이 '처음 판단'으로 남아요. AI 답을 본 뒤 고쳐도 돼요 — 고친 것도 함께 남아요.</p>
+              <p class="small muted" style="margin-top:4px">가 조각에 적은 판단은 [복사하기] · [4 로 가기] · AI 답 칸에 처음 적기 가운데 먼저인 때의 값이 '처음 판단'으로 남아요. AI 답을 본 뒤 고쳐도 돼요 — 고친 것도 함께 남아요.</p>
               <div class="pane" style="margin-top:10px; box-shadow:none">
                 <h4>보내기 전에 확인해요 <span class="hnote">위 글은 예시예요. 내 말로 고쳐 보내도 돼요 — 이것만은 빠지지 않게요</span></h4>
                 <p class="small" style="margin-top:6px"><b>올릴 것</b></p>
@@ -1855,14 +1866,16 @@ table.tbl.qty .blank{width:2.8em}
             <div class="stepline" id="b3-s4" tabindex="-1"><span class="sn">4</span><span class="st">받은 답을 나의 말로 바꾸어 적어요</span></div>
             <!-- 2026-10-26 — AI 답 칸은 가 의 예측(대화 3 잠금)을 다 적은 뒤에 열린다(paintAiAnsLock). 이미 적은 기록은 잠그지 않는다 -->
             <p class="notice" id="note-b3ai" style="display:none; margin-top:6px"></p>
+            <!-- 2026-10-26 3차 — [4 로 가기] 로 내려온 학생이 잠금 까닭을 고치러 가 조각으로(data-free) -->
+            <div class="row" id="go3a-row" style="display:none; margin-top:6px"><button class="btn sm" type="button" id="go3a-b3" data-free>가 로 가기</button></div>
             <p class="small muted" style="margin-top:4px">AI 답을 읽고, 무슨 뜻인지 내가 이해한 대로 짧게 적어요. 답이 길면 중요한 것만 골라요.</p>
             <div class="grid2" style="margin-top:8px">
               <div class="field"><label for="b_ai_pred">AI 예상</label>
                 <select id="b_ai_pred" class="input"><option value="">고르기</option><option value="완전히 깨짐">완전히 깨짐</option><option value="금이 감">금이 감</option><option value="깨지지 않음">깨지지 않음</option><option value="분명히 말하지 않았어요">분명히 말하지 않았어요</option></select></div>
-              <div class="field"><label for="b_ai_weak">AI 가 말한 가장 약한 곳 <span class="muted">(내 말로)</span></label>
-                <input id="b_ai_weak" class="input" type="text" placeholder="예: 작은 지퍼 백 바로 아래가 얇대요"></div>
               <div class="field"><label for="b_ai_why">AI 가 말한 까닭 <span class="muted">(내 말로)</span></label>
                 <textarea id="b_ai_why" class="input" style="min-height:70px" placeholder="예: 아래 풍선이 눌리며 충돌 시간이 길어져 평균 힘은 줄지만, 풍선이 터지면 바로 부딪힐 수 있대요."></textarea></div>
+              <div class="field"><label for="b_ai_weak">AI 가 말한 가장 약한 곳 <span class="muted">(내 말로)</span></label>
+                <input id="b_ai_weak" class="input" type="text" placeholder="예: 작은 지퍼 백 바로 아래가 얇대요"></div>
               <div class="field"><label for="b_ai_fix">AI 가 말한 보강 방법 <span class="muted">(내 말로)</span></label>
                 <textarea id="b_ai_fix" class="input" style="min-height:70px" placeholder="예: 풍선 아래에 솜공을 더 깔아 천천히 멈추게 하래요."></textarea></div>
             </div>
@@ -1894,8 +1907,8 @@ table.tbl.qty .blank{width:2.8em}
         <div class="stack">
           <div class="piece">
             <div class="ph"><span class="pn">가</span><span class="pt">정하고 고치기</span><span class="tag ai-view">AI 답 다시 보기만</span><span class="tag mode-team">모둠 활동</span><span class="pm">4분</span></div>
-            <p>AI 의견은 <b>참고 의견</b>이에요(결정은 우리가 해요). <b>제미나이에게 새로 묻지 않고</b>, ③ 에서 받은 답을 다시 봐요.
-              ③ 에서 함께 읽은 AI 의견을 다시 보고, 고칠 것은 <b>모둠이 하나로</b> 정해요(헬멧은 하나예요).
+            <p>AI 의견은 <b>참고 의견</b>이에요(결정은 우리가 해요). <b>제미나이에게 새로 묻지 않고</b> ③ 에서 함께 읽은 AI 답을 다시 보고,
+              고칠 것은 <b>모둠이 하나로</b> 정해요(헬멧은 하나예요).
               세 칸은 각자 <b>내 말로</b> 적어요. 고치지 않아도 돼요.</p>
             <!-- 흐름 검토(2026-09-29): ③-나 에 적은 내 AI 의견을 다시 보인다(읽기 전용 · 판정 없음, paintMyAi) -->
             <p class="small muted" id="b_myai" style="margin-top:6px"></p>
@@ -1922,7 +1935,7 @@ table.tbl.qty .blank{width:2.8em}
               <p class="small muted">헬멧을 실제로 어떻게 고쳤는지 적어요.</p>
               <input id="b_fixed" class="input" type="text" placeholder="예: 솜공 10개를 작은 지퍼 백 아래에 더 깔았어요">
               <p class="notice" id="note-fixq" style="display:none; margin-top:6px"></p></div>
-            <p style="margin-top:12px"><b>고친 뒤 비용</b> <span class="small muted">1차시 최종 설계 수량이 저절로 들어와요 — 만들 때나 고칠 때 재료를 바꿨으면 바뀐 줄만 고쳐요</span></p>
+            <p style="margin-top:12px"><b>고친 뒤 비용</b> <span class="small muted">1차시 최종 설계 수량이 저절로 들어와요 — 만들 때나 고칠 때 재료를 바꿨으면 바뀐 줄만 고쳐요. 더 쓸 재료는 바구니에서 받아요.</span></p>
             <div class="row" style="margin-top:6px">
               <button class="btn sm" type="button" id="copy-f-to-r">1차시 최종 설계 수량 다시 가져오기</button>
               <span class="small muted" id="ccm-r" aria-live="polite">고친 줄을 1차시 최종 설계 수량으로 되돌릴 때만 눌러요.</span>
@@ -2092,8 +2105,13 @@ table.tbl.qty .blank{width:2.8em}
             <p class="small" style="margin-top:6px">④-가 에 적은 것을 다시 보고, ⑤ 에서 본 결과를 근거로 판단해요.</p>
             <div class="small muted" id="rv_aisrc" style="margin-top:6px; white-space:pre-line"></div>
             <div class="frame"><b>이렇게 써 봐요</b>AI 는 ____ 하라고 했고, 우리는 그 의견을 ( 따랐어요 / 따르지 않았어요 ).
-              실제로 ____ 를 보니, 그렇게 판단한 근거는 ____ 예요.</div>
-            <p class="small muted" style="margin-top:6px">AI 가 말한 대로 결과가 나왔으면 「맞았다」, 다르게 나왔으면 「빗나갔다」 를 골라요. 이번에 한 번 떨어뜨린 것만으로 가를 수 없으면 「이번 결과로는 알 수 없다」 를 골라요. 문장 틀을 따라 따랐는지와 근거를 적어요.</p>
+              실제로 ____ 를 보니 ( 맞았다 / 빗나갔다 / 알 수 없다 ) — 그렇게 판단한 근거는 ____ 예요.</div>
+            <!-- 2026-10-26 3차 — 보강 방법은 결과 예상이 아니므로, 따랐는지에 따라 AI 가 짚은 곳을 보고 가른다 -->
+            <ul class="small muted" style="margin-top:6px; padding-left:1.2em">
+              <li><b>따랐으면</b> — AI 가 짚은 곳이 버텼나요? 버텼으면 「맞았다」, 다른 곳이 먼저 망가졌으면 「빗나갔다」.</li>
+              <li><b>따르지 않았으면</b> — AI 가 짚은 곳이 실제로 망가졌나요? 망가졌으면 「맞았다」, 멀쩡했으면 「이번 결과로는 알 수 없다」.</li>
+              <li>한 번 떨어뜨린 것이라 '그런 것 같다' 정도로 말해요. 가를 수 없으면 「이번 결과로는 알 수 없다」.</li>
+            </ul>
             <div class="field" style="margin-top:8px">
               <label id="lab-b_ai_judge">그 AI 보강 방법은</label>
               <div class="row">
@@ -2377,19 +2395,22 @@ function hasWord(className, w){
    · 처음 기본값은 5분이다. 고를 시간 맨 앞에 '이 단계 n분'을 둔다.
    ========================================================================== */
 /* 2026-10-26 — 타이머의 '이 단계' 는 수업 화면이 열려 있으면 지금 장의 단계, 아니면 활동지의 지금 단계 */
+function timerLesson(){
+  return (typeof Lesson !== "undefined" && Lesson.root && /open/.test(Lesson.root.className || "") && Lesson.slides) ? Lesson.L() : LESSON;
+}
 function timerStep(){
-  var d, g, i;
+  var d, g, i, S = (timerLesson() === 2) ? STEPS2 : STEPS1;
   if (typeof Lesson !== "undefined" && Lesson.root && /open/.test(Lesson.root.className || "") && Lesson.slides) {
     d = Lesson.slides[Lesson.idx]; g = d && d.step ? d.step.charAt(0) : "";
-    for (i = 0; i < STEPS.length; i++) if (STEPS[i].g === g) return i;
+    for (i = 0; i < S.length; i++) if (S[i].g === g) return i;
   }
   return cur;
 }
 /* 그 단계 조각의 분 — [{l:"가", m:4}, …]. '다 와 함께' 처럼 같은 때에 하는 조각도 분만 읽는다 */
 function timerPieces(si){
-  var out = [], ph, i, n, m;
-  if (!secs[si]) return out;
-  ph = secs[si].querySelectorAll(".piece > .ph");
+  var out = [], ph, i, n, m, ss = $("stage" + timerLesson()).getElementsByClassName("stepsec");   /* 3차 — 수업 화면의 차시 */
+  if (!ss[si]) return out;
+  ph = ss[si].querySelectorAll(".piece > .ph");
   for (i = 0; i < ph.length; i++) {
     n = ph[i].querySelector(".pn"); m = ph[i].querySelector(".pm");
     m = m ? /^(\d+)분/.exec(m.textContent) : null;
@@ -2517,7 +2538,7 @@ var Timer = {
 
   /* 고를 수 있는 시간 — 지금 단계 시간이 있으면 맨 앞에 둔다 */
   picks: function(){
-    var si = timerStep(), out = [], mm = (STEPS[si] && STEPS[si].min) || 0, pcs = timerPieces(si), i;
+    var si = timerStep(), S = (timerLesson() === 2) ? STEPS2 : STEPS1, out = [], mm = (S[si] && S[si].min) || 0, pcs = timerPieces(si), i;
     if (mm > 0) out.push({ label:"이 단계 " + mm + "분", sec:mm * 60 });
     for (i = 0; i < pcs.length; i++) out.push({ label:pcs[i].l + " " + pcs[i].m + "분", sec:pcs[i].m * 60 });   /* 2026-10-26 조각 분 */
     [1, 3, 5, 10, 15].forEach(function(v){
@@ -2703,19 +2724,22 @@ function lessonFit(box, grow){
    ========================================================================== */
 var Lesson = {
   root:null, body:null, idx:0, sub:0, slides:null, uiTimer:null, keyHandler:null, resizeBound:false, rsTimer:null,
+  ls:0, builtL:0,      /* 2026-10-26 3차 — 수업 화면의 차시(0 이면 활동지 차시를 따른다). 수업 화면에서 차시를 넘겨도 활동지는 그대로 둔다 */
+  L: function(){ return this.ls || LESSON; },
 
   /* 슬라이드를 수업 화면용으로 옮긴다.
      lines 의 k 가 label 이면 작은 강조, meta 면 잔글씨, ans 면 답, cont 면 앞 줄 문장이 이어지는 줄(점 없이 들여 씀 — A14 고침 K3), 나머지는 본문이다.
      A14 D23: mode 는 머리 줄의 활동 형태 딱지, fig 는 글 아래 그림(#ls-fig-<이름> 틀을 복제한다). */
   build: function(){
-    var deck = (LESSON === 2) ? lesson2Deck() : lesson1Deck(), out = [], i, j, d, lines, sub, list;
+    var L = this.L(), deck = (L === 2) ? lesson2Deck() : lesson1Deck(), out = [], i, j, d, lines, sub, list;
+    this.builtL = L;
     for (i = 0; i < deck.length; i++) {
       d = deck[i];
       lines = d.lines || [];
       if (d.cover) {
         sub = [];
         for (j = 0; j < lines.length; j++) if (lines[j].t) sub.push(lines[j].t);
-        out.push({ cover:true, kicker:"Ⅰ-5 · " + LESSON + "차시", title:d.title, sub:sub.join("  ·  "), step:"", mode:"", ai:"" });
+        out.push({ cover:true, kicker:"Ⅰ-5 · " + L + "차시", title:d.title, sub:sub.join("  ·  "), step:"", mode:"", ai:"" });
         continue;
       }
       list = [];
@@ -2724,14 +2748,14 @@ var Lesson = {
         list.push({ t:lines[j].t, k:lines[j].k || "body", hold:!!lines[j].hold });
       }
       out.push({ title:d.title, list:list, step:d.step || "", mode:d.mode || "", fig:d.fig || "",
-                 ai:deckAi(d, LESSON === 2 ? STEPS2 : STEPS1) });
+                 ai:deckAi(d, L === 2 ? STEPS2 : STEPS1) });
     }
     return out;
   },
 
   /* 차시를 바꾸면 덱을 새로 만든다 */
   reset: function(){
-    this.slides = null; this.idx = 0; this.sub = 0;
+    this.slides = null; this.idx = 0; this.sub = 0; this.ls = 0;
     var dots = $("ls-dots");
     if (dots) clear(dots);
   },
@@ -2872,22 +2896,22 @@ var Lesson = {
     }
     var left = this.holds() - this.sub, tag = $("ls-more");
     if (tag) tag.textContent = left > 0 ? "눌러서 더 보기 (" + left + ")" : "";
-    $("ls-prev").disabled = (this.idx === 0 && this.sub === 0 && LESSON === 1);
-    $("ls-next").disabled = (this.idx === this.slides.length - 1 && left === 0 && LESSON === 2);
+    $("ls-prev").disabled = (this.idx === 0 && this.sub === 0 && this.L() === 1);
+    $("ls-next").disabled = (this.idx === this.slides.length - 1 && left === 0 && this.L() === 2);
   },
 
   /* 숨긴 줄이 남았으면 하나 더 보여 주고, 다 보여 줬으면 다음 장으로 */
   fwd: function(){
     if (this.sub < this.holds()) { this.sub++; this.reveal(); return; }
     if (this.idx < this.slides.length - 1) { this.sub = 0; this.go(this.idx + 1); return; }
-    /* 1차시 마지막 장 → 2차시 수업 화면으로 곧바로(100분 블록, A13-15). 교사 기기의 활동지도 2차시로 바뀐다 */
-    if (LESSON === 1) { setLesson(2); this.open(); }
+    /* 1차시 마지막 장 → 2차시 수업 화면으로 곧바로(100분 블록, A13-15). 2026-10-26 3차 — 활동지 차시는 바꾸지 않는다(학생 기기에서도 열 수 있다) */
+    if (this.L() === 1) { this.reset(); this.ls = (LESSON === 2) ? 0 : 2; this.open(); }
   },
   back: function(){
     if (this.sub > 0) { this.sub--; this.reveal(); return; }
     /* 2차시 첫 장 → 1차시 마지막 장(다 보여 준 상태)으로 */
-    if (this.idx === 0 && LESSON === 2) {
-      setLesson(1); this.open(); this.go(this.slides.length - 1);
+    if (this.idx === 0 && this.L() === 2) {
+      this.reset(); this.ls = (LESSON === 1) ? 0 : 1; this.open(); this.go(this.slides.length - 1);
       this.sub = this.holds(); this.reveal();
       return;
     }
@@ -3157,7 +3181,7 @@ function lesson1Deck(){
 
     { step:dstep(S, 3), mode:SOLO, title:"대화 1 은 각자 · 대화 2 는 나눠서",
       lines:[ {t:"대화 1 — 각자 서로 다른 설계 3가지 받기"},
-              {t:"대화 2 — ⑤ 에서 후보를 받은 사람이 근거 묻기"},
+              {t:"대화 2 — ⑤ 에서 후보가 된 AI 설계를 받은 사람이 근거 묻기"},
               {t:"두 대화는 같은 대화창에서 — 대화창을 닫지 않아요"},
               {t:"받은 답은 읽고 내 말로 바꾸어 적어요"},
               {t:"받은 설계가 모둠원마다 달라도 괜찮아요", k:"meta"} ] },
@@ -3210,7 +3234,7 @@ function lesson1Deck(){
     { step:dstep(S, 4), mode:"나눠 묻기 → 모둠 활동", title:"나. 근거 묻기 — 나눠서",
       lines:[ {t:"1. 내가 받은 AI 설계가 후보면 그 설계 — 내가 물어요"},
               {t:"없으면 「모둠원이 물어요」 · 누구 것인지 적어요", k:"meta"},
-              {t:"「나의 안」 은 묻지 않고 4 에서 ③ 의 까닭으로 설명", k:"meta"},
+              {t:"「나의 안」 은 묻지 않고 4 에서 설명 · 둘 다 후보면 AI 설계를 물어요", k:"meta"},
               {t:"2. [질문 복사하기] → 같은 대화창에 보내요"},
               {t:"3. 근거와 가정 · 계산 · 실험 · 짐작? · 얼마나 믿을까"},
               {t:"기다리는 동안 — 내 후보 설계의 까닭 · 약한 곳", k:"meta"},
@@ -3221,8 +3245,8 @@ function lesson1Deck(){
       lines:[ {t:"계산 — 직접 셈해서"},
               {t:"실험 — 직접 해 봐서"},
               {t:"짐작 — 비슷한 경우를 보고"},
-              {t:"AI 는 충돌 시간이나 달걀이 받는 힘을 재 보지 않았어요 — 숫자를 써도 가정에서 나온 짐작이에요", k:"ans", hold:true},
-              {t:"그래서 근거를 묻고, 믿을지는 우리가 정해요", k:"ans", hold:true} ] },
+              {t:"AI 는 충돌 시간이나 힘을 재 보지 않았어요 — 셈을 했어도 가정한 값으로 한 셈이에요", k:"ans", hold:true},
+              {t:"그 가정이 맞을 때만 맞아요 — 그래서 가정을 묻고, 믿을지는 우리가 정해요", k:"ans", hold:true} ] },
 
     { step:dstep(S, 4), mode:TEAM, title:"나. 하나 고르고 까닭 쓰기",
       lines:[ {t:"AI 근거와 가정 · 나의 안의 까닭을 모둠에 설명해요"},
@@ -3234,8 +3258,8 @@ function lesson1Deck(){
               {t:"까닭은 각자 내 활동지에 적어요"} ] },
 
     { step:dstep(S, 4), ai:"보기만", mode:TEAM, title:"다. 최종 설계",
-      lines:[ {t:"나의 안 · 설계 1~3 을 고르면 표가 저절로 채워져요"},
-              {t:"나의 안 · 설계 1~3 은 내 것 — 모둠원의 것이면 「모둠원의 안 · 설계」", k:"meta"},
+      lines:[ {t:"나의 안 · 내 설계 1~3 을 고르면 표가 저절로 채워져요"},
+              {t:"모둠원의 것이면 「모둠원의 안 · 설계」", k:"meta"},
               {t:"모둠원의 안 · 설계 · 섞거나 고친 안 → 표에 직접 적어요"},
               {t:"총비용은 " + won(BUDGET) + " 이하 — 저절로 셈해져요"},
               {t:"최종 설계는 모둠원 모두 같게 적어요"},
@@ -3271,6 +3295,7 @@ function lesson2Deck(){
               {t:"모둠 대표를 한 명 정해요"},
               {t:"대화 3 보내기 · 사진 찍기 · 전시관 PDF 만들어 올리기", k:"meta"},
               {t:"카메라가 있는 태블릿 · 폰을 가진 사람이 대표"},
+              {t:"1차시 ⑤-다(최종 설계)를 채운 사람이어야 대화 3 을 보내요", k:"meta"},
               {t:"대표는 모둠원 학번과 이름을 미리 받아 둬요(종이에)", k:"meta"},
               {t:"떨어뜨리기는 마지막에 한 번뿐이에요"} ] },
 
@@ -3303,16 +3328,16 @@ function lesson2Deck(){
     /* v4(2026-10-13) — 나의 예측(각자) → 우리 예측(모둠). 활동지 ③-가 조각 머리와 같은 활동 형태 */
     { step:dstep(S, 2), ai:"없이", mode:"개별 → 모둠 활동", title:"가. 먼저 예측하기 — 나 → 우리",
       lines:[ {t:"만든 헬멧을 보고 먼저 예측해요 — 나의 예측(각자) → 우리 예측(모둠)"},
-              {t:"실제로 떨어뜨리지 않아요 · 대표는 새 채팅에 사진을 올려만 둬요(보내지 않기)", k:"meta"},
+              {t:"실제로 떨어뜨리지 않아요 · 대표는 새 채팅에 사진 · 양식 PDF 를 올려만 둬요(보내지 않기)", k:"meta"},
               {t:"1 m 에서 떨어뜨리면 날달걀은? · 까닭"},
               {t:"우리 예측에는 가장 약해 보이는 곳도"},
-              {t:"다섯 칸을 적어야 대화 3 이 열려요"} ] },
+              {t:"다섯 칸(까닭은 다섯 글자 이상)을 적어야 대화 3 이 열려요"} ] },
 
     /* A14 D13 — 한 길: 양식 PDF → 사진 → 새 채팅에 사진과 PDF → 추천 글. 파일이 안 올라가면 접은 상자 */
     { step:dstep(S, 2), mode:REP, title:"나. 대화 3 · AI 예측",
       lines:[ {t:"1. [최종 설계 양식 받기 (PDF)] 를 눌러요"},
               {t:"2. ② 에서 찍은 헬멧 사진을 써요"},
-              {t:"3. 새 채팅에 사진 · PDF 를 올리고 보낼 글을 붙여 넣어 보내요"},
+              {t:"3. 새 채팅에 사진 · PDF(올려 뒀으면 그대로)와 보낼 글을 보내요"},
               {t:"파일이 안 올라가면 — 접힌 상자의 [글 복사하기] 글을 보내요", k:"meta"},
               {t:"4. 받은 답을 각자 내 말로 적어요"},
               {t:"대표만 1 ~ 3 · 나머지는 대표 화면을 함께 보고 4 — [4 로 가기]", k:"meta"} ] },
@@ -3435,8 +3460,8 @@ function lesson2Deck(){
     { step:dstep(S, 5), mode:SOLO, title:"이렇게 써 봐요 — 생각해 볼 것 2",
       lines:[ {t:"④-가 의 AI 보강 방법을 지금 다시 판단해요", k:"label"},
               {t:"AI 는 ____ 하라고 했고, 우리는 그 의견을 ( 따랐어요 / 따르지 않았어요 )"},
-              {t:"실제로 ____ 를 보니, 그렇게 판단한 근거는 ____ 예요"},
-              {t:"칩 — 맞았다 · 빗나갔다 · 이번 결과로는 알 수 없다"} ] },
+              {t:"실제로 ____ 를 보니 ( 맞았다 / 빗나갔다 / 알 수 없다 ) — 근거는 ____ 예요"},
+              {t:"따랐으면 짚은 곳이 버텼나 · 안 따랐으면 짚은 곳이 망가졌나"} ] },
 
     { step:dstep(S, 5), mode:SOLO, title:"이렇게 써 봐요 — 생각해 볼 것 3",
       lines:[ {t:"다시 만든다면 무엇을 바꿀까요? 까닭은요?", k:"label"},
@@ -4077,9 +4102,10 @@ var Store = {
        적은 수량을 덮게 되면 먼저 묻고, [취소]면 칩을 되돌린다(A14 고침 H5 — pickChanged) */
     if (t.name === "a_pick") pickChanged();
     /* 2026-10-25 — 대화 3 은 모둠당 한 번이라 보내지 않는 학생은 [복사하기] 를 누르지 않는다.
-       2026-10-26 — 가 조각 예측 다섯 칸(predBlock2)을 다 적은 뒤, 그 칸에서 손을 뗄 때(change — 글 칸은 손을 뗄 때, 칩은 고를 때) 처음 값을 남긴다.
-       글자를 칠 때마다(input) 남기면 반쯤 적은 글이 남는다. 놓쳤으면 AI 답 칸에 처음 적을 때 남긴다. 이미 있으면 snapTake 가 그냥 돌아간다 */
-    if (((e.type === "change" && /^b_(pred_me|pred_me_why|pred_our|pred_why|weak_our)$/.test(k)) || /^b_ai_(pred|why|weak|fix)$/.test(k)) && !predBlock2()) snapTake("c3");
+       2026-10-26 3차 — 가 조각 다섯 칸이 다 찬 동안은 처음 값을 계속 새로 쓰고(snapRoll3), AI 답 칸에 처음 적을 때 굳힌다(snapTake).
+       [복사하기] · [4 로 가기] 를 먼저 누르면 그때 굳는다 */
+    if (/^b_(pred_me|pred_me_why|pred_our|pred_why|weak_our)$/.test(k)) snapRoll3();
+    else if (/^b_ai_(pred|why|weak|fix)$/.test(k) && val(k)) snapTake("c3");   /* 글이 들어갈 때만(지울 때는 굳히지 않는다) */
     /* 만든 전시관 PDF 가 있는데 PDF 에 들어가는 칸(제목 · 구성한 이유)을 고치면 그 PDF 는 낡는다 */
     pdfStaleBy(k);
     paintDerived();
@@ -4556,7 +4582,7 @@ var Cards = {
       box.placeholder = blk ? "(잠김) " + blk : "";   /* A15 — 숨기지 않고 무엇을 먼저 적어야 하는지 보인다 */
       if (note) { note.textContent = blk; note.style.display = blk ? "" : "none"; }
       if (sel) sel.disabled = !ok || !!blk;
-      if (save) save.disabled = !ok || !!blk;
+      if (save) save.disabled = !ok || !!this.saveBlock(n);
     }
     /* 대화 1 상자(자료 PDF · 보낼 글 · 접은 상자) · 대화 3 상자(양식 PDF · 사진 · 보낼 글 · 접은 상자) — A15: 잠겨 있어도 숨기지 않는다.
        단추는 누를 수 없고(위 save · sel disabled), 보낼 글 자리에는 무엇을 먼저 적어야 열리는지가 흐리게 보인다(placeholder).
@@ -4576,6 +4602,12 @@ var Cards = {
     if (pv3) FinalDoc.stale(pv3);
   },
 
+  /* PDF 단추를 막는 까닭. 2026-10-26 3차 — 대화 3 양식 PDF 에는 예측이 없으므로 1차시 최종 설계만 있으면 먼저 받는다(보낼 글은 그대로 잠금) */
+  saveBlock: function(n){
+    if (n === "c3") return hasMine1() ? "" : MINE1_MSG3;
+    return this.block(n);
+  },
+
   msg: function(n, text, warn){
     var m = $("msg-" + n);
     if (!m) return;
@@ -4589,7 +4621,7 @@ var Cards = {
   save: function(n){
     var b, doc = (n === "c3") ? FinalDoc : AiDoc, file = (n === "c3") ? FINAL_PDF_FILE : AI_PDF_FILE;
     if (!(Store.key && Store.ready)) { this.msg(n, "먼저 1차시 ① 에서 학번과 이름을 적고 [시작해요] 를 눌러요.", true); return; }
-    if (this.block(n)) { this.msg(n, this.block(n), true); return; }
+    if (this.saveBlock(n)) { this.msg(n, this.saveBlock(n), true); return; }
     b = doc.pdf();
     if (!b) { this.msg(n, (n === "c3" ? "양식" : "자료") + " PDF 를 만들지 못했어요. 아래 「파일이 안 올라가면」 의 글을 복사해 붙여 넣어요.", true); return; }
     this.msg.apply(this, [n].concat(saveNote(downloadBytes(b, file, "application/pdf"), file, b.length, $("save-" + n).textContent)));
@@ -4624,14 +4656,34 @@ var SNAP = {
 };
 var SNAP_OF = { c1:"c1", c1b:"c1", c3:"c3", c3b:"c3" };
 function snapVal(f){ return String((f[2] ? rv(f[0]) : val(f[0])) || ""); }
+function snapNow(g){ var s = SNAP[g], v = {}, i; for (i = 0; i < s.f.length; i++) v[s.f[i][0]] = snapVal(s.f[i]); return v; }
+/* 처음 값을 굳힌다. 1차시 대화 1 — 한 번만(복사할 때).
+   2026-10-26 3차 — 2차시 대화 3 은 가 조각 다섯 칸을 고치는 동안 snapRoll3 가 계속 새로 쓰고(fin:false), [복사하기] · [4 로 가기] ·
+   AI 답 칸 첫 입력 가운데 먼저 일어난 때 여기서 굳힌다(fin 을 뺀다). 다섯 칸이 덜 찼으면 새로 쓴 마지막 값을 그대로 굳힌다.
+   옛 기록(fin 이 없는 값)은 이미 굳은 것으로 본다 */
 function snapTake(n){
-  var g = SNAP_OF[n], s, h, v = {}, i;
+  var g = SNAP_OF[n], s, h, o;
   if (!g) return;
   s = SNAP[g]; h = $(s.id);
-  if (!h || h.value) return;
-  for (i = 0; i < s.f.length; i++) v[s.f[i][0]] = snapVal(s.f[i]);
-  h.value = JSON.stringify({ t:new Date().getTime(), v:v });
+  if (!h) return;
+  if (h.value) {
+    if (g !== "c3") return;
+    o = snapRead(g);
+    if (!o || o.fin !== false) return;
+    h.value = JSON.stringify({ t:o.t, v:(predBlock2() ? o.v : snapNow(g)) });
+    Store.bump();
+    return;
+  }
+  if (g === "c3" && predBlock2()) return;
+  h.value = JSON.stringify({ t:new Date().getTime(), v:snapNow(g) });
   Store.bump();
+}
+/* 대화 3 처음 값을 다섯 칸이 다 찬 동안 새로 쓴다(굳기 전까지) — 모둠이 AI 를 보기 전에 합의해 고친 값이 남게 */
+function snapRoll3(){
+  var h = $("b_snap_c3"), o;
+  if (!h || predBlock2()) return;
+  if (h.value) { o = snapRead("c3"); if (!o || o.fin !== false) return; }
+  h.value = JSON.stringify({ t:new Date().getTime(), v:snapNow("c3"), fin:false });
 }
 function snapRead(g){
   var h = $(SNAP[g].id), o = null;
@@ -4922,8 +4974,8 @@ function paintCmp(){
     setShow(id + "aichk", o.aichk);
     setShow(id + "rule", o.rule);
     setShow(id + "pred", o.pred);
-    setShow(id + "why", o.why);
-    setShow(id + "weak", o.weak);
+    setShow(id + "why", o.why, c[2] ? "나 에서 채워요" : "");     /* 3차 — 설계 1~3 은 후보가 되면 ⑤-나 에서 채운다(빠뜨린 것으로 보이지 않게) */
+    setShow(id + "weak", o.weak, c[2] ? "나 에서 채워요" : "");
     w = $(id + "what");
     if (w && w.textContent !== o.what) w.textContent = o.what;
   }
@@ -4941,7 +4993,7 @@ function paintCmp(){
 var FINAL_SRC = { "나의 안":"a_n_", "설계 1":"a_d1_n_", "설계 2":"a_d2_n_", "설계 3":"a_d3_n_" };
 var FINAL_EDIT = { "모둠원이 받은 설계":1, "섞거나 고친 안":1 };
 /* 칩의 보이는 이름 — 저장값 "모둠원이 받은 설계" 는 2026-10-26 부터 「모둠원의 안 · 설계」 로 보인다(옛 기록 그대로) */
-function pickName(p){ return p === "모둠원이 받은 설계" ? "모둠원의 안 · 설계" : p; }
+function pickName(p){ return p === "모둠원이 받은 설계" ? "모둠원의 안 · 설계" : (/^설계 [123]$/.test(p) ? "내 " + p : p); }   /* 3차 — 「내 설계 n」(저장값 "설계 n" 그대로) */
 function finalSrc(){ var p = rv("a_pick"); return FINAL_SRC.hasOwnProperty(p) ? FINAL_SRC[p] : ""; }
 function srcHas(src){
   var i;
@@ -4986,11 +5038,11 @@ function pickChanged(){
     /* 표의 값이 손으로 적은 것인가 — 직전 칩이 적을 수 있는 칩, 또는 비운 칩 앞이 채우는 칩이 아니었을 때(옛 기록 포함) */
     hand = FINAL_EDIT.hasOwnProperty(was) || (!was && !FINAL_SRC.hasOwnProperty(lastRealPick));
     if (hand && finAny(cur) && !finSame(cur, nw)) {
-      if (!window.confirm("최종 설계 표에 적은 수량이 " + p + " 값으로 바뀌어요. 바꿀까요?")) { setPickRadio(was); return false; }
+      if (!window.confirm("최종 설계 표에 적은 수량이 " + pickName(p) + " 값으로 바뀌어요. 바꿀까요?")) { setPickRadio(was); return false; }
       finEditMemo = cur;
     }
     syncFinal(true);
-  } else if (FINAL_EDIT.hasOwnProperty(p) && !FINAL_EDIT.hasOwnProperty(was) && finEditMemo) {
+  } else if (p === "모둠원이 받은 설계" && !FINAL_EDIT.hasOwnProperty(was) && finEditMemo) {   /* 3차 — 「섞거나 고친 안」 은 바로 앞 설계 수량에서 고친다(되살리지 않음) */
     for (i = 0; i < MATS.length; i++) { e = $("a_fn_" + MATS[i].k); if (e) e.value = finEditMemo[MATS[i].k] || ""; }
     finEditMemo = null;
   } else if (p === "모둠원이 받은 설계" && FINAL_SRC.hasOwnProperty(was) && finSame(finVals("a_fn_"), finVals(FINAL_SRC[was]))) {
@@ -5009,8 +5061,8 @@ function paintFinal(){
   if (src) {
     where = (p === "나의 안") ? "③ 나의 설계 표" : "④ " + p + " 칸";
     t = srcHas(src)
-      ? "고른 안: " + p + " — " + where + "의 재료와 개수가 저절로 들어왔어요. 고치려면 ⑤-나 에서 「섞거나 고친 안」을 골라요."
-      : "고른 안: " + p + " — " + where + "에 재료와 개수가 비어 있어요. 그 칸을 먼저 적어요.";
+      ? "고른 안: " + pickName(p) + " — " + where + "의 재료와 개수가 저절로 들어왔어요. 고치려면 ⑤-나 에서 「섞거나 고친 안」을 골라요."
+      : "고른 안: " + pickName(p) + " — " + where + "에 재료와 개수가 비어 있어요. 그 칸을 먼저 적어요.";
     pn = "고른 설계가 아래 다 「최종 설계」 표에 저절로 들어가요.";
   } else if (edit) {
     t = "고른 안: " + pickName(p) + " — 모둠이 정한 재료의 수량을 아래 표에 적어요." +
@@ -5070,12 +5122,12 @@ function paintReflect(){
 /* v4(2026-10-13) ⑥-가 「고침 여부」(계획서 v4 3-3) — 「고침 여부: 」 뒤의 글. 화면(#rv_fixed)과 활동지 PDF 가 같이 쓴다.
    ④-가 최종 반영한 것(b_fixed)이 '없음'(앞뒤 빈칸과 끝 마침표를 뗀 글이 정확히 '없음')이면 고치지 않음, 글이 있으면 고침.
    비었으면 '고침' 으로 잘못 보이지 않게 비었다고 알린다(맞음/틀림 판정은 하지 않는다) */
-function fxNone(fx){ return fx.replace(/\.$/, "").replace(/\s+$/, "") === "없음"; }
+function fxNone(fx){ return isNone(fx); }
 function fixState(){
   var q = rv("b_fixq"), fx = val("b_fixed"), h = "고침 — 우리 예측 · AI 예측은 고치기 전 헬멧, 최종 예측 · 실제는 떨어뜨린 헬멧. ";
   /* 2026-10-26 — ④-가 「헬멧을 고쳤나요?」 칩(b_fixq)을 먼저 본다. 칩이 비었으면(옛 기록) 아래 옛 판정 */
   if (q === "안 고쳤어요") return "고치지 않음";
-  if (q === "고쳤어요") return h + (fx && !fxNone(fx) ? "④ 에서 최종 반영한 것: " + fx : "④ 「최종 반영한 것」 은 적지 않았어요");
+  if (q === "고쳤어요") return h + "④ 에서 최종 반영한 것: " + (fx || "적지 않음");   /* 3차 — 적은 글 그대로(칩과 어긋나면 화면에 따로 알린다) */
   if (!fx) return "④-가 「헬멧을 고쳤나요?」 를 고르지 않았어요";
   if (fxNone(fx)) return "고치지 않음";
   return h + "④ 에서 최종 반영한 것: " + fx;
@@ -5089,18 +5141,23 @@ function rnSame(){
   for (i = 0; i < MATS.length; i++) { k = MATS[i].k; if (val("a_fn_" + k)) any = true; if (val("b_rn_" + k) !== val("a_fn_" + k)) return false; }
   return any;
 }
+var CCM_FIN0 = "「안 고쳤어요」 면 ③-가 우리 예측을 그대로 가져와요.", fixLastQ = null;
 function paintFix(){
   var q = rv("b_fixq"), fx = val("b_fixed"), n = $("note-fixq"), r = $("note-finre"), m = $("note-rn"), t = "", same = rv("b_same");
   if (q === "안 고쳤어요" && fx && !fxNone(fx)) t = "「안 고쳤어요」 를 골랐는데 「최종 반영한 것」 에 고친 것이 적혀 있어요 — 어느 쪽이 맞는지 확인해요.";
   else if (q === "고쳤어요" && fx && fxNone(fx)) t = "「고쳤어요」 를 골랐는데 「최종 반영한 것」 이 '없음' 이에요 — 어느 쪽이 맞는지 확인해요.";
   if (n) { n.style.display = t ? "" : "none"; if (n.textContent !== t) n.textContent = t; }
-  t = (fixYes() && rv("b_pred_fin") && rv("b_pred_fin") === rv("b_pred_our") && val("b_pred_fin_why") && val("b_pred_fin_why") === val("b_pred_why"))
-    ? "헬멧을 고쳤는데 최종 예측 · 까닭이 ③-가 우리 예측과 똑같아요 — 고친 헬멧을 보고 까닭을 다시 적어요." : "";
+  /* 3차 — 최종 예측 칩만 바꿔도 까닭이 ③-가 그대로면 알린다 */
+  t = (fixYes() && val("b_pred_fin_why") && val("b_pred_fin_why") === val("b_pred_why"))
+    ? "헬멧을 고쳤는데 최종 예측 까닭이 ③-가 우리 예측 까닭과 똑같아요 — 고친 헬멧을 보고 까닭을 다시 적어요." : "";
   if (r) { r.style.display = t ? "" : "none"; if (r.textContent !== t) r.textContent = t; }
-  t = ((same && same !== "그대로") || notNone(val("b_changed")) || fixYes()) && rnSame()
+  t = ((same ? same !== "그대로" : notNone(val("b_changed"))) || fixYes()) && rnSame()   /* 3차 — 「그대로」 를 골랐으면 칩을 먼저 따른다 */
     ? "만들면서 바꾼 것이나 고친 것이 있는데 아래 수량이 1차시 최종 설계와 같아요 — 바뀐 재료의 수량을 고쳤나요?" : "";
   if (m) { m.style.display = t ? "" : "none"; if (m.textContent !== t) m.textContent = t; }
   if (q && $("go-fixq")) $("go-fixq").style.display = "none";
+  /* 3차 — 칩을 바꾸면 [가져오기] 아래 알림을 처음 문구로(앞 상황의 알림이 남지 않게) */
+  if (fixLastQ !== null && q !== fixLastQ && $("ccm-fin")) $("ccm-fin").textContent = CCM_FIN0;
+  fixLastQ = q;
 }
 /* v4(2026-10-13) ⑥-가 생각해 볼 것 2 위 — ④-가 「AI 가 추천한 것」 · 「받아들인 AI 의견」 읽기 전용(저장하지 않음 · 잠그지 않음).
    한 칸만 비었으면 그 줄에 (적지 않음), 둘 다 비었으면 한 줄 알림. 같은 글이면 다시 넣지 않는다 */
@@ -5171,8 +5228,10 @@ function aiAnsLocked(){
 }
 function paintAiAnsLock(){
   var ok = !!(Store.key && Store.ready), lk = ok && aiAnsLocked(), n = $("note-b3ai"), i, t;
-  t = lk ? "AI 답 칸은 위 가 조각의 예측을 다 적으면 열려요." : "";
+  /* 2026-10-26 3차 — 실제 잠금 까닭(predBlock2 — 다섯 글자 규칙 포함)을 그대로 보인다. [4 로 가기] 로 위 알림을 건너뛴 학생도 알 수 있게 */
+  t = lk ? predBlock2().replace(LOCK_MSG + " ", "AI 답 칸은 ") : "";
   if (n) { n.style.display = lk ? "" : "none"; if (n.textContent !== t) n.textContent = t; }
+  if ($("go3a-row")) $("go3a-row").style.display = lk ? "" : "none";
   if (!ok) return;
   for (i = 0; i < AI_ANS.length; i++) if ($(AI_ANS[i])) $(AI_ANS[i]).disabled = lk;
 }
@@ -5228,7 +5287,10 @@ function autoPut(id, v){
 }
 /* 받침이 있으면 a, 없으면 b — 「…」 뒤 조사(이라고 / 라고 · 이었어요 / 였어요). josa 는 아래 [PDF 알림] 쪽 한 곳에 있다
    (2026-10-26 — 여기 있던 같은 이름의 함수는 뒤의 것에 덮여 쓰이지 않아 지웠다) */
-function notNone(v){ return !!v && !/^없음\.?$/.test(v); }
+/* 2026-10-26 3차 — '없음' 으로 보는 말을 넓혔다("없어요" · "바꾼 것 없음" · "안 고침" · "-" 등). 앞뒤 빈칸 · 끝 마침표는 뗀다 */
+var NONE_RE = /^(없음|없어요|없습니다|없다|없어|없슴|바꾼 ?것 ?없음|바꾼 ?것 ?없어요|바꾼 ?것이 ?없어요|안 ?바꿈|안 ?바꿨어요|바꾸지 ?않음|바꾸지 ?않았어요|고친 ?것 ?없음|고친 ?것 ?없어요|안 ?고침|안 ?고쳤어요|고치지 ?않음|고치지 ?않았어요|x|X|-|—)[.!]?$/;
+function isNone(v){ return NONE_RE.test(String(v || "").replace(/^\s+|\s+$/g, "")); }
+function notNone(v){ return !!v && !isNone(v); }
 /* 묶는 차례는 2026-10-25 저장 때의 차례로 고정한다 — MATS 를 가나다순으로 바꿔도(2026-10-26) 이미 저장된 b_rn_auto 와 맞는다 */
 var QTY_KEYS = ["bal", "crd", "stk", "cot", "stw", "rbr", "vbg", "cup", "wdn", "exm"];
 function qtyJoin(pre){ var i, o = []; for (i = 0; i < QTY_KEYS.length; i++) o.push(String(($(pre + QTY_KEYS[i]) || {}).value || "")); return o.join("|"); }
@@ -5261,7 +5323,7 @@ function reasonDraft(){
   var out = [], pl = [], P = [["아래", "a_f_below"], ["위", "a_f_above"], ["옆", "a_f_side"], ["테이프로 붙인 곳", "a_f_tape"]], i;
   for (i = 0; i < P.length; i++) if (notNone(val(P[i][1]))) pl.push(P[i][0] + " — " + val(P[i][1]));
   if (pl.length) out.push("놓은 자리: " + pl.join(" · "));
-  if (notNone(val("b_changed"))) out.push("만들면서 바꾼 것: " + val("b_changed"));
+  if (rv("b_same") !== "그대로" && notNone(val("b_changed"))) out.push("만들면서 바꾼 것: " + val("b_changed"));
   if (fixYes() && notNone(val("b_fixed"))) out.push("떨어뜨리기 전에 고친 것: " + val("b_fixed"));
   return out.join("\n");
 }
@@ -5406,7 +5468,7 @@ var STEPS1 = [
     todo:"각자 제미나이에게 자료 PDF 를 주고 서로 다른 설계 3가지를 받아 내 말로 정리해요.",
     desc:"제미나이에게 설계 3가지를 받아요" },
   { g:"⑤", name:"비교하고 고르기",  min:15, ai:"대화 2", mode:"개별 → 모둠 활동",
-    todo:"가 는 각자 비교한 뒤 모둠이 후보 3가지를 고르고, 나 는 후보를 받은 사람이 나눠서 근거를 물은 뒤 모둠이 하나를 골라요. 적는 것은 모두 각자예요.",
+    todo:"가 는 각자 비교한 뒤 모둠이 후보 3가지를 고르고, 나 는 후보가 된 AI 설계를 받은 사람이 나눠서 근거를 물은 뒤 모둠이 하나를 골라요. 적는 것은 모두 각자예요.",
     desc:"후보 3가지 → 나눠서 근거 묻기 → 모둠이 하나 고르기" }
 ];
 /* A14 D4: 2차시 활동 형태 — ① · ② · ④ · ⑤ 모둠, ③ 가 모둠 → 나(대화 3) 개별, ⑥ 가 · 라 개별 · 나 · 다 모둠(대표). 조각 머리에도 딱지가 있다.
@@ -5479,7 +5541,7 @@ function paintStepBtns(){
     if (i === cur) stepBtns[i].setAttribute("aria-current", "true");
     else stepBtns[i].removeAttribute("aria-current");
   }
-  if ($("stepnote")) $("stepnote").style.display = (maxSeen > 1) ? "" : "none";   /* 2026-10-26 — ✓ 가 하나라도 있으면 */
+  if ($("stepnote")) $("stepnote").style.display = (maxSeen > 0) ? "" : "none";   /* 2026-10-26 — ✓ 가 하나라도 있으면(본 단계 = 지금보다 앞 단계) */
 }
 
 function buildStepbar(){
@@ -5569,8 +5631,10 @@ $("go5-b2").onclick = goFinal1;
 $("go5-b2b").onclick = goFinal1;
 $("go5-c3").onclick = goFinal1;
 /* 2026-10-26 — 2차시 ③-나 [4 로 가기](대표가 아닌 학생) — 4 「받은 답을 나의 말로」 까지 내리고 초점을 옮긴다 */
-$("go4-b3").onclick = function(){ goSpot(2, 2, "b3-s4"); };
-$("go4-b3b").onclick = function(){ goSpot(2, 2, "b3-s4"); };
+/* 2026-10-26 3차 — 4 로 가면(대표가 아닌 학생이 대표 화면의 AI 답을 볼 때) 대화 3 처음 판단을 굳힌다(snapTake) */
+$("go4-b3").onclick = function(){ snapTake("c3"); goSpot(2, 2, "b3-s4"); };
+$("go4-b3b").onclick = function(){ snapTake("c3"); goSpot(2, 2, "b3-s4"); };
+$("go3a-b3").onclick = function(){ goSpot(2, 2, "piece-b3a"); };
 /* A15 [③ 나의 예측으로 가기] — 대화 1 잠금 알림 아래. 1차시 ③ 「나의 예측과 까닭」 상자까지 내리고 초점을 옮긴다 */
 $("go3-c1").onclick = function(){ goSpot(1, 2, "pane-a3pred"); };
 
@@ -5597,7 +5661,8 @@ function setLesson(n, how){
   $("mod-sub").textContent = (n === 2) ? "2차시 · 교과서 38~41쪽 · 50분" : "1차시 · 교과서 38~41쪽 · 50분";
   $("lesson-tag").textContent = n + "차시";
   Store.write(Store.LESSONKEY, n);
-  Lesson.reset();
+  if (Lesson.slides && Lesson.builtL === n) Lesson.ls = 0;   /* 3차 — 수업 화면이 이미 그 차시면 보던 장을 지킨다 */
+  else Lesson.reset();
   maxSeen = memo ? memo.maxSeen : 0;
   buildStepbar();
   goStep(typeof how === "number" ? how : (memo ? memo.cur : 0));
@@ -5710,6 +5775,7 @@ var Photo = {
       self.cv[n] = null;
       self.busy[n] = false;
       try { input.value = ""; } catch (e2) {}
+      photoHad(n, "");   /* 3차 — 읽지 못한 사진은 '골랐음' 이 아니다(사라짐 알림이 덮지 않게) */
       self.status(n, "이 사진은 열 수 없어요. 다시 찍어요.", true);
     }
     img.onload = function(){
@@ -6218,7 +6284,7 @@ var Pdf = {
     if (!Photo.cv[2]) { this.msg("사진 2(떨어뜨린 뒤 달걀)를 골라요 — ⑤ 결과에서 올리거나 여기서 골라요.", true); return; }
     /* 2026-10-26 — 구성한 이유가 저절로 들어온 초안 그대로면 한 번 묻는다(막지는 않는다) */
     if ($("b_reason_auto").value && $("b_reason").value === $("b_reason_auto").value &&
-        !window.confirm("「구성한 이유」 가 저절로 들어온 초안 그대로예요. 모둠원 이름이나 「설계 2」 같은 말은 빼고 다듬는 것이 좋아요. 그대로 PDF 를 만들까요?")) {
+        !window.confirm("「구성한 이유」 가 저절로 들어온 초안 그대로예요. 어떤 재료를 어디에 왜 놓았는지 '충돌 시간' · '평균 힘'으로 다듬고, 모둠원 이름 · 「설계 2」 같은 말은 빼요. 그대로 PDF 를 만들까요?")) {
       this.msg("구성한 이유를 다듬은 뒤 [PDF 만들기] 를 다시 눌러요.", true); return;
     }
     this.reset();
@@ -6416,7 +6482,8 @@ function wsNoFix(){
   for (i = 0; i < MATS.length; i++) { r = val("b_rn_" + MATS[i].k); if (r) any = true; if (r !== val("a_fn_" + MATS[i].k)) diff = true; }
   if (any && diff) return false;
   if (!fixNo()) return false;
-  if (val("b_changed")) return false;
+  if (rv("b_fixq") === "안 고쳤어요" && notNone(val("b_fixed"))) return false;   /* 3차 A4 — 칩과 글이 어긋나면 「바꾸지 않음」 을 지어 내지 않는다 */
+  if (notNone(val("b_changed"))) return false;
   return same === "그대로";
 }
 /* 2026-10-26 — 저절로 들어온 글을 고치지 않았으면 활동지 PDF 에 그렇다고 적는다(숨은 칸 <id>_auto 와 같을 때) */
