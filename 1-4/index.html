@@ -1121,9 +1121,12 @@ table.tbl .blank.s{width:2.8em}
                         <span class="small muted">값이 1 mg 자리까지 보이면 ± 1 mg 이에요. 여러 번 재서 평균을 내도 기기의 한계는 그대로라 줄지 않아요</span></td></tr>
               </table>
             </div>
+            <!-- 2026-11-14 발주자 지시: 불확정도는 유효숫자 1개만 인정한다.
+                 전에는 '상대 불확정도는 1개'만 적혀 있어 절대 불확정도는 0.10 처럼 2개도 되는 것으로 읽혔다.
+                 절대와 상대를 한 문장으로 묶고, 측정값은 그 끝자리에 맞춘다는 순서로 쓴다. -->
             <div class="notice" style="margin-top:12px">
-              <b>적을 때 —</b> 측정값과 절대 불확정도는 <b>소수점 끝자리를 맞춰요</b>.
-              상대 불확정도는 유효숫자 <b>1개</b>로 적어요.
+              <b>적을 때 —</b> 불확정도는 절대 불확정도와 상대 불확정도 모두 유효숫자 <b>1개</b>로 적어요.
+              측정값은 절대 불확정도와 <b>소수점 끝자리를 맞춰요</b>.
               <span class="small muted" style="display:block; margin-top:6px">
                 상대 불확정도 (%) = 절대 불확정도 ÷ 측정값 × 100
               </span>
@@ -1411,9 +1414,9 @@ table.tbl .blank.s{width:2.8em}
                 <div class="qh">3. 최소 눈금 <b>0.1 cm</b> 인 자로 두 번 읽어 <b>17.60 cm</b> 와 <b>13.20 cm</b> 를 얻었어요. 두 값의 차는?</div>
                 <div class="row" style="align-items:flex-end">
                   <div class="field" style="flex:1 1 130px"><label for="p2v">값 (cm)</label>
-                    <input id="p2v" class="input" type="text" inputmode="decimal" placeholder="예: 0.00"></div>
+                    <input id="p2v" class="input" type="text" inputmode="decimal" placeholder="예: 0.0"></div>
                   <div class="field" style="flex:1 1 150px"><label for="p2u">불확정도 (cm)</label>
-                    <div class="pmwrap"><span class="pm">±</span><input id="p2u" class="input" type="text" inputmode="decimal" placeholder="예: 0.00"></div></div>
+                    <div class="pmwrap"><span class="pm">±</span><input id="p2u" class="input" type="text" inputmode="decimal" placeholder="예: 0.0"></div></div>
                   <button id="p2b" class="btn" type="button">확인</button>
                 </div>
                 <p class="fb" id="p2f"></p>
@@ -1423,9 +1426,9 @@ table.tbl .blank.s{width:2.8em}
                 <div class="qh">4. <b>3번에서 구한 값</b>을 <b>m</b> 로 바꾸면?</div>
                 <div class="row" style="align-items:flex-end">
                   <div class="field" style="flex:1 1 130px"><label for="p4v">값 (m)</label>
-                    <input id="p4v" class="input" type="text" inputmode="decimal" placeholder="예: 0.0000"></div>
+                    <input id="p4v" class="input" type="text" inputmode="decimal" placeholder="예: 0.000"></div>
                   <div class="field" style="flex:1 1 150px"><label for="p4u">불확정도 (m)</label>
-                    <div class="pmwrap"><span class="pm">±</span><input id="p4u" class="input" type="text" inputmode="decimal" placeholder="예: 0.0000"></div></div>
+                    <div class="pmwrap"><span class="pm">±</span><input id="p4u" class="input" type="text" inputmode="decimal" placeholder="예: 0.000"></div></div>
                   <button id="p4b" class="btn" type="button">확인</button>
                 </div>
                 <p class="fb" id="p4f"></p>
@@ -1641,10 +1644,12 @@ table.tbl .blank.s{width:2.8em}
               <p class="small muted" style="margin-top:9px">
                 「평균」·「상수를 곱하거나 나누기」 줄을 그대로 쓴 거예요. (④ 측정값 적는 방법)
               </p>
+              <!-- 2026-11-14 발주자 지시: 불확정도는 유효숫자 1개만.
+                   전에는 「가속도를 소수 둘째 자리까지 적었다면」 이라고 써서 다른 자리(0.010 등)도 되는 것처럼 읽혔다.
+                   불확정도를 먼저 1개로 맺고, 가속도를 그 끝자리에 맞춘다(아래 ⑤ 채점 코드와 같은 순서). -->
               <div class="notice" style="margin-top:10px">
-                <b>자릿수를 맞춰요.</b> 값과 불확정도는 <b>소수점 끝자리를 맞춰</b> 적어요.
-                가속도를 소수 둘째 자리까지 적었다면 불확정도도 거기 맞춰
-                <b>0.0098 → 0.01</b> 로 맺어요.
+                <b>자릿수를 맞춰요.</b> 불확정도는 유효숫자 1개로 <b>0.0098 → 0.01</b> 로 맺어요.
+                가속도는 그 끝자리에 맞춰 <b>소수 둘째 자리</b>로 맺어요.
                 계산기에 뜬 숫자를 그대로 옮겨 적으면 안 돼요.
               </div>
             </div>
@@ -3066,10 +3071,11 @@ function lesson5Deck(){
               {t:"앞쪽 0들은 자리만 잡아 주는 숫자라 유효숫자는 여전히 3개예요.", k:"meta"} ] },
 
     { accent:A, step:"④ 측정값 적는 방법", title:"적을 때 지킬 것",
-      lines:[ {t:"측정값과 절대 불확정도는 소수점 끝자리를 맞춰요", k:"body"},
-              {t:"10 ± 0.2 (×)  →  10.0 ± 0.2 (○)", k:"meta"},
-              {t:"상대 불확정도는 유효숫자 1개로 적어요", k:"body"},
+      /* 2026-11-14 발주자 지시: 불확정도는 유효숫자 1개만. 학생 화면 「적을 때」 안내와 같은 순서로 쓴다. */
+      lines:[ {t:"불확정도는 절대, 상대 모두 유효숫자 1개로 적어요", k:"body"},
               {t:"상대 불확정도 (%) = 절대 불확정도 ÷ 측정값 × 100", k:"meta"},
+              {t:"측정값은 절대 불확정도와 소수점 끝자리를 맞춰요", k:"body"},
+              {t:"10 ± 0.2 (×)  →  10.0 ± 0.2 (○)", k:"meta"},
               {t:"계산기에 뜬 숫자를 그대로 옮겨 적으면 안 돼요", k:"body"} ] },
 
     /* 자리를 맺는 법 — 학생 화면의 같은 이름 판을 그대로 옮긴 장.
@@ -3145,7 +3151,7 @@ function lesson5Deck(){
               {t:"× 9.80 ÷ 1000 → 상수 배율이라 같은 배율로 바뀌어요", k:"body"},
               {t:"", k:"body"},
               {t:"1 × 9.80 ÷ 1000 = 0.0098  →  ± 0.01 m/s²", k:"body"},
-              {t:"값과 불확정도는 소수점 끝자리를 맞춰요 — 가속도가 소수 둘째 자리면 0.01", k:"meta"} ] },
+              {t:"불확정도는 유효숫자 1개로 0.01 — 가속도도 그 끝자리인 소수 둘째 자리로 맞춰요", k:"meta"} ] },
 
     /* ─────────── ⑥ 정리 ───────────
        학생 화면의 「오늘 한 것」·「다음 시간」을 그대로 옮겼다.
@@ -3704,6 +3710,7 @@ function drawVec(){
    (2026-09-27 발주자 지적: 3번에 4.4 ± 0.1 을 넣어도 「맞았어요」 가 떴다. 2번 7.60,
     4번 0.044 ± 0.001 도 맞다고 했다. 이 단원이 가르치는 것이 바로 자릿수인데 채점이 보지 않았다.)
    전에는 '6', '6.0', '6.00' 을 모두 맞다고 봤다 — 그렇게 되돌리지 마라.
+   (2026-11-14 발주자 지시: 불확정도는 유효숫자 1개만. 3번은 4.4 ± 0.1, 4번은 0.044 ± 0.001 로 바꿨다.)
    크기가 맞고 자릿수만 틀리면 shapeMsg 를 띄운다. 1번은 개수를 묻는 문항이라 자릿수와 상관없다.
    틀리면 규칙 표에서 봐야 할 줄을 밝힌다.
    두 번까지 다시 시도하게 하고, 그 뒤에 정답을 보여 준다.
@@ -3773,32 +3780,32 @@ $("p1b").onclick = makeCheck({
   shapeMsg: "크기는 맞아요. 자릿수를 다시 보세요 — 곱하기는 유효숫자 개수가 가장 적은 값에 맞춰요."
 });
 
-/* 3. 최소 눈금 0.1 cm → ±0.05 cm. 빼기라 두 불확정도를 그대로 더한다 → ±0.10 cm.
-      값은 17.60 − 13.20 = 4.40 cm.
-      자릿수까지 본다 — 두 값이 소수 둘째 자리까지 읽은 값이라(뺄셈 기준은 소수점 자리수)
-      값은 4.40, 불확정도도 그 자리에 맞춰 0.10 이다. 4.4 ± 0.1 은 크기만 같고 자릿수가 틀리다.
+/* 3. 최소 눈금 0.1 cm → ±0.05 cm. 빼기라 두 불확정도를 그대로 더한다 → 0.05 + 0.05 = 0.10.
+      불확정도는 유효숫자 1개로 맺는다 → ±0.1 cm. 값 17.60 − 13.20 = 4.40 은 그 끝자리에 맞춰 4.4.
+      정답은 4.4 ± 0.1 cm 하나다. 4.40 ± 0.10 은 크기만 같고 불확정도의 유효숫자가 2개라 틀리다.
+      (2026-11-14 발주자 지시로 바꿨다. 9-27 에는 4.40 ± 0.10 만 받게 했었다 — 그쪽으로 되돌리지 마라.)
       전에는 값 허용폭이 4.40 의 0.5 % (±0.022) 라 4.42 도 맞다고 했다 — 정확히 같아야 한다.
       이 숫자는 함부로 바꾸지 마라. 5차시 지도안과 6차시 바이킹 모범답안이 쓰는 값을
       모두 피해서 고른 것이다 — 예제에 그 값이 나오면 수행평가 답이 새어 나간다.
       바꿔야 한다면 지도안 유의점의 금지 목록과 모범답안 표를 먼저 확인할 것. */
 $("p2b").onclick = makeCheck({
-  fb:"p2f", rows:["r-ruler","r-addsub"], answer:"4.40 ± 0.10 cm",
-  test: function(){ return near(numOf($("p2v").value), 4.40, 1e-9) && near(numOf($("p2u").value), 0.10, 1e-9); },
-  shape: function(){ return decOf($("p2v").value) === 2 && decOf($("p2u").value) === 2; },
-  shapeRows: ["r-sf-add","r-sf-mul","r-ruler"],
-  shapeMsg: "크기는 맞아요. 자릿수를 다시 보세요 — 두 값을 소수 몇째 자리까지 읽었나요? 값과 불확정도를 그 자리까지 적어요."
+  fb:"p2f", rows:["r-ruler","r-addsub"], answer:"4.4 ± 0.1 cm",
+  test: function(){ return near(numOf($("p2v").value), 4.4, 1e-9) && near(numOf($("p2u").value), 0.1, 1e-9); },
+  shape: function(){ return decOf($("p2v").value) === 1 && decOf($("p2u").value) === 1; },
+  shapeRows: ["r-ruler","r-addsub"],
+  shapeMsg: "크기는 맞아요. 자릿수를 다시 보세요 — 불확정도는 유효숫자 1개로 맺고, 값은 그 끝자리에 맞춰요."
 });
 
-/* 4. 4.40 ± 0.10 cm → m. 배율만 바뀌므로 유효숫자 개수(3개)는 그대로,
-      불확정도도 같은 배율 → 0.0440 ± 0.0010 m
+/* 4. 4.4 ± 0.1 cm → m. 배율만 바뀌므로 유효숫자 개수(2개)는 그대로,
+      불확정도도 같은 배율 → 0.044 ± 0.001 m
       화면에서는 4번이지만 id 는 p4 그대로다 — 앞의 p3 를 지우고 번호만 당겼다. */
 $("p4b").onclick = makeCheck({
-  fb:"p4f", rows:["r-unit-v","r-unit-u"], answer:"0.0440 ± 0.0010 m",
+  fb:"p4f", rows:["r-unit-v","r-unit-u"], answer:"0.044 ± 0.001 m",
   test: function(){
-    return near(numOf($("p4v").value), 0.0440, 1e-9) && near(numOf($("p4u").value), 0.0010, 1e-9);
+    return near(numOf($("p4v").value), 0.044, 1e-9) && near(numOf($("p4u").value), 0.001, 1e-9);
   },
-  /* 0.044 ± 0.001 은 유효숫자가 3개에서 2개로 줄어든다 — 단위를 바꿨을 뿐인데 정밀도가 떨어진 셈이다 */
-  shape: function(){ return decOf($("p4v").value) === 4 && decOf($("p4u").value) === 4; },
+  /* 0.0440 ± 0.0010 처럼 자리를 늘리면 크기는 같아도 틀린다 — 불확정도는 유효숫자 1개, 값은 그 끝자리에 맞춘다 */
+  shape: function(){ return decOf($("p4v").value) === 3 && decOf($("p4u").value) === 3; },
   shapeRows: ["r-unit-v","r-unit-u"],
   shapeMsg: "크기는 맞아요. 자릿수를 다시 보세요 — 단위를 바꿔도 유효숫자 개수는 그대로예요. 값과 불확정도를 같은 자리까지 적어요."
 });
