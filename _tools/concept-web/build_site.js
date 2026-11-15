@@ -235,6 +235,7 @@ function answerPage() {
       pages.map(n => '<img class="page" src="img/' + s.k + '-' + n + '.jpg" width="1240" height="1754" loading="lazy" decoding="async" alt="' + esc(s.tab) + ' 모범 답안 ' + n + '쪽">').join('') +
       '</section>';
   });
+  if (!fs.existsSync(path.join(SITE, 'answer', 'pdf', 'all.zip'))) throw new Error('ZIP 없음: make_zip.py 를 먼저 실행');
   const tabs = '<a class="tab" data-k="" href="./">전체</a>' + SHEETS.map(s => '<a class="tab" data-k="' + s.k + '" href="?u=' + s.k + '">' + esc(s.tab) + '</a>').join('');
   const css = BASE_CSS + `
 .sheet{margin:18px 0 0}
@@ -255,7 +256,9 @@ for(i=0;i<tabs.length;i++){if(tabs[i].getAttribute("data-k")===u){tabs[i].classN
 })();`;
   return '<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">' +
     '<meta name="color-scheme" content="light"><title>활동지 모범 답안 | 과학탐구실험2</title><style>' + css + '</style></head><body>' +
-    '<header class="top"><div class="wrap"><div class="top-in"><div class="top-name"><b>활동지 모범 답안</b><span>과학탐구실험2, 단원을 골라 봐요</span></div></div>' +
+    '<header class="top"><div class="wrap"><div class="top-in"><div class="top-name"><b>활동지 모범 답안</b><span>과학탐구실험2, 단원을 골라 봐요</span></div>' +
+    // 6개 PDF를 한 번에 받는 ZIP(2026-11-15 요청). 만들고 확인하는 것은 make_zip.py
+    '<a class="btn" href="pdf/all.zip" download="과학탐구실험2_활동지_모범답안_전체.zip">전체 PDF 한 번에 받기 (ZIP)</a></div>' +
     '<nav class="tabs" aria-label="단원 고르기">' + tabs + '</nav></div></header>' +
     '<main class="wrap">' + body + '</main>' + HOME_FAB + '<script>' + js + '</script></body></html>';
 }

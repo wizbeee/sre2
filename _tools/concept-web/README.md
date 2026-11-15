@@ -5,6 +5,7 @@
 ## 파일
 - `content_v3.js`: 개념서 원고(PDF 개념서와 같은 원고)
 - `build_site.js`: 원고로 `concept/index.html`(개념서)과 `answer/index.html`(모범 답안)을 만듭니다.
+- `make_zip.py`: 모범 답안 PDF 6개를 `answer/pdf/all.zip`으로 묶고, 6개가 다 들어 있는지, 원본과 똑같은지, PDF로 열리는지 확인합니다.
 - `add_nav.py`: 단원 페이지(1-1, 1-2, 1-3, 1-4, 1-5, 2-1)에 '활동지 모범 답안', '개념서' 단추와 떠 있는 '홈으로' 단추를 넣습니다. 이미 넣은 파일은 건너뜁니다.
 
 ## 다시 만들기
@@ -13,6 +14,7 @@
    - `answer/pdf/<단원>.pdf`를 바꿉니다.
    - 그림을 다시 만듭니다: `pdftoppm -r 150 -jpeg -jpegopt quality=80,progressive=y answer/pdf/<단원>.pdf answer/img/<단원>`
    - 쪽 번호 앞의 0을 뺍니다(1-4-01.jpg → 1-4-1.jpg).
+   - ZIP을 다시 만듭니다: `python3 _tools/concept-web/make_zip.py .`(확인 통과가 나와야 합니다)
    - 1번을 다시 합니다.
 3. 단원 페이지 파일을 새로 바꿔 넣었으면: `python3 _tools/concept-web/add_nav.py .`
 
