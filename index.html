@@ -970,8 +970,9 @@ var HUB_DOCS = {
   accel:{ ans:"1-4", con:"1-4" }, egg:{ ans:"1-5", con:"1-5" },
   advtech:{ ans:"2-1", con:"2-1" }, invent:{ ans:"2-1", con:"2-2" }
 };
-/* 첫 화면에서 아예 빼는 단원 — Ⅱ-3(2-3)은 사이트, 개념서에서 모두 뺀다(2026-11-16 발주자 결정) */
-var HUB_HIDE = { ethics:true };
+/* 첫 화면에서 아예 빼는 단원 — Ⅱ-3(2-3)은 사이트, 개념서에서 모두 뺀다(2026-11-16 발주자 결정).
+   Ⅰ-6(1-6)은 카드만 뺀다(같은 날 결정). 1-6 주소의 프로그램은 그대로 둔다. */
+var HUB_HIDE = { ethics:true, pollution:true };
 var TEACHER_CODE_DEFAULT = "2026";   // 초기 교사 모드 코드(SPEC 4.1) — 교사 모드에서 변경 가능
 var IDLE_HINT_MS = 90000;            // 90초 이상 무조작 시 힌트 1회(SPEC 7장)
 var KEY_STUDENT  = "sre2.v1.student";
