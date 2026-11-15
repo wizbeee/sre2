@@ -66,6 +66,7 @@ AI 는 학교 계정 제미나이로 쓰고, AI 에게 줄 글은 활동지가 �
 | 개념서 전체 | https://wizbeee.github.io/sre2/concept/ |
 | 개념서 한 단원 | https://wizbeee.github.io/sre2/concept/?u=1-1 (1-1, 1-2, 1-3, 1-4, 1-5, 2-1, 2-2) |
 | 활동지 모범 답안 전체 | https://wizbeee.github.io/sre2/answer/ |
+| 활동지 모범 답안 PDF 한 번에 받기 | https://wizbeee.github.io/sre2/answer/pdf/all.zip (6개 묶음) |
 | 활동지 모범 답안 한 단원 | https://wizbeee.github.io/sre2/answer/?u=1-1 (1-1, 1-2, 1-3, 1-4, 1-5, 2-1. Ⅱ-1과 Ⅱ-2는 한 묶음) |
 
 - 첫 화면 단원 카드마다 [활동지 모범 답안] [개념서] 단추가 있고, 위쪽 [한 번에 보기]에서 전체를 봅니다.
