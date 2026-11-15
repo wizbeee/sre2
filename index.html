@@ -970,6 +970,8 @@ var HUB_DOCS = {
   accel:{ ans:"1-4", con:"1-4" }, egg:{ ans:"1-5", con:"1-5" },
   advtech:{ ans:"2-1", con:"2-1" }, invent:{ ans:"2-1", con:"2-2" }
 };
+/* 첫 화면에서 아예 빼는 단원 — Ⅱ-3(2-3)은 사이트, 개념서에서 모두 뺀다(2026-11-16 발주자 결정) */
+var HUB_HIDE = { ethics:true };
 var TEACHER_CODE_DEFAULT = "2026";   // 초기 교사 모드 코드(SPEC 4.1) — 교사 모드에서 변경 가능
 var IDLE_HINT_MS = 90000;            // 90초 이상 무조작 시 힌트 1회(SPEC 7장)
 var KEY_STUDENT  = "sre2.v1.student";
@@ -3291,6 +3293,7 @@ function renderHub(){
 /* 루트 단원 고르기(HUB_LINKS) — 카드는 그 단원 주소로 가는 링크, 주소가 없으면 「준비 중」(누르지 않음) */
 function renderLinkHub(grid){
   MODULES.forEach(function(m){
+    if (HUB_HIDE[m.id]) return;
     var L = HUB_LINKS[m.id] || { url:"" }, ready = !!L.url, D = ready ? HUB_DOCS[m.id] : null, kids;
     /* 카드 전체는 그대로 수업 주소로 간다(「수업 열기」 링크가 카드 전체를 덮는다).
        아래 줄의 모범 답안, 개념서 단추는 그 위에 올려 따로 눌린다 — 링크 안에 링크를 넣지 않기 위해서다. */
