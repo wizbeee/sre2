@@ -3,13 +3,17 @@
 밑줄(_)로 시작하는 폴더라 사이트에는 올라가지 않습니다.
 
 ## 파일
-- `content_v3.js`: 개념서 원고(PDF 개념서와 같은 원고)
+- `content_v4.js`: 개념서 원고(PDF 개념서와 같은 원고, 2026-11-18 교과서 내용 17가지와 광혈류 원리를 더한 판)
+- `content_v3.js`: 이전 원고(저장된 답을 옮길 때 견줄 판으로 남겨 둠)
 - `build_site.js`: 원고로 `concept/index.html`(개념서)과 `answer/index.html`(모범 답안)을 만듭니다.
 - `make_zip.py`: 모범 답안 PDF 6개를 `answer/pdf/all.zip`으로 묶고, 6개가 다 들어 있는지, 원본과 똑같은지, PDF로 열리는지 확인합니다.
 - `add_nav.py`: 단원 페이지(1-1, 1-2, 1-3, 1-4, 1-5, 2-1)에 '활동지 모범 답안', '개념서' 단추와 떠 있는 '홈으로' 단추를 넣습니다. 이미 넣은 파일은 건너뜁니다.
 
 ## 다시 만들기
-1. 원고를 고치면: `node _tools/concept-web/build_site.js _tools/concept-web/content_v3.js .`
+1. 원고를 고치면: `node _tools/concept-web/build_site.js _tools/concept-web/content_v4.js . _tools/concept-web/content_v3.js 2`
+   - 끝의 두 값은 '이전 원고'와 '저장판 번호'입니다. 학생 기기에 저장된 빈칸 답(sre2.concept.v1)을 새 빈칸 번호(sre2.concept.v2)로 옮깁니다.
+   - 개념을 다시 더하거나 빼면 새 원고(content_v5.js)를 만들고 `content_v5.js . content_v4.js 3`처럼 번호를 하나 올립니다.
+   - 글자만 고치고 빈칸 수와 차례가 그대로면 번호를 올리지 않아도 됩니다.
 2. 모범 답안 PDF가 바뀌면
    - `answer/pdf/<단원>.pdf`를 바꿉니다.
    - 그림을 다시 만듭니다: `pdftoppm -r 150 -jpeg -jpegopt quality=80,progressive=y answer/pdf/<단원>.pdf answer/img/<단원>`
