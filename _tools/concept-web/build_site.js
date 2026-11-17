@@ -1,10 +1,15 @@
-// 개념서 원고(content_v3.js)와 모범 답안 그림 → 사이트의 개념서 · 모범 답안 페이지
-// node build_site.js <원고.js> <사이트 폴더>
+// 개념서 원고와 모범 답안 그림 → 사이트의 개념서 · 모범 답안 페이지
+// node build_site.js <원고.js> <사이트 폴더> [이전 원고.js 저장판번호]
+//   예) node build_site.js content_v4.js . content_v3.js 2
+//   원고에 개념을 더하거나 빼면 빈칸 번호가 밀린다. 그때는 이전 원고와 새 저장판 번호(2, 3, …)를 함께 준다.
+//   학생 기기에 저장된 이전 판(sre2.concept.v<번호-1>)의 답을, 같은 개념의 같은 답 빈칸으로 옮겨 새 판에 담는다.
 // 만드는 것: <사이트>/concept/index.html, <사이트>/answer/index.html
 // (모범 답안 그림 answer/img/<단원>-<쪽>.jpg 와 PDF answer/pdf/<단원>.pdf 는 미리 넣어 둔다)
 const fs = require('fs'), path = require('path');
 const C = require(path.resolve(process.argv[2]));
 const SITE = path.resolve(process.argv[3]);
+const PREV = process.argv[4] ? require(path.resolve(process.argv[4])) : null;
+const STORE_VER = process.argv[5] ? +process.argv[5] : 1;
 
 // ---- 글자 다루기: 개념서 빌드(build.js)와 같은 규칙 ----
 const esc0 = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -112,6 +117,52 @@ function unitHtml(u, qStart) {
   h += (u.questions.length ? '</div>' : '') + '</section>';
   return h;
 }
+// ---- 이전 판 빈칸 → 새 판 빈칸(학생 기기에 저장된 답 옮기기) ----
+// 빈칸 id 는 unitHtml 과 같은 차례로 매긴다: 개념(차례대로) → 표(행, 열 차례). 단원마다 0부터.
+function blankList(content) {
+  const out = {};
+  content.sessions.forEach(S => S.units.forEach(u => {
+    const k = UNIT_KEY[u.code]; if (!k) return;
+    let b = 0; const list = [];
+    const scan = (s, place) => { const seen = {}; String(s).replace(/\{\{(.+?)\}\}/g, (m, a) => {
+      seen[a] = (seen[a] || 0) + 1; list.push({ id: place.key + '.' + (b++), ans: a, occ: seen[a], place }); return m; }); };
+    u.concepts.forEach((c, i) => scan(c.t, { type: 'c', i, key: k + '.c' + i }));
+    (u.tables || []).forEach((t, ti) => t.rows.forEach((r, ri) => r.forEach((x, ci) => scan(x, { type: 't', key: k + '.t' + ti + '.' + ri + '.' + ci }))));
+    out[k] = { list, concepts: u.concepts.map(c => c.t) };
+  }));
+  return out;
+}
+let MIG_CACHE = null;
+function migration() {
+  if (MIG_CACHE) return MIG_CACHE;
+  const map = {};
+  if (PREV) {
+    const o = blankList(PREV), n = blankList(C), plain = s => s.replace(/\{\{(.+?)\}\}/g, '\u0000');
+    let all = 0, moved = 0; const lost = [];
+    Object.keys(o).forEach(k => {
+      if (!n[k]) return;
+      // 이전 개념 i → 새 개념 j: 이전 글에서 빈칸이 아닌 가장 긴 조각을 품은 새 개념(개념은 더하기만 했다)
+      const cmap = {};
+      o[k].concepts.forEach((t, i) => {
+        // 긴 조각부터 하나씩 대 보아, 새 개념 한 곳에만 들어 있는 조각(8자 이상)으로 정한다(글 가운데에 더한 경우도 잡힘)
+        const segs = plain(t).split('\u0000').filter(x => x.length >= 8).sort((a, b) => b.length - a.length);
+        for (const seg of segs) {
+          const hits = n[k].concepts.map((nt, j) => plain(nt).indexOf(seg) >= 0 ? j : -1).filter(j => j >= 0);
+          if (hits.length === 1) { cmap[i] = hits[0]; break; }
+        }
+      });
+      o[k].list.forEach(ob => {
+        all++;
+        const target = ob.place.type === 'c' ? (cmap[ob.place.i] == null ? null : k + '.c' + cmap[ob.place.i]) : ob.place.key;
+        const nb = target && n[k].list.find(x => x.place.key === target && x.ans === ob.ans && x.occ === ob.occ);
+        if (nb) { map[ob.id] = nb.id; moved++; } else lost.push(ob.id + '(' + ob.ans + ')');
+      });
+    });
+    console.log('저장된 답 옮기기: 이전 빈칸 ' + all + '개 가운데 ' + moved + '개를 새 빈칸에 이음' + (lost.length ? ' · 못 이음: ' + lost.join(', ') : ''));
+  }
+  return (MIG_CACHE = map);
+}
+
 function conceptPage() {
   let body = '', q = 1;
   C.sessions.forEach(S => {
@@ -173,8 +224,15 @@ html.one .sess-h,html.one .tnote{display:none !important}
 `;
   const js = `(function(){
 ${PARSE_U}
-var KEY="sre2.concept.v1",store={},canSave=true,i;
+var KEY="sre2.concept.v${STORE_VER}",store={},canSave=true,i;
 try{store=JSON.parse(localStorage.getItem(KEY)||"{}")||{};}catch(e){canSave=false;store={};}
+${STORE_VER > 1 ? `/* 이전 판에 적은 답 옮기기 — 새 판에 아무것도 없을 때 한 번만(이전 판은 지우지 않는다) */
+var MIG=${JSON.stringify(migration())};
+try{var hasNew=false,kk;for(kk in store){if(store.hasOwnProperty(kk)){hasNew=true;break;}}
+ var old=localStorage.getItem("sre2.concept.v${STORE_VER - 1}");
+ if(!hasNew&&old){old=JSON.parse(old)||{};for(kk in old){if(!old.hasOwnProperty(kk))continue;
+  if(MIG.hasOwnProperty(kk))store[MIG[kk]]=old[kk];else if(/\\.q\\d+$/.test(kk))store[kk]=old[kk];}
+  localStorage.setItem(KEY,JSON.stringify(store));}}catch(e){}` : ''}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){canSave=false;paintSave();}}
 function paintSave(){var n=document.getElementById("save-note");if(n&&!canSave)n.textContent="이 기기에서는 저장이 안 돼요. 새로 고치면 적은 것이 사라져요.";}
 var u=getU(),secs=document.querySelectorAll(".unit"),found=false;
